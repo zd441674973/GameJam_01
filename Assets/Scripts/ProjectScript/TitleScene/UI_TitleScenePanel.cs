@@ -30,7 +30,7 @@ public class UI_TitleScenePanel : BasePanel
         if (File.Exists(PlayerInfoSaveAdress))
         {
             File.Delete(PlayerInfoSaveAdress);
-            //GameDataMgr.GetInstance().PlayerDataInfo = new PlayerInfo();
+            GameDataControl.GetInstance().PlayerDataInfo = new PlayerInfo();
         }
     }
 
