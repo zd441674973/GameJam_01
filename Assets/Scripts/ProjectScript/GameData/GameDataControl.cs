@@ -25,7 +25,7 @@ public class GameDataControl : BaseManager<GameDataControl>
         //将数据集合按照ID号分别放入
         for (int i = 0; i < CardInfos.cardInfo.Count; ++i)
         {
-            cardInfoDic.Add(CardInfos.cardInfo[i].ID, CardInfos.cardInfo[i]);
+            cardInfoDic.Add(CardInfos.cardInfo[i].CardID, CardInfos.cardInfo[i]);
         }
 
         //没有玩家数据时，初始化一个默认数据
@@ -70,13 +70,23 @@ public class CardInfo
 [System.Serializable]
 public class Card
 {
-    public int ID;
-    public string Name;
-    public string Icon;
+    public int CardID;
+    public string CardName;
     public string Type;
-    public int Price;
-    public string Tips;
-    public int OpenChapter;
-    public int Number;
-    public string SkillName;
+    public int PlayerOwnedNumber;
+    public int ElectricEnergyEfficiencyChange;
+    public int MagicEnergyEfficiencyChange;
+    public int HealthToOpponentMin;
+    public int HealthToOpponentMax;
+    public int NumberOfAttack;
+    public int HealthToSelfMin;
+    public int HealthToSelfMax;
+    public int SheildToEnemy;
+    public int SheildToSelf;
+    public int DrawCardFromLabrary;
+    public int DrawCardFromEnemyLabrary;
+    public int GetEnemyHandCard;
+    public int DestroyEnemyHandCard;
+    public string Description;
+    public string Rarity;
 }
