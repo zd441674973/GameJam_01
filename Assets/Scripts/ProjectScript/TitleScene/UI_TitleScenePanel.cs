@@ -36,7 +36,8 @@ public class UI_TitleScenePanel : BasePanel
 
     private void ContinueGame()
     {
-
+        //¶ÁÈ¡Êý¾Ý
+        GameDataControl.GetInstance().LoadPlayerInfo();
     }
 
     private void ExitGame()

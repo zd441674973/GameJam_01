@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -13,6 +14,9 @@ public class GameDataControl : BaseManager<GameDataControl>
 
     //字典存储玩家从Json读取到的物品数据
     public Dictionary<int, Card> cardInfoDic = new Dictionary<int, Card>();
+
+    //玩家的存储路径
+    private static string PlayerInfoSaveAdress = Application.persistentDataPath + "/PlayerSaveData.json";
 
     /// <summary>
     /// 解析存储数据的Json信息
@@ -35,28 +39,109 @@ public class GameDataControl : BaseManager<GameDataControl>
             //存储它
             JsonMgr.Instance.SaveData(PlayerDataInfo, "PlayerSaveData");
         }
-        //File.WriteAllBytes(PlayerInfoSaveAdress, Encoding.UTF8.GetBytes(xxx));
 
         ////////////////////////事件监听，监听贯穿整个游戏的数据变化///////////////////////////////////////////////////////////
-        ///这些监听不能删除
-/*        //通过事件监听监听钱是否有变化
-        EventCenter.GetInstance().AddEventListener<int>("MoneyChange", ChangeMoney);
+        ///这些监听不能删除,只能执行一次
+       //通过事件监听监听卡牌是否有变化
+        EventCenter.GetInstance().AddEventListener<int,int>("CardChange", ChangeCard);
         //通过事件监听是否存档
-        EventCenter.GetInstance().AddEventListener("SavePlayerInfo", SavePlayerInfo);*/
+        EventCenter.GetInstance().AddEventListener("SavePlayerInfo", SavePlayerInfo);
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //执行完后，将当前ParseData执行状态调整为已经执行过
         isParseDataExecuted = true;
     }
+
+    /// <summary>
+    /// 方便外界使用GameDataMgr调用卡牌数量改变
+    /// </summary>
+    /// <param name="money"></param>
+    private void ChangeCard(int cardID, int number)
+    {
+        PlayerDataInfo.ChangeCard(cardID, number);
+        //减少钱就存储数据
+        EventCenter.GetInstance().EventTrigger("SavePlayerInfo");
+    }
+
+
+
+    /// <summary>
+    /// 方便外界使用GameDataMgr调用存档
+    /// </summary>
+    public void SavePlayerInfo()
+    {
+        JsonMgr.Instance.SaveData(PlayerDataInfo, "PlayerSaveData");
+    }
+
+
+    /// <summary>
+    /// 读取玩家信息----以后将其作为快速读取最近存档
+    /// </summary>
+    public void LoadPlayerInfo()
+    {
+        if (File.Exists(PlayerInfoSaveAdress))
+        {
+            //读取作为存档的Json文件
+            PlayerDataInfo = JsonMgr.Instance.LoadData<PlayerInfo>("PlayerSaveData");
+        }
+    }
+
+
+    /// <summary>
+    /// 根据卡牌ID获得卡牌信息
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public Card GetCardInfo(int cardId)
+    {
+        if (cardInfoDic.ContainsKey(cardId))
+            return cardInfoDic[cardId];
+        return null;
+    }
+
 }
 
 public class PlayerInfo
 {
     public int currentTileID;
-    public List<Card> PlayerOwnedcards;
+    public Dictionary<int, Card> PlayerOwnedcards;
+
+    public PlayerInfo()
+    {
+        currentTileID = 0;
+        PlayerOwnedcards = new Dictionary<int, Card>();
+    }
+
+    /// <summary>
+    /// 当玩家拥有卡牌数量改变时执行的函数
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="number"></param>
+    public void ChangeCard(int cardID, int number)
+    {
+        //如果玩家已经拥有该卡牌
+        if (PlayerOwnedcards.ContainsKey(cardID))
+        {
+            PlayerOwnedcards[cardID].PlayerOwnedNumber += number;
+        }
+        else
+        //如果玩家没有该卡牌
+        {
+            PlayerOwnedcards.Add(cardID, GameDataControl.GetInstance().GetCardInfo(cardID));
+            PlayerOwnedcards[cardID].PlayerOwnedNumber += number;
+        }
+
+        //如果该卡牌数量为0时
+        if(PlayerOwnedcards[cardID].PlayerOwnedNumber == 0)
+        {
+            PlayerOwnedcards.Remove(cardID);
+        }
+    }
 }
 
 
+//DataInfos
+/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
