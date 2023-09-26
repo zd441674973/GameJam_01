@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 648044bb18c1ea74a830f2f6fdeb42e4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - ChillCalligraphy
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 52148a1da79a6de429828fe0e4ecb6b2, type: 3}
+  - {fileID: 12800000, guid: 14982623bdfaf1f429d5923358825968, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
