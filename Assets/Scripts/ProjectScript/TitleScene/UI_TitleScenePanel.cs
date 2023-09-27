@@ -24,14 +24,14 @@ public class UI_TitleScenePanel : BasePanel
     private void NewGame()
     {
         MusicMgr.GetInstance().PlaySound("maou_se_system48-start", false);
-        //隐藏面板
-        UIManager.GetInstance().HidePanel("StartPanel");
         //开始新游戏之前先删除旧存档的数据
         if (File.Exists(PlayerInfoSaveAdress))
         {
             File.Delete(PlayerInfoSaveAdress);
             GameDataControl.GetInstance().PlayerDataInfo = new PlayerInfo();
         }
+
+        ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", loadScene);
     }
 
     private void ContinueGame()
@@ -49,4 +49,8 @@ public class UI_TitleScenePanel : BasePanel
 #endif
     }
 
+    private void loadScene()
+    {
+        UIManager.GetInstance().HidePanel("UI_TitleScene");
+    }
 }
