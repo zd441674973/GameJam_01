@@ -23,12 +23,20 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Transform _battleSlot;
 
 
+
+
     void Start()
     {
-        CardGeneration();
+        DrawCard();
+
+        TurnSystem.Instance.OnTurnChanged += DrawCard;
 
 
 
+    }
+
+    void Update()
+    {
 
     }
 
@@ -36,12 +44,55 @@ public class LevelManager : MonoBehaviour
 
 
 
-    void CardGeneration()
+    void DrawCard()
     {
-        foreach (var slot in _playerSlots) CardDeckManager.Instance.GenerateCard(_playerCard, slot);
+
+        foreach (var slot in _playerSlots)
+        {
+            int slotChildCount = slot.GetComponentsInChildren<BoxCollider2D>().Length;
+
+            if (slotChildCount > 0) return;
+
+            var playerDeck = CardDeckManager.Instance.GetPlayerDeck();
+            Transform card = playerDeck[Random.Range(0, playerDeck.Count)];
+            CardDeckManager.Instance.GenerateCard(card, slot);
+            playerDeck.Remove(card);
+
+        }
 
         foreach (var slot in _enemySlots) CardDeckManager.Instance.GenerateCard(_EnemyCard, slot);
     }
+
+    // bool HasCardOnPlayerSlot()
+    // {
+    //     foreach (var slot in _playerSlots)
+    //     {
+    //         int slotChildCount = slot.GetComponentsInChildren<BoxCollider2D>().Length;
+
+    //     }
+
+    // }
+
+    // void DrawCard()
+    // {
+    //     foreach (var slot in _playerSlots)
+    //     {
+    //         int slotChildCount = slot.GetComponentsInChildren<BoxCollider2D>().Length;
+    //         if (slotChildCount > 0) return;
+
+    //         var playerDeck = CardDeckManager.Instance.GetPlayerDeck();
+    //         Transform card = playerDeck[Random.Range(0, playerDeck.Count)];
+    //         CardDeckManager.Instance.GenerateCard(card, slot);
+    //         playerDeck.Remove(card);
+    //     }
+
+    // }
+
+
+
+
+
+
 
     public Transform GetBattleSlot() => _battleSlot;
 

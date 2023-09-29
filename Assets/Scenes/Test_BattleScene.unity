@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 180924200}
   - component: {fileID: 180924199}
   - component: {fileID: 180924198}
+  - component: {fileID: 180924201}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -417,6 +418,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180924196}
   m_CullTransparentMesh: 1
+--- !u!114 &180924201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180924196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21ebf8b618c097a4b906b47c1872f703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &238752200
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +441,7 @@ GameObject:
   - component: {fileID: 238752201}
   - component: {fileID: 238752202}
   - component: {fileID: 238752204}
+  - component: {fileID: 238752205}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -489,6 +503,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc50834f4ca1aec4aae265f7154ab718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerDeck:
+  - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
+  - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 413061938ae8844408360507d0907752, type: 3}
+  - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
+  - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 413061938ae8844408360507d0907752, type: 3}
+  _playerDiscardPile: []
+--- !u!114 &238752205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238752200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae988987e814dca49a33181d2407d57b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _turnIndex: 0
+  _isPlayerTurn: 0
 --- !u!1 &290968223
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,6 +53,10 @@ public class MouseDrag : MonoBehaviour
         float battleSlotSnapDistance = 1.5f;
         if (Distance() < battleSlotSnapDistance)
         {
+            Transform currentCard = CurrentDraggedCard().transform;
+            var playerDiscardDeck = CardDeckManager.Instance.GetPlayerDiscardDeck();
+            playerDiscardDeck.Add(currentCard);
+            //Destroy(currentCard.gameObject);
             CurrentDraggedCard().transform.gameObject.SetActive(false);
             return;
         }

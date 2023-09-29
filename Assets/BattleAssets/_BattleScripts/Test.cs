@@ -7,15 +7,19 @@ public class Test : MonoBehaviour
 {
     void Update()
     {
-        if (!Input.GetMouseButtonDown(0)) return;
+        if (!Input.GetMouseButtonDown(1)) return;
 
-        var mouseHit = MouseToWorld.Instance.GetMouseRaycastHit2D();
+        if (TurnSystem.Instance.IsPlayerTurn()) return;
 
-        if (!mouseHit.collider) return;
+        TurnSystem.Instance.NextTurn();
 
-        var test = mouseHit.collider.transform.name;
+        // var mouseHit = MouseToWorld.Instance.GetMouseRaycastHit2D();
 
-        Debug.Log(test);
+        // if (!mouseHit.collider) return;
+
+        // var test = mouseHit.collider.transform.name;
+
+        // Debug.Log(test);
 
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class TurnSystem : MonoBehaviour
     [SerializeField] int _turnIndex;
     [SerializeField] bool _isPlayerTurn;
 
+    public Action OnTurnChanged;
+
     void Start()
     {
         _turnIndex = 0;
@@ -29,12 +32,16 @@ public class TurnSystem : MonoBehaviour
         _turnIndex++;
         _isPlayerTurn = !_isPlayerTurn;
 
-        Debug.Log(_turnIndex);
+        //Debug.Log(_turnIndex);
 
 
-
-        //OnTurnChanged?.Invoke();
+        if (_isPlayerTurn) OnTurnChanged?.Invoke();
     }
+
+
+
+
+
 
     public int GetTurnIndex() => _turnIndex;
     public bool IsPlayerTurn() => _isPlayerTurn;

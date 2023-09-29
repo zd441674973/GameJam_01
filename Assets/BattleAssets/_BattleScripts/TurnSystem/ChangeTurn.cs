@@ -14,10 +14,13 @@ public class ChangeTurn : MonoBehaviour
 
     void Start()
     {
+
+
         button.onClick.AddListener
         (
             () =>
             {
+                if (!TurnSystem.Instance.IsPlayerTurn()) return;
                 TurnSystem.Instance.NextTurn();
 
 

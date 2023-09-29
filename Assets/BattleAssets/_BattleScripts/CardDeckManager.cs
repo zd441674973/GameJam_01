@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardDeckManager : MonoBehaviour
@@ -15,7 +17,26 @@ public class CardDeckManager : MonoBehaviour
         Instance = this;
     }
 
+    //[SerializeField] Transform[] _playerDeck;
+    [SerializeField] List<Transform> _playerDeck;
+    [SerializeField] List<Transform> _playerDiscardPile;
+
+
+    void Start()
+    {
+
+    }
+
+
+
+
+
+
+
+
 
 
     public Transform GenerateCard(Transform card, Transform cardSlot) => Instantiate(card, cardSlot);
+    public List<Transform> GetPlayerDeck() => _playerDeck;
+    public List<Transform> GetPlayerDiscardDeck() => _playerDiscardPile;
 }
