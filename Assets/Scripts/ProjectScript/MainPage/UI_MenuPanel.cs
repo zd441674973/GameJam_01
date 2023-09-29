@@ -45,7 +45,6 @@ public class UI_MenuPanel : BasePanel
     public void CloseMenu()
     {
         MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
-
         EventCenter.GetInstance().EventTrigger("CloseMenu");
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
     }

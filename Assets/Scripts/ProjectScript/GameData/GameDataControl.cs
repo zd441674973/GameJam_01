@@ -104,12 +104,21 @@ public class GameDataControl : BaseManager<GameDataControl>
 public class PlayerInfo
 {
     public int currentTileID;
-    public Dictionary<int, Card> PlayerOwnedcards;
+    public List<Card> PlayerOwnedcards;
 
     public PlayerInfo()
     {
         currentTileID = 0;
-        PlayerOwnedcards = new Dictionary<int, Card>();
+        PlayerOwnedcards = new List<Card>();
+
+        /////给玩家加牌/////////////////////////
+        ChangeCard(0, 3);
+
+        ChangeCard(1, 3);
+        ChangeCard(2, 3);
+        ChangeCard(3, 1);
+        ChangeCard(4, 1);
+        ChangeCard(5, 1);
     }
 
     /// <summary>
@@ -119,22 +128,30 @@ public class PlayerInfo
     /// <param name="number"></param>
     public void ChangeCard(int cardID, int number)
     {
-        //如果玩家已经拥有该卡牌
-        if (PlayerOwnedcards.ContainsKey(cardID))
+        bool cardExists = false; // 用于标记卡牌是否已存在
+
+        foreach (Card playerCard in PlayerOwnedcards)
         {
-            PlayerOwnedcards[cardID].PlayerOwnedNumber += number;
-        }
-        else
-        //如果玩家没有该卡牌
-        {
-            PlayerOwnedcards.Add(cardID, GameDataControl.GetInstance().GetCardInfo(cardID));
-            PlayerOwnedcards[cardID].PlayerOwnedNumber += number;
+            // 如果玩家已经拥有该卡牌
+            if (playerCard.CardID == cardID)
+            {
+                playerCard.PlayerOwnedNumber += number;
+                cardExists = true; // 卡牌已存在
+            }
+
+            // 如果该卡牌数量为0时
+            if (playerCard.PlayerOwnedNumber == 0)
+            {
+                PlayerOwnedcards.Remove(playerCard);
+            }
         }
 
-        //如果该卡牌数量为0时
-        if(PlayerOwnedcards[cardID].PlayerOwnedNumber == 0)
+        // 如果卡牌不存在，则添加卡牌并设置PlayerOwnedNumber
+        if (!cardExists)
         {
-            PlayerOwnedcards.Remove(cardID);
+            Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
+            newCard.PlayerOwnedNumber = number; // 设置PlayerOwnedNumber
+            PlayerOwnedcards.Add(newCard);
         }
     }
 }

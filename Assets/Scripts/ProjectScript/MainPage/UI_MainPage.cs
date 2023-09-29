@@ -63,15 +63,18 @@ public class UI_MainPage : BasePanel
     {
         if (!CardLabraryIsOpen)
         {
+
             MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
-            UIManager.GetInstance().ShowPanel<UI_MenuPanel>("UI_MenuPanel", E_UI_Layer.Top);
-            MenuIsOpen = true;
+
+            UIManager.GetInstance().ShowPanel<UI_CardLibrary>("UI_CardLibrary", E_UI_Layer.Mid);
+            CardLabraryIsOpen = true;
         }
 
         if (CardLabraryIsOpen)
         {
             MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
-            UIManager.GetInstance().HidePanel("UI_MenuPanel");
+
+            UIManager.GetInstance().HidePanel("UI_CardLibrary");
             CardLabraryIsOpen = false;
         }
     }
