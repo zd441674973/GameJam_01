@@ -14,6 +14,7 @@ public class MouseDrag : MonoBehaviour
 
     void Update()
     {
+        if (!TurnSystem.Instance.IsPlayerTurn()) return;
         GetCardOffset();
         Dragging();
         ResetDrag();
@@ -38,7 +39,7 @@ public class MouseDrag : MonoBehaviour
         if (!Input.GetMouseButton(0)) return;
         if (!CurrentDraggedCard()) return;
 
-        Debug.Log(Distance());
+        //Debug.Log(Distance());
         var mousePosition = MouseToWorld.Instance.GetMousePosition();
         CurrentDraggedCard().transform.position = mousePosition - _offset;
 
