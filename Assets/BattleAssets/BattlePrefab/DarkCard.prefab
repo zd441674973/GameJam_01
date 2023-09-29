@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2129563389784043499}
   - component: {fileID: 5139764074226409970}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DarkCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
