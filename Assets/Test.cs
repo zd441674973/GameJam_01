@@ -9,10 +9,12 @@ public class Test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Debug.Log("1");
             Function();
         }
-
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            ShowAwardPanel();
+        }
     }
 
     void Function()
@@ -20,5 +22,10 @@ public class Test : MonoBehaviour
         GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
 
         EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+    }
+
+    void ShowAwardPanel()
+    {
+        UIManager.GetInstance().ShowPanel<UI_AwardPanel>("AwardPanel");
     }
 }
