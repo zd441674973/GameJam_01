@@ -103,12 +103,12 @@ public class GameDataControl : BaseManager<GameDataControl>
 
 public class PlayerInfo
 {
-    public int currentTileID;
+    public int currentNodeID;
     public List<Card> PlayerOwnedcards;
 
     public PlayerInfo()
     {
-        currentTileID = 0;
+        currentNodeID = 0;
         PlayerOwnedcards = new List<Card>();
 
         /////¸øÍæ¼Ò¼ÓÅÆ/////////////////////////
