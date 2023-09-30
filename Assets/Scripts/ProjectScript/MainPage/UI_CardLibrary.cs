@@ -2,18 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Resources;
+using TMPro;
 using UnityEngine;
 using static UnityEditor.Progress;
+using System.Linq;
 
 public class UI_CardLibrary : BasePanel
 {
     public Transform grid;
     private List<UI_CardCell> cardlist = new List<UI_CardCell>();
+    public UI_CardDetail ShowCard;
+    public TMP_Text CardLabInfo;
+    public TMP_Text MinimumCardNumber;
+    public TMP_Text MaximumCardNumber;
+    private int playerCardsSum;
 
     public override void ShowMe()
     {
         base.ShowMe();
         ShowCards();
+        ShowPlayerCardInfo();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+       
+
+        EventCenter.GetInstance().AddEventListener<Card>("EnterCard", InitShowCard);
+    }
+
+    public override void HideMe()
+    {
+        base.HideMe();
+        EventCenter.GetInstance().RemoveEventListener<Card>("EnterCard", InitShowCard);
     }
 
     private void ShowCards()
@@ -35,5 +57,21 @@ public class UI_CardLibrary : BasePanel
             cardlist.Add(cardCell);
 
         }
+    }
+
+    private void InitShowCard(Card info)
+    {
+        ShowCard.InitInfo(info);
+    }
+
+  
+
+    private void ShowPlayerCardInfo()
+    {
+        EventCenter.GetInstance().EventTrigger("SumPlayerCard");
+        playerCardsSum = GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum;
+        CardLabInfo.text = "当前卡牌数量：" + playerCardsSum;
+        MinimumCardNumber.text = "最低卡牌数量：20";
+        MaximumCardNumber.text = "最高卡牌数量：28";
     }
 }

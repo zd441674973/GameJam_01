@@ -38,6 +38,11 @@ public class UI_Nodes : BasePanel
         EventCenter.GetInstance().AddEventListener("currentPlayerNodeIDchange", SetNodeID);
     }
 
+    private void OnDestroy()
+    {
+        EventCenter.GetInstance().RemoveEventListener("currentPlayerNodeIDchange", SetNodeID);
+    }
+
     private void SetButtons(Nodes nodes)
     {
         button.enabled = false;

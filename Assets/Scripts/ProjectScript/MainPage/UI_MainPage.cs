@@ -9,6 +9,18 @@ public class UI_MainPage : BasePanel
 {
     public bool MenuIsOpen = false;
     public bool CardLabraryIsOpen = false;
+    public TMP_Text playerinfo;
+
+    public override void ShowMe()
+    {
+        base.ShowMe();
+        //更新基础信息
+        UpdateInfo();
+        GetControl<Button>("OpenMenu").onClick.AddListener(OpenMenu);
+        GetControl<Button>("CardLibrary").onClick.AddListener(OpenCardLabrary);
+
+        EventCenter.GetInstance().AddEventListener("CloseMenu", ChangeMenuState);
+    }
 
     protected override void Awake()
     {
@@ -16,26 +28,26 @@ public class UI_MainPage : BasePanel
         base.Awake();
         MenuIsOpen = false;
         CardLabraryIsOpen = false;
+
+        EventCenter.GetInstance().AddEventListener("currentPlayerNodeIDchange", UpdateInfo);
     }
 
-    public override void ShowMe()
-    {
-        base.ShowMe();
-        //更新基础信息
-        //GetControl<TMP_Text>("ShowDate").text = 
-
-        GetControl<Button>("OpenMenu").onClick.AddListener(OpenMenu);
-        GetControl<Button>("CardLibrary").onClick.AddListener(OpenCardLabrary);
-
-        EventCenter.GetInstance().AddEventListener("CloseMenu",ChangeMenuState);
-    }
-
+    
     public override void HideMe()
     {
         base.HideMe();
         //关闭面板时保存数据
         GameDataControl.GetInstance().SavePlayerInfo();
+
+        EventCenter.GetInstance().RemoveEventListener("CloseMenu", ChangeMenuState);
+        EventCenter.GetInstance().RemoveEventListener("currentPlayerNodeIDchange", UpdateInfo);
     }
+
+    private void UpdateInfo()
+    {
+        playerinfo.text = "吉罗" + "  当前阶段: " + GameDataControl.GetInstance().PlayerDataInfo.currentNodeID + "/10" + "  最大生命值" + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+    }
+
 
     public void ChangeMenuState()
     {

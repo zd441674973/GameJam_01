@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -46,6 +47,8 @@ public class GameDataControl : BaseManager<GameDataControl>
         EventCenter.GetInstance().AddEventListener<int,int>("CardChange", ChangeCard);
         //通过事件监听是否存档
         EventCenter.GetInstance().AddEventListener("SavePlayerInfo", SavePlayerInfo);
+        //通过事件监听是否存档
+        EventCenter.GetInstance().AddEventListener("SumPlayerCard", SumPlayerCards);
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //执行完后，将当前ParseData执行状态调整为已经执行过
@@ -63,7 +66,15 @@ public class GameDataControl : BaseManager<GameDataControl>
         EventCenter.GetInstance().EventTrigger("SavePlayerInfo");
     }
 
-
+    /// <summary>
+    /// 方便外界计算玩家卡牌总数
+    /// </summary>
+    /// <param name="money"></param>
+    private void SumPlayerCards()
+    {
+        PlayerDataInfo.SumPlayerCards();
+        EventCenter.GetInstance().EventTrigger("SavePlayerInfo");
+    }
 
     /// <summary>
     /// 方便外界使用GameDataMgr调用存档
@@ -104,12 +115,18 @@ public class GameDataControl : BaseManager<GameDataControl>
 public class PlayerInfo
 {
     public int currentNodeID;
+    public int playerMaxHealth;
+    
+    public int playerCardsSum;
+
     public List<Card> PlayerOwnedcards;
 
     public PlayerInfo()
     {
         currentNodeID = 0;
+        playerMaxHealth = 50;
         PlayerOwnedcards = new List<Card>();
+        playerCardsSum = 0;
 
         /////给玩家加牌/////////////////////////
         ChangeCard(0, 3);
@@ -153,6 +170,12 @@ public class PlayerInfo
             newCard.PlayerOwnedNumber = number; // 设置PlayerOwnedNumber
             PlayerOwnedcards.Add(newCard);
         }
+    }
+
+    public void SumPlayerCards()
+    {
+        List<Card> cards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
+        playerCardsSum = cards.Sum(card => card.PlayerOwnedNumber);
     }
 }
 
