@@ -11,7 +11,9 @@ public class Test : MonoBehaviour
 
         if (TurnSystem.Instance.IsPlayerTurn()) return;
 
-        TurnSystem.Instance.NextTurn();
+        //TurnSystem.Instance.NextTurn();
+
+        Timer.Instance.WaitforTime(10);
 
         // var mouseHit = MouseToWorld.Instance.GetMouseRaycastHit2D();
 
