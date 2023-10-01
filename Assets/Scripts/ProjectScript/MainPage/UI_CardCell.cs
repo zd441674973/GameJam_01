@@ -13,6 +13,7 @@ public class UI_CardCell : BasePanel
     public TMP_Text cardName;
     public TMP_Text CardNumber;
     public Image cover;
+    public Image cardNmberImage;
 
     public override void ShowMe()
     {

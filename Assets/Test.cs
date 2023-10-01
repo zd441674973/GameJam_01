@@ -15,6 +15,11 @@ public class Test : MonoBehaviour
         {
             ShowAwardPanel();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            AdddrawNewCardTimes();
+        }
     }
 
     void Function()
@@ -27,5 +32,10 @@ public class Test : MonoBehaviour
     void ShowAwardPanel()
     {
         UIManager.GetInstance().ShowPanel<UI_AwardPanel>("AwardPanel");
+    }
+
+    private void AdddrawNewCardTimes()
+    {
+        GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes += 3;
     }
 }

@@ -132,7 +132,7 @@ public class PlayerInfo
         PlayerOwnedcards = new List<Card>();
         playerCardsSum = 0;
 
-        drawNewCardTimes = 2;
+        drawNewCardTimes = 3;
 
         AlreadyFinishedAward_SelectNewCard = true;
         AlreadyFinishedAward_DelateCard = true;
@@ -143,8 +143,11 @@ public class PlayerInfo
         ChangeCard(1, 3);
         ChangeCard(2, 3);
         ChangeCard(3, 1);
-        ChangeCard(4, 1);
-        ChangeCard(5, 1);
+        ChangeCard(4, 2);
+        ChangeCard(5, 2);
+        ChangeCard(8, 2);
+        ChangeCard(9, 2);
+        ChangeCard(11, 2);
     }
 
     /// <summary>
@@ -154,7 +157,7 @@ public class PlayerInfo
     /// <param name="number"></param>
     public void ChangeCard(int cardID, int number)
     {
-        bool cardExists = false; // 用于标记卡牌是否已存在
+        List<Card> cardsToRemove = new List<Card>(); // 用于存储需要删除的卡牌
 
         foreach (Card playerCard in PlayerOwnedcards)
         {
@@ -162,18 +165,21 @@ public class PlayerInfo
             if (playerCard.CardID == cardID)
             {
                 playerCard.PlayerOwnedNumber += number;
-                cardExists = true; // 卡牌已存在
-            }
-
-            // 如果该卡牌数量为0时
-            if (playerCard.PlayerOwnedNumber == 0)
-            {
-                PlayerOwnedcards.Remove(playerCard);
+                if (playerCard.PlayerOwnedNumber <= 0)
+                {
+                    cardsToRemove.Add(playerCard); // 将需要删除的卡牌添加到列表
+                }
             }
         }
 
+        // 移除需要删除的卡牌
+        foreach (Card cardToRemove in cardsToRemove)
+        {
+            PlayerOwnedcards.Remove(cardToRemove);
+        }
+
         // 如果卡牌不存在，则添加卡牌并设置PlayerOwnedNumber
-        if (!cardExists)
+        if (cardsToRemove.Count == 0 && number > 0)
         {
             Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
             newCard.PlayerOwnedNumber = number; // 设置PlayerOwnedNumber

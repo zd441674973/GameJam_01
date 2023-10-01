@@ -80,6 +80,8 @@ public class UI_AwardPanel : BasePanel
         trigger3.triggers.Add(exit3);
         ////////////////////////////////////////////////////////////////////////////////////
 
+        
+
         //ÏÔÊ¾ÐÂ¿¨ÅÆ
         RefreshNewCards();
      
@@ -105,6 +107,11 @@ public class UI_AwardPanel : BasePanel
 
     private void RefreshNewCards()
     {
+        if (GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes == 0)
+        {
+            SkipSelectCard();
+        }
+
         drawnNewCards.Clear();
         allCards = ConvertDictionaryToList(GameDataControl.GetInstance().cardInfoDic);
 
@@ -154,6 +161,7 @@ public class UI_AwardPanel : BasePanel
 
     private void SelectCard()
     {
+
         switch (currentSelectedNewCard)
         {
             case 0:
@@ -190,13 +198,14 @@ public class UI_AwardPanel : BasePanel
             GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = true;
             UIManager.GetInstance().HidePanel("AwardPanel");
             UIManager.GetInstance().ShowPanel<UI_DelateCardPanel>("DelateCardPanel");
+            
         }
         else
         {
             GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes -= 1;
             RefreshNewCards();
         }
-
+        GameDataControl.GetInstance().PlayerDataInfo.SumPlayerCards();
 
     }
 

@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
+using Image = UnityEngine.UI.Image;
 
 public class UI_DelateCardPanel : BasePanel
 {
@@ -12,18 +16,19 @@ public class UI_DelateCardPanel : BasePanel
     public Image SelectIcon; 
     public UI_CardDetail ShowCard;
     public TMP_Text CardDelatePanelInfo;
-    public TMP_Text MinimumCardNumber;
-    public TMP_Text MaximumCardNumber;
-    private int playerCardsSum;
 
 
     public TMP_Text CurrentSelectedCardNumber;
     public Transform SelectedIcons;
     private Card currentSelectedCard;
-    private Card previousSelectedCard;
+    private Vector3 previousSelectedCardPosition;
     private Vector3 currentSelectedCardPostion;
     private List<Card> cardsNeedToDelate;
     private int DelateCardTimes;
+    public Image CancelArea;
+
+    private bool CanAddDelatedCard = false;
+
 
     public override void ShowMe()
     {
@@ -32,6 +37,11 @@ public class UI_DelateCardPanel : BasePanel
         ShowCards();
         ShowPlayerCardInfo();
         cardsNeedToDelate = new List<Card>();
+        previousSelectedCardPosition = new Vector3(0, 0, 0);
+        currentSelectedCardPostion = new Vector3(0, 0, 0);
+        currentSelectedCard = new Card();
+
+        GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_DelateCard = false;
 
     }
 
@@ -39,6 +49,23 @@ public class UI_DelateCardPanel : BasePanel
     {
         base.Awake();
         EventCenter.GetInstance().AddEventListener<Card,Vector3>("EnterCard", InitShowCard);
+
+        GetControl<Button>("ButtonNextStep").onClick.AddListener(FinishDelate);
+
+        //监听鼠标移入和鼠标移出的事件，进行处理
+        EventTrigger trigger = CancelArea.gameObject.AddComponent<EventTrigger>();
+
+        //申明一个鼠标进入的事件类对象
+        EventTrigger.Entry enter = new EventTrigger.Entry();
+        enter.eventID = EventTriggerType.PointerEnter;
+        enter.callback.AddListener(MouseEnterCancelArea);
+
+        trigger.triggers.Add(enter);
+    }
+
+    public void MouseEnterCancelArea(BaseEventData data)
+    {
+        CancelSelectedIcon();
     }
 
     public override void HideMe()
@@ -47,6 +74,7 @@ public class UI_DelateCardPanel : BasePanel
         EventCenter.GetInstance().RemoveEventListener<Card,Vector3>("EnterCard", InitShowCard);
 
         cardsNeedToDelate.Clear();
+        
     }
 
     private void Update()
@@ -64,13 +92,32 @@ public class UI_DelateCardPanel : BasePanel
         }
     }
 
+    private void FinishDelate()
+    {
+        if(GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum <= 28 && GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum >= 20)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_DelateCard = true;
+            for(int i = 0; i < cardsNeedToDelate.Count; i++)
+            {
+                EventCenter.GetInstance().EventTrigger<int, int>("CardChange", cardsNeedToDelate[i].CardID, -1);
+            }
+
+            UIManager.GetInstance().HidePanel("DelateCardPanel");
+            UIManager.GetInstance().HidePanel("AwardPanel");
+        }
+    }
+
     private void SelectCardToDelateList()
     {
         if(DelateCardTimes == 0)
         {
             return;
         }
-        else if(currentSelectedCard == previousSelectedCard)
+        else if(currentSelectedCardPostion == previousSelectedCardPosition)
+        {
+            return;
+        }
+        else if (!CanAddDelatedCard)
         {
             return;
         }
@@ -84,7 +131,9 @@ public class UI_DelateCardPanel : BasePanel
             DelateCardTimes -= 1;
             cardsNeedToDelate.Add(currentSelectedCard);
 
-            previousSelectedCard = currentSelectedCard;
+            previousSelectedCardPosition = currentSelectedCardPostion;
+
+            GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum -= 1;
             ShowPlayerCardInfo();
 
 
@@ -99,6 +148,7 @@ public class UI_DelateCardPanel : BasePanel
     {
         if (DelateCardTimes == 3)
         {
+            previousSelectedCardPosition = new Vector3(0, 0, 0);
             return;
         }
         else
@@ -108,6 +158,7 @@ public class UI_DelateCardPanel : BasePanel
             DelateCardTimes += 1;
             cardsNeedToDelate.RemoveAt(3-DelateCardTimes);
 
+            GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum += 1;
             ShowPlayerCardInfo();
 
             Debug.Log(cardsNeedToDelate.Count);
@@ -142,13 +193,18 @@ public class UI_DelateCardPanel : BasePanel
         }
         cardlist.Clear();
 
-        for (int i = 0; i < Playercards.Count; ++i)
+        // 生成卡牌对应数量的 cardCell
+        foreach (Card playerCard in Playercards)
         {
-            UI_CardCell cardCell = ResMgr.GetInstance().Load<GameObject>("UI/Card_UI").GetComponent<UI_CardCell>();
-            cardCell.InitInfo(Playercards[i]);
-            cardCell.transform.SetParent(grid, false);
-            cardlist.Add(cardCell);
-
+            for (int i = 0; i < playerCard.PlayerOwnedNumber; i++)
+            {
+                UI_CardCell cardCell = ResMgr.GetInstance().Load<GameObject>("UI/Card_UI").GetComponent<UI_CardCell>();
+                cardCell.InitInfo(playerCard);
+                cardCell.transform.SetParent(grid, false);
+                cardCell.cardNmberImage.enabled = false;
+                cardCell.CardNumber.enabled = false;
+                cardlist.Add(cardCell);
+            }
         }
     }
 
@@ -159,17 +215,22 @@ public class UI_DelateCardPanel : BasePanel
         SelectIcon.transform.position = position;
         currentSelectedCardPostion = position;
         currentSelectedCard = info;
+
+        CanAddDelatedCard = true;
     }
 
+    private void CancelSelectedIcon()
+    {
+        SelectIcon.gameObject.SetActive(false);
+        currentSelectedCard = new Card();
+
+        CanAddDelatedCard = false;
+    }
 
 
     private void ShowPlayerCardInfo()
     {
-        EventCenter.GetInstance().EventTrigger("SumPlayerCard");
-        playerCardsSum = GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum;
-        CardDelatePanelInfo.text = "当前卡牌数量：" + playerCardsSum;
-        MinimumCardNumber.text = "最低卡牌数量：20";
-        MaximumCardNumber.text = "最高卡牌数量：28";
+        CardDelatePanelInfo.text = "当前卡牌数：" + GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum + ", 卡牌数应处于20到28之间";
         CurrentSelectedCardNumber.text = "还可以从牌组中删除 " + DelateCardTimes + "/3 张卡牌";
     }
 }
