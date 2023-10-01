@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 697521698567455610, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_Name
-      value: Light3
+      value: B16
       objectReference: {fileID: 0}
     - target: {fileID: 2129563389784043499, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_RootOrder
@@ -57,11 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7579857957130951938, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_Color.b
-      value: 0.6179246
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7579857957130951938, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_Color.g
-      value: 0.6179246
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7579857957130951938, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_Color.r

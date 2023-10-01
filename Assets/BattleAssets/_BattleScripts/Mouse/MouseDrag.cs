@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class MouseDrag : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class MouseDrag : MonoBehaviour
     {
         if (!Input.GetMouseButtonDown(0)) return;
         if (!CurrentDraggedCard()) return;
+
+        Debug.Log(CurrentDraggedCard().transform);
 
         _cardSlotPosition = CurrentDraggedCard().transform.parent.position;
         Vector2 cardPosition = CurrentDraggedCard().transform.position;
@@ -54,10 +57,13 @@ public class MouseDrag : MonoBehaviour
         if (Distance() < battleSlotSnapDistance)
         {
             Transform currentCard = CurrentDraggedCard().transform;
-            var playerDiscardDeck = CardDeckManager.Instance.GetPlayerDiscardDeck();
-            playerDiscardDeck.Add(currentCard);
-            //Destroy(currentCard.gameObject);
+            CardDeckManager.Instance.GetPlayerDiscardDeck().Add(currentCard);
             CurrentDraggedCard().transform.gameObject.SetActive(false);
+            LevelManager.Instance.PlayerCardSlotCheck();
+
+            Debug.Log("The Card has been played : " + currentCard);
+            CardActionManager.Instance.CardIsPlayed = true;
+
             return;
         }
 
@@ -66,7 +72,7 @@ public class MouseDrag : MonoBehaviour
 
     float Distance()
     {
-        var battleSlotPosition = LevelManager.Instance.GetBattleSlot().position;
+        var battleSlotPosition = LevelManager.Instance.GetBattleArea().position;
         var cardPosition = CurrentDraggedCard().transform.position;
         return Vector2.Distance(cardPosition, battleSlotPosition);
     }

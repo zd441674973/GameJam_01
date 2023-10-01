@@ -19,8 +19,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Transform _playerCard;
     [SerializeField] Transform _EnemyCard;
     [SerializeField] List<Transform> _playerSlots;
+    [SerializeField] List<bool> _isPlayerSlotsEmpty;
     [SerializeField] List<Transform> _enemySlots;
-    [SerializeField] Transform _battleSlot;
+    [SerializeField] Transform _battleArea;
 
 
 
@@ -33,10 +34,13 @@ public class LevelManager : MonoBehaviour
 
 
 
+
     }
 
     void Update()
     {
+
+
 
     }
 
@@ -49,51 +53,36 @@ public class LevelManager : MonoBehaviour
 
         foreach (var slot in _playerSlots)
         {
+            // check if all slots have card
             int slotChildCount = slot.GetComponentsInChildren<BoxCollider2D>().Length;
-
             if (slotChildCount > 0) return;
+
 
             var playerDeck = CardDeckManager.Instance.GetPlayerDeck();
             Transform card = playerDeck[Random.Range(0, playerDeck.Count)];
             CardDeckManager.Instance.GenerateCard(card, slot);
             playerDeck.Remove(card);
+            //AssignPlayerCardInHand(card);
 
         }
 
         foreach (var slot in _enemySlots) CardDeckManager.Instance.GenerateCard(_EnemyCard, slot);
     }
 
-    // bool HasCardOnPlayerSlot()
-    // {
-    //     foreach (var slot in _playerSlots)
-    //     {
-    //         int slotChildCount = slot.GetComponentsInChildren<BoxCollider2D>().Length;
-
-    //     }
-
-    // }
-
-    // void DrawCard()
-    // {
-    //     foreach (var slot in _playerSlots)
-    //     {
-    //         int slotChildCount = slot.GetComponentsInChildren<BoxCollider2D>().Length;
-    //         if (slotChildCount > 0) return;
-
-    //         var playerDeck = CardDeckManager.Instance.GetPlayerDeck();
-    //         Transform card = playerDeck[Random.Range(0, playerDeck.Count)];
-    //         CardDeckManager.Instance.GenerateCard(card, slot);
-    //         playerDeck.Remove(card);
-    //     }
-
-    // }
+    public void PlayerCardSlotCheck()
+    {
+        for (int i = 0; i < _playerSlots.Count; i++)
+        {
+            int slotChildCount = _playerSlots[i].GetComponentsInChildren<BoxCollider2D>().Length;
+            if (slotChildCount < 1) _isPlayerSlotsEmpty[i] = true;
+        }
+    }
 
 
 
 
 
 
-
-    public Transform GetBattleSlot() => _battleSlot;
+    public Transform GetBattleArea() => _battleArea;
 
 }

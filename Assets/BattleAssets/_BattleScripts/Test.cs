@@ -9,6 +9,10 @@ public class Test : MonoBehaviour
     {
         if (!Input.GetMouseButtonDown(1)) return;
 
+        //Debug.Log(GameDataControl.GetInstance().GetCardInfo(0).Description);
+
+
+
         if (TurnSystem.Instance.IsPlayerTurn()) return;
 
         //TurnSystem.Instance.NextTurn();
