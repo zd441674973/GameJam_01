@@ -23,6 +23,7 @@ public class UI_AwardPanel : BasePanel
     public override void ShowMe()
     {
         base.ShowMe();
+        
     }
 
     protected override void Awake()
@@ -81,6 +82,7 @@ public class UI_AwardPanel : BasePanel
 
         //ÏÔÊ¾ÐÂ¿¨ÅÆ
         RefreshNewCards();
+        GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 2;
     }
 
 
@@ -160,25 +162,43 @@ public class UI_AwardPanel : BasePanel
             case 1:
                 EventCenter.GetInstance().EventTrigger<int,int>("CardChange",drawnNewCards[0].CardID, 1);
                 EventCenter.GetInstance().EventTrigger("CardPlusOne");
-                GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = true;
-                UIManager.GetInstance().HidePanel("AwardPanel");
+                
+                CheckCardSelectIsDone();
                 break;
             case 2:
                 EventCenter.GetInstance().EventTrigger<int, int>("CardChange", drawnNewCards[1].CardID, 1);
                 EventCenter.GetInstance().EventTrigger("CardPlusOne");
-                GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = true;
-                UIManager.GetInstance().HidePanel("AwardPanel");
+                
+                CheckCardSelectIsDone();
                 break;
             case 3:
                 EventCenter.GetInstance().EventTrigger<int, int>("CardChange", drawnNewCards[2].CardID, 1);
                 EventCenter.GetInstance().EventTrigger("CardPlusOne");
-                GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = true;
-                UIManager.GetInstance().HidePanel("AwardPanel");
+                
+                CheckCardSelectIsDone();
                 break;
         }
+
+
     }
 
-   
+    private void CheckCardSelectIsDone()
+    {
+        if(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes == 0)
+        {
+            
+            GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = true;
+            UIManager.GetInstance().HidePanel("AwardPanel");
+            UIManager.GetInstance().ShowPanel<UI_DelateCardPanel>("DelateCardPanel");
+        }
+        else
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes -= 1;
+            RefreshNewCards();
+        }
+
+
+    }
 
 
     /// <summary>

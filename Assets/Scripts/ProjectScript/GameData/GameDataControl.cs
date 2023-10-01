@@ -118,7 +118,8 @@ public class PlayerInfo
     public int playerMaxHealth;
     
     public int playerCardsSum;
-
+    //每次奖励可以获得新卡牌的次数
+    public int drawNewCardTimes;
     public List<Card> PlayerOwnedcards;
 
     public bool AlreadyFinishedAward_SelectNewCard;
@@ -130,6 +131,8 @@ public class PlayerInfo
         playerMaxHealth = 50;
         PlayerOwnedcards = new List<Card>();
         playerCardsSum = 0;
+
+        drawNewCardTimes = 2;
 
         AlreadyFinishedAward_SelectNewCard = true;
         AlreadyFinishedAward_DelateCard = true;
