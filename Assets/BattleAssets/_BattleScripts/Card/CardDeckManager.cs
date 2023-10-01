@@ -19,7 +19,7 @@ public class CardDeckManager : MonoBehaviour
 
     //[SerializeField] Transform[] _playerDeck;
     [SerializeField] List<Transform> _playerDeck;
-    [SerializeField] List<Transform> _playerCardInHand;
+    [SerializeField] List<Transform> _playerHandCard;
     [SerializeField] List<Transform> _playerDiscardPile;
 
 
@@ -39,6 +39,6 @@ public class CardDeckManager : MonoBehaviour
 
     public Transform GenerateCard(Transform card, Transform cardSlot) => Instantiate(card, cardSlot);
     public List<Transform> GetPlayerDeck() => _playerDeck;
-    public List<Transform> GetPlayerCardInHand() => _playerCardInHand;
+    public List<Transform> GetPlayerHandCard() => _playerHandCard;
     public List<Transform> GetPlayerDiscardDeck() => _playerDiscardPile;
 }

@@ -16,8 +16,10 @@ public class CardActionManager : MonoBehaviour
     }
 
     [SerializeField] bool _cardIsPlayed;
-
     public bool CardIsPlayed { get { return _cardIsPlayed; } set { _cardIsPlayed = value; } }
+
+
+
 
 
     void Update()
