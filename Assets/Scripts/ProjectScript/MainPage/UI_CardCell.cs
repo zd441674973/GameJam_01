@@ -39,7 +39,7 @@ public class UI_CardCell : BasePanel
     {
         if (cardCellInfo == null)
             return;
-        EventCenter.GetInstance().EventTrigger<Card>("EnterCard", cardCellInfo);
+        EventCenter.GetInstance().EventTrigger<Card, Vector3>("EnterCard", cardCellInfo, this.transform.position);
     }
   
     /// <summary>

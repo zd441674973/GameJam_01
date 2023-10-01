@@ -82,7 +82,7 @@ public class UI_AwardPanel : BasePanel
 
         //ÏÔÊ¾ÐÂ¿¨ÅÆ
         RefreshNewCards();
-        GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 2;
+     
     }
 
 

@@ -29,13 +29,13 @@ public class UI_CardLibrary : BasePanel
         base.Awake();
        
 
-        EventCenter.GetInstance().AddEventListener<Card>("EnterCard", InitShowCard);
+        EventCenter.GetInstance().AddEventListener<Card,Vector3>("EnterCard", InitShowCard);
     }
 
     public override void HideMe()
     {
         base.HideMe();
-        EventCenter.GetInstance().RemoveEventListener<Card>("EnterCard", InitShowCard);
+        EventCenter.GetInstance().RemoveEventListener<Card,Vector3>("EnterCard", InitShowCard);
     }
 
     private void ShowCards()
@@ -59,7 +59,7 @@ public class UI_CardLibrary : BasePanel
         }
     }
 
-    private void InitShowCard(Card info)
+    private void InitShowCard(Card info, Vector3 position)
     {
         ShowCard.InitInfo(info);
     }
