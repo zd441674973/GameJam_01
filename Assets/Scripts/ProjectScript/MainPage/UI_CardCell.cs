@@ -31,13 +31,8 @@ public class UI_CardCell : BasePanel
         enter.eventID = EventTriggerType.PointerEnter;
         enter.callback.AddListener(MouseEnterCardCell);
 
-        /*//申明一个鼠标移出的事件类对象
-        EventTrigger.Entry exit = new EventTrigger.Entry();
-        exit.eventID = EventTriggerType.PointerExit;
-        exit.callback.AddListener(MouseExitCardCell);*/
-
-        trigger.triggers.Add(enter);/*
-        trigger.triggers.Add(exit);*/
+        trigger.triggers.Add(enter);
+       
     }
 
     public void MouseEnterCardCell(BaseEventData data)
@@ -46,16 +41,7 @@ public class UI_CardCell : BasePanel
             return;
         EventCenter.GetInstance().EventTrigger<Card>("EnterCard", cardCellInfo);
     }
-   /* public void MouseExitCardCell(BaseEventData data)
-    {
-
-        Debug.Log("2");
-        if (cardCellInfo == null)
-            return;
-        //隐藏面板
-        UIManager.GetInstance().HidePanel("Card_Detail");
-    }*/
-
+  
     /// <summary>
     /// 初始化卡牌
     /// </summary>

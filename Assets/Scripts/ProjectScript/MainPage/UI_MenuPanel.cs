@@ -53,8 +53,14 @@ public class UI_MenuPanel : BasePanel
     {
 
         MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
         UIManager.GetInstance().HidePanel("UI_MainPage");
+        UIManager.GetInstance().HidePanel("UI_CardLibrary");
+        UIManager.GetInstance().HidePanel("UI_GameMap");
+        UIManager.GetInstance().HidePanel("AwardPanel");
+        UIManager.GetInstance().HidePanel("DelateCardPanel");
+
         //每多加一个面板就在这里加入一个，方便关闭
 
     }

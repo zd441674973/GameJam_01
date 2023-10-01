@@ -38,6 +38,8 @@ public class UI_TitleScenePanel : BasePanel
     {
         //¶ÁÈ¡Êý¾Ý
         GameDataControl.GetInstance().LoadPlayerInfo();
+
+        ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", loadScene);
     }
 
     private void ExitGame()

@@ -11,6 +11,9 @@ public class UI_MainPage : BasePanel
     public bool CardLabraryIsOpen = false;
     public TMP_Text playerinfo;
 
+
+    public GameObject CardLabPlus;
+
     public override void ShowMe()
     {
         base.ShowMe();
@@ -30,6 +33,7 @@ public class UI_MainPage : BasePanel
         CardLabraryIsOpen = false;
 
         EventCenter.GetInstance().AddEventListener("currentPlayerNodeIDchange", UpdateInfo);
+        EventCenter.GetInstance().AddEventListener("CardPlusOne", showCardPlus1Icon);
     }
 
     
@@ -41,7 +45,26 @@ public class UI_MainPage : BasePanel
 
         EventCenter.GetInstance().RemoveEventListener("CloseMenu", ChangeMenuState);
         EventCenter.GetInstance().RemoveEventListener("currentPlayerNodeIDchange", UpdateInfo);
+        EventCenter.GetInstance().RemoveEventListener("CardPlusOne", showCardPlus1Icon);
     }
+
+    private void showCardPlus1Icon()
+    {
+        StartCoroutine(ActivateCardPlus());
+    }
+
+    private IEnumerator ActivateCardPlus()
+    {
+        // 激活物体
+        CardLabPlus.SetActive(true);
+
+        // 等待1秒
+        yield return new WaitForSeconds(1f);
+
+        // 失活物体
+        CardLabPlus.SetActive(false);
+    }
+
 
     private void UpdateInfo()
     {

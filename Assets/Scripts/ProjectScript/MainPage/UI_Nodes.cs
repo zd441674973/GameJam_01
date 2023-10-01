@@ -88,7 +88,6 @@ public class UI_Nodes : BasePanel
 
     private void SetNodeID()
     {
-        Debug.Log(currentPlayerNodeID);
         switch (nodeName)
         {
             case "Node0":

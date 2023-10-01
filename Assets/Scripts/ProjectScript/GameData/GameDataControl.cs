@@ -121,12 +121,18 @@ public class PlayerInfo
 
     public List<Card> PlayerOwnedcards;
 
+    public bool AlreadyFinishedAward_SelectNewCard;
+    public bool AlreadyFinishedAward_DelateCard;
+    
     public PlayerInfo()
     {
         currentNodeID = 0;
         playerMaxHealth = 50;
         PlayerOwnedcards = new List<Card>();
         playerCardsSum = 0;
+
+        AlreadyFinishedAward_SelectNewCard = true;
+        AlreadyFinishedAward_DelateCard = true;
 
         /////¸øÍæ¼Ò¼ÓÅÆ/////////////////////////
         ChangeCard(0, 3);

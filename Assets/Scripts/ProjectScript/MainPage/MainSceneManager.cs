@@ -10,6 +10,16 @@ public class MainSceneManager : MonoBehaviour
         UIManager.GetInstance().ShowPanel<UI_MainPage>("UI_MainPage", E_UI_Layer.Bot);
         UIManager.GetInstance().ShowPanel<UI_GameMap>("UI_GameMap", E_UI_Layer.Bot);
         PlayMenuBGM();
+
+        if (!GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard)
+        {
+            UIManager.GetInstance().ShowPanel<UI_AwardPanel>("AwardPanel", E_UI_Layer.Mid);
+        }
+
+        if (!GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_DelateCard)
+        {
+            UIManager.GetInstance().ShowPanel<UI_DelateCardPanel>("DelateCardPanel", E_UI_Layer.Mid);
+        }
     }
 
     public void PlayMenuBGM()
