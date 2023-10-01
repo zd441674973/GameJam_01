@@ -59,7 +59,7 @@ public class MouseDrag : MonoBehaviour
             Transform currentCard = CurrentDraggedCard().transform;
             CardDeckManager.Instance.GetPlayerDiscardDeck().Add(currentCard);
             CurrentDraggedCard().transform.gameObject.SetActive(false);
-            LevelManager.Instance.PlayerCardSlotCheck();
+            if (currentCard.CompareTag("PlayerCard")) LevelManager.Instance.PlayerCardSlotCheck();
 
             Debug.Log("The Card has been played : " + currentCard);
             CardActionManager.Instance.CardIsPlayed = true;

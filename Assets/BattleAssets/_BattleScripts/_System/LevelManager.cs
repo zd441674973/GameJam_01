@@ -75,21 +75,11 @@ public class LevelManager : MonoBehaviour
                 if (HandCardCount() == _playerHandCardMax) return;
             }
 
-
-
-
-
-
-
-
             var playerDeck = CardDeckManager.Instance.GetPlayerDeck();
             Transform card = playerDeck[Random.Range(0, playerDeck.Count)];
             CardDeckManager.Instance.GenerateCard(card, slot);
             CardDeckManager.Instance.GetPlayerHandCard().Add(card);
             playerDeck.Remove(card);
-
-
-
         }
 
 

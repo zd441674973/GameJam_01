@@ -20,7 +20,7 @@ public class ChangeTurn : MonoBehaviour
         (
             () =>
             {
-                //if (!TurnSystem.Instance.IsPlayerTurn()) return;
+                if (!TurnSystem.Instance.IsPlayerTurn()) return;
                 TurnSystem.Instance.NextTurn();
 
 

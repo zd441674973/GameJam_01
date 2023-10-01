@@ -7,17 +7,15 @@ public class Test : MonoBehaviour
 {
     void Update()
     {
-        if (!Input.GetMouseButtonDown(1)) return;
+        //if (!Input.GetMouseButtonDown(1)) return;
 
         //Debug.Log(GameDataControl.GetInstance().GetCardInfo(0).Description);
 
-
-
-        if (TurnSystem.Instance.IsPlayerTurn()) return;
+        //if (TurnSystem.Instance.IsPlayerTurn()) return;
 
         //TurnSystem.Instance.NextTurn();
 
-        Timer.Instance.WaitforTime(10);
+        //Timer.Instance.WaitforTime(10);
 
         // var mouseHit = MouseToWorld.Instance.GetMouseRaycastHit2D();
 
@@ -26,6 +24,11 @@ public class Test : MonoBehaviour
         // var test = mouseHit.collider.transform.name;
 
         // Debug.Log(test);
+
+        if (Input.GetKey(KeyCode.Q)) EnergyBarManager.Instance.EnergyBarCalculation("Bright", 1, "Addition");
+        if (Input.GetKey(KeyCode.W)) EnergyBarManager.Instance.EnergyBarCalculation("Bright", 1, "Subtraction");
+        if (Input.GetKey(KeyCode.A)) EnergyBarManager.Instance.EnergyBarCalculation("Dark", 1, "Addition");
+        if (Input.GetKey(KeyCode.S)) EnergyBarManager.Instance.EnergyBarCalculation("Dark", 1, "Subtraction");
 
     }
 }
