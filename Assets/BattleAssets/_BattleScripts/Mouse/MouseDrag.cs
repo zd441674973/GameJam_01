@@ -7,6 +7,8 @@ using System;
 
 public class MouseDrag : MonoBehaviour
 {
+    //public static event Action CardIsPlayed;
+
     [SerializeField] bool _isDargging;
 
     Vector2 _offset;
@@ -54,16 +56,10 @@ public class MouseDrag : MonoBehaviour
         if (!CurrentDraggedCard()) return;
 
         float battleSlotSnapDistance = 1.5f;
+
         if (Distance() < battleSlotSnapDistance)
         {
-            Transform currentCard = CurrentDraggedCard().transform;
-            CardDeckManager.Instance.GetPlayerDiscardDeck().Add(currentCard);
-            CurrentDraggedCard().transform.gameObject.SetActive(false);
-            if (currentCard.CompareTag("PlayerCard")) LevelManager.Instance.PlayerCardSlotCheck();
-
-            Debug.Log("The Card has been played : " + currentCard);
-            CardActionManager.Instance.CardIsPlayed = true;
-
+            PlayerCardIsPlayed();
             return;
         }
 
@@ -76,5 +72,43 @@ public class MouseDrag : MonoBehaviour
         var cardPosition = CurrentDraggedCard().transform.position;
         return Vector2.Distance(cardPosition, battleSlotPosition);
     }
+
+
+
+
+
+
+    void PlayerCardIsPlayed()
+    {
+        Transform currentCard = CurrentDraggedCard().transform;
+
+        UpdateEnergyBar(currentCard);
+        AddCardToDiscardPile(currentCard);
+
+        currentCard.gameObject.SetActive(false);
+
+        //CardIsPlayed?.Invoke();
+
+        Debug.Log("CardIsPlayed: The Card has been played : " + currentCard.name);
+
+        CardActionManager.Instance.CardIsPlayed = true;
+    }
+
+    void AddCardToDiscardPile(Transform transform) => CardDeckManager.Instance.GetPlayerDiscardDeck().Add(transform);
+    void UpdateEnergyBar(Transform transform)
+    {
+        if (transform.CompareTag("BrightCard"))
+        {
+            EnergySystem.Instance.EnergyBarCalculation("Bright", 1);
+            EnergySystem.Instance.EnergyBarCalculation("Dark", -1);
+        }
+
+        if (transform.CompareTag("DarkCard"))
+        {
+            EnergySystem.Instance.EnergyBarCalculation("Bright", -1);
+            EnergySystem.Instance.EnergyBarCalculation("Dark", 1);
+        }
+    }
+
 
 }

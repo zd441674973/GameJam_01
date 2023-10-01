@@ -7,9 +7,9 @@ using JetBrains.Annotations;
 using Unity.Mathematics;
 
 
-public class EnergyBarManager : MonoBehaviour
+public class EnergySystem : MonoBehaviour
 {
-    public static EnergyBarManager Instance;
+    public static EnergySystem Instance;
     void Awake()
     {
         if (Instance != null)
@@ -41,10 +41,15 @@ public class EnergyBarManager : MonoBehaviour
     // { get { return _isCalculating; } set { _isCalculating = value; } }
 
 
+    void Start()
+    {
+    }
+
     void Update()
     {
         EnergyBarUpdation();
     }
+
 
     void EnergyBarUpdation()
     {
@@ -72,36 +77,19 @@ public class EnergyBarManager : MonoBehaviour
 
 
     /// <summary>
-    /// string: "Bright"/"Dark" // int: calculate value // string: "Addition" for add, "Subtraction" for minus
+    /// string: "Bright"/"Dark" // int: calculate value, "1" for addition, "-1" for subtraction
     /// </summary>
     /// <param name="bar"></param>
     /// <param name="value"></param>
-    /// <param name="calculation"></param>
-    public void EnergyBarCalculation(string bar, int value, string calculation)
+    public void EnergyBarCalculation(string bar, int value)
     {
         switch (bar)
         {
             case "Bright":
-                switch (calculation)
-                {
-                    case "Addition":
-                        _brightBarEnergy += value;
-                        break;
-                    case "Subtraction":
-                        _brightBarEnergy -= value;
-                        break;
-                }
+                _brightBarEnergy += value;
                 break;
             case "Dark":
-                switch (calculation)
-                {
-                    case "Addition":
-                        _darkBarEnergy += value;
-                        break;
-                    case "Subtraction":
-                        _darkBarEnergy -= value;
-                        break;
-                }
+                _darkBarEnergy += value;
                 break;
         }
         EnergyBarValueCheck();

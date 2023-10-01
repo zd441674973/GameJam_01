@@ -34,11 +34,11 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        DrawCard();
+        PlayerDrawCard();
         EnemyDrawCard();
 
         TurnSystem.Instance.OnTurnChanged += UpdatePlayerMaxHandCardCount;
-        TurnSystem.Instance.OnTurnChanged += DrawCard;
+        TurnSystem.Instance.OnTurnChanged += PlayerDrawCard;
         TurnSystem.Instance.OnTurnChanged += EnemyDrawCard;
 
 
@@ -48,24 +48,22 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-
+        PlayerCardSlotCheck();
     }
 
 
 
 
 
-    void DrawCard()
+    void PlayerDrawCard()
     {
-        Debug.Log("Draw Card");
+        Debug.Log("DrawCard: Draw Card");
 
-        foreach (var slot in _playerSlots)
+        for (int i = 0; i < _playerSlots.Count; i++)
         {
-            // check if all slots have card
-            int slotChildCount = slot.GetComponentsInChildren<BoxCollider2D>().Length;
+            int slotChildCount = _playerSlots[i].GetComponentsInChildren<BoxCollider2D>().Length;
             if (slotChildCount > 0) continue;
 
-            // Check if it is the first turn
             if (TurnSystem.Instance.GetTurnIndex() == 0)
             {
                 if (HandCardCount() > 3) return;
@@ -77,8 +75,8 @@ public class LevelManager : MonoBehaviour
 
             var playerDeck = CardDeckManager.Instance.GetPlayerDeck();
             Transform card = playerDeck[Random.Range(0, playerDeck.Count)];
-            CardDeckManager.Instance.GenerateCard(card, slot);
-            CardDeckManager.Instance.GetPlayerHandCard().Add(card);
+            CardDeckManager.Instance.GenerateCard(card, _playerSlots[i]);
+            CardDeckManager.Instance.GetPlayerHandCard()[i] = card;
             playerDeck.Remove(card);
         }
 
@@ -90,7 +88,7 @@ public class LevelManager : MonoBehaviour
         foreach (var slot in _enemySlots) CardDeckManager.Instance.GenerateCard(_EnemyCard, slot);
     }
 
-    public void PlayerCardSlotCheck()
+    void PlayerCardSlotCheck()
     {
         for (int i = 0; i < _playerSlots.Count; i++)
         {
@@ -112,7 +110,7 @@ public class LevelManager : MonoBehaviour
             if (!handCardList[i]) continue;
             ValuableHandCards++;
         }
-        Debug.Log(ValuableHandCards);
+        //Debug.Log("HandCardCount:" + ValuableHandCards);
         return ValuableHandCards;
     }
 
@@ -121,20 +119,6 @@ public class LevelManager : MonoBehaviour
         //Player draw 2 cards each turn
         _playerHandCardMax = HandCardCount() + 2;
     }
-
-    // void TurnCheck()
-    // {
-    //     switch (TurnSystem.Instance.GetTurnIndex())
-    //     {
-    //         case 0:
-    //             if (HandCardCount() > 4) return;
-    //             break;
-
-    //         default:
-    //             if (HandCardCount() > 8) return;
-    //             break;
-    //     }
-    // }
 
 
 

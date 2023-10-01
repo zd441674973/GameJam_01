@@ -797,7 +797,15 @@ MonoBehaviour:
   - {fileID: 4200471566151222143, guid: 019516d2c54f4f64baf4a52bd5573777, type: 3}
   - {fileID: 4200471566151222143, guid: 4a3d1218e7a01504da555909e913c367, type: 3}
   - {fileID: 4200471566151222143, guid: 7cb0dd91f7086d5479b53cf39bf20137, type: 3}
-  _playerHandCard: []
+  _playerHandCard:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _playerDiscardPile: []
 --- !u!114 &238752205
 MonoBehaviour:
@@ -4302,36 +4310,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f5e03edd203534e922b3b98052afff, type: 3}
---- !u!1 &2072872396 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7280473110342746007, guid: def807212a925444a934829f59951be6, type: 3}
-  m_PrefabInstance: {fileID: 8027328672942519558}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2072872397 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6417849095772947210, guid: def807212a925444a934829f59951be6, type: 3}
   m_PrefabInstance: {fileID: 8027328672942519558}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2072872398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2072872396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa459b1c8a0f87429db3dd8298ff1c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _brightBar: {fileID: 1918841785}
-  _brightBarText: {fileID: 749818912}
-  _brightBarEnergy: 0
-  _brightBarMaxEnergy: 5
-  _darkBar: {fileID: 1147374572}
-  _darkBarText: {fileID: 66043678}
-  _darkBarEnergy: 0
-  _darkBarMaxEnergy: 5
 --- !u!1 &2126505837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4650,6 +4633,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2141602410}
     m_Modifications:
+    - target: {fileID: 2072872398, guid: def807212a925444a934829f59951be6, type: 3}
+      propertyPath: _darkBar
+      value: 
+      objectReference: {fileID: 1147374572}
+    - target: {fileID: 2072872398, guid: def807212a925444a934829f59951be6, type: 3}
+      propertyPath: _brightBar
+      value: 
+      objectReference: {fileID: 1918841785}
+    - target: {fileID: 2072872398, guid: def807212a925444a934829f59951be6, type: 3}
+      propertyPath: _darkBarText
+      value: 
+      objectReference: {fileID: 66043678}
+    - target: {fileID: 2072872398, guid: def807212a925444a934829f59951be6, type: 3}
+      propertyPath: _brightBarText
+      value: 
+      objectReference: {fileID: 749818912}
     - target: {fileID: 6417849095772947210, guid: def807212a925444a934829f59951be6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

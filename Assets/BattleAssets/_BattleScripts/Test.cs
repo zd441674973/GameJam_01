@@ -25,10 +25,10 @@ public class Test : MonoBehaviour
 
         // Debug.Log(test);
 
-        if (Input.GetKey(KeyCode.Q)) EnergyBarManager.Instance.EnergyBarCalculation("Bright", 1, "Addition");
-        if (Input.GetKey(KeyCode.W)) EnergyBarManager.Instance.EnergyBarCalculation("Bright", 1, "Subtraction");
-        if (Input.GetKey(KeyCode.A)) EnergyBarManager.Instance.EnergyBarCalculation("Dark", 1, "Addition");
-        if (Input.GetKey(KeyCode.S)) EnergyBarManager.Instance.EnergyBarCalculation("Dark", 1, "Subtraction");
+        // if (Input.GetKeyDown(KeyCode.Q)) EnergyBarManager.Instance.EnergyBarCalculation("Bright", 1);
+        // if (Input.GetKeyDown(KeyCode.W)) EnergyBarManager.Instance.EnergyBarCalculation("Bright", -1);
+        // if (Input.GetKeyDown(KeyCode.A)) EnergyBarManager.Instance.EnergyBarCalculation("Dark", 1);
+        // if (Input.GetKeyDown(KeyCode.S)) EnergyBarManager.Instance.EnergyBarCalculation("Dark", -1);
 
     }
 }

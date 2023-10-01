@@ -19,7 +19,7 @@ public class TurnSystem : MonoBehaviour
     [SerializeField] int _turnIndex;
     [SerializeField] bool _isPlayerTurn;
 
-    public Action OnTurnChanged;
+    public event Action OnTurnChanged;
 
     void Start()
     {
