@@ -80,7 +80,8 @@ public class UI_AwardPanel : BasePanel
         trigger3.triggers.Add(exit3);
         ////////////////////////////////////////////////////////////////////////////////////
 
-        
+        //计算卡牌数量
+        EventCenter.GetInstance().EventTrigger("SumPlayerCard");
 
         //显示新卡牌
         RefreshNewCards();
@@ -192,20 +193,10 @@ public class UI_AwardPanel : BasePanel
 
     private void CheckCardSelectIsDone()
     {
-        if(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes == 0)
-        {
-            
-            GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = true;
-            UIManager.GetInstance().HidePanel("AwardPanel");
-            UIManager.GetInstance().ShowPanel<UI_DelateCardPanel>("DelateCardPanel");
-            
-        }
-        else
-        {
-            GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes -= 1;
-            RefreshNewCards();
-        }
-        GameDataControl.GetInstance().PlayerDataInfo.SumPlayerCards();
+        
+        GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes -= 1;
+        GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum +=1;
+        RefreshNewCards();
 
     }
 

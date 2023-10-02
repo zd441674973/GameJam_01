@@ -68,7 +68,7 @@ public class UI_MainPage : BasePanel
 
     private void UpdateInfo()
     {
-        playerinfo.text = "吉罗" + "  当前阶段: " + GameDataControl.GetInstance().PlayerDataInfo.currentNodeID + "/10" + "  最大生命值" + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+        playerinfo.text = "吉罗" + "  阶段: " + GameDataControl.GetInstance().PlayerDataInfo.currentNodeID + "/5" + "  最大生命值" + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
     }
 
 

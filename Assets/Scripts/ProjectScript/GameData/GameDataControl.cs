@@ -47,7 +47,7 @@ public class GameDataControl : BaseManager<GameDataControl>
         EventCenter.GetInstance().AddEventListener<int,int>("CardChange", ChangeCard);
         //通过事件监听是否存档
         EventCenter.GetInstance().AddEventListener("SavePlayerInfo", SavePlayerInfo);
-        //通过事件监听是否存档
+        //通过事件监听计算卡牌数量
         EventCenter.GetInstance().AddEventListener("SumPlayerCard", SumPlayerCards);
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -157,32 +157,27 @@ public class PlayerInfo
     /// <param name="number"></param>
     public void ChangeCard(int cardID, int number)
     {
-        List<Card> cardsToRemove = new List<Card>(); // 用于存储需要删除的卡牌
+        // 查找列表中是否存在具有相同ID的卡牌
+        Card existingCard = PlayerOwnedcards.Find(card => card.CardID == cardID);
 
-        foreach (Card playerCard in PlayerOwnedcards)
+        // 如果找到了相同ID的卡牌
+        if (existingCard != null)
         {
-            // 如果玩家已经拥有该卡牌
-            if (playerCard.CardID == cardID)
+            // 增加现有卡牌的数量
+            existingCard.PlayerOwnedNumber += number;
+
+            // 如果卡牌数量少于等于0，从列表中移除
+            if (existingCard.PlayerOwnedNumber <= 0)
             {
-                playerCard.PlayerOwnedNumber += number;
-                if (playerCard.PlayerOwnedNumber <= 0)
-                {
-                    cardsToRemove.Add(playerCard); // 将需要删除的卡牌添加到列表
-                }
+                PlayerOwnedcards.Remove(existingCard);
             }
         }
-
-        // 移除需要删除的卡牌
-        foreach (Card cardToRemove in cardsToRemove)
+        // 如果没有找到相同ID的卡牌，并且number大于0
+        else if (number > 0)
         {
-            PlayerOwnedcards.Remove(cardToRemove);
-        }
-
-        // 如果卡牌不存在，则添加卡牌并设置PlayerOwnedNumber
-        if (cardsToRemove.Count == 0 && number > 0)
-        {
+            // 创建新卡牌并添加到列表
             Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
-            newCard.PlayerOwnedNumber = number; // 设置PlayerOwnedNumber
+            newCard.PlayerOwnedNumber = number;
             PlayerOwnedcards.Add(newCard);
         }
     }

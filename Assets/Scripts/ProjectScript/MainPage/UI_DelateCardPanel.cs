@@ -96,9 +96,12 @@ public class UI_DelateCardPanel : BasePanel
     {
         if(GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum <= 28 && GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum >= 20)
         {
+            Debug.Log(cardsNeedToDelate.Count);
+
             GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_DelateCard = true;
             for(int i = 0; i < cardsNeedToDelate.Count; i++)
             {
+                Debug.Log(i);
                 EventCenter.GetInstance().EventTrigger<int, int>("CardChange", cardsNeedToDelate[i].CardID, -1);
             }
 

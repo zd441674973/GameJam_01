@@ -15,7 +15,6 @@ public class UI_CardLibrary : BasePanel
     public TMP_Text CardLabInfo;
     public TMP_Text MinimumCardNumber;
     public TMP_Text MaximumCardNumber;
-    private int playerCardsSum;
 
     public override void ShowMe()
     {
@@ -69,8 +68,7 @@ public class UI_CardLibrary : BasePanel
     private void ShowPlayerCardInfo()
     {
         EventCenter.GetInstance().EventTrigger("SumPlayerCard");
-        playerCardsSum = GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum;
-        CardLabInfo.text = "当前卡牌数量：" + playerCardsSum;
+        CardLabInfo.text = "当前卡牌数量：" + GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum;
         MinimumCardNumber.text = "最低卡牌数量：20";
         MaximumCardNumber.text = "最高卡牌数量：28";
     }
