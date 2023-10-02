@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Timer : MonoBehaviour
+public class CustomTimer : MonoBehaviour
 {
-    public static Timer Instance;
+    public static CustomTimer Instance;
     void Awake()
     {
         if (Instance != null)
@@ -22,6 +22,7 @@ public class Timer : MonoBehaviour
     [SerializeField] TextMeshPro _text;
 
     [SerializeField] bool _isStarted;
+    [SerializeField] bool _timesUp;
     [SerializeField] float _timerTime;
 
     void Update()
@@ -35,6 +36,7 @@ public class Timer : MonoBehaviour
         if (_timerTime <= 0)
         {
             _timerTime = 0;
+            _timesUp = true;
             _isStarted = false;
             return;
         }
@@ -44,9 +46,13 @@ public class Timer : MonoBehaviour
 
     public void WaitforTime(float time)
     {
+        _timesUp = false;
         _isStarted = true;
         _timerTime = time;
     }
+
+    public bool TimesUp() => _timesUp;
+
 
     public bool IsTimeCounting() => _isStarted;
 

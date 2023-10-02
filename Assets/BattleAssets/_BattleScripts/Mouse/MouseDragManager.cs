@@ -5,9 +5,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 
-public class MouseDrag : MonoBehaviour
+public class MouseDragManager : MonoBehaviour
 {
     //public static event Action CardIsPlayed;
+
+    public static MouseDragManager Instance;
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple instances occured");
+            Destroy(Instance);
+        }
+        Instance = this;
+    }
+
+
 
     [SerializeField] bool _isDargging;
 
@@ -87,6 +100,7 @@ public class MouseDrag : MonoBehaviour
         Transform currentCard = CurrentDraggedCard().transform;
 
         UpdateEnergyBar(currentCard);
+
         AddCardToDiscardPile(currentCard);
 
         currentCard.gameObject.SetActive(false);

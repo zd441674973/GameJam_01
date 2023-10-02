@@ -47,9 +47,9 @@ public class LevelManager : MonoBehaviour
         // EnemyDrawCard();
         DrawCard();
 
-        TurnSystem.Instance.OnEntireTurnChanged += UpdatePlayerMaxHandCardCount;
-        TurnSystem.Instance.OnEntireTurnChanged += DrawCard;
-        TurnSystem.Instance.OnEntireTurnChanged += DrawCard;
+        TurnSystem.Instance.OnEnemyTurnFinished += UpdatePlayerMaxHandCardCount;
+        TurnSystem.Instance.OnEnemyTurnFinished += DrawCard;
+        TurnSystem.Instance.OnEnemyTurnFinished += DrawCard;
 
     }
 
