@@ -11,10 +11,6 @@ public enum Nodes
     Node2,
     Node3,
     Node4,
-    Node5,
-    Node6,
-    Node7,
-    Node8,
 }
 
 public class UI_Nodes : BasePanel
@@ -83,6 +79,12 @@ public class UI_Nodes : BasePanel
             case "Node2":
                 Debug.Log("3");
                 break;
+            case "Node3":
+                Debug.Log("4");
+                break;
+            case "Node4":
+                Debug.Log("5");
+                break;
         }
     }
 
@@ -98,6 +100,12 @@ public class UI_Nodes : BasePanel
                 break;
             case "Node2":
                 SetButtons(Nodes.Node2);
+                break;
+            case "Node3":
+                SetButtons(Nodes.Node3);
+                break;
+            case "Node4":
+                SetButtons(Nodes.Node4);
                 break;
         }
 
