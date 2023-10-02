@@ -18,12 +18,16 @@ public class MouseDrag : MonoBehaviour
     void Update()
     {
         if (!TurnSystem.Instance.IsPlayerTurn()) return;
+        DragCard();
+    }
+
+
+    void DragCard()
+    {
         GetCardOffset();
         Dragging();
         ResetDrag();
     }
-
-
 
     RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
     void GetCardOffset()

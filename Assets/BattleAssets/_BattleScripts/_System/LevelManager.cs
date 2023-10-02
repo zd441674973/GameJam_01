@@ -46,14 +46,9 @@ public class LevelManager : MonoBehaviour
         PlayerDrawCard();
         EnemyDrawCard();
 
-
         TurnSystem.Instance.OnEntireTurnChanged += UpdatePlayerMaxHandCardCount;
         TurnSystem.Instance.OnEntireTurnChanged += PlayerDrawCard;
         TurnSystem.Instance.OnEntireTurnChanged += EnemyDrawCard;
-
-
-
-
 
     }
 
@@ -62,11 +57,20 @@ public class LevelManager : MonoBehaviour
         SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, CardDeckManager.Instance.GetPlayerHandCard());
         SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, CardDeckManager.Instance.GetEnemyHandCard());
 
+        CardOwnerCheck(_playerSlots);
+        CardOwnerCheck(_enemySlots);
+
+
     }
 
 
 
 
+    int SlotChildCount(List<Transform> slotList, int index)
+    {
+        int slotChildCount = slotList[index].GetComponentsInChildren<BoxCollider2D>().Length;
+        return slotChildCount;
+    }
 
     void PlayerDrawCard()
     {
@@ -74,7 +78,7 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < _playerSlots.Count; i++)
         {
-            int slotChildCount = _playerSlots[i].GetComponentsInChildren<BoxCollider2D>().Length;
+            int slotChildCount = SlotChildCount(_playerSlots, i);
             if (slotChildCount > 0) continue;
 
             if (TurnSystem.Instance.GetTurnIndex() == 0)
@@ -89,7 +93,12 @@ public class LevelManager : MonoBehaviour
             var playerDeck = CardDeckManager.Instance.GetPlayerDeck();
             Transform card = playerDeck[Random.Range(0, playerDeck.Count)];
             CardDeckManager.Instance.GenerateCard(card, _playerSlots[i]);
-            CardDeckManager.Instance.GetPlayerHandCard()[i] = card;
+
+            var playerCard = _playerSlots[i].GetComponentInChildren<BoxCollider2D>().transform;
+            CardDeckManager.Instance.GetPlayerHandCard()[i] = playerCard;
+
+            _isPlayerSlotsEmpty[i] = false;
+
             playerDeck.Remove(card);
         }
 
@@ -100,13 +109,18 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < _enemySlots.Count; i++)
         {
-            int slotChildCount = _enemySlots[i].GetComponentsInChildren<BoxCollider2D>().Length;
+            int slotChildCount = SlotChildCount(_enemySlots, i);
             if (slotChildCount > 0) continue;
 
             var enemyDeck = CardDeckManager.Instance.GetEnemyDeck();
             Transform card = enemyDeck[Random.Range(0, enemyDeck.Count)];
             CardDeckManager.Instance.GenerateCard(card, _enemySlots[i]);
-            CardDeckManager.Instance.GetEnemyHandCard()[i] = card;
+
+            var enemyCard = _enemySlots[i].GetComponentInChildren<BoxCollider2D>().transform;
+            CardDeckManager.Instance.GetEnemyHandCard()[i] = enemyCard;
+
+            _isEnemySlotsEmpty[i] = false;
+
             enemyDeck.Remove(card);
         }
     }
@@ -118,8 +132,9 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < slot.Count; i++)
         {
-            int slotChildCount = slot[i].GetComponentsInChildren<BoxCollider2D>().Length;
+            int slotChildCount = SlotChildCount(slot, i);
             if (slotChildCount > 0) continue;
+
             isEmptySlot[i] = true;
             handCard[i] = null;
         }
@@ -141,6 +156,26 @@ public class LevelManager : MonoBehaviour
     {
         //Player draw 2 cards each turn
         _playerHandCardMax = PlayerHandCardCount() + 2;
+    }
+
+
+    void CardOwnerCheck(List<Transform> slotList)
+    {
+        for (int i = 0; i < slotList.Count; i++)
+        {
+            int slotChildCount = SlotChildCount(slotList, i);
+            if (slotChildCount < 1) continue;
+
+            Transform card = slotList[i].GetComponentInChildren<BoxCollider2D>().transform;
+
+            if (slotList == _playerSlots) card.GetComponent<CardData>().IsInPlayerHand = true;
+            if (slotList == _enemySlots) card.GetComponent<CardData>().IsInPlayerHand = false;
+        }
+    }
+
+    void AddCardToHandcardList()
+    {
+
     }
 
 

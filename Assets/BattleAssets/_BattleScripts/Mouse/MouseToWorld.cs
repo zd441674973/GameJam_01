@@ -20,8 +20,10 @@ public class MouseToWorld : MonoBehaviour
     }
 
 
-    public Vector2 GetMousePosition() => Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    public RaycastHit2D GetMouseRaycastHit2D() => Physics2D.Raycast(GetMousePosition(), Vector2.zero, float.MaxValue, _mouseLayerMask);
+    public Vector2 GetMousePosition()
+        => Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    public RaycastHit2D GetMouseRaycastHit2D()
+        => Physics2D.Raycast(GetMousePosition(), Vector2.zero, float.MaxValue, _mouseLayerMask);
 
 
 }

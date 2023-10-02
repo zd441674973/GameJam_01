@@ -8,6 +8,13 @@ public class CardData : MonoBehaviour
 
 
     [Header("Card Info")]
+    [SerializeField] bool _isInPlayerHand;
+    public bool IsInPlayerHand
+    {
+        get { return _isInPlayerHand; }
+        set { _isInPlayerHand = value; }
+    }
+
     [SerializeField] int _cardID;
     [SerializeField] TextMeshPro _cardName;
     [SerializeField] TextMeshPro _cardDescription;
