@@ -19,7 +19,8 @@ public class TurnSystem : MonoBehaviour
     [SerializeField] int _turnIndex;
     [SerializeField] bool _isPlayerTurn;
 
-    public event Action OnTurnChanged;
+    public event Action OnEntireTurnChanged;
+    public event Action OnPlayerTurnEnded;
 
     void Start()
     {
@@ -35,7 +36,8 @@ public class TurnSystem : MonoBehaviour
         //Debug.Log(_turnIndex);
 
 
-        if (_isPlayerTurn) OnTurnChanged?.Invoke();
+
+        if (_isPlayerTurn) OnEntireTurnChanged?.Invoke();
     }
 
 

@@ -16,17 +16,26 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    [SerializeField] Transform _playerCard;
-    [SerializeField] Transform _EnemyCard;
 
-
+    [Header("PLAYER DATA")]
     [SerializeField] List<Transform> _playerSlots;
     [SerializeField] List<bool> _isPlayerSlotsEmpty;
-
     [SerializeField] int _playerHandCardMax;
 
 
+
+
+    [Header("ENEMY DATA")]
     [SerializeField] List<Transform> _enemySlots;
+    [SerializeField] List<bool> _isEnemySlotsEmpty;
+    [SerializeField] int _enemyHandCardMax;
+
+
+
+
+
+
+    [Header("GENERAL DATA")]
     [SerializeField] Transform _battleArea;
 
 
@@ -37,9 +46,11 @@ public class LevelManager : MonoBehaviour
         PlayerDrawCard();
         EnemyDrawCard();
 
-        TurnSystem.Instance.OnTurnChanged += UpdatePlayerMaxHandCardCount;
-        TurnSystem.Instance.OnTurnChanged += PlayerDrawCard;
-        TurnSystem.Instance.OnTurnChanged += EnemyDrawCard;
+
+        TurnSystem.Instance.OnEntireTurnChanged += UpdatePlayerMaxHandCardCount;
+        TurnSystem.Instance.OnEntireTurnChanged += PlayerDrawCard;
+        TurnSystem.Instance.OnEntireTurnChanged += EnemyDrawCard;
+
 
 
 
@@ -48,7 +59,9 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        PlayerCardSlotCheck();
+        SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, CardDeckManager.Instance.GetPlayerHandCard());
+        SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, CardDeckManager.Instance.GetEnemyHandCard());
+
     }
 
 
@@ -57,7 +70,7 @@ public class LevelManager : MonoBehaviour
 
     void PlayerDrawCard()
     {
-        Debug.Log("DrawCard: Draw Card");
+        Debug.Log("PlayerDrawCard: Draw Card");
 
         for (int i = 0; i < _playerSlots.Count; i++)
         {
@@ -66,11 +79,11 @@ public class LevelManager : MonoBehaviour
 
             if (TurnSystem.Instance.GetTurnIndex() == 0)
             {
-                if (HandCardCount() > 3) return;
+                if (PlayerHandCardCount() > 3) return;
             }
             else
             {
-                if (HandCardCount() == _playerHandCardMax) return;
+                if (PlayerHandCardCount() == _playerHandCardMax) return;
             }
 
             var playerDeck = CardDeckManager.Instance.GetPlayerDeck();
@@ -85,39 +98,49 @@ public class LevelManager : MonoBehaviour
 
     void EnemyDrawCard()
     {
-        foreach (var slot in _enemySlots) CardDeckManager.Instance.GenerateCard(_EnemyCard, slot);
-    }
-
-    void PlayerCardSlotCheck()
-    {
-        for (int i = 0; i < _playerSlots.Count; i++)
+        for (int i = 0; i < _enemySlots.Count; i++)
         {
-            int slotChildCount = _playerSlots[i].GetComponentsInChildren<BoxCollider2D>().Length;
+            int slotChildCount = _enemySlots[i].GetComponentsInChildren<BoxCollider2D>().Length;
             if (slotChildCount > 0) continue;
-            _isPlayerSlotsEmpty[i] = true;
-            CardDeckManager.Instance.GetPlayerHandCard()[i] = null;
+
+            var enemyDeck = CardDeckManager.Instance.GetEnemyDeck();
+            Transform card = enemyDeck[Random.Range(0, enemyDeck.Count)];
+            CardDeckManager.Instance.GenerateCard(card, _enemySlots[i]);
+            CardDeckManager.Instance.GetEnemyHandCard()[i] = card;
+            enemyDeck.Remove(card);
         }
     }
 
 
 
-    int HandCardCount() // Check how many cards in hand
+
+    void SlotEmptnessCheck(List<Transform> slot, List<bool> isEmptySlot, List<Transform> handCard)
     {
-        int ValuableHandCards = 0;
+        for (int i = 0; i < slot.Count; i++)
+        {
+            int slotChildCount = slot[i].GetComponentsInChildren<BoxCollider2D>().Length;
+            if (slotChildCount > 0) continue;
+            isEmptySlot[i] = true;
+            handCard[i] = null;
+        }
+    }
+
+    int PlayerHandCardCount() // Check how many cards in player hand
+    {
+        int avaliableHandCards = 0;
         var handCardList = CardDeckManager.Instance.GetPlayerHandCard();
         for (int i = 0; i < handCardList.Count; i++)
         {
             if (!handCardList[i]) continue;
-            ValuableHandCards++;
+            avaliableHandCards++;
         }
-        //Debug.Log("HandCardCount:" + ValuableHandCards);
-        return ValuableHandCards;
+        return avaliableHandCards;
     }
 
     void UpdatePlayerMaxHandCardCount()
     {
         //Player draw 2 cards each turn
-        _playerHandCardMax = HandCardCount() + 2;
+        _playerHandCardMax = PlayerHandCardCount() + 2;
     }
 
 
@@ -128,5 +151,17 @@ public class LevelManager : MonoBehaviour
     public Transform GetBattleArea() => _battleArea;
     // public int GetCurrentHandCardCount() => HandCardCount();
     // public void CurrentMaxHandCardCount(int count) => _playerHandCardMax = count;
+
+
+    // void PlayerCardSlotCheck()
+    // {
+    //     for (int i = 0; i < _playerSlots.Count; i++)
+    //     {
+    //         int slotChildCount = _playerSlots[i].GetComponentsInChildren<BoxCollider2D>().Length;
+    //         if (slotChildCount > 0) continue;
+    //         _isPlayerSlotsEmpty[i] = true;
+    //         CardDeckManager.Instance.GetPlayerHandCard()[i] = null;
+    //     }
+    // }
 
 }
