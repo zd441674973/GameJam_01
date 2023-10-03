@@ -1,0 +1,291 @@
+{
+	"Dialogue": [{
+			"IsOption": "D",
+			"DialogueID": 0,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "“嘶——”",
+			"JumpToID": 1
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 1,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗慌忙滑行过来,拧上了漏气的阀门。",
+			"JumpToID": 2
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 2,
+			"Character": "吉罗",
+			"PicturePosition": "left",
+			"Content": "真不靠谱!",
+			"JumpToID": 3
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 3,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗心里暗骂,想着一会儿得好好交代下新来的这个助手关于实验器材的注意事项。",
+			"JumpToID": 4
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 4,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "圣休瑞达公国首屈一指的年轻发明家,吉罗，正在他的实验室里忙活着。",
+			"JumpToID": 5
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 5,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "圣休瑞达公国在上一代伟大科学家的帮助下,迅速崛起成了傲视全世界的科技大国。",
+			"JumpToID": 6
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 6,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "已故的前研究院院长是上一次技术革新的大功臣。",
+			"JumpToID": 7
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 7,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "而作为前院长的首席弟子吉罗,虽然只跟随前院长学习了不到10年,就经展现出了不输自己导师的天赋。",
+			"JumpToID": 8
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 8,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "甚至在前院长本人看来,吉罗会是一个比他还伟大的发明家。",
+			"JumpToID": 9
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 9,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗并没有按着他导师的道路继续走,而是选择了另一条看似不可能的路:电。",
+			"JumpToID": 10
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 10,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "并且仅用了两年时间,吉罗发明的瓶装闪电就已经被用在了公国首都的大街小巷。",
+			"JumpToID": 11
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 11,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "“嗡嗡嗡—”",
+			"JumpToID": 12
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 12,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "实验室里的瓶瓶罐罐突然颤抖了几下。楼上在做机械测试时这种震动偶有发生。虽然这次感觉不太一样,吉罗也没太放在心里。",
+			"JumpToID": 13
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 13,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗现在已经全身心投入到了虹吸枪的设计中。随着吉罗发明的电能抢的普及，除了军队和警察成为了这新发明的受益人。",
+			"JumpToID": 14
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 14,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "而那些横行于首都街头的犯罪分子也让电能枪在他们手中成为了行凶抢劫的利器。",
+			"JumpToID": 15
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 15,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "而这把虹吸枪就是一种可以把飞散的电能吸收进来的武器。",
+			"JumpToID": 16
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 16,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "“嗡嗡—”",
+			"JumpToID": 17
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 17,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "房间又震了一下，吉罗戴上了耳罩。",
+			"JumpToID": 18
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 18,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "“嗡!”",
+			"JumpToID": 19
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 19,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "一次特别大的震动传来,彻底打断了吉罗的思绪。",
+			"JumpToID": 20
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 20,
+			"Character": "吉罗",
+			"PicturePosition": "left",
+			"Content": "奇斯卡!",
+			"JumpToID": 21
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 21,
+			"Character": "吉罗",
+			"PicturePosition": "left",
+			"Content": "还是格雷斯卡?该死的新来的!去叫楼上那些蠢货们停一停,就说这是我本人的意思!",
+			"JumpToID": 22
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 22,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "一阵急促的脚步声从门后的走廊传来,由远及近。随后门被“哐!”地撞开,出现在门框下的正是那位新来的助手。",
+			"JumpToID": 23
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 23,
+			"Character": "吉斯卡",
+			"PicturePosition": "right",
+			"Content": "吉罗博士! 外面,外面有些不对劲,是大教堂…",
+			"JumpToID": 24
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 24,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗看他这样,起身便从上气不接下气的助手身旁挤过。顺手拿上一旁衣架上挂着的一把电能枪。两人快步下楼,只几步便从实验室所在的二楼来到了一楼大厅。",
+			"JumpToID": 25
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 25,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "只见街道上不少行人已经在驻足远望,看向同一个方向。吉罗的目光也立马被远处的异样所吸引。是刚才助手口中说的大教堂。",
+			"JumpToID": 26
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 26,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "只见一股漆黑色的烟气不断的从教堂内冒出,一阵阵紫色的雾气向天空升腾。",
+			"JumpToID": 27
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 27,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "“嗡嗡嗡嗡!!”",
+			"JumpToID": 28
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 28,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "这是目前为止最剧烈的颤抖。紧接着,那黑气突然像有了生命的一般,从教堂里飞速四散。好像从火堆中迸出的火星一般,随意地洒在城市里的各个角落。",
+			"JumpToID": 29
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 29,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "一束黑烟直接落在了实验大楼的前的街道上。一个可怖的蜘蛛怪物赫然出现。",
+			"JumpToID": 30
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 30,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗举枪便射。三束电光却仿佛打入了虚空一般,消失在怪物的皮毛之上。",
+			"JumpToID": 31
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 31,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "但这三枪却成功吸引了怪物的注意。吉罗心念不好,转身就跑。可怜的格力斯卡却因为满了半步被怪物追上,还没来得及叫出声就被怪物一口咬掉了头颅。",
+			"JumpToID": 32
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 32,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗飞速跑上二楼，然后躲进了实验室内的储藏室。",
+			"JumpToID": 33
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 33,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "但实验室和储藏室的门对那怪物来说还是太过脆弱了。只几秒后,吉罗已经站在了储藏室最里面的墙角,死死盯着那头向他逼近的漆黑生物。",
+			"JumpToID": 34
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 34,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗倒一片空白,本能让他伸手去摸一旁的桌子,试图找到什么东西能就救到自己。",
+			"JumpToID": 35
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 35,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "他摸到了一把枪。吉罗也不管那么多,拿起来就朝那怪物扣下了扳机…...",
+			"JumpToID": 36
+		}
+	]
+}

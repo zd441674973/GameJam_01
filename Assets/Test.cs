@@ -20,13 +20,19 @@ public class Test : MonoBehaviour
         {
             AdddrawNewCardTimes();
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ShowDialogue();
+        }
+
     }
 
     void Function()
     {
-        GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
+        //GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
 
-        EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+        //EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
     }
 
     void ShowAwardPanel()
@@ -38,4 +44,10 @@ public class Test : MonoBehaviour
     {
         GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes += 3;
     }
+
+    private void ShowDialogue()
+    {
+        UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
+    }
+
 }

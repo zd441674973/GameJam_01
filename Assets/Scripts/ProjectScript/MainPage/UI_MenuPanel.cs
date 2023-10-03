@@ -6,6 +6,18 @@ using UnityEngine.UI;
 
 public class UI_MenuPanel : BasePanel
 {
+    public override void ShowMe()
+    {
+        base.ShowMe();
+        EventCenter.GetInstance().EventTrigger("MenuIsOpen");
+    }
+
+    public override void HideMe()
+    {
+        base.HideMe();
+        EventCenter.GetInstance().EventTrigger("MenuIsClose");
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -60,7 +72,7 @@ public class UI_MenuPanel : BasePanel
         UIManager.GetInstance().HidePanel("UI_GameMap");
         UIManager.GetInstance().HidePanel("AwardPanel");
         UIManager.GetInstance().HidePanel("DelateCardPanel");
-
+        UIManager.GetInstance().HidePanel("UI_DialoguePanel");
         //每多加一个面板就在这里加入一个，方便关闭
 
     }

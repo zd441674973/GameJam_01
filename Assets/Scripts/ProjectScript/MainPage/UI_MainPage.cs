@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.EditorTools;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_MainPage : BasePanel
@@ -10,9 +11,15 @@ public class UI_MainPage : BasePanel
     public bool MenuIsOpen = false;
     public bool CardLabraryIsOpen = false;
     public TMP_Text playerinfo;
-
+    public Image UIArea;
 
     public GameObject CardLabPlus;
+
+    private Button openMenuButton;
+    private Button CardLabraryButton;
+
+    private Quaternion originalRotation;
+    private bool isRotating = false;
 
     public override void ShowMe()
     {
@@ -23,6 +30,7 @@ public class UI_MainPage : BasePanel
         GetControl<Button>("CardLibrary").onClick.AddListener(OpenCardLabrary);
 
         EventCenter.GetInstance().AddEventListener("CloseMenu", ChangeMenuState);
+        EventCenter.GetInstance().AddEventListener("CloseCardLibrary", ChangeCardlabState);
     }
 
     protected override void Awake()
@@ -34,9 +42,33 @@ public class UI_MainPage : BasePanel
 
         EventCenter.GetInstance().AddEventListener("currentPlayerNodeIDchange", UpdateInfo);
         EventCenter.GetInstance().AddEventListener("CardPlusOne", showCardPlus1Icon);
+
+        openMenuButton = GetControl<Button>("OpenMenu");
+        CardLabraryButton = GetControl<Button>("CardLibrary");
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //监听鼠标移入和鼠标移出的事件，进行处理
+        EventTrigger trigger = openMenuButton.gameObject.AddComponent<EventTrigger>();
+
+        //申明一个鼠标进入的事件类对象
+        EventTrigger.Entry enter = new EventTrigger.Entry();
+        enter.eventID = EventTriggerType.PointerEnter;
+        enter.callback.AddListener(MouseEnterOpenMenuButton);
+
+        trigger.triggers.Add(enter);
+
+        //监听鼠标移入和鼠标移出的事件，进行处理
+        EventTrigger trigger2 = CardLabraryButton.gameObject.AddComponent<EventTrigger>();
+
+        //申明一个鼠标进入的事件类对象
+        EventTrigger.Entry enter2 = new EventTrigger.Entry();
+        enter2.eventID = EventTriggerType.PointerEnter;
+        enter2.callback.AddListener(MouseEnterOpenCardLabraryButton);
+
+        trigger2.triggers.Add(enter2);
     }
 
-    
+
     public override void HideMe()
     {
         base.HideMe();
@@ -46,7 +78,68 @@ public class UI_MainPage : BasePanel
         EventCenter.GetInstance().RemoveEventListener("CloseMenu", ChangeMenuState);
         EventCenter.GetInstance().RemoveEventListener("currentPlayerNodeIDchange", UpdateInfo);
         EventCenter.GetInstance().RemoveEventListener("CardPlusOne", showCardPlus1Icon);
+        EventCenter.GetInstance().RemoveEventListener("CloseCardLibrary", ChangeCardlabState);
     }
+
+
+
+    public void MouseEnterOpenMenuButton(BaseEventData data)
+    {
+        originalRotation = openMenuButton.transform.rotation;
+
+        if (!isRotating)
+        {
+            StartCoroutine(RotateButton(openMenuButton));
+        }
+    }
+
+    public void MouseEnterOpenCardLabraryButton(BaseEventData data)
+    {
+        originalRotation = CardLabraryButton.transform.rotation;
+
+        if (!isRotating)
+        {
+            StartCoroutine(RotateButton(CardLabraryButton));
+        }
+    }
+
+
+    private IEnumerator RotateButton(Button button)
+    {
+        isRotating = true;
+
+        float rotationDuration = 0.05f;
+        float targetRotationAngle = -15f;
+        float elapsedTime = 0f;
+
+        Quaternion startRotation = button.transform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetRotationAngle);
+
+        while (elapsedTime < rotationDuration)
+        {
+            button.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / rotationDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        button.transform.rotation = targetRotation;
+
+        // 等待一段时间后复原
+        yield return new WaitForSeconds(0.1f);
+
+        elapsedTime = 0f;
+        while (elapsedTime < rotationDuration)
+        {
+            button.transform.rotation = Quaternion.Slerp(targetRotation, startRotation, elapsedTime / rotationDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        button.transform.rotation = startRotation;
+        isRotating = false;
+    }
+
+
 
     private void showCardPlus1Icon()
     {
@@ -68,13 +161,18 @@ public class UI_MainPage : BasePanel
 
     private void UpdateInfo()
     {
-        playerinfo.text = "吉罗" + "  阶段: " + GameDataControl.GetInstance().PlayerDataInfo.currentNodeID + "/5" + "  最大生命值" + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+        playerinfo.text = "吉罗" + "  已完成阶段: " + GameDataControl.GetInstance().PlayerDataInfo.currentNodeID + "/5" + "  最大生命值" + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
     }
 
 
     public void ChangeMenuState()
     {
         MenuIsOpen = false;
+    }
+
+    public void ChangeCardlabState()
+    {
+        CardLabraryIsOpen = false;
     }
 
     public void OpenMenu()

@@ -52,6 +52,7 @@ public class UI_DelateCardPanel : BasePanel
 
         GetControl<Button>("ButtonNextStep").onClick.AddListener(FinishDelate);
 
+        //////////////////////////////////////////////////////////////////////////////
         //监听鼠标移入和鼠标移出的事件，进行处理
         EventTrigger trigger = CancelArea.gameObject.AddComponent<EventTrigger>();
 
@@ -79,6 +80,8 @@ public class UI_DelateCardPanel : BasePanel
 
     private void Update()
     {
+        Debug.Log(DelateCardTimes);
+
         if (Input.GetMouseButtonDown(0))
         {
             //当左键点击鼠标
@@ -96,8 +99,6 @@ public class UI_DelateCardPanel : BasePanel
     {
         if(GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum <= 28 && GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum >= 20)
         {
-            Debug.Log(cardsNeedToDelate.Count);
-
             GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_DelateCard = true;
             for(int i = 0; i < cardsNeedToDelate.Count; i++)
             {
@@ -139,10 +140,6 @@ public class UI_DelateCardPanel : BasePanel
             GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum -= 1;
             ShowPlayerCardInfo();
 
-
-            //Debug.Log(DelateCardTimes);
-            Debug.Log(cardsNeedToDelate.Count);
-
         }
         
     }
@@ -152,6 +149,8 @@ public class UI_DelateCardPanel : BasePanel
         if (DelateCardTimes == 3)
         {
             previousSelectedCardPosition = new Vector3(0, 0, 0);
+            
+
             return;
         }
         else
@@ -163,8 +162,6 @@ public class UI_DelateCardPanel : BasePanel
 
             GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum += 1;
             ShowPlayerCardInfo();
-
-            Debug.Log(cardsNeedToDelate.Count);
         }
     }
 
@@ -233,7 +230,16 @@ public class UI_DelateCardPanel : BasePanel
 
     private void ShowPlayerCardInfo()
     {
-        CardDelatePanelInfo.text = "当前卡牌数：" + GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum + ", 卡牌数应处于20到28之间";
+        
         CurrentSelectedCardNumber.text = "还可以从牌组中删除 " + DelateCardTimes + "/3 张卡牌";
+
+        if(GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum > 28 || GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum < 20)
+        {
+            CardDelatePanelInfo.text = "当前卡牌数：<color=red>" + GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum + "</color>, 卡牌数应处于20到28之间";
+        }
+        else
+        {
+            CardDelatePanelInfo.text = "当前卡牌数：<color=white>" + GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum + "</color>, 卡牌数应处于20到28之间";
+        }
     }
 }

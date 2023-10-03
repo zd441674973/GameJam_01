@@ -54,5 +54,10 @@ public class UI_TitleScenePanel : BasePanel
     private void loadScene()
     {
         UIManager.GetInstance().HidePanel("UI_TitleScene");
+
+        if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
+        {
+            UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
+        }
     }
 }

@@ -6,6 +6,8 @@ using TMPro;
 using UnityEngine;
 using static UnityEditor.Progress;
 using System.Linq;
+using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class UI_CardLibrary : BasePanel
 {
@@ -26,8 +28,8 @@ public class UI_CardLibrary : BasePanel
     protected override void Awake()
     {
         base.Awake();
-       
 
+        GetControl<Button>("ButtonClose").onClick.AddListener(ClosePanel);
         EventCenter.GetInstance().AddEventListener<Card,Vector3>("EnterCard", InitShowCard);
     }
 
@@ -71,5 +73,12 @@ public class UI_CardLibrary : BasePanel
         CardLabInfo.text = "当前卡牌数量：" + GameDataControl.GetInstance().PlayerDataInfo.playerCardsSum;
         MinimumCardNumber.text = "最低卡牌数量：20";
         MaximumCardNumber.text = "最高卡牌数量：28";
+    }
+
+    private void ClosePanel()
+    {
+        MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+        UIManager.GetInstance().HidePanel("UI_CardLibrary");
+        EventCenter.GetInstance().EventTrigger("CloseCardLibrary");
     }
 }

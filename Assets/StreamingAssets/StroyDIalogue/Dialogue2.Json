@@ -1,0 +1,67 @@
+{
+	"Dialogue": [{
+			"IsOption": "D",
+			"DialogueID": 0,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "凯特琳区已经不再像平常那般忙碌了，取而代之的是可怕的寂静。",
+			"JumpToID": 1
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 1,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗走在曾是都城工业骄傲的大街上，远处还能时不时的听到一些哀嚎。他甚至无法区分那些叫声是出自人类还是怪物。",
+			"JumpToID": 2
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 2,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "整个凯特琳区因为电力中断而停止运作。这些在夜晚也不曾歇息的工厂现在却统统陷入了沉睡。",
+			"JumpToID": 3
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 3,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "突然，一个巨大的木箱从旁边一个厂房里飞出。重重的砸在了吉罗面前几米的位置上。",
+			"JumpToID": 4
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 4,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗看向那边，只见一只长着对黑色煜翅的黑色豹子喘着粗气从厂房里慢慢走出。",
+			"JumpToID": 5
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 5,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "那豹子没有双眼，两只耳朵却生的又长又尖。",
+			"JumpToID": 6
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 6,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "它缓步朝吉罗走去，最终还叼着一个人。那人四肢自然下垂，显然已没了生气。",
+			"JumpToID": 7
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 7,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗刚抬起枪，那豹型怪物立马就察觉到了声音。朝着吉罗大吼一声，一跃至半空，展开双翼，朝吉罗滑翔而来………",
+			"JumpToID": 8
+		}
+	]
+}

@@ -1,0 +1,107 @@
+{
+	"Dialogue": [{
+			"IsOption": "D",
+			"DialogueID": 0,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "入夜了",
+			"JumpToID": 1
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 1,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗从恍惚中醒来。之前的一战让他筋疲力尽。他躲在一个办公桌下休息了一会儿。",
+			"JumpToID": 2
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 2,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "他拿出怀表，借着怀表自己发出的微弱光亮确认了下时间。他并没休息太久。今天天黑的速度出奇的快。",
+			"JumpToID": 3
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 3,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗不得不打开护目镜旁的头灯来帮助自己看清道路。这是圣休瑞达政府大楼的一楼。",
+			"JumpToID": 4
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 4,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "整栋大楼已经人去楼空，想必是官员们早已经疏散到了皇家区，那里有最精锐的士兵作保护。",
+			"JumpToID": 5
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 5,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "伴随着沉重的开门声，吉罗来到了政府会议厅。",
+			"JumpToID": 6
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 6,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "这是个圆形大厅，弧形的桌子从大厅内规律的摆放至大厅的墙边，由一张张弧形桌子把大厅分成了四个同心圆。",
+			"JumpToID": 7
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 7,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "平日里政府官员们在这里开会时，上级会坐内圈，而下级会坐在外侧的座位上。",
+			"JumpToID": 8
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 8,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗忽感后脑勺一阵凉风，他本能地向前一探身，然后立马回头观察。",
+			"JumpToID": 9
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 9,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "有什么东西只留下一阵骚动，但灯光照处并没有东西。",
+			"JumpToID": 10
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 10,
+			"Character": "吉罗",
+			"PicturePosition": "left",
+			"Content": "这东西很快！",
+			"JumpToID": 11
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 11,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗心里想道。",
+			"JumpToID": 12
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 12,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "他端起虹吸枪，用自己身上每一个毛孔去感知身旁的异动…..",
+			"JumpToID": 13
+		}
+	]
+}

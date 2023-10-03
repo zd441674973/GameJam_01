@@ -139,7 +139,6 @@ public class PlayerInfo
 
         /////¸øÍæ¼Ò¼ÓÅÆ/////////////////////////
         ChangeCard(0, 3);
-
         ChangeCard(1, 3);
         ChangeCard(2, 3);
         ChangeCard(3, 1);

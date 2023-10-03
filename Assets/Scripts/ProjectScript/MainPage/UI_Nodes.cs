@@ -71,19 +71,24 @@ public class UI_Nodes : BasePanel
         {
             case "Node0":
                 //进入战斗场景0，打完玩家的currentPlayerNodeID + 1;
-                Debug.Log("1");
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
+                UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
             case "Node1":
-                Debug.Log("2");
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
+                UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
             case "Node2":
-                Debug.Log("3");
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
+                UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
             case "Node3":
-                Debug.Log("4");
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
+                UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
             case "Node4":
-                Debug.Log("5");
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
+                UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
         }
     }

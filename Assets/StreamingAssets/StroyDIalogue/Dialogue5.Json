@@ -1,0 +1,147 @@
+{
+	"Dialogue": [{
+			"IsOption": "D",
+			"DialogueID": 0,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗快步走出大楼，嘴里疯狂咀嚼着他刚从厨房里找到的食物。",
+			"JumpToID": 1
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 1,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "刚才那场战斗结束前，吉罗似乎都没感觉到饥饿。一定是他自己一直紧绷着神经的缘故。",
+			"JumpToID": 2
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 2,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "可就在他解决掉那只蝙蝠怪之后，那股饥饿感便席卷了他。多长战斗的消耗让吉罗已经几乎到达了极限。",
+			"JumpToID": 3
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 3,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "教堂广场上着着火。那火堆非常高，看不出用什么木头搭建的。",
+			"JumpToID": 4
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 4,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗凑近一看，不由得冷汗直冒。那哪里是什么木头，分明是一具具尸体。",
+			"JumpToID": 5
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 5,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "尸堆上面的人已经烧焦，吉罗从下面的那些看出来这尸体都身着制服，分明是政府大楼里的员工们。看来他们并没能顺利逃到皇家区。",
+			"JumpToID": 6
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 6,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗后退几步，打算绕过这个巨大的尸堆，穿过广场赶到教堂去。可就在他绕了一半的时候，一个修士模样的人出现在了他眼前。",
+			"JumpToID": 7
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 7,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "那修士光着头，只穿了意见破烂的红裤子，上面满是脏污。",
+			"JumpToID": 8
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 8,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "他包括头皮在内的全身皮肤都布满了诡异的文字文身，用的是吉罗并不认识的语言。那修士跪在尸堆旁，面朝不远处的大教堂，嘴里喃喃自语。",
+			"JumpToID": 9
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 9,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗对这诡异的一幕感到阵阵恐惧。他退了几步，与那个修士保持一定距离。然后继续向大教堂走去。",
+			"JumpToID": 10
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 10,
+			"Character": "兰福德",
+			"PicturePosition": "right",
+			"Content": "你！",
+			"JumpToID": 11
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 11,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "那修士突然叫道。",
+			"JumpToID": 12
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 12,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗被吓得一愣，忙回头看向修士。",
+			"JumpToID": 13
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 13,
+			"Character": "兰福德",
+			"PicturePosition": "right",
+			"Content": "天父降下了恩赐，你们为什么不接受！？异端！！",
+			"JumpToID": 14
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 14,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗抬手便是一发电能枪，这玩意虽对怪物无效，但对付人类却不成问题。",
+			"JumpToID": 15
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 15,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "可是那电流却像打中怪物时一样，在修士的身旁直接消散了。吉罗暗自苦笑，心想果然没那么简单。他又伸手抬起了那把虹吸枪。",
+			"JumpToID": 16
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 16,
+			"Character": "兰福德",
+			"PicturePosition": "right",
+			"Content": "不许你再靠近圣坛！受死吧异端者！让烈焰涤净你的罪恶！",
+			"JumpToID": 17
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 17,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "修士拿起一把沾满了血污的铁铲，在紫黑色魔法的环绕之下，冲向了吉罗………",
+			"JumpToID": 18
+		}
+	]
+}
