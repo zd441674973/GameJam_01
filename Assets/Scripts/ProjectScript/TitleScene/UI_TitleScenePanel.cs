@@ -18,6 +18,7 @@ public class UI_TitleScenePanel : BasePanel
 
         GetControl<Button>("Button_NewGame").onClick.AddListener(NewGame);
         GetControl<Button>("Button_ContinueGame").onClick.AddListener(ContinueGame);
+        GetControl<Button>("Button_Setting").onClick.AddListener(SettingGame);
         GetControl<Button>("Button_ExitGame").onClick.AddListener(ExitGame);
     }
 
@@ -41,6 +42,12 @@ public class UI_TitleScenePanel : BasePanel
 
         ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", loadScene);
     }
+
+    private void SettingGame()
+    {
+        UIManager.GetInstance().ShowPanel<UI_SettingPanel>("UI_SettingPanel", E_UI_Layer.Top);
+    }
+
 
     private void ExitGame()
     {

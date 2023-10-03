@@ -53,6 +53,8 @@ public class UI_MenuPanel : BasePanel
     public void Setting()
     {
         MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+        UIManager.GetInstance().HidePanel("UI_MenuPanel");
+        UIManager.GetInstance().ShowPanel<UI_SettingPanel>("UI_SettingPanel", E_UI_Layer.Top);
     }
     public void CloseMenu()
     {
