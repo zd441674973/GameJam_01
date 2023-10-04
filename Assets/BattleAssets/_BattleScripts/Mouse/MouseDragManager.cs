@@ -103,13 +103,15 @@ public class MouseDragManager : MonoBehaviour
 
         AddCardToDiscardPile(currentCard);
 
+        PlayeCardAction(currentCard);
+
         currentCard.gameObject.SetActive(false);
 
         //CardIsPlayed?.Invoke();
 
         Debug.Log("CardIsPlayed: The Card has been played : " + currentCard.name);
 
-        CardActionManager.Instance.CardIsPlayed = true;
+
     }
 
     void AddCardToDiscardPile(Transform transform) => CardDeckManager.Instance.GetPlayerDiscardDeck().Add(transform);
@@ -126,6 +128,13 @@ public class MouseDragManager : MonoBehaviour
             EnergySystem.Instance.EnergyBarCalculation("Bright", -1);
             EnergySystem.Instance.EnergyBarCalculation("Dark", 1);
         }
+    }
+
+    void PlayeCardAction(Transform transform)
+    {
+        CardAction cardAction = transform.GetComponent<CardAction>();
+        cardAction.CardIsPlayed = true;
+
     }
 
 

@@ -21,6 +21,9 @@ public class HealthSystem : MonoBehaviour
     void Update()
     {
         HealthUpadte();
+
+
+
     }
 
 
