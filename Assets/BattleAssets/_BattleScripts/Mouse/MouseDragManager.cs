@@ -7,7 +7,7 @@ using System;
 
 public class MouseDragManager : MonoBehaviour
 {
-    //public static event Action CardIsPlayed;
+
 
     public static MouseDragManager Instance;
     void Awake()
@@ -19,6 +19,8 @@ public class MouseDragManager : MonoBehaviour
         }
         Instance = this;
     }
+
+    public event Action CardHasBeenPlayed;
 
 
 
@@ -43,6 +45,8 @@ public class MouseDragManager : MonoBehaviour
     }
 
     RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
+    public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
+
     void GetCardOffset()
     {
         if (!Input.GetMouseButtonDown(0)) return;
@@ -76,7 +80,10 @@ public class MouseDragManager : MonoBehaviour
 
         if (Distance() < battleSlotSnapDistance)
         {
-            PlayerCardIsPlayed();
+            //PlayerCardIsPlayed();
+
+            CardHasBeenPlayed?.Invoke();
+
             return;
         }
 
@@ -95,47 +102,53 @@ public class MouseDragManager : MonoBehaviour
 
 
 
-    void PlayerCardIsPlayed()
-    {
-        Transform currentCard = CurrentDraggedCard().transform;
+    // void PlayerCardIsPlayed()
+    // {
 
-        UpdateEnergyBar(currentCard);
+    //     Transform currentCard = CurrentDraggedCard().transform;
 
-        AddCardToDiscardPile(currentCard);
+    //     UpdateEnergyBar(currentCard);
 
-        PlayeCardAction(currentCard);
+    //     AddCardToDiscardPile(currentCard);
 
-        currentCard.gameObject.SetActive(false);
+    //     //PlayeCardAction(currentCard);
+    //     CardPlayed(currentCard);
 
-        //CardIsPlayed?.Invoke();
-
-        Debug.Log("CardIsPlayed: The Card has been played : " + currentCard.name);
+    //     currentCard.gameObject.SetActive(false);
 
 
-    }
+    //     Debug.Log("CardIsPlayed: The Card has been played : " + currentCard.name);
 
-    void AddCardToDiscardPile(Transform transform) => CardDeckManager.Instance.GetPlayerDiscardDeck().Add(transform);
-    void UpdateEnergyBar(Transform transform)
-    {
-        if (transform.CompareTag("BrightCard"))
-        {
-            EnergySystem.Instance.EnergyBarCalculation("Bright", 1);
-            EnergySystem.Instance.EnergyBarCalculation("Dark", -1);
-        }
 
-        if (transform.CompareTag("DarkCard"))
-        {
-            EnergySystem.Instance.EnergyBarCalculation("Bright", -1);
-            EnergySystem.Instance.EnergyBarCalculation("Dark", 1);
-        }
-    }
+    // }
 
-    void PlayeCardAction(Transform transform)
-    {
-        CardAction cardAction = transform.GetComponent<CardAction>();
-        cardAction.CardIsPlayed = true;
+    // void AddCardToDiscardPile(Transform transform) => CardDeckManager.Instance.GetPlayerDiscardDeck().Add(transform);
+    // void UpdateEnergyBar(Transform transform)
+    // {
+    //     if (transform.CompareTag("BrightCard"))
+    //     {
+    //         EnergySystem.Instance.EnergyBarCalculation("Bright", 1);
+    //         EnergySystem.Instance.EnergyBarCalculation("Dark", -1);
+    //     }
 
-    }
+    //     if (transform.CompareTag("DarkCard"))
+    //     {
+    //         EnergySystem.Instance.EnergyBarCalculation("Bright", -1);
+    //         EnergySystem.Instance.EnergyBarCalculation("Dark", 1);
+    //     }
+    // }
+
+    // // void PlayeCardAction(Transform transform)
+    // // {
+    // //     CardAction cardAction = transform.GetComponent<CardAction>();
+    // //     cardAction.CardIsPlayed = true;
+    // // }
+
+    // void CardPlayed(Transform card)
+    // {
+    //     CardAction cardAction = card.GetComponent<CardAction>();
+    //     cardAction.GetTakeAction();
+    // }
 
 
 }

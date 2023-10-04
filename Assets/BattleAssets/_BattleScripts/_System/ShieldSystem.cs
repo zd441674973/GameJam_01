@@ -24,13 +24,12 @@ public class ShieldSystem : MonoBehaviour
 
     }
 
-    void ShieldValueUpadte()
+
+    public void ShieldValueUpadte()
     {
         DestoryShield();
         AddShield();
     }
-
-
     void AddShield()
     {
         for (int i = 0; i < _shieldValue; i++)

@@ -15,21 +15,18 @@ public class EnemyManager : MonoBehaviour
         Instance = this;
     }
 
-    
-    [SerializeField] bool _isEnemyTurn;
-
-
+    HealthSystem healthSystem;
+    ShieldSystem shieldSystem;
 
     void Start()
     {
-
-    }
-    void Update()
-    {
-        if (!_isEnemyTurn) return;
-
+        healthSystem = GetComponent<HealthSystem>();
+        shieldSystem = GetComponent<ShieldSystem>();
     }
 
+
+    public HealthSystem GetHealthSystem() => healthSystem;
+    public ShieldSystem GetShieldSystem() => shieldSystem;
 
 
 

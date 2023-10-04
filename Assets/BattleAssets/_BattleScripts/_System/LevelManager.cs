@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] List<Transform> _playerSlots;
     [SerializeField] List<bool> _isPlayerSlotsEmpty;
     [SerializeField] int _playerHandCardMax;
+    [SerializeField] int _handCardCount;
 
 
 
@@ -40,15 +41,19 @@ public class LevelManager : MonoBehaviour
 
 
 
+    public int PlayerMaxHandCard { get { return _playerHandCardMax; } set { _playerHandCardMax = value; } }
+
 
     void Start()
     {
         // PlayerDrawCard();
         // EnemyDrawCard();
+
+        StartGameMaxHandCard();
+
         DrawCard();
 
         TurnSystem.Instance.OnEnemyTurnFinished += UpdatePlayerMaxHandCardCount;
-        TurnSystem.Instance.OnEnemyTurnFinished += DrawCard;
         TurnSystem.Instance.OnEnemyTurnFinished += DrawCard;
 
     }
@@ -61,7 +66,7 @@ public class LevelManager : MonoBehaviour
         CardOwnerCheck(_playerSlots);
         CardOwnerCheck(_enemySlots);
 
-
+        _handCardCount = PlayerHandCardCount();
     }
 
 
@@ -76,15 +81,20 @@ public class LevelManager : MonoBehaviour
 
     void DrawCard()
     {
-        DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty);
-        DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty);
+        DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, _playerHandCardMax);
+        DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty, _enemyHandCardMax);
     }
+
+    public void PlayerDrawCard(int maxCardDrawnCount) => DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, maxCardDrawnCount);
+    public void EnemyDrawCard(int maxCardDrawnCount) => DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty, maxCardDrawnCount);
+
+
     int SlotChildCount(List<Transform> slotList, int index)
     {
         int slotChildCount = slotList[index].GetComponentsInChildren<BoxCollider2D>().Length;
         return slotChildCount;
     }
-    void DrawCardLogic(List<Transform> slotList, List<Transform> deckList, List<Transform> handCardList, List<bool> isEmptySlotList)
+    void DrawCardLogic(List<Transform> slotList, List<Transform> deckList, List<Transform> handCardList, List<bool> isEmptySlotList, int maxCardDrawnCount)
     {
         Debug.Log("DRAW CARD: Draw card");
 
@@ -95,14 +105,7 @@ public class LevelManager : MonoBehaviour
 
             if (slotList == _playerSlots)
             {
-                if (TurnSystem.Instance.GetTurnIndex() == 0)
-                {
-                    if (PlayerHandCardCount() > 3) return;
-                }
-                else
-                {
-                    if (PlayerHandCardCount() == _playerHandCardMax) return;
-                }
+                if (PlayerHandCardCount() == maxCardDrawnCount) return;
             }
 
             Transform card = deckList[Random.Range(0, deckList.Count)];
@@ -146,6 +149,11 @@ public class LevelManager : MonoBehaviour
         _playerHandCardMax = PlayerHandCardCount() + 2;
     }
 
+    void StartGameMaxHandCard()
+    {
+        if (TurnSystem.Instance.GetTurnIndex() == 0) _playerHandCardMax = 4;
+    }
+
 
     void CardOwnerCheck(List<Transform> slotList)
     {
@@ -162,11 +170,10 @@ public class LevelManager : MonoBehaviour
     }
 
 
-
-
-
-
+    public int GetCurrentHandCardCount() => _handCardCount;
     public Transform GetBattleArea() => _battleArea;
+
+
     // public int GetCurrentHandCardCount() => HandCardCount();
     // public void CurrentMaxHandCardCount(int count) => _playerHandCardMax = count;
 

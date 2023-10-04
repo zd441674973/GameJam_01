@@ -18,14 +18,16 @@ public class CardData : MonoBehaviour
     [SerializeField] int _cardID;
     [SerializeField] TextMeshPro _cardName;
     [SerializeField] TextMeshPro _cardDescription;
+    Card card;
 
     void Start()
     {
-        Card card = GameDataControl.GetInstance().GetCardInfo(_cardID);
+        card = GameDataControl.GetInstance().GetCardInfo(_cardID);
         _cardName.text = card.CardName;
         _cardDescription.text = card.Description;
-
     }
+
+    public Card GetCard() => card;
 
     // cardInfo
     // int CardID;

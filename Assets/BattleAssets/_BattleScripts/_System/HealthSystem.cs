@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +9,14 @@ public class HealthSystem : MonoBehaviour
 {
     [SerializeField] float _health;
     [SerializeField] float _maxHealth;
+    bool _isFullHealth;
 
     [SerializeField] Image _healthBar;
     [SerializeField] TextMeshProUGUI _textMesh;
 
+    public float Health { get { return _health; } set { _health = value; } }
+    public float MaxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
+    public bool IsHealthFull { get { return _isFullHealth; } }
 
     void Start()
     {
@@ -22,8 +27,6 @@ public class HealthSystem : MonoBehaviour
     {
         HealthUpadte();
 
-
-
     }
 
 
@@ -33,5 +36,10 @@ public class HealthSystem : MonoBehaviour
         _healthBar.fillAmount = _health / _maxHealth;
 
         _textMesh.text = Mathf.RoundToInt(_health).ToString() + " / " + _maxHealth;
+
+        if (_health == _maxHealth) _isFullHealth = true;
+        else _isFullHealth = false;
+
+        if (_health < 0) Debug.Log("GameOver");
     }
 }
