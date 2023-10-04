@@ -18,22 +18,37 @@ public class CardPlayedActionManager : MonoBehaviour
 
         Transform currentCard = MouseDragManager.Instance.CurrentPlayedCard();
 
-        //UpdateMaxPlayerHandCard();
+        currentCard.gameObject.SetActive(false);
 
-        UpdateEnergyBar(currentCard);
+        UpdateHandCardCount();
 
         AddCardToDiscardPile(currentCard);
 
-        CardPlayed(currentCard);
+        UpdateEnergyBar(currentCard);
 
-        currentCard.gameObject.SetActive(false);
+        PlayCardAction(currentCard);
 
         Debug.Log("CardIsPlayed: The Card has been played : " + currentCard.name);
 
+        UpdateHandCardCount();
 
     }
 
-    void AddCardToDiscardPile(Transform transform) => CardDeckManager.Instance.GetPlayerDiscardDeck().Add(transform);
+    void UpdateHandCardCount()
+    {
+        // int currentHand = LevelManager.Instance.GetCurrentHandCardCount();
+        // LevelManager.Instance.SetCurrentHandCardCount(currentHand -= 1);
+
+        LevelManager.Instance.PlayerEmptySlotCheck();
+        LevelManager.Instance.UpdateHandCardCount();
+    }
+
+    void AddCardToDiscardPile(Transform transform)
+    {
+        CardDiscardPile.Instance.GetPlayerDiscardDeck().Add(transform);
+        Transform discardPile = CardDiscardPile.Instance.GetComponent<Transform>();
+        transform.SetParent(discardPile);
+    }
 
     void UpdateEnergyBar(Transform transform)
     {
@@ -50,11 +65,11 @@ public class CardPlayedActionManager : MonoBehaviour
         }
     }
 
-    void CardPlayed(Transform card)
+    void PlayCardAction(Transform card)
     {
         CardAction cardAction = card.GetComponent<CardAction>();
         cardAction.GetTakeAction();
     }
 
-    void UpdateMaxPlayerHandCard() => LevelManager.Instance.PlayerMaxHandCard -= 1;
+
 }

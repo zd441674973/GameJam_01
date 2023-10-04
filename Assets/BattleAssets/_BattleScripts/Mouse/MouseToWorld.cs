@@ -19,6 +19,12 @@ public class MouseToWorld : MonoBehaviour
         Instance = this;
     }
 
+    void Update()
+    {
+        GetMousePosition();
+        GetMouseRaycastHit2D();
+    }
+
 
     public Vector2 GetMousePosition()
         => Camera.main.ScreenToWorldPoint(Input.mousePosition);

@@ -50,43 +50,59 @@ public class LevelManager : MonoBehaviour
         // EnemyDrawCard();
 
         StartGameMaxHandCard();
-
         DrawCard();
+        PlayerEmptySlotCheck();
+        UpdateHandCardCount();
 
-        TurnSystem.Instance.OnEnemyTurnFinished += UpdatePlayerMaxHandCardCount;
-        TurnSystem.Instance.OnEnemyTurnFinished += DrawCard;
+
+        TurnSystem.Instance.OnEnemyTurnFinished += OnEnemyTurnFinishedEvent;
 
     }
 
     void Update()
     {
-        SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, CardDeckManager.Instance.GetPlayerHandCard());
-        SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, CardDeckManager.Instance.GetEnemyHandCard());
+        // SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
+        // SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
 
         CardOwnerCheck(_playerSlots);
         CardOwnerCheck(_enemySlots);
 
-        _handCardCount = PlayerHandCardCount();
+        // _handCardCount = PlayerHandCardCount();
     }
 
 
     List<Transform> PlayerDeck() => CardDeckManager.Instance.GetPlayerDeck();
     List<Transform> PlayerHandCard() => CardDeckManager.Instance.GetPlayerHandCard();
-    List<Transform> PlayerDiscardPile() => CardDeckManager.Instance.GetPlayerDiscardDeck();
 
     List<Transform> EnemyDeck() => CardDeckManager.Instance.GetEnemyDeck();
     List<Transform> EnemyHandCard() => CardDeckManager.Instance.GetEnemyHandCard();
-    List<Transform> EnemyDiscardPile() => CardDeckManager.Instance.GetEnemyDiscardDeck();
 
 
     void DrawCard()
     {
         DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, _playerHandCardMax);
+
         DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty, _enemyHandCardMax);
     }
 
+    void OnEnemyTurnFinishedEvent()
+    {
+        PlayerEmptySlotCheck();
+        UpdateHandCardCount();
+        UpdatePlayerMaxHandCardCount();
+        DrawCard();
+    }
+
+
+
     public void PlayerDrawCard(int maxCardDrawnCount) => DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, maxCardDrawnCount);
     public void EnemyDrawCard(int maxCardDrawnCount) => DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty, maxCardDrawnCount);
+    public void PlayerEmptySlotCheck() => SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
+    public void EnemyEmptySlotCheck() => SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
+    public void UpdateHandCardCount() => _handCardCount = PlayerHandCardCount();
+
+
+
 
 
     int SlotChildCount(List<Transform> slotList, int index)
@@ -134,7 +150,7 @@ public class LevelManager : MonoBehaviour
     int PlayerHandCardCount() // Check how many cards in player hand
     {
         int avaliableHandCards = 0;
-        var handCardList = CardDeckManager.Instance.GetPlayerHandCard();
+        var handCardList = PlayerHandCard();
         for (int i = 0; i < handCardList.Count; i++)
         {
             if (!handCardList[i]) continue;
@@ -171,6 +187,8 @@ public class LevelManager : MonoBehaviour
 
 
     public int GetCurrentHandCardCount() => _handCardCount;
+    public void SetCurrentHandCardCount(int value) => _handCardCount = value;
+
     public Transform GetBattleArea() => _battleArea;
 
 

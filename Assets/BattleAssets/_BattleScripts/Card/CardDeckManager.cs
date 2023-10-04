@@ -20,12 +20,12 @@ public class CardDeckManager : MonoBehaviour
     [Header("PLAYER DATA")]
     [SerializeField] List<Transform> _playerDeck;
     [SerializeField] List<Transform> _playerHandCard;
-    [SerializeField] List<Transform> _playerDiscardPile;
+    //[SerializeField] List<Transform> _playerDiscardPile;
 
     [Header("ENEMY DATA")]
     [SerializeField] List<Transform> _enemyDeck;
     [SerializeField] List<Transform> _enemyHandCard;
-    [SerializeField] List<Transform> _enemyDiscardPile;
+    //[SerializeField] List<Transform> _enemyDiscardPile;
 
 
     void Start()
@@ -43,12 +43,12 @@ public class CardDeckManager : MonoBehaviour
 
 
     public Transform GenerateCard(Transform card, Transform cardSlot) => Instantiate(card, cardSlot);
-    
+
     public List<Transform> GetPlayerDeck() => _playerDeck;
     public List<Transform> GetPlayerHandCard() => _playerHandCard;
-    public List<Transform> GetPlayerDiscardDeck() => _playerDiscardPile;
+    //public List<Transform> GetPlayerDiscardDeck() => _playerDiscardPile;
 
     public List<Transform> GetEnemyDeck() => _enemyDeck;
     public List<Transform> GetEnemyHandCard() => _enemyHandCard;
-    public List<Transform> GetEnemyDiscardDeck() => _enemyDiscardPile;
+    //public List<Transform> GetEnemyDiscardDeck() => _enemyDiscardPile;
 }
