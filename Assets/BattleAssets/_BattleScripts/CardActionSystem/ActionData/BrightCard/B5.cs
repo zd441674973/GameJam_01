@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B3 : CardAction
+public class B5 : CardAction
 {
     protected override void Start()
     {
@@ -12,8 +12,8 @@ public class B3 : CardAction
     protected override void TakeAction()
     {
         int shieldValue = CardActionManager.Instance.GetShieldValue();
-        CardActionManager.Instance.DealDamage(-shieldValue);
+        CardActionManager.Instance.GainShield(shieldValue);
 
-        Debug.Log("B3_played; Damage: " + shieldValue);
+        Debug.Log($"B5_played; GainShield: {shieldValue}");
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class Test : CardAction
 {
     void Update()
     {
@@ -30,5 +30,17 @@ public class Test : MonoBehaviour
         // if (Input.GetKeyDown(KeyCode.A)) EnergyBarManager.Instance.EnergyBarCalculation("Dark", 1);
         // if (Input.GetKeyDown(KeyCode.S)) EnergyBarManager.Instance.EnergyBarCalculation("Dark", -1);
 
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    protected override void TakeAction()
+    {
+        //CardActionManager.Instance.DrawOpponentDeck(1);
+
+        Debug.Log($"BTestCardPlayed, ");
     }
 }

@@ -20,6 +20,14 @@ public class MouseDragManager : MonoBehaviour
         Instance = this;
     }
 
+    enum MouseInteractionState
+    {
+        Default,
+        DrawFromOpponentHand,
+
+    }
+    [SerializeField] MouseInteractionState mouseInteractionState;
+
     public event Action CardHasBeenPlayed;
 
 
@@ -29,16 +37,53 @@ public class MouseDragManager : MonoBehaviour
     Vector2 _offset;
     Vector2 _cardSlotPosition;
 
+    void Start()
+    {
+        mouseInteractionState = MouseInteractionState.Default;
+        Debug.Log("MouseState: Default");
+    }
+
+
+
+
 
     void Update()
     {
         if (!TurnSystem.Instance.IsPlayerTurn()) return;
-        DragCard();
+
+        switch (mouseInteractionState)
+        {
+            case MouseInteractionState.Default:
+                DragCard();
+
+                break;
+
+            case MouseInteractionState.DrawFromOpponentHand:
+                if (CurrentDraggedCard()) if (IsPlayerCard()) return;
+                SelectOpponentHandCard();
+
+
+
+                break;
+
+        }
+
     }
+
+
+
+
+
+
+
+
+
+
 
 
     void DragCard()
     {
+        if (CurrentDraggedCard()) if (!IsPlayerCard()) return;
         GetCardOffset();
         Dragging();
         ResetDrag();
@@ -47,10 +92,13 @@ public class MouseDragManager : MonoBehaviour
     RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
     public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
 
+    bool IsPlayerCard() => CurrentPlayedCard().GetComponent<CardData>().IsInPlayerHand;
+
     void GetCardOffset()
     {
         if (!Input.GetMouseButtonDown(0)) return;
         if (!CurrentDraggedCard()) return;
+
 
         Debug.Log(CurrentDraggedCard().transform);
 
@@ -89,6 +137,18 @@ public class MouseDragManager : MonoBehaviour
         }
 
         CurrentDraggedCard().transform.position = _cardSlotPosition;
+    }
+
+    void SelectOpponentHandCard()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+        if (!CurrentDraggedCard()) return;
+
+
+        Debug.Log(CurrentPlayedCard());
+
+        LevelManager.Instance.PlayerDrawFromEnemyHand(CurrentPlayedCard());
+
     }
 
     float Distance()

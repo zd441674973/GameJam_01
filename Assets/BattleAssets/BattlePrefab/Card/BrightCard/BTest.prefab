@@ -9,11 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -722865983013089748, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: _cardID
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 697521698567455610, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_Name
-      value: B6
+      value: BTest
       objectReference: {fileID: 0}
     - target: {fileID: 2129563389784043499, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_RootOrder
@@ -78,7 +78,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 697521698567455610, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
   m_PrefabInstance: {fileID: 2866163192199097492}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5817232781863891463
+--- !u!114 &-733187430879139939
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,6 +87,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3344116747688882158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caf6041d350333740aedcf747a578c0e, type: 3}
+  m_Script: {fileID: 11500000, guid: 78b0b395db9807e4c8ec7bed5375cc55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

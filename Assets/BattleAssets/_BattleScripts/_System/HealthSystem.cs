@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,13 +19,16 @@ public class HealthSystem : MonoBehaviour
     public float MaxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
     public bool IsHealthFull { get { return _isFullHealth; } }
 
+    bool _isActive;
     void Start()
     {
         _maxHealth = _health;
+        _isActive = true;
     }
 
     void Update()
     {
+        if (!_isActive) return;
         HealthUpadte();
 
     }
@@ -40,6 +44,16 @@ public class HealthSystem : MonoBehaviour
         if (_health == _maxHealth) _isFullHealth = true;
         else _isFullHealth = false;
 
-        if (_health < 0) Debug.Log("GameOver");
+        if (_health <= 0)
+        {
+            GameOver();
+            _isActive = false;
+        }
+
+    }
+
+    void GameOver()
+    {
+        Debug.Log("GameOver");
     }
 }

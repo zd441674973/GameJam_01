@@ -55,6 +55,25 @@ public class CardActionManager : MonoBehaviour
         }
     }
 
+    public void DamageSelf(int value)
+    {
+        if (!IsPlayerTurn())
+        {
+            _enemyShield.ShieldValue += value;
+            int damageToHealth = _enemyShield.ShieldValue;
+            if (damageToHealth < 0) _enemyHealth.Health += (float)damageToHealth;
+            _enemyShield.ShieldValueUpadte();
+        }
+
+        if (IsPlayerTurn())
+        {
+            _playerShield.ShieldValue += value;
+            int damageToHealth = _playerShield.ShieldValue;
+            if (damageToHealth < 0) _playerHealth.Health += (float)damageToHealth;
+            _playerShield.ShieldValueUpadte();
+        }
+    }
+
     public void GainShield(int value)
     {
         if (!IsPlayerTurn()) _enemyShield.ShieldValue += value;
@@ -98,6 +117,27 @@ public class CardActionManager : MonoBehaviour
             int currentCardCount = LevelManager.Instance.GetEnemyCurrentHandCardCount();
             LevelManager.Instance.EnemyDrawCard(currentCardCount + value);
         }
+    }
+
+    public void DrawOpponentDeck(int value)
+    {
+        if (IsPlayerTurn())
+        {
+            int currentCardCount = LevelManager.Instance.GetPlayerCurrentHandCardCount();
+            LevelManager.Instance.PlayerDrawFromEnemyDeck(currentCardCount + value);
+        }
+
+        if (!IsPlayerTurn())
+        {
+            int currentCardCount = LevelManager.Instance.GetEnemyCurrentHandCardCount();
+            LevelManager.Instance.EnemyDrawFromPlayerDeck(currentCardCount + value);
+        }
+    }
+
+    public void DrawOpponentHand(Transform cardDrawn)
+    {
+        if (!IsPlayerTurn()) LevelManager.Instance.EnemyDrawFromPlayerHand(cardDrawn);
+        if (IsPlayerTurn()) LevelManager.Instance.PlayerDrawFromEnemyHand(cardDrawn);
     }
 
     public void DiscardCard(int disCardCount, List<Transform> cardList)
