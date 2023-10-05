@@ -65,6 +65,14 @@ public class CardActionManager : MonoBehaviour
         _playerShield.ShieldValueUpadte();
     }
 
+    public int GetShieldValue()
+    {
+        // player turn
+        if (IsPlayerTurn()) return _playerShield.ShieldValue;
+        // enemy turn
+        else return _enemyShield.ShieldValue;
+    }
+
     public void GainHealth(int value)
     {
         if (_enemyHealth.IsHealthFull) return;
@@ -74,10 +82,22 @@ public class CardActionManager : MonoBehaviour
         if (IsPlayerTurn()) _playerHealth.Health += (float)value;
     }
 
-    public void DrawCard(int darwCount)
+    public void DrawCard(int value)
     {
         // int currentCardCount = LevelManager.Instance.GetCurrentHandCardCount();
         // LevelManager.Instance.PlayerDrawCard(currentCardCount + 1);
+
+        if (IsPlayerTurn())
+        {
+            int currentCardCount = LevelManager.Instance.GetPlayerCurrentHandCardCount();
+            LevelManager.Instance.PlayerDrawCard(currentCardCount + value);
+        }
+
+        if (!IsPlayerTurn())
+        {
+            int currentCardCount = LevelManager.Instance.GetEnemyCurrentHandCardCount();
+            LevelManager.Instance.EnemyDrawCard(currentCardCount + value);
+        }
     }
 
     public void DiscardCard(int disCardCount, List<Transform> cardList)

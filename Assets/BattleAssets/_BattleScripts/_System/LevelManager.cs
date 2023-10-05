@@ -22,8 +22,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] List<bool> _isPlayerSlotsEmpty;
     [SerializeField] int _playerHandCardMax;
     int _playerHandLimit = 8;
-    [SerializeField] int _handCardCount;
-    [SerializeField] int _drawCardCount;
+    [SerializeField] int _playerHandCardCount;
+    [SerializeField] int _playerEachTurnDrawCardCount;
 
 
 
@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
     [Header("ENEMY DATA")]
     [SerializeField] List<Transform> _enemySlots;
     [SerializeField] List<bool> _isEnemySlotsEmpty;
+    [SerializeField] int _enemyHandCardCount;
     [SerializeField] int _enemyHandCardMax;
 
 
@@ -43,22 +44,18 @@ public class LevelManager : MonoBehaviour
 
 
 
-    public int PlayerMaxHandCard { get { return _playerHandCardMax; } set { _playerHandCardMax = value; } }
-    public int GetCurrentHandCardCount() => _handCardCount;
-    public void SetCurrentHandCardCount(int value) => _handCardCount = value;
-    public Transform GetBattleArea() => _battleArea;
-
 
 
     void Start()
     {
         // PlayerDrawCard();
         // EnemyDrawCard();
+        _playerEachTurnDrawCardCount = 2;
 
         StartGameMaxHandCard();
         DrawCard();
-        PlayerEmptySlotCheck();
-        UpdateHandCardCount();
+        UpdatePlayerHandCardCount();
+        UpdateEnemyHandCardCount();
 
 
         TurnSystem.Instance.OnEnemyTurnFinished += OnEnemyTurnFinishedEvent;
@@ -68,6 +65,7 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         UpdatePlayerHandCardCount();
+        UpdateEnemyHandCardCount();
 
         // SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
         // SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
@@ -86,6 +84,29 @@ public class LevelManager : MonoBehaviour
     List<Transform> EnemyHandCard() => CardDeckManager.Instance.GetEnemyHandCard();
 
 
+    //public int PlayerMaxHandCard { get { return _playerHandCardMax; } set { _playerHandCardMax = value; } }
+    public int GetPlayerCurrentHandCardCount() => _playerHandCardCount;
+    public int GetEnemyCurrentHandCardCount() => _enemyHandCardCount;
+    //public void SetCurrentHandCardCount(int value) => _playerHandCardCount = value;
+    public Transform GetBattleArea() => _battleArea;
+    public void PlayerDrawCard(int maxCardDrawnCount) => DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, maxCardDrawnCount);
+    public void EnemyDrawCard(int maxCardDrawnCount) => DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty, maxCardDrawnCount);
+    //public void PlayerEmptySlotCheck() => SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
+    //public void EnemyEmptySlotCheck() => SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
+    //public void UpdateHandCardCount() => _playerHandCardCount = HandCardCount(PlayerHandCard());
+
+    public void UpdatePlayerHandCardCount()
+    {
+        SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
+        _playerHandCardCount = HandCardCount(PlayerHandCard());
+    }
+    public void UpdateEnemyHandCardCount()
+    {
+        SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
+        _enemyHandCardCount = HandCardCount(EnemyHandCard());
+    }
+
+
     void DrawCard()
     {
         DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, _playerHandCardMax);
@@ -95,26 +116,11 @@ public class LevelManager : MonoBehaviour
 
     void OnEnemyTurnFinishedEvent()
     {
-        PlayerEmptySlotCheck();
-        UpdateHandCardCount();
+        UpdatePlayerHandCardCount();
+        UpdateEnemyHandCardCount();
         UpdatePlayerMaxHandCardCount();
         DrawCard();
     }
-
-
-
-    public void PlayerDrawCard(int maxCardDrawnCount) => DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, maxCardDrawnCount);
-    public void EnemyDrawCard(int maxCardDrawnCount) => DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty, maxCardDrawnCount);
-    public void PlayerEmptySlotCheck() => SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
-    public void EnemyEmptySlotCheck() => SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
-    public void UpdateHandCardCount() => _handCardCount = PlayerHandCardCount();
-    public void UpdatePlayerHandCardCount()
-    {
-        PlayerEmptySlotCheck();
-        UpdateHandCardCount();
-    }
-
-
 
 
 
@@ -134,7 +140,11 @@ public class LevelManager : MonoBehaviour
 
             if (slotList == _playerSlots)
             {
-                if (PlayerHandCardCount() == maxCardDrawnCount) return;
+                if (HandCardCount(PlayerHandCard()) == maxCardDrawnCount) return;
+            }
+            if (slotList == _enemySlots)
+            {
+                if (HandCardCount(EnemyHandCard()) == maxCardDrawnCount) return;
             }
 
             Transform card = deckList[Random.Range(0, deckList.Count)];
@@ -160,10 +170,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    int PlayerHandCardCount() // Check how many cards in player hand
+    int HandCardCount(List<Transform> handCardList)
     {
         int avaliableHandCards = 0;
-        var handCardList = PlayerHandCard();
+        //var handCardList = PlayerHandCard();
         for (int i = 0; i < handCardList.Count; i++)
         {
             if (!handCardList[i]) continue;
@@ -172,13 +182,34 @@ public class LevelManager : MonoBehaviour
         return avaliableHandCards;
     }
 
+    // int PlayerHandCardCount() // Check how many cards in player hand
+    // {
+    //     int avaliableHandCards = 0;
+    //     var handCardList = PlayerHandCard();
+    //     for (int i = 0; i < handCardList.Count; i++)
+    //     {
+    //         if (!handCardList[i]) continue;
+    //         avaliableHandCards++;
+    //     }
+    //     return avaliableHandCards;
+    // }
+
+    // int HandCardCount(List<Transform> handCardList) // Check how many cards in player hand
+    // {
+    //     int avaliableHandCards = 0;
+    //     for (int i = 0; i < handCardList.Count; i++)
+    //     {
+    //         if (!handCardList[i]) continue;
+    //         avaliableHandCards++;
+    //     }
+    //     return avaliableHandCards;
+    // }
+
     void UpdatePlayerMaxHandCardCount()
     {
         //Player draw 2 cards each turn
-        _playerHandCardMax = PlayerHandCardCount() + _drawCardCount;
+        _playerHandCardMax = HandCardCount(PlayerHandCard()) + _playerEachTurnDrawCardCount;
         if (_playerHandCardMax > _playerHandLimit) _playerHandCardMax = _playerHandLimit;
-
-
     }
 
     void StartGameMaxHandCard()

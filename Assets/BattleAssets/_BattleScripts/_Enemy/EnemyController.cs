@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -54,6 +55,9 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         CardIndexLimitCheck(EnemyHandCard());
+
+        HandCardCountCheck();
+
         //Test();
 
         if (TurnSystem.Instance.IsPlayerTurn()) return;
@@ -62,7 +66,7 @@ public class EnemyController : MonoBehaviour
         switch (_enemyTurnState)
         {
             case EnemyTurnState.TurnStart:
-                EnemyWaiting(EnemyTurnState.CardPlaying);
+                EnemyTransitTo(EnemyTurnState.CardPlaying);
                 break;
             case EnemyTurnState.CardPlaying:
                 _turnStartText.gameObject.SetActive(false);
@@ -70,7 +74,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyTurnState.CardPresenting:
-                EnemyWaiting(EnemyTurnState.UpdatingCard);
+                EnemyTransitTo(EnemyTurnState.UpdatingCard);
                 break;
 
             case EnemyTurnState.UpdatingCard:
@@ -80,7 +84,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyTurnState.Waiting:
-                EnemyWaiting(EnemyTurnState.CardPlaying);
+                EnemyTransitTo(EnemyTurnState.CardPlaying);
                 break;
 
             case EnemyTurnState.TurnFinished:
@@ -104,6 +108,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void HandCardCountCheck()
+    {
+        LevelManager.Instance.UpdateEnemyHandCardCount();
+    }
+
     void EnemyTurnBegin()
     {
         _enemyTurnState = EnemyTurnState.TurnStart;
@@ -113,7 +122,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    void EnemyWaiting(EnemyTurnState state)
+    void EnemyTransitTo(EnemyTurnState state)
     {
         if (IsTimesUp()) _enemyTurnState = state;
     }
@@ -122,7 +131,15 @@ public class EnemyController : MonoBehaviour
     {
         _currentCard.gameObject.SetActive(false);
         EnemyCardIsPlayed?.Invoke();
-        _cardIndex++;
+        if (IsDarwnCard(_currentCard)) _cardIndex = 0;
+        else _cardIndex++;
+    }
+
+    bool IsDarwnCard(Transform card)
+    {
+        int slotChildCount = card.GetComponentsInChildren<BoxCollider2D>().Length;
+        if (slotChildCount > 0) return true;
+        else return false;
     }
 
     void MultipleCardMovement(List<Transform> cardlist)

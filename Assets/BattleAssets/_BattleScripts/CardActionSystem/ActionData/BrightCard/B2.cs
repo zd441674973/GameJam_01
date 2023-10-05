@@ -13,11 +13,9 @@ public class B2 : CardAction
     protected override void TakeAction()
     {
         CardActionManager.Instance.GainHealth(card.HealthToSelfMin);
-        int currentCardCount = LevelManager.Instance.GetCurrentHandCardCount();
-        //LevelManager.Instance.PlayerDrawCard(currentCardCount + card.DrawCardFromLabrary);
-        Debug.Log("B2: " + currentCardCount);
-        LevelManager.Instance.PlayerDrawCard(currentCardCount + 1);
 
-        Debug.Log("B2_Played");
+        CardActionManager.Instance.DrawCard(card.DrawCardFromLabrary);
+
+        Debug.Log("B2_Played; DrawCard: " + card.DrawCardFromLabrary);
     }
 }

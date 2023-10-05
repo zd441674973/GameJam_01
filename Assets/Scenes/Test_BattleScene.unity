@@ -791,8 +791,8 @@ MonoBehaviour:
   - {fileID: 139613816}
   _isPlayerSlotsEmpty: 0000000000000000
   _playerHandCardMax: 0
-  _handCardCount: 0
-  _drawCardCount: 0
+  _playerHandCardCount: 0
+  _playerEachTurnDrawCardCount: 2
   _enemySlots:
   - {fileID: 1149975763}
   - {fileID: 1302196167}
@@ -801,6 +801,7 @@ MonoBehaviour:
   - {fileID: 1340907589}
   - {fileID: 700400123}
   _isEnemySlotsEmpty: 000000000000
+  _enemyHandCardCount: 0
   _enemyHandCardMax: 6
   _battleArea: {fileID: 7583378941503814172}
 --- !u!114 &238752204
@@ -818,8 +819,12 @@ MonoBehaviour:
   _playerDeck:
   - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
   - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
-  - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
-  - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
   _playerHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -833,9 +838,9 @@ MonoBehaviour:
   - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
   - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
   - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
   _enemyHandCard:
   - {fileID: 0}
   - {fileID: 0}

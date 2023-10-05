@@ -36,11 +36,7 @@ public class CardPlayedActionManager : MonoBehaviour
 
     void UpdateHandCardCount()
     {
-        // int currentHand = LevelManager.Instance.GetCurrentHandCardCount();
-        // LevelManager.Instance.SetCurrentHandCardCount(currentHand -= 1);
-
-        LevelManager.Instance.PlayerEmptySlotCheck();
-        LevelManager.Instance.UpdateHandCardCount();
+        LevelManager.Instance.UpdatePlayerHandCardCount();
     }
 
     void AddCardToDiscardPile(Transform transform)
