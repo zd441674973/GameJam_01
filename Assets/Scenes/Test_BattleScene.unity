@@ -818,15 +818,8 @@ MonoBehaviour:
   _playerDeck:
   - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
   - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
-  - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
-  - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
   - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
   - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
-  - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
-  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
-  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
-  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
-  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
   _playerHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -4119,6 +4112,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1446975746}
     m_Modifications:
+    - target: {fileID: 608415658259872512, guid: 61a6e63e00a6ca14abbb82be3dd38514, type: 3}
+      propertyPath: _shieldValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 795789183082893669, guid: 61a6e63e00a6ca14abbb82be3dd38514, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

@@ -67,7 +67,8 @@ public class MouseDragManager : MonoBehaviour
 
         //Debug.Log(Distance());
         var mousePosition = MouseToWorld.Instance.GetMousePosition();
-        CurrentDraggedCard().transform.position = mousePosition - _offset;
+        Vector3 cardPosition = new Vector3((mousePosition - _offset).x, (mousePosition - _offset).y, -5f); // -5f will bring the card to very front
+        CurrentDraggedCard().transform.position = cardPosition;
 
     }
 
