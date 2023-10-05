@@ -40,7 +40,9 @@ public class EnemyController : MonoBehaviour
     [SerializeField] EnemyTurnState _enemyTurnState;
     Transform _currentCard;
 
+    public event Action EnemyCardIsPlayed;
 
+    public Transform GetCurrentEnemyCard() => _currentCard;
 
 
 
@@ -119,17 +121,9 @@ public class EnemyController : MonoBehaviour
     void EnemyUpdatingCard()
     {
         _currentCard.gameObject.SetActive(false);
+        EnemyCardIsPlayed?.Invoke();
         _cardIndex++;
     }
-
-    // <<Delete later>>
-    // void Test() 
-    // {
-    //     if (!Input.GetKeyDown(KeyCode.Q)) return;
-    //     Debug.Log("ENEMY TURN: ACTIVATED");
-    //     _enemyTurnState = EnemyTurnState.CardPlaying;
-    //     _isActive = true;
-    // }
 
     void MultipleCardMovement(List<Transform> cardlist)
     {

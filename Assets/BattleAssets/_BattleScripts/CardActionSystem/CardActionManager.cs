@@ -35,8 +35,24 @@ public class CardActionManager : MonoBehaviour
 
     public void DealDamage(int value)
     {
-        if (!IsPlayerTurn()) _playerHealth.Health += (float)value;
-        if (IsPlayerTurn()) _enemyHealth.Health += (float)value;
+        //if (!IsPlayerTurn()) _playerHealth.Health += (float)value;
+        //if (IsPlayerTurn()) _enemyHealth.Health += (float)value;
+
+        if (!IsPlayerTurn())
+        {
+            _playerShield.ShieldValue += value;
+            int damageToHealth = _playerShield.ShieldValue;
+            if (damageToHealth < 0) _playerHealth.Health += (float)damageToHealth;
+            _playerShield.ShieldValueUpadte();
+        }
+
+        if (IsPlayerTurn())
+        {
+            _enemyShield.ShieldValue += value;
+            int damageToHealth = _enemyShield.ShieldValue;
+            if (damageToHealth < 0) _enemyHealth.Health += (float)damageToHealth;
+            _enemyShield.ShieldValueUpadte();
+        }
     }
 
     public void GainShield(int value)
@@ -58,9 +74,10 @@ public class CardActionManager : MonoBehaviour
         if (IsPlayerTurn()) _playerHealth.Health += (float)value;
     }
 
-    public void DrawCard(int darwCount, List<Transform> cardList)
+    public void DrawCard(int darwCount)
     {
-
+        // int currentCardCount = LevelManager.Instance.GetCurrentHandCardCount();
+        // LevelManager.Instance.PlayerDrawCard(currentCardCount + 1);
     }
 
     public void DiscardCard(int disCardCount, List<Transform> cardList)

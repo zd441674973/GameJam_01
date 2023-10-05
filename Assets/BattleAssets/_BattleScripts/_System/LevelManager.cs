@@ -21,7 +21,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] List<Transform> _playerSlots;
     [SerializeField] List<bool> _isPlayerSlotsEmpty;
     [SerializeField] int _playerHandCardMax;
+    int _playerHandLimit = 8;
     [SerializeField] int _handCardCount;
+    [SerializeField] int _drawCardCount;
 
 
 
@@ -42,6 +44,10 @@ public class LevelManager : MonoBehaviour
 
 
     public int PlayerMaxHandCard { get { return _playerHandCardMax; } set { _playerHandCardMax = value; } }
+    public int GetCurrentHandCardCount() => _handCardCount;
+    public void SetCurrentHandCardCount(int value) => _handCardCount = value;
+    public Transform GetBattleArea() => _battleArea;
+
 
 
     void Start()
@@ -61,6 +67,8 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
+        UpdatePlayerHandCardCount();
+
         // SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
         // SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
 
@@ -100,6 +108,11 @@ public class LevelManager : MonoBehaviour
     public void PlayerEmptySlotCheck() => SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
     public void EnemyEmptySlotCheck() => SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
     public void UpdateHandCardCount() => _handCardCount = PlayerHandCardCount();
+    public void UpdatePlayerHandCardCount()
+    {
+        PlayerEmptySlotCheck();
+        UpdateHandCardCount();
+    }
 
 
 
@@ -162,7 +175,10 @@ public class LevelManager : MonoBehaviour
     void UpdatePlayerMaxHandCardCount()
     {
         //Player draw 2 cards each turn
-        _playerHandCardMax = PlayerHandCardCount() + 2;
+        _playerHandCardMax = PlayerHandCardCount() + _drawCardCount;
+        if (_playerHandCardMax > _playerHandLimit) _playerHandCardMax = _playerHandLimit;
+
+
     }
 
     void StartGameMaxHandCard()
@@ -186,10 +202,7 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public int GetCurrentHandCardCount() => _handCardCount;
-    public void SetCurrentHandCardCount(int value) => _handCardCount = value;
 
-    public Transform GetBattleArea() => _battleArea;
 
 
     // public int GetCurrentHandCardCount() => HandCardCount();

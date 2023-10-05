@@ -21,7 +21,13 @@ public class ShieldSystem : MonoBehaviour
 
     void Update()
     {
+        ShieldvalueCheck();
 
+    }
+
+    void ShieldvalueCheck()
+    {
+        if (_shieldValue < 0) _shieldValue = 0;
     }
 
 
