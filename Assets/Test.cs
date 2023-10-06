@@ -23,6 +23,7 @@ public class Test : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
             ShowDialogue();
         }
 

@@ -67,6 +67,8 @@ public class UI_Nodes : BasePanel
 
     private void StartBattle()
     {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/Ñ¡Ôñ2", false);
+
         switch (nodeName)
         {
             case "Node0":

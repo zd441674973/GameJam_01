@@ -32,7 +32,6 @@ public class UI_MenuPanel : BasePanel
 
     public void ReturnToTitle()
     {
-        MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
         ScenesMgr.GetInstance().LoadSceneAsyn("TitleScene", AfterReturnToTitle);
     }
     public void ExitGame()
@@ -45,28 +44,30 @@ public class UI_MenuPanel : BasePanel
     }
     public void SaveGame()
     {
-        MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择", false);
+
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
         //触发事件监听，保存数据
         EventCenter.GetInstance().EventTrigger("SavePlayerInfo");
     }
     public void Setting()
     {
-        MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择", false);
+
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
         UIManager.GetInstance().ShowPanel<UI_SettingPanel>("UI_SettingPanel", E_UI_Layer.Top);
     }
     public void CloseMenu()
     {
-        MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择", false);
+
         EventCenter.GetInstance().EventTrigger("CloseMenu");
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
     }
 
     public void AfterReturnToTitle()
     {
-
-        MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择", false);
 
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
         UIManager.GetInstance().HidePanel("UI_MainPage");

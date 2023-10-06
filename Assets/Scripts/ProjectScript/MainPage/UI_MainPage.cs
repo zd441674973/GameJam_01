@@ -40,6 +40,8 @@ public class UI_MainPage : BasePanel
         MenuIsOpen = false;
         CardLabraryIsOpen = false;
 
+        MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano09-开始");
+
         EventCenter.GetInstance().AddEventListener("currentPlayerNodeIDchange", UpdateInfo);
         EventCenter.GetInstance().AddEventListener("CardPlusOne", showCardPlus1Icon);
 
@@ -89,7 +91,7 @@ public class UI_MainPage : BasePanel
 
         if (!isRotating)
         {
-            StartCoroutine(RotateButton(openMenuButton));
+            //StartCoroutine(RotateButton(openMenuButton));
         }
     }
 
@@ -99,11 +101,11 @@ public class UI_MainPage : BasePanel
 
         if (!isRotating)
         {
-            StartCoroutine(RotateButton(CardLabraryButton));
+            //StartCoroutine(RotateButton(CardLabraryButton));
         }
     }
 
-
+/*
     private IEnumerator RotateButton(Button button)
     {
         isRotating = true;
@@ -137,7 +139,7 @@ public class UI_MainPage : BasePanel
 
         button.transform.rotation = startRotation;
         isRotating = false;
-    }
+    }*/
 
 
 
@@ -179,14 +181,16 @@ public class UI_MainPage : BasePanel
     {
         if (!MenuIsOpen)
         {
-            MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
             UIManager.GetInstance().ShowPanel<UI_MenuPanel>("UI_MenuPanel", E_UI_Layer.Top);
             MenuIsOpen = true;
         }
 
         if (MenuIsOpen)
         {
-            MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
             UIManager.GetInstance().HidePanel("UI_MenuPanel");
             MenuIsOpen = false;
         }
@@ -197,7 +201,7 @@ public class UI_MainPage : BasePanel
         if (!CardLabraryIsOpen)
         {
 
-            MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
             UIManager.GetInstance().ShowPanel<UI_CardLibrary>("UI_CardLibrary", E_UI_Layer.Mid);
             CardLabraryIsOpen = true;
@@ -205,7 +209,7 @@ public class UI_MainPage : BasePanel
 
         if (CardLabraryIsOpen)
         {
-            MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
             UIManager.GetInstance().HidePanel("UI_CardLibrary");
             CardLabraryIsOpen = false;

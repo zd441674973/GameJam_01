@@ -26,6 +26,13 @@ public class Dialogue
 
 public class UI_DialoguePanel : BasePanel
 {
+    private int backgroundMusicName;
+    public Button openMailButton;
+    public Button closeMailButton;
+    public Image mail;
+
+    private bool shouldPlayerChurchMusic;
+
     //用于检测鼠标是否位于按钮所在区域
     private bool hitButton;
     //按钮区域
@@ -74,13 +81,34 @@ public class UI_DialoguePanel : BasePanel
         //初始化设定
         currentdialogIndex = dialogIndex;
 
+        if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6)
+        {
+            //播完最后一个剧情，当前玩家进度是5，打完boss以后，设置当前进度+1就可以播终局剧情
+            //进入结局
+            //显示按钮
+            //阅读信件
+            openMailButton.gameObject.SetActive(true);
+            openMailButton.interactable = true;
+            MenuPanelIsOpen = true;
+
+            openMailButton.onClick.AddListener(ReadMail);
+
+        }
+
     }
 
 
     protected override void Awake()
     {
         base.Awake();
+
+        GetControl<Button>("ButtonSkip").onClick.AddListener(SkipDiaglogue);
+        shouldPlayerChurchMusic = false;
+
+        backgroundMusicName = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+        PlayMusic();
     }
+
 
     public override void HideMe()
     {
@@ -98,6 +126,55 @@ public class UI_DialoguePanel : BasePanel
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             PressMouse();
+        }
+
+    }
+
+    private void ReadMail()
+    {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
+        openMailButton.gameObject.SetActive(false);
+        openMailButton.interactable = false;
+        mail.gameObject.SetActive(true);
+        closeMailButton.gameObject.SetActive(true);
+        closeMailButton.interactable = true;
+
+        closeMailButton.onClick.AddListener(CloseMail);
+    }
+
+    private void CloseMail()
+    {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
+        mail.gameObject.SetActive(false);
+        closeMailButton.gameObject.SetActive(false);
+        closeMailButton.interactable = false;
+
+        MenuPanelIsOpen = false;
+        PressMouse();
+    }
+
+
+    private void PlayMusic()
+    {
+        Debug.Log(backgroundMusicName);
+
+        if(backgroundMusicName == 0 && shouldPlayerChurchMusic)
+        {
+            MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano17-笼罩下的教堂");
+        }
+        else if(backgroundMusicName <= 5 && backgroundMusicName > 0)
+        {
+            MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano29-剧情");
+        }
+        else if(backgroundMusicName == 6)
+        {
+            MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano39-后记");
+        }
+        else
+        {
+            MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano09-开始");
         }
 
     }
@@ -164,10 +241,37 @@ public class UI_DialoguePanel : BasePanel
     {
         if (position == "left")
         {
+
+            if (name == "旁白")
+            {
+                SpriteLeft.gameObject.SetActive(false);
+                SpriteRight.gameObject.SetActive(false);
+            }
+            else
+            {
+                SpriteRight.gameObject.SetActive(false);
+                SpriteLeft.gameObject.SetActive(true);
+            }
+
+          
+
             SpriteLeft.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/" + name);
         }
         else if (position == "right")
         {
+            if (name == "旁白")
+            {
+                SpriteLeft.gameObject.SetActive(false);
+                SpriteRight.gameObject.SetActive(false);
+            }
+            else
+            {
+
+                SpriteRight.gameObject.SetActive(true);
+                SpriteLeft.gameObject.SetActive(false);
+            }
+
+
             SpriteRight.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/" + name);
         }
         else if (position == "no")
@@ -208,34 +312,53 @@ public class UI_DialoguePanel : BasePanel
     }
 
 
+
+    private void SkipDiaglogue()
+    {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
+        //结束当前阶段
+        UIManager.GetInstance().HidePanel("UI_DialoguePanel");
+        EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+    }
+
     /// <summary>
     /// 点击鼠标左键后执行的逻辑
     /// </summary>
     private void PressMouse()
     {
+        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID);
+
         if (!hitButton && !MenuPanelIsOpen)
         {
             //鼠标点击音效
-            MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+            //需要一个新的
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/翻页2", false);
 
             //点击鼠标会使对话进行下去
             dialogIndex = GetInFo(dialogIndex).JumpToID;
             currentdialogIndex = dialogIndex;
+
+            if(currentdialogIndex == 26 && GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
+            {
+                shouldPlayerChurchMusic = true;
+                PlayMusic();
+                //shouldPlayerChurchMusic = false;
+            }
+
+
 
             if (dialogIndex == dialogdic.Count)
             {
                 //结束当前阶段
                 UIManager.GetInstance().HidePanel("UI_DialoguePanel");
                 //完成战斗后再执行
-                //EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
-                
-                if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID > 5)
-                {
-                    //进入结局
-                }
-                else if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
+                EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+
+                if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
                 {
                     //进入主界面
+                    //什么也不写
                 }
                 else
                 {
@@ -254,3 +377,4 @@ public class UI_DialoguePanel : BasePanel
         }
     }
 }
+

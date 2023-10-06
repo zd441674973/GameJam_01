@@ -14,6 +14,7 @@ public class UI_CardCell : BasePanel
     public TMP_Text CardNumber;
     public Image cover;
     public Image cardNmberImage;
+    public TMP_Text cardDes; 
 
     public override void ShowMe()
     {
@@ -55,11 +56,13 @@ public class UI_CardCell : BasePanel
 
         //Card cardData = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards[info.CardID];
         //卡牌图案
-        //GetControl<Image>("Image_Card").sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/" + itemData.Icon);
+        GetControl<Image>("Image_Card").sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/" + info.CardName);
         //卡牌名字
         cardName.text = cardData.CardName;
         //数量
         CardNumber.text = info.PlayerOwnedNumber.ToString();
+
+        cardDes.text = info.Description;
 
     }
 }

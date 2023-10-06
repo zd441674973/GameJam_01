@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9649f5da8ce30cd45be877c32daa8997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundObj: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +848,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_TitleScene
       objectReference: {fileID: 0}
+    - target: {fileID: 2324714360135372955, guid: f4aed6ad83b865c4ebaacbec235f9918, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2324714360624627872, guid: f4aed6ad83b865c4ebaacbec235f9918, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 66
@@ -872,13 +877,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1624507683}
     m_Modifications:
+    - target: {fileID: 2801928141224201632, guid: 4e9c6fcce05463e488eb56b983955115, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4926934830211205493, guid: 4e9c6fcce05463e488eb56b983955115, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6674546238734125218, guid: 4e9c6fcce05463e488eb56b983955115, type: 3}
       propertyPath: m_Name
       value: UI_SettingPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674546238734125218, guid: 4e9c6fcce05463e488eb56b983955115, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6674546238734125219, guid: 4e9c6fcce05463e488eb56b983955115, type: 3}
       propertyPath: m_Pivot.x
@@ -964,9 +977,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7285925445857712517, guid: 4e9c6fcce05463e488eb56b983955115, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8133399311190226376, guid: 4e9c6fcce05463e488eb56b983955115, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e9c6fcce05463e488eb56b983955115, type: 3}

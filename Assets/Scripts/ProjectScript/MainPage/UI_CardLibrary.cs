@@ -23,6 +23,8 @@ public class UI_CardLibrary : BasePanel
         base.ShowMe();
         ShowCards();
         ShowPlayerCardInfo();
+
+        EventCenter.GetInstance().EventTrigger("MenuIsOpen");
     }
 
     protected override void Awake()
@@ -37,6 +39,8 @@ public class UI_CardLibrary : BasePanel
     {
         base.HideMe();
         EventCenter.GetInstance().RemoveEventListener<Card,Vector3>("EnterCard", InitShowCard);
+
+        EventCenter.GetInstance().EventTrigger("MenuIsClose");
     }
 
     private void ShowCards()
@@ -62,6 +66,9 @@ public class UI_CardLibrary : BasePanel
 
     private void InitShowCard(Card info, Vector3 position)
     {
+
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/光标放置", false);
+
         ShowCard.InitInfo(info);
     }
 
@@ -77,7 +84,8 @@ public class UI_CardLibrary : BasePanel
 
     private void ClosePanel()
     {
-        MusicMgr.GetInstance().PlaySound("maou_se_sound20_Maou-Select", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
         UIManager.GetInstance().HidePanel("UI_CardLibrary");
         EventCenter.GetInstance().EventTrigger("CloseCardLibrary");
     }

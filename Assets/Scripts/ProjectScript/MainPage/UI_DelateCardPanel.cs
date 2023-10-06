@@ -80,18 +80,21 @@ public class UI_DelateCardPanel : BasePanel
 
     private void Update()
     {
-        Debug.Log(DelateCardTimes);
 
         if (Input.GetMouseButtonDown(0))
         {
             //当左键点击鼠标
             SelectCardToDelateList();
+
+            //选择要删除的卡牌
         }
 
         if (Input.GetMouseButtonDown(1))
         {
             //当右键点击鼠标
             CancelSelectCardToDelateList();
+
+            //取消选择要删除的卡牌
         }
     }
 
@@ -105,6 +108,8 @@ public class UI_DelateCardPanel : BasePanel
                 Debug.Log(i);
                 EventCenter.GetInstance().EventTrigger<int, int>("CardChange", cardsNeedToDelate[i].CardID, -1);
             }
+
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
             UIManager.GetInstance().HidePanel("DelateCardPanel");
             UIManager.GetInstance().HidePanel("AwardPanel");
@@ -127,6 +132,8 @@ public class UI_DelateCardPanel : BasePanel
         }
         else
         {
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/弃牌", false);
+
             GameObject slectedCardIcon = ResMgr.GetInstance().Load<GameObject>("UI/Card_SelectedIcon");
             slectedCardIcon.transform.position = currentSelectedCardPostion;
             slectedCardIcon.transform.SetParent(SelectedIcons);
@@ -146,6 +153,8 @@ public class UI_DelateCardPanel : BasePanel
 
     private void CancelSelectCardToDelateList()
     {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/放弃选中", false);
+
         if (DelateCardTimes == 3)
         {
             previousSelectedCardPosition = new Vector3(0, 0, 0);
@@ -210,6 +219,8 @@ public class UI_DelateCardPanel : BasePanel
 
     private void InitShowCard(Card info, Vector3 position)
     {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/光标放置", false);
+
         ShowCard.InitInfo(info);
         SelectIcon.gameObject.SetActive(true);
         SelectIcon.transform.position = position;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MusicMgr : BaseManager<MusicMgr>
+public class MusicMgr : SingletonAutoMono<MusicMgr>
 {
     //唯一的背景音乐组件
     private AudioSource bkMusic = null;
@@ -98,6 +98,8 @@ public class MusicMgr : BaseManager<MusicMgr>
         {
             soundObj = new GameObject();
             soundObj.name = "Sound";
+
+            DontDestroyOnLoad(soundObj);
         }
         //当音效资源异步加载结束后 再添加一个音效
         ResMgr.GetInstance().LoadAsync<AudioClip>("Music/Sound/" + name, (clip) =>

@@ -1,0 +1,67 @@
+{
+	"Dialogue": [{
+			"IsOption": "D",
+			"DialogueID": 0,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "大主教兰道尔的身体在慢慢消散。吉罗走上圣坛，旁边桌子上的一封信引起了他的注意。",
+			"JumpToID": 1
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 1,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗叹了口气。信的下面盖上了印着“驳回”的印戳。说明这封信从未到过皇帝手上。而且他昨日就见过陛下，他很清楚皇帝本人身体一直很健康。所谓的有恙只不过是借口罢了。",
+			"JumpToID": 2
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 2,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "兰道尔的忠诚他很清楚。但他被他自己的信仰蒙蔽了。吉罗知道，在这座城被崭新科技带向新的阶段时。以兰道尔为代表的，那些依然活在过去的人，却被人无情的抛在了过去。",
+			"JumpToID": 3
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 3,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "没有人管他们死活，也没有人为他们的信仰提供庇护所。这是一场彻头彻尾的悲剧。",
+			"JumpToID": 4
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 4,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "请神仪式，呵呵，怕不是古时某种邪恶的召唤仪式吧。吉罗心里这样想着。",
+			"JumpToID": 5
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 5,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "大主教在走投无路的情况下失去了理智，也失去了他应有的判断力。最后，他，他的信徒，以及这座城的市民们，都为这鲁莽的仪式付出了代价。",
+			"JumpToID": 6
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 6,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗走出教堂。清晨早已过去，太阳已经照亮了整个广场。远处的骚乱声告诉吉罗，那些被召唤来的怪物并未因主教的死而消散。",
+			"JumpToID": 7
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 7,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗提了提手上的虹吸枪，走下了台阶…",
+			"JumpToID": 8
+		}
+	]
+}

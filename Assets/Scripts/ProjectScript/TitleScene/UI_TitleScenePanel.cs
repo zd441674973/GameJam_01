@@ -24,7 +24,8 @@ public class UI_TitleScenePanel : BasePanel
 
     private void NewGame()
     {
-        MusicMgr.GetInstance().PlaySound("maou_se_system48-start", false);
+
+
         //开始新游戏之前先删除旧存档的数据
         if (File.Exists(PlayerInfoSaveAdress))
         {
@@ -37,6 +38,7 @@ public class UI_TitleScenePanel : BasePanel
 
     private void ContinueGame()
     {
+
         //读取数据
         GameDataControl.GetInstance().LoadPlayerInfo();
 
@@ -45,6 +47,8 @@ public class UI_TitleScenePanel : BasePanel
 
     private void SettingGame()
     {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
         UIManager.GetInstance().ShowPanel<UI_SettingPanel>("UI_SettingPanel", E_UI_Layer.Top);
     }
 
@@ -66,5 +70,8 @@ public class UI_TitleScenePanel : BasePanel
         {
             UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
         }
+
+
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
     }
 }

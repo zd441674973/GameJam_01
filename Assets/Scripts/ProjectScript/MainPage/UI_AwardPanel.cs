@@ -100,6 +100,8 @@ public class UI_AwardPanel : BasePanel
 
     private void SkipSelectCard()
     {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
         UIManager.GetInstance().HidePanel("AwardPanel");
         GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = true;
 
@@ -169,18 +171,24 @@ public class UI_AwardPanel : BasePanel
                 //没有选择任何卡，无事发生
                 break;
             case 1:
+                MusicMgr.GetInstance().PlaySound("SystemSoundEffect/进牌", false);
+
                 EventCenter.GetInstance().EventTrigger<int,int>("CardChange",drawnNewCards[0].CardID, 1);
                 EventCenter.GetInstance().EventTrigger("CardPlusOne");
                 
                 CheckCardSelectIsDone();
                 break;
             case 2:
+                MusicMgr.GetInstance().PlaySound("SystemSoundEffect/进牌", false);
+
                 EventCenter.GetInstance().EventTrigger<int, int>("CardChange", drawnNewCards[1].CardID, 1);
                 EventCenter.GetInstance().EventTrigger("CardPlusOne");
                 
                 CheckCardSelectIsDone();
                 break;
             case 3:
+                MusicMgr.GetInstance().PlaySound("SystemSoundEffect/进牌", false);
+
                 EventCenter.GetInstance().EventTrigger<int, int>("CardChange", drawnNewCards[2].CardID, 1);
                 EventCenter.GetInstance().EventTrigger("CardPlusOne");
                 
@@ -214,33 +222,39 @@ public class UI_AwardPanel : BasePanel
 
     public void EnterNewCardSlot1(BaseEventData data)
     {
-        NewcardSlot1.gameObject.transform.localScale = new Vector3(2, 2, 2);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/光标放置", false);
+
+        NewcardSlot1.gameObject.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         currentSelectedNewCard = 1;
     }
     public void EnterNewCardSlot2(BaseEventData data)
     {
-        NewcardSlot2.gameObject.transform.localScale = new Vector3(2, 2, 2);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/光标放置", false);
+
+        NewcardSlot2.gameObject.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         currentSelectedNewCard = 2;
     }
     public void EnterNewCardSlot3(BaseEventData data)
     {
-        NewcardSlot3.gameObject.transform.localScale = new Vector3(2, 2, 2);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/光标放置", false);
+
+        NewcardSlot3.gameObject.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         currentSelectedNewCard = 3;
     }
 
     public void ExitNewCardSlot1(BaseEventData data)
     {
-        NewcardSlot1.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        NewcardSlot1.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
         currentSelectedNewCard = 0;
     }
     public void ExitNewCardSlot2(BaseEventData data)
     {
-        NewcardSlot2.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        NewcardSlot2.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
         currentSelectedNewCard = 0;
     }
     public void ExitNewCardSlot3(BaseEventData data)
     {
-        NewcardSlot3.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+        NewcardSlot3.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
         currentSelectedNewCard = 0;
     }
 }

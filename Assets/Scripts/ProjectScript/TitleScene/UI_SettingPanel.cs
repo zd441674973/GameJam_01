@@ -56,7 +56,11 @@ public class UI_SettingPanel : BasePanel
         resolutionDropdown.RefreshShownValue();
     }
 
-
+    private void Start()
+    {
+        MusicSlider.value = 0.5f;
+        SoundEffectSlider.value = 0.5f;
+    }
 
 
     // 当分辨率选项发生变化时调用
@@ -68,16 +72,20 @@ public class UI_SettingPanel : BasePanel
 
     private void ClosePanel()
     {
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
+
         UIManager.GetInstance().HidePanel("UI_SettingPanel");
     }
 
     private void ChangeMusicVolume(float volume)
     {
+
         MusicMgr.GetInstance().ChangeBKValue(volume);
     }
 
     private void ChangeSoundEffectVolume(float volume)
     {
+
         MusicMgr.GetInstance().ChangeSoundValue(volume);
     }
 
@@ -88,6 +96,8 @@ public class UI_SettingPanel : BasePanel
         {
             // 如果是全屏模式，则切换到窗口化模式
             Screen.fullScreen = false;
+
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
         }
     }
 
@@ -98,6 +108,8 @@ public class UI_SettingPanel : BasePanel
         {
             // 如果是全屏模式，则切换到窗口化模式
             Screen.fullScreen = true;
+
+            MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
         }
     }
 }

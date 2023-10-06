@@ -294,7 +294,7 @@
 			"Rarity": "Rare"
 		},
 		{
-			"CardName": "杨式变压器",
+			"CardName": "杨氏变压器",
 			"CardID": 14,
 			"Type": "ElectricalEnergy",
 			"PlayerOwnedNumber": 0,
@@ -504,7 +504,7 @@
 			"Rarity": "Rare"
 		},
 		{
-			"CardName": "幕鲁的暗色领域",
+			"CardName": "穆鲁的暗色领域",
 			"CardID": 24,
 			"Type": "MagicEnergy",
 			"PlayerOwnedNumber": 0,
