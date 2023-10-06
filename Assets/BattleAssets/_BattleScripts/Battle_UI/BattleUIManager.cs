@@ -15,7 +15,8 @@ public class BattleUIManager : MonoBehaviour
         Instance = this;
     }
 
-    [SerializeField] Transform _enemyTurnStartText;
+    [SerializeField] Transform _enemyTurnStartUI;
+    [SerializeField] Transform _darwCardFromEnemyHandUI;
 
 
     void Start()
@@ -23,7 +24,8 @@ public class BattleUIManager : MonoBehaviour
 
     }
 
-    public void SetEnemyTurnStartText(bool condition) => _enemyTurnStartText.gameObject.SetActive(condition);
+    public void SetEnemyTurnStartUI(bool condition) => _enemyTurnStartUI.gameObject.SetActive(condition);
+    public void SetDrawCardFromEnemyHandUI(bool condition) => _darwCardFromEnemyHandUI.gameObject.SetActive(condition);
 
 
 }

@@ -995,8 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb38e92c8ea34bc48b474b708599fcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseInteractionState: 0
-  _isDargging: 0
+  _mouseInteractionState: 0
 --- !u!114 &291466225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2700,6 +2699,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7391959064591540386, guid: 61a6e63e00a6ca14abbb82be3dd38514, type: 3}
   m_PrefabInstance: {fileID: 1876429411}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1405555085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1149975763}
+    m_Modifications:
+    - target: {fileID: 697521698567455610, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_Name
+      value: DarkCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 697521698567455610, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129563389784043499, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8be193b8b7af6fc4cb44e7a4b95549a3, type: 3}
 --- !u!1 &1446975745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3115,6 +3175,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 460983545146950625, guid: 2d52cb17d0fa38d43bdf89ea99c56adf, type: 3}
   m_PrefabInstance: {fileID: 1590752481}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1619493654 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6415891952406221887, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
+  m_PrefabInstance: {fileID: 5267149133903020255}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1620624768
 GameObject:
   m_ObjectHideFlags: 0
@@ -3193,7 +3258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleSlot: {fileID: 7583378941503814172}
   _watingTime: 1
-  _turnStartText: {fileID: 1240166297}
   _isActive: 0
   _cardIndex: 0
   _enemyTurnState: 0
@@ -4333,6 +4397,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 290968224}
     m_Modifications:
+    - target: {fileID: 1485243854392445750, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1623553069382432359, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
+      propertyPath: _enemyTurnStartUI
+      value: 
+      objectReference: {fileID: 1240166297}
+    - target: {fileID: 1623553069382432359, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
+      propertyPath: _darwCardFromEnemyHandUI
+      value: 
+      objectReference: {fileID: 1619493654}
+    - target: {fileID: 2788207675762775356, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5267149134574354309, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4420,6 +4500,10 @@ PrefabInstance:
     - target: {fileID: 5267149134574354310, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
       propertyPath: m_Name
       value: UITextManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267149135099768647, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}

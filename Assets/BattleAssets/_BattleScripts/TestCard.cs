@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Test : CardAction
+public class TestCard : CardAction
 {
     void Update()
     {
@@ -39,8 +39,8 @@ public class Test : CardAction
 
     protected override void TakeAction()
     {
-        //CardActionManager.Instance.DrawOpponentDeck(1);
+        CardActionManager.Instance.DrawOpponentHand();
 
-        Debug.Log($"BTestCardPlayed, NullCardFunction");
+        Debug.Log($"BTestCardPlayed, DrawEnemyHand Action");
     }
 }

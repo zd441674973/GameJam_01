@@ -22,6 +22,16 @@ public class CardActionManager : MonoBehaviour
     ShieldSystem _playerShield;
     ShieldSystem _enemyShield;
 
+    public event Action DrawFromOpponentHand;
+
+
+
+
+
+
+
+
+
     void Start()
     {
         _playerHealth = PlayerManager.Instance.GetHealthSystem();
@@ -30,6 +40,16 @@ public class CardActionManager : MonoBehaviour
         _playerShield = PlayerManager.Instance.GetShieldSystem();
         _enemyShield = EnemyManager.Instance.GetShieldSystem();
     }
+
+
+
+
+
+
+
+
+
+
 
     bool IsPlayerTurn() => TurnSystem.Instance.IsPlayerTurn();
 
@@ -134,10 +154,18 @@ public class CardActionManager : MonoBehaviour
         }
     }
 
-    public void DrawOpponentHand(Transform cardDrawn)
+    // public void DrawOpponentHand(Transform cardDrawn)
+    // {
+    //     BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(true);
+
+    //     if (!IsPlayerTurn()) LevelManager.Instance.EnemyDrawFromPlayerHand(cardDrawn);
+    //     if (IsPlayerTurn()) LevelManager.Instance.PlayerDrawFromEnemyHand(cardDrawn);
+
+
+    // }
+    public void DrawOpponentHand()
     {
-        if (!IsPlayerTurn()) LevelManager.Instance.EnemyDrawFromPlayerHand(cardDrawn);
-        if (IsPlayerTurn()) LevelManager.Instance.PlayerDrawFromEnemyHand(cardDrawn);
+        DrawFromOpponentHand?.Invoke();
     }
 
     public void DiscardCard(int disCardCount, List<Transform> cardList)

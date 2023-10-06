@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
         Instance = this;
     }
 
-    enum EnemyTurnState
+    public enum EnemyTurnState
     {
         Null,
         TurnStart,
@@ -44,6 +44,7 @@ public class EnemyController : MonoBehaviour
 
 
     public Transform GetCurrentEnemyCard() => _currentCard;
+    
 
 
 
@@ -70,7 +71,7 @@ public class EnemyController : MonoBehaviour
                 break;
             case EnemyTurnState.CardPlaying:
 
-                BattleUIManager.Instance.SetEnemyTurnStartText(false);
+                BattleUIManager.Instance.SetEnemyTurnStartUI(false);
                 MultipleCardMovement(EnemyHandCard());
                 break;
 
@@ -117,7 +118,7 @@ public class EnemyController : MonoBehaviour
     void EnemyTurnBegin()
     {
         _enemyTurnState = EnemyTurnState.TurnStart;
-        BattleUIManager.Instance.SetEnemyTurnStartText(true);
+        BattleUIManager.Instance.SetEnemyTurnStartUI(true);
         StartTimer(_watingTime);
         _isActive = true;
     }

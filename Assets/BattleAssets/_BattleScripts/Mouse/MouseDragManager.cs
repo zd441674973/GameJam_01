@@ -20,38 +20,46 @@ public class MouseDragManager : MonoBehaviour
         Instance = this;
     }
 
-    enum MouseInteractionState
+
+
+    public enum MouseInteractionState
     {
         Default,
         DrawFromOpponentHand,
 
     }
-    [SerializeField] MouseInteractionState mouseInteractionState;
+
+
+    [SerializeField] MouseInteractionState _mouseInteractionState;
+    public MouseInteractionState MouseState { get { return _mouseInteractionState; } set { _mouseInteractionState = value; } }
 
     public event Action CardHasBeenPlayed;
-
-
-
-    [SerializeField] bool _isDargging;
 
     Vector2 _offset;
     Vector2 _cardSlotPosition;
 
+
+
+    RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
+    public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
+    bool IsPlayerCard() => CurrentPlayedCard().GetComponent<CardData>().IsInPlayerHand;
+
+
+
     void Start()
     {
-        mouseInteractionState = MouseInteractionState.Default;
+        _mouseInteractionState = MouseInteractionState.Default;
         Debug.Log("MouseState: Default");
+
+        CardActionManager.Instance.DrawFromOpponentHand += DrawFromOpponentHandEvent;
     }
-
-
-
 
 
     void Update()
     {
         if (!TurnSystem.Instance.IsPlayerTurn()) return;
 
-        switch (mouseInteractionState)
+        switch (_mouseInteractionState)
         {
             case MouseInteractionState.Default:
                 DragCard();
@@ -59,18 +67,16 @@ public class MouseDragManager : MonoBehaviour
                 break;
 
             case MouseInteractionState.DrawFromOpponentHand:
+
                 if (CurrentDraggedCard()) if (IsPlayerCard()) return;
+
                 SelectOpponentHandCard();
-
-
 
                 break;
 
         }
 
     }
-
-
 
 
 
@@ -89,10 +95,27 @@ public class MouseDragManager : MonoBehaviour
         ResetDrag();
     }
 
-    RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
-    public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
+    void DrawFromOpponentHandEvent()
+    {
+        BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(true);
+        _mouseInteractionState = MouseInteractionState.DrawFromOpponentHand;
+    }
+    void SelectOpponentHandCard()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+        if (!CurrentDraggedCard()) return;
 
-    bool IsPlayerCard() => CurrentPlayedCard().GetComponent<CardData>().IsInPlayerHand;
+
+        Debug.Log(CurrentPlayedCard());
+
+        LevelManager.Instance.PlayerDrawFromEnemyHand(CurrentPlayedCard());
+        BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(false);
+        _mouseInteractionState = MouseInteractionState.Default;
+
+    }
+
+
+    #region DragCardFunction
 
     void GetCardOffset()
     {
@@ -138,25 +161,16 @@ public class MouseDragManager : MonoBehaviour
 
         CurrentDraggedCard().transform.position = _cardSlotPosition;
     }
-
-    void SelectOpponentHandCard()
-    {
-        if (!Input.GetMouseButtonDown(0)) return;
-        if (!CurrentDraggedCard()) return;
-
-
-        Debug.Log(CurrentPlayedCard());
-
-        LevelManager.Instance.PlayerDrawFromEnemyHand(CurrentPlayedCard());
-
-    }
-
     float Distance()
     {
         var battleSlotPosition = LevelManager.Instance.GetBattleArea().position;
         var cardPosition = CurrentDraggedCard().transform.position;
         return Vector2.Distance(cardPosition, battleSlotPosition);
     }
+
+    #endregion
+
+
 
 
 
