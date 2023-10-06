@@ -652,8 +652,14 @@ MonoBehaviour:
   _playerDeck:
   - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
-  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   _playerHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -664,6 +670,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _enemyDeck:
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   _enemyHandCard:
   - {fileID: 0}

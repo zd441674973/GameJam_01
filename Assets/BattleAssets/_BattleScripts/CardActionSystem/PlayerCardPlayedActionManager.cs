@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardPlayedActionManager : MonoBehaviour
+public class PlayerCardPlayedActionManager : MonoBehaviour
 {
 
     void Start()
@@ -22,7 +22,7 @@ public class CardPlayedActionManager : MonoBehaviour
 
         UpdateHandCardCount();
 
-        AddCardToDiscardPile(currentCard);
+        DiscardCard(currentCard);
 
         UpdateEnergyBar(currentCard);
 
@@ -34,17 +34,9 @@ public class CardPlayedActionManager : MonoBehaviour
 
     }
 
-    void UpdateHandCardCount()
-    {
-        LevelManager.Instance.UpdatePlayerHandCardCount();
-    }
+    void UpdateHandCardCount() => LevelManager.Instance.UpdatePlayerHandCardCount();
+    void DiscardCard(Transform card) => LevelManager.Instance.DiscardPlayerCard(card);
 
-    void AddCardToDiscardPile(Transform transform)
-    {
-        CardDiscardPile.Instance.GetPlayerDiscardDeck().Add(transform);
-        Transform discardPile = CardDiscardPile.Instance.GetComponent<Transform>();
-        transform.SetParent(discardPile);
-    }
 
     void UpdateEnergyBar(Transform transform)
     {

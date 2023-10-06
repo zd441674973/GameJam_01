@@ -390,7 +390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &628935144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -404,8 +404,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 986935984}
-  m_Father: {fileID: 3707829378219936854}
-  m_RootOrder: 3
+  m_Father: {fileID: 5267149134574354309}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -908,7 +908,6 @@ RectTransform:
   - {fileID: 7742285765720855270}
   - {fileID: 8721102751464426667}
   - {fileID: 4232346874727236223}
-  - {fileID: 628935144}
   m_Father: {fileID: 6415891952406221887}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1350,6 +1349,7 @@ RectTransform:
   - {fileID: 5267149135099768646}
   - {fileID: 6415891952406221887}
   - {fileID: 1274015323}
+  - {fileID: 628935144}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1374,7 +1374,8 @@ MonoBehaviour:
   _enemyTurnStartUI: {fileID: 5267149135099768646}
   _darwCardFromEnemyHandUI: {fileID: 6415891952406221887}
   _darwCardFromEnemyHandUIText: {fileID: 15523213638145476}
-  _drawEnmyCardskipButton: {fileID: 628935145}
+  _skipButton: {fileID: 628935145}
+  _skipButtonTransform: {fileID: 628935144}
   _destoryEnemyHandUI: {fileID: 1274015323}
   _destoryEnemyHandUIText: {fileID: 1573275583}
 --- !u!1 &5267149135099768647

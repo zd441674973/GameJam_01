@@ -26,6 +26,8 @@ public class MouseActionManager : MonoBehaviour
     {
         Default,
         DrawFromOpponentHand,
+        DestoryFromOpponentHand,
+
 
     }
 
@@ -41,6 +43,9 @@ public class MouseActionManager : MonoBehaviour
     int _drawFromOpponentHandCount;
     public int DrawFromOpponentHandCount { get { return _drawFromOpponentHandCount; } set { _drawFromOpponentHandCount = value; } }
 
+    int _destoryFromOpponentHandCount;
+    public int DestoryFromOpponentHandCount { get { return _destoryFromOpponentHandCount; } set { _destoryFromOpponentHandCount = value; } }
+
 
     RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
     public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
@@ -53,7 +58,9 @@ public class MouseActionManager : MonoBehaviour
         _mouseInteractionState = MouseInteractionState.Default;
         Debug.Log("MouseState: Default");
 
-        CardActionManager.Instance.DrawFromOpponentHand += DrawFromOpponentHandEvent;
+
+        CardActionManager.Instance.DrawOpponentHandEvent += DrawFromOpponentHandEvent;
+        CardActionManager.Instance.DestoryOpponentCardEvent += DestoryFromOpponentHandEvent;
     }
 
 
@@ -73,13 +80,25 @@ public class MouseActionManager : MonoBehaviour
 
             case MouseInteractionState.DrawFromOpponentHand:
 
-                BattleUIManager.Instance.SetDrawCardFromEnemyHandUIText(_drawFromOpponentHandCount);
+                BattleUIManager.Instance.UpdateDrawCardFromEnemyHandUIText(_drawFromOpponentHandCount);
 
                 BattleUIManager.Instance.SetEndTurnButtonFunction(false);
 
                 if (CurrentDraggedCard()) if (IsPlayerCard()) return;
 
                 SelectOpponentHandCard();
+
+                break;
+
+            case MouseInteractionState.DestoryFromOpponentHand:
+
+                BattleUIManager.Instance.UpdateDestoryEnemyHandUIText(_destoryFromOpponentHandCount);
+
+                BattleUIManager.Instance.SetEndTurnButtonFunction(false);
+
+                if (CurrentDraggedCard()) if (IsPlayerCard()) return;
+
+                DestoryOpponentHandCard();
 
                 break;
 
@@ -103,34 +122,6 @@ public class MouseActionManager : MonoBehaviour
         Dragging();
         ResetDrag();
     }
-
-    void DrawFromOpponentHandEvent()
-    {
-        BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(true);
-        _mouseInteractionState = MouseInteractionState.DrawFromOpponentHand;
-    }
-    void SelectOpponentHandCard()
-    {
-        if (!Input.GetMouseButtonDown(0)) return;
-        if (!CurrentDraggedCard()) return;
-
-
-        Debug.Log(CurrentPlayedCard());
-
-        LevelManager.Instance.PlayerDrawFromEnemyHand(CurrentPlayedCard());
-
-        _drawFromOpponentHandCount -= 1;
-        if (_drawFromOpponentHandCount > 0) return;
-
-        SkipDrawFromOpponentHandState();
-    }
-
-    public void SkipDrawFromOpponentHandState()
-    {
-        BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(false);
-        _mouseInteractionState = MouseInteractionState.Default;
-    }
-
 
     #region DragCardFunction
 
@@ -186,6 +177,80 @@ public class MouseActionManager : MonoBehaviour
     }
 
     #endregion
+
+
+    #region DrawFromOpponentHand
+
+    void DrawFromOpponentHandEvent()
+    {
+        BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(true);
+        BattleUIManager.Instance.SetSkipButtonTransform(true);
+        _mouseInteractionState = MouseInteractionState.DrawFromOpponentHand;
+    }
+    void SelectOpponentHandCard()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+        if (!CurrentDraggedCard()) return;
+
+
+        Debug.Log(CurrentPlayedCard());
+
+        LevelManager.Instance.PlayerDrawFromEnemyHand(CurrentPlayedCard());
+
+        _drawFromOpponentHandCount -= 1;
+        if (_drawFromOpponentHandCount > 0) return;
+
+        SkipCurrentState();
+    }
+
+    #endregion
+
+
+    #region DestoryFromOpponentHand
+
+    void DestoryFromOpponentHandEvent()
+    {
+        BattleUIManager.Instance.SetDestoryEnemyHandUI(true);
+        BattleUIManager.Instance.SetSkipButtonTransform(true);
+        _mouseInteractionState = MouseInteractionState.DestoryFromOpponentHand;
+    }
+
+    void DestoryOpponentHandCard()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+        if (!CurrentDraggedCard()) return;
+
+
+        Debug.Log(CurrentPlayedCard());
+
+        LevelManager.Instance.DiscardEnemyCard(CurrentPlayedCard());
+
+        _destoryFromOpponentHandCount -= 1;
+        if (_destoryFromOpponentHandCount > 0) return;
+
+        SkipCurrentState();
+    }
+
+    #endregion
+
+
+    public void SkipCurrentState()
+    {
+        BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(false);
+        BattleUIManager.Instance.SetDestoryEnemyHandUI(false);
+        BattleUIManager.Instance.SetSkipButtonTransform(false);
+        _mouseInteractionState = MouseInteractionState.Default;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 

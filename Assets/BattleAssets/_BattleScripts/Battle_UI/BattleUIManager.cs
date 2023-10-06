@@ -21,17 +21,17 @@ public class BattleUIManager : MonoBehaviour
     [SerializeField] Transform _enemyTurnStartUI;
     [SerializeField] Transform _darwCardFromEnemyHandUI;
     [SerializeField] TextMeshProUGUI _darwCardFromEnemyHandUIText;
-    [SerializeField] Button _drawEnmyCardskipButton;
+    [SerializeField] Button _skipButton;
     [SerializeField] Transform _destoryEnemyHandUI;
     [SerializeField] TextMeshProUGUI _destoryEnemyHandUIText;
 
     void Start()
     {
-        _drawEnmyCardskipButton.onClick.AddListener
+        _skipButton.onClick.AddListener
         (
             () =>
             {
-                MouseActionManager.Instance.SkipDrawFromOpponentHandState();
+                MouseActionManager.Instance.SkipCurrentState();
             }
         );
 
@@ -43,19 +43,19 @@ public class BattleUIManager : MonoBehaviour
                 TurnSystem.Instance.NextTurn();
             }
         );
-
-
     }
+
+    public void SetSkipButtonTransform(bool condition) => _skipButton.GetComponent<Transform>().gameObject.SetActive(condition);
 
     public void SetEndTurnButtonFunction(bool condition) => _endTurnButton.enabled = condition;
 
     public void SetEnemyTurnStartUI(bool condition) => _enemyTurnStartUI.gameObject.SetActive(condition);
 
     public void SetDrawCardFromEnemyHandUI(bool condition) => _darwCardFromEnemyHandUI.gameObject.SetActive(condition);
-    public void SetDrawCardFromEnemyHandUIText(int value) => _darwCardFromEnemyHandUIText.text = $"SELECT {value} CARD FROM ENEMY HAND";
+    public void UpdateDrawCardFromEnemyHandUIText(int value) => _darwCardFromEnemyHandUIText.text = $"SELECT {value} CARD FROM ENEMY HAND";
 
-    public void DestoryEnemyHandUI(bool condition) => _destoryEnemyHandUI.gameObject.SetActive(condition);
-    public void DestoryEnemyHandUIText(int value) => _destoryEnemyHandUIText.text = $"DESTORY {value} CARD FROM ENEMY HAND";
+    public void SetDestoryEnemyHandUI(bool condition) => _destoryEnemyHandUI.gameObject.SetActive(condition);
+    public void UpdateDestoryEnemyHandUIText(int value) => _destoryEnemyHandUIText.text = $"DESTORY {value} CARD FROM ENEMY HAND";
 
 
 }

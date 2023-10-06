@@ -22,7 +22,8 @@ public class CardActionManager : MonoBehaviour
     ShieldSystem _playerShield;
     ShieldSystem _enemyShield;
 
-    public event Action DrawFromOpponentHand;
+    public event Action DrawOpponentHandEvent;
+    public event Action DestoryOpponentCardEvent;
 
 
 
@@ -154,7 +155,7 @@ public class CardActionManager : MonoBehaviour
     {
         if (IsPlayerTurn())
         {
-            DrawFromOpponentHand?.Invoke();
+            DrawOpponentHandEvent?.Invoke();
             MouseActionManager.Instance.DrawFromOpponentHandCount = value;
         }
 
@@ -164,18 +165,29 @@ public class CardActionManager : MonoBehaviour
 
 
 
-    public void DiscardCard(int disCardCount, List<Transform> cardList)
-    {
 
-    }
-
-    public void DestoryCard(int value)
+    public void DestoryOpponentCard(int value)
     {
-        if (IsPlayerTurn()) return;
+        if (IsPlayerTurn())
+        {
+            DestoryOpponentCardEvent?.Invoke();
+            MouseActionManager.Instance.DestoryFromOpponentHandCount = value;
+        }
 
         if (!IsPlayerTurn()) return;
     }
 
+    public void DiscardCard(int disCardCount, Transform discardCard)
+    {
+        // if (IsPlayerTurn())
+        // {
+
+        // }
+
+        // if (!IsPlayerTurn())
+
+
+    }
     public void GainEnergy(int value)
     {
 

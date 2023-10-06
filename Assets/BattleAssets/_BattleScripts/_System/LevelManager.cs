@@ -80,33 +80,27 @@ public class LevelManager : MonoBehaviour
 
     List<Transform> PlayerDeck() => CardDeckManager.Instance.GetPlayerDeck();
     List<Transform> PlayerHandCard() => CardDeckManager.Instance.GetPlayerHandCard();
+    List<Transform> PlayerDiscardPile() => CardDiscardPile.Instance.GetPlayerDiscardDeck();
 
     List<Transform> EnemyDeck() => CardDeckManager.Instance.GetEnemyDeck();
     List<Transform> EnemyHandCard() => CardDeckManager.Instance.GetEnemyHandCard();
+    List<Transform> EnemyDiscardPile() => CardDiscardPile.Instance.GetEnemyDiscardDeck();
 
 
 
     public int GetPlayerCurrentHandCardCount() => _playerHandCardCount;
     public int GetEnemyCurrentHandCardCount() => _enemyHandCardCount;
 
-
-
-
     public Transform GetBattleArea() => _battleArea;
+    public Transform GetDiscardPile() => CardDiscardPile.Instance.GetComponent<Transform>();
+
+
     public void PlayerDrawCard(int maxCardDrawnCount) => DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, maxCardDrawnCount);
     public void EnemyDrawCard(int maxCardDrawnCount) => DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty, maxCardDrawnCount);
 
 
-
-
-
-
     public void PlayerDrawFromEnemyDeck(int maxCardDrawnCount) => DrawCardLogic(_playerSlots, EnemyDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, maxCardDrawnCount);
     public void EnemyDrawFromPlayerDeck(int maxCardDrawnCount) => DrawCardLogic(_enemySlots, PlayerDeck(), EnemyHandCard(), _isEnemySlotsEmpty, maxCardDrawnCount);
-
-
-
-
 
 
     public void PlayerDrawFromEnemyHand(Transform cardDrawn) => DrawFromOpponentHandCard(_playerSlots, cardDrawn, PlayerHandCard(), _isPlayerSlotsEmpty);
@@ -134,16 +128,28 @@ public class LevelManager : MonoBehaviour
             {
                 EnemyDrawFromPlayerHand(card);
             }
-            // for (int i = 0; i < randomCards.Count; i++)
-            // {
-            //     EnemyDrawFromPlayerHand(randomCards[i]);
-            // }
         }
 
     }
+
+
+    public void DiscardPlayerCard(Transform card) => AddCardToDiscardPile(card, PlayerDiscardPile());
+    public void DiscardEnemyCard(Transform card) => AddCardToDiscardPile(card, EnemyDiscardPile());
+
+
+
+    //public void DestoryEnemyCard(Transform card) => AddCardToDiscardPile(card, EnemyDiscardPile());
+    //public void DestoryEnemyCard(Transform card) => DestoryOpponentHandCard(card, EnemyHandCard());
+    //public void DestoryPlayerCard()
+
+
+
+
+
+
+
+
     void EnemyDrawFromPlayerHand(Transform cardDrawn) => DrawFromOpponentHandCard(_enemySlots, cardDrawn, EnemyHandCard(), _isEnemySlotsEmpty);
-
-
     List<Transform> RandomPlayerHandCardList(int drawCardCount)
     {
         List<Transform> randomCardList = new List<Transform>();
@@ -185,6 +191,17 @@ public class LevelManager : MonoBehaviour
         }
         return count;
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -268,12 +285,35 @@ public class LevelManager : MonoBehaviour
             drawnCard.position = playerEmptySlot.position;
             selfHandCardList[i] = drawnCard;
             selfIsEmptySlotList[i] = false;
-
             break;
         }
-
-
     }
+
+    // Add opponent card to discard pile
+    // void DestoryOpponentHandCard(Transform card, List<Transform> opponentHandCardList)
+    // {
+    //     opponentHandCardList.IndexOf(card);
+    // }
+
+    void AddCardToDiscardPile(Transform card, List<Transform> discardPileList)
+    {
+        card.gameObject.SetActive(false);
+        discardPileList.Add(card);
+        card.SetParent(GetDiscardPile());
+        UpdatePlayerHandCardCount();
+        UpdateEnemyHandCardCount();
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     void SlotEmptnessCheck(List<Transform> slot, List<bool> isEmptySlot, List<Transform> handCard)
     {

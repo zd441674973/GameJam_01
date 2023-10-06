@@ -41,12 +41,16 @@ public class TestCard : CardAction
     {
         //for player
         //CardActionManager.Instance.DrawOpponentHand(card.GetEnemyHandCard);
-        CardActionManager.Instance.DrawOpponentHand(2);
+        //CardActionManager.Instance.DrawOpponentHand(2);
 
         //for enemy
         //CardActionManager.Instance.DrawOpponentHand(2);
 
         //Debug.Log($"BTestCardPlayed, DrawplayerHand Action");
+
+        Debug.Log("CardPlayed" + card.CardName);
+
+        CardActionManager.Instance.DestoryOpponentCard(2);
 
 
     }
