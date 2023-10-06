@@ -152,19 +152,28 @@ public class CardActionManager : MonoBehaviour
     }
     public void DrawOpponentHand(int value)
     {
-        if (IsPlayerTurn()) DrawFromOpponentHand?.Invoke();
+        if (IsPlayerTurn())
+        {
+            DrawFromOpponentHand?.Invoke();
+            MouseActionManager.Instance.DrawFromOpponentHandCount = value;
+        }
 
         if (!IsPlayerTurn()) LevelManager.Instance.EnemyDrawFromPlayerHandFunctionSet(value);
     }
+
+
+
 
     public void DiscardCard(int disCardCount, List<Transform> cardList)
     {
 
     }
 
-    public void DestroyCard()
+    public void DestoryCard(int value)
     {
+        if (IsPlayerTurn()) return;
 
+        if (!IsPlayerTurn()) return;
     }
 
     public void GainEnergy(int value)

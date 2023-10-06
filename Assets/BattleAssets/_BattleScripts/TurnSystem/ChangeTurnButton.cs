@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Button))]
-public class ChangeTurn : MonoBehaviour
+public class ChangeTurnButton : MonoBehaviour
 {
     Button button;
     void Awake()
@@ -22,8 +22,6 @@ public class ChangeTurn : MonoBehaviour
             {
                 if (!TurnSystem.Instance.IsPlayerTurn()) return;
                 TurnSystem.Instance.NextTurn();
-
-
             }
         );
     }

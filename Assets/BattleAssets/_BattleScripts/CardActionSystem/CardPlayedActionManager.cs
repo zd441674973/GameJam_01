@@ -7,7 +7,7 @@ public class CardPlayedActionManager : MonoBehaviour
 
     void Start()
     {
-        MouseDragManager.Instance.CardHasBeenPlayed += PlayerCardIsPlayed;
+        MouseActionManager.Instance.CardHasBeenPlayed += PlayerCardIsPlayed;
     }
 
 
@@ -16,7 +16,7 @@ public class CardPlayedActionManager : MonoBehaviour
     void PlayerCardIsPlayed()
     {
 
-        Transform currentCard = MouseDragManager.Instance.CurrentPlayedCard();
+        Transform currentCard = MouseActionManager.Instance.CurrentPlayedCard();
 
         currentCard.gameObject.SetActive(false);
 

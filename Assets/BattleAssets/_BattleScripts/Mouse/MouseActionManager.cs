@@ -5,11 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 
-public class MouseDragManager : MonoBehaviour
+public class MouseActionManager : MonoBehaviour
 {
 
 
-    public static MouseDragManager Instance;
+    public static MouseActionManager Instance;
     void Awake()
     {
         if (Instance != null)
@@ -38,6 +38,8 @@ public class MouseDragManager : MonoBehaviour
     Vector2 _offset;
     Vector2 _cardSlotPosition;
 
+    int _drawFromOpponentHandCount;
+    public int DrawFromOpponentHandCount { get { return _drawFromOpponentHandCount; } set { _drawFromOpponentHandCount = value; } }
 
 
     RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
@@ -62,11 +64,18 @@ public class MouseDragManager : MonoBehaviour
         switch (_mouseInteractionState)
         {
             case MouseInteractionState.Default:
+
+                BattleUIManager.Instance.SetEndTurnButtonFunction(true);
+
                 DragCard();
 
                 break;
 
             case MouseInteractionState.DrawFromOpponentHand:
+
+                BattleUIManager.Instance.SetDrawCardFromEnemyHandUIText(_drawFromOpponentHandCount);
+
+                BattleUIManager.Instance.SetEndTurnButtonFunction(false);
 
                 if (CurrentDraggedCard()) if (IsPlayerCard()) return;
 
@@ -109,9 +118,17 @@ public class MouseDragManager : MonoBehaviour
         Debug.Log(CurrentPlayedCard());
 
         LevelManager.Instance.PlayerDrawFromEnemyHand(CurrentPlayedCard());
+
+        _drawFromOpponentHandCount -= 1;
+        if (_drawFromOpponentHandCount > 0) return;
+
+        SkipDrawFromOpponentHandState();
+    }
+
+    public void SkipDrawFromOpponentHandState()
+    {
         BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(false);
         _mouseInteractionState = MouseInteractionState.Default;
-
     }
 
 

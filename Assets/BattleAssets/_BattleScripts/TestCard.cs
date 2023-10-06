@@ -40,13 +40,14 @@ public class TestCard : CardAction
     protected override void TakeAction()
     {
         //for player
-        //CardActionManager.Instance.DrawOpponentHand(0);
+        //CardActionManager.Instance.DrawOpponentHand(card.GetEnemyHandCard);
+        CardActionManager.Instance.DrawOpponentHand(2);
 
         //for enemy
         //CardActionManager.Instance.DrawOpponentHand(2);
 
         //Debug.Log($"BTestCardPlayed, DrawplayerHand Action");
 
-        
+
     }
 }

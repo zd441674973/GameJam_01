@@ -36,9 +36,14 @@ public class EnergySystem : MonoBehaviour
     [SerializeField] int _darkBarEnergy;
     [SerializeField] int _darkBarMaxEnergy;
 
-    // [SerializeField] bool _isCalculating;
-    // public bool IsCalculatingEnerygBar
-    // { get { return _isCalculating; } set { _isCalculating = value; } }
+
+
+
+    public int GetCurrentLightEnergy() => _brightBarEnergy;
+    public int GetCurrentDarkEnergy() => _darkBarEnergy;
+
+
+
 
 
     void Start()
