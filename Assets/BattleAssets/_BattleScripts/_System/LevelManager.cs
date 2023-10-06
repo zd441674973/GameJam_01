@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int _playerHandCardMax;
     int _playerHandLimit = 8;
     [SerializeField] int _playerEachTurnDrawCardCount;
+    List<Transform> _currentPlayerHandCardList;
 
 
 
@@ -88,19 +89,107 @@ public class LevelManager : MonoBehaviour
     public int GetPlayerCurrentHandCardCount() => _playerHandCardCount;
     public int GetEnemyCurrentHandCardCount() => _enemyHandCardCount;
 
+
+
+
     public Transform GetBattleArea() => _battleArea;
     public void PlayerDrawCard(int maxCardDrawnCount) => DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, maxCardDrawnCount);
     public void EnemyDrawCard(int maxCardDrawnCount) => DrawCardLogic(_enemySlots, EnemyDeck(), EnemyHandCard(), _isEnemySlotsEmpty, maxCardDrawnCount);
 
+
+
+
+
+
     public void PlayerDrawFromEnemyDeck(int maxCardDrawnCount) => DrawCardLogic(_playerSlots, EnemyDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, maxCardDrawnCount);
     public void EnemyDrawFromPlayerDeck(int maxCardDrawnCount) => DrawCardLogic(_enemySlots, PlayerDeck(), EnemyHandCard(), _isEnemySlotsEmpty, maxCardDrawnCount);
 
-    public void PlayerDrawFromEnemyHand(Transform cardDrawn) => DrawFromOpponentHandCard(_playerSlots, cardDrawn, PlayerHandCard(), _isPlayerSlotsEmpty);
-    public void EnemyDrawFromPlayerHand(Transform cardDrawn) => DrawFromOpponentHandCard(_enemySlots, cardDrawn, EnemyHandCard(), _isEnemySlotsEmpty);
 
-    //public void PlayerEmptySlotCheck() => SlotEmptnessCheck(_playerSlots, _isPlayerSlotsEmpty, PlayerHandCard());
-    //public void EnemyEmptySlotCheck() => SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
-    //public void UpdateHandCardCount() => _playerHandCardCount = HandCardCount(PlayerHandCard());
+
+
+
+
+    public void PlayerDrawFromEnemyHand(Transform cardDrawn) => DrawFromOpponentHandCard(_playerSlots, cardDrawn, PlayerHandCard(), _isPlayerSlotsEmpty);
+    public void EnemyDrawFromPlayerHandFunctionSet(int drawCardCount)
+    {
+        //Random player hand cards based on drawCardCount
+        List<Transform> randomCards = RandomPlayerHandCardList(drawCardCount);
+
+
+        //Check if there is enough empty slots in hand
+        //Add to enemy hand
+        if (CountEnemyHandEmptySlot() < randomCards.Count)
+        {
+            for (int i = 0; i < CountEnemyHandEmptySlot(); i++)
+            {
+                Transform card = randomCards[Random.Range(0, randomCards.Count)];
+                EnemyDrawFromPlayerHand(card);
+                Debug.Log("A_CardAddToEnemyHandlist" + card.name);
+            }
+
+        }
+        else
+        {
+            foreach (Transform card in randomCards)
+            {
+                EnemyDrawFromPlayerHand(card);
+            }
+            // for (int i = 0; i < randomCards.Count; i++)
+            // {
+            //     EnemyDrawFromPlayerHand(randomCards[i]);
+            // }
+        }
+
+    }
+    void EnemyDrawFromPlayerHand(Transform cardDrawn) => DrawFromOpponentHandCard(_enemySlots, cardDrawn, EnemyHandCard(), _isEnemySlotsEmpty);
+
+
+    List<Transform> RandomPlayerHandCardList(int drawCardCount)
+    {
+        List<Transform> randomCardList = new List<Transform>();
+
+        List<Transform> playerCurrentHandCardList = new List<Transform>();
+        for (int i = 0; i < PlayerHandCard().Count; i++)
+        {
+            if (!PlayerHandCard()[i]) continue;
+            playerCurrentHandCardList.Add(PlayerHandCard()[i]);
+        }
+
+        if (playerCurrentHandCardList.Count < drawCardCount)
+        {
+            foreach (Transform card in playerCurrentHandCardList)
+            {
+                randomCardList.Add(card);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < drawCardCount; i++)
+            {
+                int randomNumb = Random.Range(0, playerCurrentHandCardList.Count);
+                Transform card = playerCurrentHandCardList[randomNumb];
+                randomCardList.Add(card);
+            }
+        }
+        return randomCardList;
+    }
+
+    int CountEnemyHandEmptySlot()
+    {
+        int count = 0;
+        SlotEmptnessCheck(_enemySlots, _isEnemySlotsEmpty, EnemyHandCard());
+        for (int i = 0; i < _isEnemySlotsEmpty.Count; i++)
+        {
+            if (!_isEnemySlotsEmpty[i]) continue;
+            else count++;
+        }
+        return count;
+    }
+
+
+
+
+
 
     public void UpdatePlayerHandCardCount()
     {
@@ -168,9 +257,6 @@ public class LevelManager : MonoBehaviour
 
     void DrawFromOpponentHandCard(List<Transform> selfSlotList, Transform drawnCard, List<Transform> selfHandCardList, List<bool> selfIsEmptySlotList)
     {
-        //int drawnCardIndex = opponentHandCardList.IndexOf(drawnCard);
-
-
 
         for (int i = 0; i < selfSlotList.Count; i++)
         {

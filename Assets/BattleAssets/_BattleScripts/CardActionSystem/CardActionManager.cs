@@ -123,9 +123,6 @@ public class CardActionManager : MonoBehaviour
 
     public void DrawCard(int value)
     {
-        // int currentCardCount = LevelManager.Instance.GetCurrentHandCardCount();
-        // LevelManager.Instance.PlayerDrawCard(currentCardCount + 1);
-
         if (IsPlayerTurn())
         {
             int currentCardCount = LevelManager.Instance.GetPlayerCurrentHandCardCount();
@@ -153,19 +150,11 @@ public class CardActionManager : MonoBehaviour
             LevelManager.Instance.EnemyDrawFromPlayerDeck(currentCardCount + value);
         }
     }
-
-    // public void DrawOpponentHand(Transform cardDrawn)
-    // {
-    //     BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(true);
-
-    //     if (!IsPlayerTurn()) LevelManager.Instance.EnemyDrawFromPlayerHand(cardDrawn);
-    //     if (IsPlayerTurn()) LevelManager.Instance.PlayerDrawFromEnemyHand(cardDrawn);
-
-
-    // }
-    public void DrawOpponentHand()
+    public void DrawOpponentHand(int value)
     {
-        DrawFromOpponentHand?.Invoke();
+        if (IsPlayerTurn()) DrawFromOpponentHand?.Invoke();
+
+        if (!IsPlayerTurn()) LevelManager.Instance.EnemyDrawFromPlayerHandFunctionSet(value);
     }
 
     public void DiscardCard(int disCardCount, List<Transform> cardList)

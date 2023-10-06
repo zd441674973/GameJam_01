@@ -39,8 +39,14 @@ public class TestCard : CardAction
 
     protected override void TakeAction()
     {
-        CardActionManager.Instance.DrawOpponentHand();
+        //for player
+        //CardActionManager.Instance.DrawOpponentHand(0);
 
-        Debug.Log($"BTestCardPlayed, DrawEnemyHand Action");
+        //for enemy
+        //CardActionManager.Instance.DrawOpponentHand(2);
+
+        //Debug.Log($"BTestCardPlayed, DrawplayerHand Action");
+
+        
     }
 }
