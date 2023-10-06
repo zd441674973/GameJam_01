@@ -31,7 +31,6 @@ public class EnemyController : MonoBehaviour
     [Header("NEED EDITING")]
     [SerializeField] Transform _battleSlot;
     [SerializeField] float _watingTime;
-    [SerializeField] Transform _turnStartText;
 
 
 
@@ -42,6 +41,7 @@ public class EnemyController : MonoBehaviour
     Transform _currentCard;
 
     public event Action EnemyCardIsPlayed;
+
 
     public Transform GetCurrentEnemyCard() => _currentCard;
 
@@ -69,7 +69,8 @@ public class EnemyController : MonoBehaviour
                 EnemyTransitTo(EnemyTurnState.CardPlaying);
                 break;
             case EnemyTurnState.CardPlaying:
-                _turnStartText.gameObject.SetActive(false);
+
+                BattleUIManager.Instance.SetEnemyTurnStartText(false);
                 MultipleCardMovement(EnemyHandCard());
                 break;
 
@@ -116,7 +117,7 @@ public class EnemyController : MonoBehaviour
     void EnemyTurnBegin()
     {
         _enemyTurnState = EnemyTurnState.TurnStart;
-        _turnStartText.gameObject.SetActive(true);
+        BattleUIManager.Instance.SetEnemyTurnStartText(true);
         StartTimer(_watingTime);
         _isActive = true;
     }

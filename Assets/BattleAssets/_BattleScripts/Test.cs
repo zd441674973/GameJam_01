@@ -41,6 +41,6 @@ public class Test : CardAction
     {
         //CardActionManager.Instance.DrawOpponentDeck(1);
 
-        Debug.Log($"BTestCardPlayed, ");
+        Debug.Log($"BTestCardPlayed, NullCardFunction");
     }
 }
