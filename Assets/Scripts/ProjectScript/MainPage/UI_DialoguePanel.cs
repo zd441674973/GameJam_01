@@ -107,7 +107,10 @@ public class UI_DialoguePanel : BasePanel
         shouldPlayerChurchMusic = false;
 
         backgroundMusicName = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+
+        ShowBackGround();
         PlayMusic();
+
     }
 
 
@@ -300,6 +303,36 @@ public class UI_DialoguePanel : BasePanel
         }
 
     }
+
+    private void ShowBackGround()
+    {
+        switch (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID)
+        {
+            case 0:
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/街角");
+                break;
+            case 1:
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/街角");
+                break;
+            case 2:
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/工厂");
+                break;
+            case 3:
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/市政厅");
+                break;
+            case 4:
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/教堂广场");
+                break;
+            case 5:
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/教堂");
+                break;
+            case 6:
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/教堂");
+                break;
+
+        }
+    }
+
 
     /// <summary>
     /// 检测鼠标是否位于按钮所在区域

@@ -91,7 +91,7 @@
 			"IsOption": "D",
 			"DialogueID": 11,
 			"Character": "吉罗韦",
-			"PicturePosition": "right",
+			"PicturePosition": "left",
 			"Content": "主教。",
 			"JumpToID": 12
 		},
@@ -107,7 +107,7 @@
 			"IsOption": "D",
 			"DialogueID": 13,
 			"Character": "吉罗韦",
-			"PicturePosition": "right",
+			"PicturePosition": "left",
 			"Content": "你能解释下这一切吗？",
 			"JumpToID": 14
 		},
@@ -139,7 +139,7 @@
 			"IsOption": "D",
 			"DialogueID": 17,
 			"Character": "吉罗口",
-			"PicturePosition": "right",
+			"PicturePosition": "left",
 			"Content": "我导师？前院长他…",
 			"JumpToID": 18
 		},
