@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5F00\u59CB\u6218\u6597"
+  m_text: "\u8FDB\u5165\u5DE5\u5382"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
   m_sharedMaterial: {fileID: 2979193228837331801, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9432d130fd2d5d141b68a30b0232006d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6afd02ac6a5e85e498c2e86a5fb8ab06, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9432d130fd2d5d141b68a30b0232006d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6afd02ac6a5e85e498c2e86a5fb8ab06, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5F00\u59CB\u6218\u6597"
+  m_text: "\u8FDB\u5165\u653F\u5E9C\u5927\u697C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
   m_sharedMaterial: {fileID: 2979193228837331801, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
@@ -926,6 +926,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4169039545829442868}
     m_Modifications:
+    - target: {fileID: 1948285217252276178, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6afd02ac6a5e85e498c2e86a5fb8ab06, type: 3}
     - target: {fileID: 2932333834788073737, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1010,6 +1014,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7270399992860524302, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
+      propertyPath: m_text
+      value: "\u8FDB\u5165\u8857\u533A"
+      objectReference: {fileID: 0}
     - target: {fileID: 9101835264536357857, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
       propertyPath: m_Name
       value: Node0
@@ -1028,6 +1036,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4169039545829442868}
     m_Modifications:
+    - target: {fileID: 1948285217252276178, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6afd02ac6a5e85e498c2e86a5fb8ab06, type: 3}
     - target: {fileID: 2932333834788073737, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1112,6 +1124,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7270399992860524302, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
+      propertyPath: m_text
+      value: "\u8FDB\u5165\u6559\u5802\u5E7F\u573A"
+      objectReference: {fileID: 0}
     - target: {fileID: 9101835264536357857, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
       propertyPath: m_Name
       value: Node3
@@ -1130,6 +1146,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4169039545829442868}
     m_Modifications:
+    - target: {fileID: 1948285217252276178, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6afd02ac6a5e85e498c2e86a5fb8ab06, type: 3}
     - target: {fileID: 2932333834788073737, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1213,6 +1233,10 @@ PrefabInstance:
     - target: {fileID: 2932333834788073737, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270399992860524302, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
+      propertyPath: m_text
+      value: "\u8FDB\u5165\u5927\u6559\u5802"
       objectReference: {fileID: 0}
     - target: {fileID: 9101835264536357857, guid: 705109a248ce8094bbe55fce3fc04f1d, type: 3}
       propertyPath: m_Name

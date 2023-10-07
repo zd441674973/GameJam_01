@@ -34,9 +34,9 @@
 		{
 			"IsOption": "D",
 			"DialogueID": 4,
-			"Character": "旁白",
+			"Character": "吉罗笑",
 			"PicturePosition": "left",
-			"Content": "请神仪式，呵呵，怕不是古时某种邪恶的召唤仪式吧。吉罗心里这样想着。",
+			"Content": "请神仪式，呵呵，怕不是古时某种邪恶的召唤仪式吧。",
 			"JumpToID": 5
 		},
 		{
@@ -44,15 +44,15 @@
 			"DialogueID": 5,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "大主教在走投无路的情况下失去了理智，也失去了他应有的判断力。最后，他，他的信徒，以及这座城的市民们，都为这鲁莽的仪式付出了代价。",
+			"Content": "吉罗心里这样想着。",
 			"JumpToID": 6
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 6,
-			"Character": "旁白",
+			"Character": "吉罗韦",
 			"PicturePosition": "left",
-			"Content": "吉罗走出教堂。清晨早已过去，太阳已经照亮了整个广场。远处的骚乱声告诉吉罗，那些被召唤来的怪物并未因主教的死而消散。",
+			"Content": "大主教在走投无路的情况下失去了理智，也失去了他应有的判断力。他和他的信徒，以及这座城的市民们，都为这鲁莽的仪式付出了代价。唉..",
 			"JumpToID": 7
 		},
 		{
@@ -60,8 +60,16 @@
 			"DialogueID": 7,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "吉罗提了提手上的虹吸枪，走下了台阶…",
+			"Content": "吉罗走出教堂。清晨早已过去，太阳已经照亮了整个广场。远处的骚乱声告诉吉罗，那些被召唤来的怪物并未因主教的死而消散。",
 			"JumpToID": 8
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 8,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "吉罗提了提手上的虹吸枪，走下了台阶…",
+			"JumpToID": 9
 		}
 	]
 }

@@ -82,7 +82,7 @@
 		{
 			"IsOption": "D",
 			"DialogueID": 10,
-			"Character": "吉罗",
+			"Character": "吉罗口",
 			"PicturePosition": "left",
 			"Content": "这东西很快！",
 			"JumpToID": 11

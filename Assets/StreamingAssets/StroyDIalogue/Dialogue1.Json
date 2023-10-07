@@ -4,7 +4,7 @@
 			"DialogueID": 0,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "这是一把虹吸枪的原型机。它在测试中表现不佳,只被用来过向警备局进行武器介绍。那之后就一直放在这里吃灰。",
+			"Content": "但是这只是一把虹吸枪的原型机。它在测试中表现不佳，只被用来过向警备局进行武器介绍。那之后就一直放在这里吃灰。",
 			"JumpToID": 1
 		},
 		{
@@ -12,7 +12,7 @@
 			"DialogueID": 1,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "但那怪物突然一阵惨叫。开始在地上不停挣扎。就在刚才吉罗扣下扳机的瞬间,有一股紫色的烟被抽离了怪物的身体。",
+			"Content": "但见那怪物突然一阵惨叫。开始在地上不停挣扎。就在刚才吉罗扣下扳机的瞬间,有一股紫色的烟被抽离了怪物的身体。",
 			"JumpToID": 2
 		},
 		{
@@ -58,9 +58,9 @@
 		{
 			"IsOption": "D",
 			"DialogueID": 7,
-			"Character": "旁白",
+			"Character": "吉罗牙",
 			"PicturePosition": "left",
-			"Content": "“这把枪看来有点用，虽然还搞不清楚它是怎么把那些紫东西吸进去的。” 吉罗一边快步走下楼梯，一边在心里想着。",
+			"Content": "这把枪看来有点用，虽然还搞不清楚它是怎么把那些紫东西吸进去的。",
 			"JumpToID": 8
 		},
 		{
@@ -68,7 +68,7 @@
 			"DialogueID": 8,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "转眼间，吉罗已经走到了大街之上。他脑袋里不断回想着刚才大教堂发生的那些诡异事情。既然那怪物是从教堂来的，那解决这一切的办法一定就在那里。",
+			"Content": "吉罗一边快步走下楼梯，一边在心里想着。",
 			"JumpToID": 9
 		},
 		{
@@ -76,7 +76,7 @@
 			"DialogueID": 9,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "吉罗提了提肩上的背包带。在这个包里装着吉罗实验室里拿出的各种小零件，有一些装置甚至还是处于最初的设计阶段。",
+			"Content": "转眼间，吉罗已经走到了大街之上。他脑袋里不断回想着刚才大教堂发生的那些诡异事情。既然那怪物是从教堂来的，那解决这一切的办法一定就在那里。",
 			"JumpToID": 10
 		},
 		{
@@ -84,7 +84,7 @@
 			"DialogueID": 10,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "但吉罗没去想太多，一切看起来可以帮助他增幅武器或者保护自己的东西他都一股脑拿上了。",
+			"Content": "吉罗提了提肩上的背包带。在这个包里装着吉罗实验室里拿出的各种小零件，有一些装置甚至还是处于最初的设计阶段。",
 			"JumpToID": 11
 		},
 		{
@@ -92,7 +92,7 @@
 			"DialogueID": 11,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "一声尖叫打断了他的步伐。就在他刚转过来的这个街角不远处，有一个女子正在惊恐地抱着自己的孩子一步步退向墙壁。有一个长着牛头的巨大怪物正向这对母子移动。",
+			"Content": "但吉罗没去想太多，一切看起来可以帮助他增幅武器或者保护自己的东西他都一股脑拿上了。",
 			"JumpToID": 12
 		},
 		{
@@ -100,7 +100,7 @@
 			"DialogueID": 12,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "吉罗立马抬起他的虹吸枪，对准那怪物扣下了扳机。那怪物身体抖动一下。那熟悉的紫色烟雾又被吸进了枪中。吉罗毫不犹豫，切换模式又把那吸收来的物质打了出去。",
+			"Content": "一声尖叫打断了他的步伐。就在他刚转过来的这个街角不远处，有一个女子正在惊恐地抱着自己的孩子一步步退向墙壁。有一个长着牛头的巨大怪物正向这对母子移动。",
 			"JumpToID": 13
 		},
 		{
@@ -108,48 +108,56 @@
 			"DialogueID": 13,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "但这次却不同，那束紫光并没像之前那样穿透怪物身体。只是把那牛头巨物打退了几米。那怪物吃了痛，怔了几秒便朝着吉罗冲来。",
+			"Content": "吉罗立马抬起他的虹吸枪，对准那怪物扣下了扳机。那怪物身体抖动一下。那熟悉的紫色烟雾又被吸进了枪中。吉罗毫不犹豫，切换模式又把那吸收来的物质打了出去。",
 			"JumpToID": 14
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 14,
-			"Character": "吉罗",
+			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "果然没那么简单！",
+			"Content": "但这次却不同，那束紫光并没像之前那样穿透怪物身体。只是把那牛头巨物打退了几米。那怪物吃了痛，怔了几秒便朝着吉罗冲来。",
 			"JumpToID": 15
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 15,
-			"Character": "旁白",
+			"Character": "吉罗笑",
 			"PicturePosition": "left",
-			"Content": "吉罗看着已经趁机逃入旁边楼中的母女背影，暗自说道。",
+			"Content": "果然没那么简单！",
 			"JumpToID": 16
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 16,
-			"Character": "吉罗",
+			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "好吧，丑八怪！",
+			"Content": "吉罗看着已经趁机逃入旁边楼中的母女背影，暗自说道。",
 			"JumpToID": 17
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 17,
-			"Character": "吉罗",
+			"Character": "吉罗牙",
 			"PicturePosition": "left",
-			"Content": "让你看看公国里最伟大发明家是如何战斗的！！！",
+			"Content": "好吧，丑八怪！",
 			"JumpToID": 18
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 18,
+			"Character": "吉罗牙",
+			"PicturePosition": "left",
+			"Content": "让你看看公国里最伟大发明家是如何战斗的！！！",
+			"JumpToID": 19
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 19,
 			"Character": "旁白",
 			"PicturePosition": "left",
 			"Content": "他无畏的站在怪物冲锋的路径上。一只手伸向了自己的背包……..",
-			"JumpToID": 19
+			"JumpToID": 20
 		}
 	]
 }

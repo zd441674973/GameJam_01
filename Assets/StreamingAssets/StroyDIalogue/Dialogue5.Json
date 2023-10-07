@@ -2,9 +2,9 @@
 	"Dialogue": [{
 			"IsOption": "D",
 			"DialogueID": 0,
-			"Character": "旁白",
-			"PicturePosition": "left",
-			"Content": "吉罗快步走出大楼，嘴里疯狂咀嚼着他刚从厨房里找到的食物。",
+			"Character": "吉罗口",
+			"PicturePosition": "right",
+			"Content": "啊！",
 			"JumpToID": 1
 		},
 		{
@@ -12,7 +12,7 @@
 			"DialogueID": 1,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "刚才那场战斗结束前，吉罗似乎都没感觉到饥饿。一定是他自己一直紧绷着神经的缘故。",
+			"Content": "噩梦惊醒。吉罗还躺在通往大教堂的阶梯上。",
 			"JumpToID": 2
 		},
 		{
@@ -20,7 +20,7 @@
 			"DialogueID": 2,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "可就在他解决掉那只蝙蝠怪之后，那股饥饿感便席卷了他。多长战斗的消耗让吉罗已经几乎到达了极限。",
+			"Content": "修士的身体断成两节，躺在楼梯底部，空洞的双眼紧盯着天空。",
 			"JumpToID": 3
 		},
 		{
@@ -28,7 +28,7 @@
 			"DialogueID": 3,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "教堂广场上着着火。那火堆非常高，看不出用什么木头搭建的。",
+			"Content": "吉罗之前的最后一击打中修士时，他的身体从腰部断裂，一阵混杂着魔力的冲击波把吉罗击退。之后他便昏了过去。",
 			"JumpToID": 4
 		},
 		{
@@ -36,7 +36,7 @@
 			"DialogueID": 4,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "吉罗凑近一看，不由得冷汗直冒。那哪里是什么木头，分明是一具具尸体。",
+			"Content": "吉罗关掉了头灯。此时的天已经微微亮了。晨曦的阳光照耀着大教堂的顶部，那反光刺眼的让吉罗无法直视。",
 			"JumpToID": 5
 		},
 		{
@@ -44,7 +44,7 @@
 			"DialogueID": 5,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "尸堆上面的人已经烧焦，吉罗从下面的那些看出来这尸体都身着制服，分明是政府大楼里的员工们。看来他们并没能顺利逃到皇家区。",
+			"Content": "他收好地上掉落的武器设备，艰难地收拾好背包。之后便一阶一阶爬上楼梯，走向教堂。",
 			"JumpToID": 6
 		},
 		{
@@ -52,7 +52,7 @@
 			"DialogueID": 6,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "吉罗后退几步，打算绕过这个巨大的尸堆，穿过广场赶到教堂去。可就在他绕了一半的时候，一个修士模样的人出现在了他眼前。",
+			"Content": "教堂的大门虽然紧紧关着，但门上有一个巨大的洞。不禁让吉罗联想到之前街角遇到的那个牛头巨怪，不知道这样体型的怪物到底还有多少跑到了城里。",
 			"JumpToID": 7
 		},
 		{
@@ -60,7 +60,7 @@
 			"DialogueID": 7,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "那修士光着头，只穿了意见破烂的红裤子，上面满是脏污。",
+			"Content": "吉罗径由那个洞走进了教堂，眼前的一幕让经历了这一天的他还是被冲击到了。",
 			"JumpToID": 8
 		},
 		{
@@ -68,7 +68,7 @@
 			"DialogueID": 8,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "他包括头皮在内的全身皮肤都布满了诡异的文字文身，用的是吉罗并不认识的语言。那修士跪在尸堆旁，面朝不远处的大教堂，嘴里喃喃自语。",
+			"Content": "只见教堂里横七竖八躺着全是尸体，全是教堂里的神职人员。他们还保持着生前惊恐地表情，眼睛变成了两个漆黑的黑洞。",
 			"JumpToID": 9
 		},
 		{
@@ -76,23 +76,23 @@
 			"DialogueID": 9,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "吉罗对这诡异的一幕感到阵阵恐惧。他退了几步，与那个修士保持一定距离。然后继续向大教堂走去。",
+			"Content": "而在教堂的讲台旁，站着的是大主教兰道尔。",
 			"JumpToID": 10
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 10,
-			"Character": "兰福德",
+			"Character": "兰道尔",
 			"PicturePosition": "right",
-			"Content": "你！",
+			"Content": "哦，是吉罗。兰福德看来没能在广场上挡住你。",
 			"JumpToID": 11
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 11,
-			"Character": "旁白",
-			"PicturePosition": "left",
-			"Content": "那修士突然叫道。",
+			"Character": "吉罗韦",
+			"PicturePosition": "right",
+			"Content": "主教。",
 			"JumpToID": 12
 		},
 		{
@@ -100,23 +100,23 @@
 			"DialogueID": 12,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "吉罗被吓得一愣，忙回头看向修士。",
+			"Content": "吉罗语气中夹杂着愤怒。",
 			"JumpToID": 13
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 13,
-			"Character": "兰福德",
+			"Character": "吉罗韦",
 			"PicturePosition": "right",
-			"Content": "天父降下了恩赐，你们为什么不接受！？异端！！",
+			"Content": "你能解释下这一切吗？",
 			"JumpToID": 14
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 14,
-			"Character": "旁白",
-			"PicturePosition": "left",
-			"Content": "吉罗抬手便是一发电能枪，这玩意虽对怪物无效，但对付人类却不成问题。",
+			"Character": "兰道尔",
+			"PicturePosition": "right",
+			"Content": "呵呵呵，吉罗啊。",
 			"JumpToID": 15
 		},
 		{
@@ -124,24 +124,104 @@
 			"DialogueID": 15,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "可是那电流却像打中怪物时一样，在修士的身旁直接消散了。吉罗暗自苦笑，心想果然没那么简单。他又伸手抬起了那把虹吸枪。",
+			"Content": "兰道尔露出一阵诡异的笑容。",
 			"JumpToID": 16
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 16,
-			"Character": "兰福德",
+			"Character": "兰道尔",
 			"PicturePosition": "right",
-			"Content": "不许你再靠近圣坛！受死吧异端者！让烈焰涤净你的罪恶！",
+			"Content": "我们公国的大红人。可惜你导师没能看到今天。",
 			"JumpToID": 17
 		},
 		{
 			"IsOption": "D",
 			"DialogueID": 17,
+			"Character": "吉罗口",
+			"PicturePosition": "right",
+			"Content": "我导师？前院长他…",
+			"JumpToID": 18
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 18,
+			"Character": "兰道尔",
+			"PicturePosition": "right",
+			"Content": "他是叛徒！",
+			"JumpToID": 19
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 19,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "修士拿起一把沾满了血污的铁铲，在紫黑色魔法的环绕之下，冲向了吉罗………",
-			"JumpToID": 18
+			"Content": "兰道尔突然瞪大双眼，大声打断吉罗的话。",
+			"JumpToID": 20
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 20,
+			"Character": "兰道尔",
+			"PicturePosition": "right",
+			"Content": "他是异教徒！是恶魔！是公国的敌人！",
+			"JumpToID": 21
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 21,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "他开始歇斯底里，长袍抖开的瞬间，吉罗看到了一些扭曲的肢体，在袍子下蠕动。吉罗下意识地握紧了虹吸枪。",
+			"JumpToID": 22
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 22,
+			"Character": "兰道尔",
+			"PicturePosition": "right",
+			"Content": "都是他！还有你！你们的那些什么所谓的发明！它们把人民带上了一条地狱之路！",
+			"JumpToID": 23
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 23,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "兰道尔继续嘶吼道。",
+			"JumpToID": 24
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 24,
+			"Character": "兰道尔",
+			"PicturePosition": "right",
+			"Content": "公国人民已经远离了主的庇佑。曾几何时，每当晨曦之时，教堂的金顶把主的恩赐散播到每个朝圣的人身上。现在呢？不再有人为主修神龛，不再有人为主做祷告….",
+			"JumpToID": 25
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 25,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "大主教突然将红袍扔到一旁。",
+			"JumpToID": 26
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 26,
+			"Character": "旁白",
+			"PicturePosition": "left",
+			"Content": "无数只干枯手臂组成的下半身显露在吉罗面前。那些手有的撑地，有的则是拿着各种法器，上面缠绕着不祥的紫黑色烟雾。",
+			"JumpToID": 27
+		},
+		{
+			"IsOption": "D",
+			"DialogueID": 27,
+			"Character": "兰道尔",
+			"PicturePosition": "right",
+			"Content": "虔诚的信徒在此地献上了他们的灵魂，让我来降下天罚！而你，罪人吉罗！让主的拥抱来裁决你的罪行吧！！！",
+			"JumpToID": 28
 		}
 	]
 }

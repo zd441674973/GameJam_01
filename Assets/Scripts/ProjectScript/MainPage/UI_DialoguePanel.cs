@@ -93,6 +93,7 @@ public class UI_DialoguePanel : BasePanel
 
             openMailButton.onClick.AddListener(ReadMail);
 
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
         }
 
     }
@@ -223,6 +224,11 @@ public class UI_DialoguePanel : BasePanel
         {
             nameText.enabled = false;
         }
+        else if(name == "吉罗笑" || name == "吉罗韦" || name == "吉罗牙" || name == "吉罗口")
+        {
+            nameText.enabled = true;
+            nameText.text = "吉罗";
+        }
         else
         {
             nameText.enabled = true;
@@ -315,6 +321,12 @@ public class UI_DialoguePanel : BasePanel
 
     private void SkipDiaglogue()
     {
+        if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 7)
+        {
+            UIManager.GetInstance().ShowPanel<UI_TeamMember>("UI_TeamMember", E_UI_Layer.Top);
+        }
+
+
         MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
         //结束当前阶段
@@ -359,6 +371,10 @@ public class UI_DialoguePanel : BasePanel
                 {
                     //进入主界面
                     //什么也不写
+                }
+                else if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 7)
+                {
+                    UIManager.GetInstance().ShowPanel<UI_TeamMember>("UI_TeamMember", E_UI_Layer.Top);
                 }
                 else
                 {

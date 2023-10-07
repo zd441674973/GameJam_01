@@ -18,7 +18,7 @@
 		{
 			"IsOption": "D",
 			"DialogueID": 2,
-			"Character": "吉罗",
+			"Character": "吉罗韦",
 			"PicturePosition": "left",
 			"Content": "真不靠谱!",
 			"JumpToID": 3
@@ -162,7 +162,7 @@
 		{
 			"IsOption": "D",
 			"DialogueID": 20,
-			"Character": "吉罗",
+			"Character": "吉罗口",
 			"PicturePosition": "left",
 			"Content": "奇斯卡!",
 			"JumpToID": 21
@@ -170,7 +170,7 @@
 		{
 			"IsOption": "D",
 			"DialogueID": 21,
-			"Character": "吉罗",
+			"Character": "吉罗口",
 			"PicturePosition": "left",
 			"Content": "还是格雷斯卡?该死的新来的!去叫楼上那些蠢货们停一停,就说这是我本人的意思!",
 			"JumpToID": 22
