@@ -11,6 +11,7 @@ public class UI_MainPage : BasePanel
     public bool MenuIsOpen = false;
     public bool CardLabraryIsOpen = false;
     public TMP_Text playerinfo;
+    public TMP_Text playerHP;
     public Image UIArea;
 
     public GameObject CardLabPlus;
@@ -163,7 +164,8 @@ public class UI_MainPage : BasePanel
 
     private void UpdateInfo()
     {
-        playerinfo.text = "吉罗" + "  已完成阶段: " + GameDataControl.GetInstance().PlayerDataInfo.currentNodeID + "/5" + "  最大生命值" + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+        playerinfo.text = "吉罗" + "  已完成阶段: " + GameDataControl.GetInstance().PlayerDataInfo.currentNodeID + "/5";
+        playerHP.text = "最大生命值" + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
     }
 
 

@@ -44,7 +44,7 @@ public class UI_MenuPanel : BasePanel
     }
     public void SaveGame()
     {
-        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
         //触发事件监听，保存数据
@@ -52,14 +52,14 @@ public class UI_MenuPanel : BasePanel
     }
     public void Setting()
     {
-        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
         UIManager.GetInstance().ShowPanel<UI_SettingPanel>("UI_SettingPanel", E_UI_Layer.Top);
     }
     public void CloseMenu()
     {
-        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
         EventCenter.GetInstance().EventTrigger("CloseMenu");
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
@@ -67,7 +67,7 @@ public class UI_MenuPanel : BasePanel
 
     public void AfterReturnToTitle()
     {
-        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择", false);
+        MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
         UIManager.GetInstance().HidePanel("UI_MenuPanel");
         UIManager.GetInstance().HidePanel("UI_MainPage");

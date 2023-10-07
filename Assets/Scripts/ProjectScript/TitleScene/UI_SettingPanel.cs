@@ -9,7 +9,9 @@ public class UI_SettingPanel : BasePanel
     public TMP_Dropdown resolutionDropdown;
 
     public Slider MusicSlider;
+    public Image fillMusicImage;
     public Slider SoundEffectSlider;
+    public Image fillSoundEffectImage;
 
     private Resolution[] resolutions;
 
@@ -81,12 +83,14 @@ public class UI_SettingPanel : BasePanel
     {
 
         MusicMgr.GetInstance().ChangeBKValue(volume);
+        fillMusicImage.fillAmount = volume;
     }
 
     private void ChangeSoundEffectVolume(float volume)
     {
 
         MusicMgr.GetInstance().ChangeSoundValue(volume);
+        fillSoundEffectImage.fillAmount = volume;
     }
 
     private void FullScreen()
