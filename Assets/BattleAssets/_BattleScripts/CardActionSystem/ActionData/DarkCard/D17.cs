@@ -9,9 +9,25 @@ public class D17 : CardAction
 
     protected override void TakeAction()
     {
-        int damage = Random.Range(card.HealthToOpponentMin, card.HealthToOpponentMax);
-        CardActionManager.Instance.DealDamage(damage);
+        int damage = Random.Range(_card.HealthToOpponentMax, _card.HealthToOpponentMin);
 
-        Debug.Log("D1_Played; " + "Damage: " + damage);
+        if (_isDarkEnergyFull && !_cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.DamageSelf(damage);
+        }
+        else if (_isBrightEnergyFull && _cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.DamageOpponent(damage * _brightBonus);
+        }
+        else
+        {
+            CardActionManager.Instance.DamageOpponent(damage);
+        }
+
+
+
+        // CardActionManager.Instance.DamageOpponent(damage);
+
+        //Debug.Log("D1_Played; " + "Damage: " + damage);
     }
 }

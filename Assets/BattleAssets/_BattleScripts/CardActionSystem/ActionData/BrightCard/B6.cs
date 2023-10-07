@@ -11,8 +11,22 @@ public class B6 : CardAction
 
     protected override void TakeAction()
     {
-        CardActionManager.Instance.GainShield(card.SheildToSelf);
+        if (_isBrightEnergyFull && _cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.GainHealth(_card.HealthToSelfMin * _brightBonus);
+        }
+        else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.OpponentGainHealth(_card.HealthToSelfMin);
+        }
+        else
+        {
+            CardActionManager.Instance.GainHealth(_card.HealthToSelfMin);
+        }
 
-        Debug.Log($"B6_played; GainShield: {card.SheildToSelf}");
+
+        // CardActionManager.Instance.GainShield(_card.SheildToSelf);
+
+        // Debug.Log($"B6_played; GainShield: {_card.SheildToSelf}");
     }
 }

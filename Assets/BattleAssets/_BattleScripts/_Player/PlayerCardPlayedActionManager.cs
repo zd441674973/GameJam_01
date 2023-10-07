@@ -43,35 +43,16 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
 
     void UpdateEnergyBar(Transform transform)
     {
-        // if (transform.CompareTag("BrightCard"))
-        // {
-        //     EnergySystem.Instance.EnergyBarCalculation("Bright", 1);
-        //     EnergySystem.Instance.EnergyBarCalculation("Dark", -1);
-        // }
-
-        // if (transform.CompareTag("DarkCard"))
-        // {
-        //     EnergySystem.Instance.EnergyBarCalculation("Bright", -1);
-        //     EnergySystem.Instance.EnergyBarCalculation("Dark", 1);
-        // }
 
         CardData cardData = transform.GetComponent<CardData>();
         if (cardData.IsBrightCard)
         {
-            // EnergySystem.Instance.EnergyBarCalculation("Bright", 1);
-            // EnergySystem.Instance.EnergyBarCalculation("Dark", -1);
             EnergySystem.Instance.GainBrightEnergy(1, false);
         }
         if (!cardData.IsBrightCard)
         {
-            // EnergySystem.Instance.EnergyBarCalculation("Bright", -1);
-            // EnergySystem.Instance.EnergyBarCalculation("Dark", 1);
             EnergySystem.Instance.GainDarkEnergy(1, false);
         }
-
-
-
-
     }
 
     void PlayCardAction(Transform card)

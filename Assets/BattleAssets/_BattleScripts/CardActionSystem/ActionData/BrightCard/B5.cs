@@ -12,8 +12,22 @@ public class B5 : CardAction
     protected override void TakeAction()
     {
         int shieldValue = CardActionManager.Instance.GetShieldValue();
-        CardActionManager.Instance.GainShield(shieldValue);
 
-        Debug.Log($"B5_played; GainShield: {shieldValue}");
+        if (_isBrightEnergyFull && _cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.GainShield(shieldValue * _brightBonus);
+        }
+        else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.OpponentGainShield(shieldValue);
+        }
+        else
+        {
+            CardActionManager.Instance.GainShield(shieldValue);
+        }
+        
+        // CardActionManager.Instance.GainShield(shieldValue);
+
+        // Debug.Log($"B5_played; GainShield: {shieldValue}");
     }
 }

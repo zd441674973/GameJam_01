@@ -11,7 +11,17 @@ public class B1 : CardAction
 
     protected override void TakeAction()
     {
-        CardActionManager.Instance.GainShield(card.SheildToSelf);
-        Debug.Log($"B1_Played; GainShield: {card.SheildToSelf}");
+        if (_isBrightEnergyFull && _cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.GainShield(_card.SheildToSelf * _brightBonus);
+        }
+        else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.OpponentGainShield(_card.SheildToSelf);
+        }
+        else
+        {
+            CardActionManager.Instance.GainShield(_card.SheildToSelf);
+        }
     }
 }

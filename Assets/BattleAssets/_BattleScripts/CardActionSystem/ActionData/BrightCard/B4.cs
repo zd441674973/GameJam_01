@@ -11,10 +11,31 @@ public class B4 : CardAction
 
     protected override void TakeAction()
     {
-        CardActionManager.Instance.GainShield(card.SheildToSelf);
 
-        CardActionManager.Instance.DrawCard(card.DrawCardFromLabrary);
+        if (_isBrightEnergyFull && _cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.GainShield(_card.SheildToSelf * _brightBonus);
 
-        Debug.Log($"B4_played; GainShield: {card.SheildToSelf}; DarwCard: {card.DrawCardFromLabrary};");
+            CardActionManager.Instance.DrawCard(_card.DrawCardFromLabrary * _brightBonus);
+
+        }
+        else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.OpponentGainShield(_card.SheildToSelf);
+
+            CardActionManager.Instance.OpponentDrawCard(_card.DrawCardFromLabrary);
+        }
+        else
+        {
+            CardActionManager.Instance.GainShield(_card.SheildToSelf);
+
+            CardActionManager.Instance.DrawCard(_card.DrawCardFromLabrary);
+        }
+
+        // CardActionManager.Instance.GainShield(_card.SheildToSelf);
+
+        // CardActionManager.Instance.DrawCard(_card.DrawCardFromLabrary);
+
+        // Debug.Log($"B4_played; GainShield: {_card.SheildToSelf}; DarwCard: {_card.DrawCardFromLabrary};");
     }
 }

@@ -41,8 +41,11 @@ public class EnergySystem : MonoBehaviour
 
 
 
-    public int GetCurrentLightEnergy() => _brightBarEnergy;
+    public int GetCurrentBrightEnergy() => _brightBarEnergy;
     public int GetCurrentDarkEnergy() => _darkBarEnergy;
+
+    public bool IsBrightEnergyFull() => _isBrightBarFull;
+    public bool IsDarkEnergyFull() => _isDarkBarFull;
 
 
 
