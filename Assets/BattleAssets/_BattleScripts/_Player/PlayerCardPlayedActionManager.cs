@@ -22,16 +22,16 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
 
         UpdateHandCardCount();
 
-        DiscardCard(currentCard);
 
         UpdateEnergyBar(currentCard);
 
         PlayCardAction(currentCard);
 
-        Debug.Log("CardIsPlayed: The Card has been played : " + currentCard.name);
+        DiscardCard(currentCard);
 
         UpdateHandCardCount();
 
+        Debug.Log("CardIsPlayed: The Card has been played : " + currentCard.name);
     }
 
     void UpdateHandCardCount() => LevelManager.Instance.UpdatePlayerHandCardCount();

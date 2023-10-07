@@ -34,6 +34,13 @@ public class BattleUIManager : MonoBehaviour
     [SerializeField] Transform _discardPlayerHandUI;
     [SerializeField] TextMeshProUGUI _discardPlayerHandUIText;
 
+    [Header("----------")]
+    [SerializeField] Transform _siwtchHandCardTypeUI;
+    [SerializeField] TextMeshProUGUI _siwtchHandCardTypeUIText;
+
+
+
+
     void Start()
     {
         _skipButton.onClick.AddListener
@@ -64,7 +71,7 @@ public class BattleUIManager : MonoBehaviour
 
 
     public void SetDrawCardFromEnemyHandUI(bool condition) => _darwCardFromEnemyHandUI.gameObject.SetActive(condition);
-    public void UpdateDrawCardFromEnemyHandUIText(int value) => _darwCardFromEnemyHandUIText.text = $"SELECT {value} CARD FROM ENEMY HAND";
+    public void UpdateDrawCardFromEnemyHandUIText(int value) => _darwCardFromEnemyHandUIText.text = $"SELECT TO DRAW {value} CARD FROM ENEMY HAND";
 
 
 
@@ -77,6 +84,12 @@ public class BattleUIManager : MonoBehaviour
 
     public void SetDiscardPlayerHandUI(bool condition) => _discardPlayerHandUI.gameObject.SetActive(condition);
     public void UpdateDiscardPlayerHandUIText(int value) => _discardPlayerHandUIText.text = $"SELECT TO DISCARD {value} CARD \n FROM YOUR HAND";
+
+
+
+
+    public void SetSwitchHandCardTypeUI(bool condition) => _siwtchHandCardTypeUI.gameObject.SetActive(condition);
+    public void UpdateSwitchHandCardTypeUIText(int value) => _siwtchHandCardTypeUIText.text = $"SELECT TO SWITCH  \n {value} CARD-ATTRIBUTE \n FROM YOUR HAND";
 
 
 

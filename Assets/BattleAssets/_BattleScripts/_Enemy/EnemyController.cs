@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
 
 
     public Transform GetCurrentEnemyCard() => _currentCard;
-    
+
 
 
 
@@ -67,7 +67,7 @@ public class EnemyController : MonoBehaviour
         switch (_enemyTurnState)
         {
             case EnemyTurnState.TurnStart:
-                EnemyTransitTo(EnemyTurnState.CardPlaying);
+                EnemyStateTransitTo(EnemyTurnState.CardPlaying);
                 break;
             case EnemyTurnState.CardPlaying:
 
@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyTurnState.CardPresenting:
-                EnemyTransitTo(EnemyTurnState.UpdatingCard);
+                EnemyStateTransitTo(EnemyTurnState.UpdatingCard);
                 break;
 
             case EnemyTurnState.UpdatingCard:
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
                 break;
 
             case EnemyTurnState.Waiting:
-                EnemyTransitTo(EnemyTurnState.CardPlaying);
+                EnemyStateTransitTo(EnemyTurnState.CardPlaying);
                 break;
 
             case EnemyTurnState.TurnFinished:
@@ -124,7 +124,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    void EnemyTransitTo(EnemyTurnState state)
+    void EnemyStateTransitTo(EnemyTurnState state)
     {
         if (IsTimesUp()) _enemyTurnState = state;
     }

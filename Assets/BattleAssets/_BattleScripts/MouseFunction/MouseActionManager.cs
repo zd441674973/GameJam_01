@@ -25,10 +25,11 @@ public class MouseActionManager : MonoBehaviour
     public enum MouseInteractionState
     {
         Default,
+        WaitingForTimer,
         DrawFromOpponentHand,
         DestoryFromOpponentHand,
         DiscardPlayerHand,
-        SwitchAttribute,
+        SwitchPlayerCardType,
 
 
 
@@ -52,6 +53,11 @@ public class MouseActionManager : MonoBehaviour
     int _discardPlayerHandCount;
     public int DiscardPlayerHandCount { get { return _discardPlayerHandCount; } set { _discardPlayerHandCount = value; } }
 
+    int _switchPlayerHandCardTypeCount;
+    public int SwitchPlayerHandCardTypeCount { get { return _switchPlayerHandCardTypeCount; } set { _switchPlayerHandCardTypeCount = value; } }
+
+
+
 
     RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
     public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
@@ -68,6 +74,8 @@ public class MouseActionManager : MonoBehaviour
         CardActionManager.Instance.DrawOpponentHandEvent += DrawFromOpponentHandEvent;
         CardActionManager.Instance.DestoryOpponentCardEvent += DestoryFromOpponentHandEvent;
         CardActionManager.Instance.DiscardPlayerHandEvent += DiscardPlayerHandEvent;
+        CardActionManager.Instance.SwitchPlayerHandCardTypeEvent += SwitchPlayerHandCardTypeEvent;
+
 
     }
 
@@ -78,6 +86,13 @@ public class MouseActionManager : MonoBehaviour
 
         switch (_mouseInteractionState)
         {
+            case MouseInteractionState.WaitingForTimer:
+
+                if (!CustomTimer.Instance.TimesUp()) return;
+                else _mouseInteractionState = MouseInteractionState.Default;
+
+                break;
+
             case MouseInteractionState.Default:
 
                 BattleUIManager.Instance.SetEndTurnButtonFunction(true);
@@ -85,6 +100,7 @@ public class MouseActionManager : MonoBehaviour
                 DragCard();
 
                 break;
+
 
 
 
@@ -131,7 +147,15 @@ public class MouseActionManager : MonoBehaviour
 
 
 
-            case MouseInteractionState.SwitchAttribute:
+            case MouseInteractionState.SwitchPlayerCardType:
+
+                BattleUIManager.Instance.UpdateSwitchHandCardTypeUIText(_switchPlayerHandCardTypeCount);
+
+                BattleUIManager.Instance.SetEndTurnButtonFunction(false);
+
+                if (CurrentDraggedCard()) if (!IsPlayerCard()) return;
+
+                SwitchPlayerHandCardType();
 
                 break;
 
@@ -228,7 +252,7 @@ public class MouseActionManager : MonoBehaviour
     void DrawFromOpponentHandEvent()
     {
         BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(true);
-        BattleUIManager.Instance.SetSkipButtonTransform(true);
+        //BattleUIManager.Instance.SetSkipButtonTransform(true);
         _mouseInteractionState = MouseInteractionState.DrawFromOpponentHand;
     }
     void SelectOpponentHandCard()
@@ -261,7 +285,7 @@ public class MouseActionManager : MonoBehaviour
     void DestoryFromOpponentHandEvent()
     {
         BattleUIManager.Instance.SetDestoryEnemyHandUI(true);
-        BattleUIManager.Instance.SetSkipButtonTransform(true);
+        //BattleUIManager.Instance.SetSkipButtonTransform(true);
         _mouseInteractionState = MouseInteractionState.DestoryFromOpponentHand;
     }
 
@@ -295,7 +319,6 @@ public class MouseActionManager : MonoBehaviour
     void DiscardPlayerHandEvent()
     {
         BattleUIManager.Instance.SetDiscardPlayerHandUI(true);
-        //BattleUIManager.Instance.SetSkipButtonTransform(true);
         _mouseInteractionState = MouseInteractionState.DiscardPlayerHand;
     }
 
@@ -315,13 +338,57 @@ public class MouseActionManager : MonoBehaviour
         SkipCurrentState();
     }
 
+    #endregion
 
 
 
 
 
+
+
+
+
+    #region SwitchPlayerHandCardTypeState
+
+    void SwitchPlayerHandCardTypeEvent()
+    {
+        BattleUIManager.Instance.SetSwitchHandCardTypeUI(true);
+        _mouseInteractionState = MouseInteractionState.SwitchPlayerCardType;
+    }
+
+    void SwitchPlayerHandCardType()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+        if (!CurrentDraggedCard()) return;
+
+
+        Debug.Log(CurrentPlayedCard());
+
+        LevelManager.Instance.PlayerSwitchCardAttribute(CurrentPlayedCard());
+
+        _switchPlayerHandCardTypeCount -= 1;
+        if (_switchPlayerHandCardTypeCount > 0) return;
+
+        SkipCurrentState();
+    }
 
     #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void SkipCurrentState()
@@ -329,10 +396,12 @@ public class MouseActionManager : MonoBehaviour
         BattleUIManager.Instance.SetDrawCardFromEnemyHandUI(false);
         BattleUIManager.Instance.SetDestoryEnemyHandUI(false);
         BattleUIManager.Instance.SetDiscardPlayerHandUI(false);
+        BattleUIManager.Instance.SetSwitchHandCardTypeUI(false);
 
         BattleUIManager.Instance.SetSkipButtonTransform(false);
 
-        _mouseInteractionState = MouseInteractionState.Default;
+        CustomTimer.Instance.WaitforTime(0.5f);
+        _mouseInteractionState = MouseInteractionState.WaitingForTimer;
     }
 
 

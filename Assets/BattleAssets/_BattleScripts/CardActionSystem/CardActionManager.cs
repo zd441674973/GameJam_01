@@ -27,6 +27,7 @@ public class CardActionManager : MonoBehaviour
     public event Action DrawOpponentHandEvent;
     public event Action DestoryOpponentCardEvent;
     public event Action DiscardPlayerHandEvent;
+    public event Action SwitchPlayerHandCardTypeEvent;
 
 
 
@@ -189,24 +190,29 @@ public class CardActionManager : MonoBehaviour
             MouseActionManager.Instance.DiscardPlayerHandCount = value;
         }
 
-        if (!IsPlayerTurn()) LevelManager.Instance.EnemyDiscardHandCard(value);
+        if (!IsPlayerTurn()) LevelManager.Instance.EnemyDiscardMultipleRandomHandCard(value);
 
     }
 
     public void GainBrightEnergy(int value)
     {
-        //EnergySystem.Instance.EnergyBarCalculation("Bright", value);
         EnergySystem.Instance.GainBrightEnergy(value, true);
     }
 
     public void GainDarkEnergy(int value)
     {
-        //EnergySystem.Instance.EnergyBarCalculation("Dark", value);
+        EnergySystem.Instance.GainDarkEnergy(value, true);
     }
 
-    public void AttributeSwitch(CardData card)
+    public void AttributeSwitch(int value)
     {
-        card.IsBrightCard = !card.IsBrightCard;
+        if (IsPlayerTurn())
+        {
+            SwitchPlayerHandCardTypeEvent?.Invoke();
+            MouseActionManager.Instance.SwitchPlayerHandCardTypeCount = value;
+        }
+
+        if (!IsPlayerTurn()) return;
     }
 
 
