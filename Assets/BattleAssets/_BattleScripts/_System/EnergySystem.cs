@@ -26,6 +26,7 @@ public class EnergySystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI _brightBarText;
     [SerializeField] int _brightBarEnergy;
     [SerializeField] int _brightBarMaxEnergy;
+    [SerializeField] bool _isBrightBarFull;
 
 
 
@@ -35,12 +36,14 @@ public class EnergySystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI _darkBarText;
     [SerializeField] int _darkBarEnergy;
     [SerializeField] int _darkBarMaxEnergy;
+    [SerializeField] bool _isDarkBarFull;
 
 
 
 
     public int GetCurrentLightEnergy() => _brightBarEnergy;
     public int GetCurrentDarkEnergy() => _darkBarEnergy;
+
 
 
 
@@ -56,6 +59,11 @@ public class EnergySystem : MonoBehaviour
     }
 
 
+
+
+
+
+
     void EnergyBarUpdation()
     {
         _brightBar.fillAmount = (float)_brightBarEnergy / (float)_brightBarMaxEnergy;
@@ -63,21 +71,23 @@ public class EnergySystem : MonoBehaviour
 
         _darkBar.fillAmount = (float)_darkBarEnergy / (float)_darkBarMaxEnergy;
         _darkBarText.text = _darkBarEnergy + "/" + _darkBarMaxEnergy;
+
+        if (_isBrightBarFull) _brightBarEnergy = _brightBarMaxEnergy;
+
+        if (_isDarkBarFull) _darkBarEnergy = _darkBarMaxEnergy;
     }
 
     void EnergyBarValueCheck()
     {
-        if (_brightBarEnergy > _brightBarMaxEnergy || _brightBarEnergy < 0)
-        {
-            // Do something
-            _brightBarEnergy = 0;
-        }
-        if (_darkBarEnergy > _darkBarMaxEnergy || _darkBarEnergy < 0)
-        {
-            // Do something
-            _darkBarEnergy = 0;
-        }
+        if (_brightBarEnergy >= _brightBarMaxEnergy) _isBrightBarFull = true;
+
+        if (_darkBarEnergy >= _darkBarMaxEnergy) _isDarkBarFull = true;
+
+        if (_brightBarEnergy < 0) _brightBarEnergy = 0;
+
+        if (_darkBarEnergy < 0) _darkBarEnergy = 0;
     }
+
 
 
 
@@ -97,6 +107,24 @@ public class EnergySystem : MonoBehaviour
                 _darkBarEnergy += value;
                 break;
         }
+        EnergyBarValueCheck();
+    }
+
+
+    public void GainBrightEnergy(int value)
+    {
+        if (!_isBrightBarFull) _brightBarEnergy += value;
+
+        if (!_isDarkBarFull) _darkBarEnergy -= value;
+
+        EnergyBarValueCheck();
+    }
+    public void GainDarkEnergy(int value)
+    {
+        if (!_isDarkBarFull) _darkBarEnergy += value;
+
+        if (!_isBrightBarFull) _brightBarEnergy -= value;
+
         EnergyBarValueCheck();
     }
 

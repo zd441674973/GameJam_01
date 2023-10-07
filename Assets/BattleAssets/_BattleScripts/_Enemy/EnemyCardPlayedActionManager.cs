@@ -26,7 +26,7 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
     {
         Transform currentCard = EnemyController.Instance.GetCurrentEnemyCard();
 
-        AddCardToDiscardPile(currentCard);
+        DiscardCard(currentCard);
 
         PlayCardAction(currentCard);
 
@@ -36,12 +36,14 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
 
     }
 
-    void AddCardToDiscardPile(Transform transform)
-    {
-        CardDiscardPile.Instance.GetEnemyDiscardDeck().Add(transform);
-        Transform discardPile = CardDiscardPile.Instance.GetComponent<Transform>();
-        transform.SetParent(discardPile);
-    }
+    void DiscardCard(Transform card) => LevelManager.Instance.EnemyDiscardCard(card);
+
+    // void AddCardToDiscardPile(Transform transform)
+    // {
+    //     CardDiscardPile.Instance.GetEnemyDiscardDeck().Add(transform);
+    //     Transform discardPile = CardDiscardPile.Instance.GetComponent<Transform>();
+    //     transform.SetParent(discardPile);
+    // }
 
     void PlayCardAction(Transform card)
     {

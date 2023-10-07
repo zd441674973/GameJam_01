@@ -21,9 +21,13 @@ public class CardActionManager : MonoBehaviour
     HealthSystem _enemyHealth;
     ShieldSystem _playerShield;
     ShieldSystem _enemyShield;
+    int _currentLightEnergy;
+    int _currentDarkEnergy;
 
     public event Action DrawOpponentHandEvent;
     public event Action DestoryOpponentCardEvent;
+    public event Action DiscardPlayerHandEvent;
+
 
 
 
@@ -40,6 +44,9 @@ public class CardActionManager : MonoBehaviour
 
         _playerShield = PlayerManager.Instance.GetShieldSystem();
         _enemyShield = EnemyManager.Instance.GetShieldSystem();
+
+        _currentLightEnergy = EnergySystem.Instance.GetCurrentLightEnergy();
+        _currentDarkEnergy = EnergySystem.Instance.GetCurrentDarkEnergy();
     }
 
 
@@ -163,9 +170,6 @@ public class CardActionManager : MonoBehaviour
     }
 
 
-
-
-
     public void DestoryOpponentCard(int value)
     {
         if (IsPlayerTurn())
@@ -174,28 +178,34 @@ public class CardActionManager : MonoBehaviour
             MouseActionManager.Instance.DestoryFromOpponentHandCount = value;
         }
 
-        if (!IsPlayerTurn()) return;
+        if (!IsPlayerTurn()) LevelManager.Instance.EnemyDestoryPlayerHandCard(value);
     }
 
-    public void DiscardCard(int disCardCount, Transform discardCard)
+    public void DiscardCard(int value)
     {
-        // if (IsPlayerTurn())
-        // {
+        if (IsPlayerTurn())
+        {
+            DiscardPlayerHandEvent?.Invoke();
+            MouseActionManager.Instance.DiscardPlayerHandCount = value;
+        }
 
-        // }
-
-        // if (!IsPlayerTurn())
-
-
-    }
-    public void GainEnergy(int value)
-    {
+        if (!IsPlayerTurn()) LevelManager.Instance.EnemyDiscardHandCard(value);
 
     }
 
-    public void AttributeSwitch()
+    public void GainBrightEnergy(int value)
     {
+        //EnergySystem.Instance.EnergyBarCalculation("Bright", value);
+    }
 
+    public void GainDarkEnergy(int value)
+    {
+        //EnergySystem.Instance.EnergyBarCalculation("Dark", value);
+    }
+
+    public void AttributeSwitch(CardData card)
+    {
+        card.IsBrightCard = !card.IsBrightCard;
     }
 
 

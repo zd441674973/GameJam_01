@@ -6,6 +6,13 @@ using UnityEngine;
 public class CardData : MonoBehaviour
 {
 
+    [Header("Card Attributes")]
+    [SerializeField] bool _isBrightCard;
+    public bool IsBrightCard { get { return _isBrightCard; } set { _isBrightCard = value; } }
+    [SerializeField] Transform _brightCard;
+    [SerializeField] Transform _darkCard;
+
+
 
     [Header("Card Info")]
     [SerializeField] bool _isInPlayerHand;
@@ -27,7 +34,40 @@ public class CardData : MonoBehaviour
         _cardDescription.text = card.Description;
     }
 
+    void Update()
+    {
+        AttributeUpdate();
+
+
+    }
+
+    void AttributeUpdate()
+    {
+        if (_isBrightCard)
+        {
+            _brightCard.gameObject.SetActive(true);
+            _darkCard.gameObject.SetActive(false);
+        }
+        else
+        {
+            _brightCard.gameObject.SetActive(false);
+            _darkCard.gameObject.SetActive(true);
+        }
+    }
+
+
+
+
     public Card GetCard() => card;
+
+
+
+
+
+
+
+
+
 
     // cardInfo
     // int CardID;

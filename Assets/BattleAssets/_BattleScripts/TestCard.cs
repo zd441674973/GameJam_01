@@ -50,7 +50,7 @@ public class TestCard : CardAction
 
         Debug.Log("CardPlayed" + card.CardName);
 
-        CardActionManager.Instance.DestoryOpponentCard(2);
+        //CardActionManager.Instance.AttributeSwitch(cardData);
 
 
     }

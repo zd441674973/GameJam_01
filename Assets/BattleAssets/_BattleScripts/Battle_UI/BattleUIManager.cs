@@ -17,13 +17,22 @@ public class BattleUIManager : MonoBehaviour
         Instance = this;
     }
 
+    [Header("----------")]
     [SerializeField] Button _endTurnButton;
+    [SerializeField] Button _skipButton;
     [SerializeField] Transform _enemyTurnStartUI;
+
+    [Header("----------")]
     [SerializeField] Transform _darwCardFromEnemyHandUI;
     [SerializeField] TextMeshProUGUI _darwCardFromEnemyHandUIText;
-    [SerializeField] Button _skipButton;
+
+    [Header("----------")]
     [SerializeField] Transform _destoryEnemyHandUI;
     [SerializeField] TextMeshProUGUI _destoryEnemyHandUIText;
+
+    [Header("----------")]
+    [SerializeField] Transform _discardPlayerHandUI;
+    [SerializeField] TextMeshProUGUI _discardPlayerHandUIText;
 
     void Start()
     {
@@ -51,11 +60,27 @@ public class BattleUIManager : MonoBehaviour
 
     public void SetEnemyTurnStartUI(bool condition) => _enemyTurnStartUI.gameObject.SetActive(condition);
 
+
+
+
     public void SetDrawCardFromEnemyHandUI(bool condition) => _darwCardFromEnemyHandUI.gameObject.SetActive(condition);
     public void UpdateDrawCardFromEnemyHandUIText(int value) => _darwCardFromEnemyHandUIText.text = $"SELECT {value} CARD FROM ENEMY HAND";
 
+
+
+
     public void SetDestoryEnemyHandUI(bool condition) => _destoryEnemyHandUI.gameObject.SetActive(condition);
-    public void UpdateDestoryEnemyHandUIText(int value) => _destoryEnemyHandUIText.text = $"DESTORY {value} CARD FROM ENEMY HAND";
+    public void UpdateDestoryEnemyHandUIText(int value) => _destoryEnemyHandUIText.text = $"SELECT TO DESTORY {value} CARD \n FROM ENEMY HAND";
+
+
+
+
+    public void SetDiscardPlayerHandUI(bool condition) => _discardPlayerHandUI.gameObject.SetActive(condition);
+    public void UpdateDiscardPlayerHandUIText(int value) => _discardPlayerHandUIText.text = $"SELECT TO DISCARD {value} CARD \n FROM YOUR HAND";
+
+
+
+
 
 
 }

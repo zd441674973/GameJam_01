@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3434817271495914184}
   - component: {fileID: 3288017927391910161}
   m_Layer: 0
-  m_Name: ShieldImage
+  m_Name: UIShieldBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
