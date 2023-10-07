@@ -264,6 +264,10 @@ MonoBehaviour:
   - {fileID: 4200471566151222143, guid: f8f88b009edd8c44f9522fccd2d17809, type: 3}
   - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   _playerHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -274,6 +278,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _enemyDeck:
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
+  - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}
   - {fileID: 2887820239645675523, guid: 75dd844c18a35414fbb3980b81c0ec5c, type: 3}

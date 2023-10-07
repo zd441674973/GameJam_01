@@ -51,6 +51,11 @@ public class EnergySystem : MonoBehaviour
 
     void Start()
     {
+
+        TurnSystem.Instance.OnEnemyTurnFinished += ResetEnergyBarValue;
+
+
+
     }
 
     void Update()
@@ -89,45 +94,58 @@ public class EnergySystem : MonoBehaviour
     }
 
 
-
-
-    /// <summary>
-    /// string: "Bright"/"Dark" // int: calculate value, "1" for addition, "-1" for subtraction
-    /// </summary>
-    /// <param name="bar"></param>
-    /// <param name="value"></param>
-    public void EnergyBarCalculation(string bar, int value)
+    void ResetEnergyBarValue()
     {
-        switch (bar)
+        if (_isBrightBarFull)
         {
-            case "Bright":
-                _brightBarEnergy += value;
-                break;
-            case "Dark":
-                _darkBarEnergy += value;
-                break;
+            _brightBarEnergy = 0;
+            _isBrightBarFull = false;
         }
-        EnergyBarValueCheck();
+
+        if (_isDarkBarFull)
+        {
+            _darkBarEnergy = 0;
+            _isDarkBarFull = false;
+        }
     }
 
 
-    public void GainBrightEnergy(int value)
+    public void GainBrightEnergy(int value, bool isCardAction)
     {
         if (!_isBrightBarFull) _brightBarEnergy += value;
 
-        if (!_isDarkBarFull) _darkBarEnergy -= value;
+        if (!_isDarkBarFull && !isCardAction) _darkBarEnergy -= value;
 
         EnergyBarValueCheck();
     }
-    public void GainDarkEnergy(int value)
+    public void GainDarkEnergy(int value, bool isCardAction)
     {
         if (!_isDarkBarFull) _darkBarEnergy += value;
 
-        if (!_isBrightBarFull) _brightBarEnergy -= value;
+        if (!_isBrightBarFull && !isCardAction) _brightBarEnergy -= value;
 
         EnergyBarValueCheck();
     }
 
+
+    // /// <summary>
+    // /// string: "Bright"/"Dark" // int: calculate value, "1" for addition, "-1" for subtraction
+    // /// </summary>
+    // /// <param name="bar"></param>
+    // /// <param name="value"></param>
+    // public void EnergyBarCalculation(string bar, int value)
+    // {
+    //     switch (bar)
+    //     {
+    //         case "Bright":
+    //             _brightBarEnergy += value;
+    //             break;
+    //         case "Dark":
+    //             _darkBarEnergy += value;
+    //             break;
+    //     }
+    //     EnergyBarValueCheck();
+    // }
 
 
 

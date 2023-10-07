@@ -19,8 +19,17 @@ public class TurnSystem : MonoBehaviour
     [SerializeField] int _turnIndex;
     [SerializeField] bool _isPlayerTurn;
 
+
+
     public event Action OnEnemyTurnFinished;
     public event Action OnPlayerTurnFinished;
+
+
+
+    public int GetTurnIndex() => _turnIndex;
+    public bool IsPlayerTurn() => _isPlayerTurn;
+
+
 
     void Start()
     {
@@ -42,9 +51,6 @@ public class TurnSystem : MonoBehaviour
 
 
 
-
-    public int GetTurnIndex() => _turnIndex;
-    public bool IsPlayerTurn() => _isPlayerTurn;
 
 
 

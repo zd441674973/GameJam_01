@@ -57,13 +57,13 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
         {
             // EnergySystem.Instance.EnergyBarCalculation("Bright", 1);
             // EnergySystem.Instance.EnergyBarCalculation("Dark", -1);
-            EnergySystem.Instance.GainBrightEnergy(1);
+            EnergySystem.Instance.GainBrightEnergy(1, false);
         }
         if (!cardData.IsBrightCard)
         {
             // EnergySystem.Instance.EnergyBarCalculation("Bright", -1);
             // EnergySystem.Instance.EnergyBarCalculation("Dark", 1);
-            EnergySystem.Instance.GainDarkEnergy(1);
+            EnergySystem.Instance.GainDarkEnergy(1, false);
         }
 
 

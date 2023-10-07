@@ -51,6 +51,7 @@ public class TestCard : CardAction
         Debug.Log("CardPlayed" + card.CardName);
 
         //CardActionManager.Instance.AttributeSwitch(cardData);
+        //CardActionManager.Instance.GainBrightEnergy(3);
 
 
     }

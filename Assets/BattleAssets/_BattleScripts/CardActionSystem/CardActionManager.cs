@@ -196,6 +196,7 @@ public class CardActionManager : MonoBehaviour
     public void GainBrightEnergy(int value)
     {
         //EnergySystem.Instance.EnergyBarCalculation("Bright", value);
+        EnergySystem.Instance.GainBrightEnergy(value, true);
     }
 
     public void GainDarkEnergy(int value)
