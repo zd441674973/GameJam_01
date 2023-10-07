@@ -364,7 +364,7 @@ public class MouseActionManager : MonoBehaviour
 
         Debug.Log(CurrentPlayedCard());
 
-        LevelManager.Instance.PlayerSwitchCardAttribute(CurrentPlayedCard());
+        LevelManager.Instance.SwitchCardAttribute(CurrentPlayedCard());
 
         _switchPlayerHandCardTypeCount -= 1;
         if (_switchPlayerHandCardTypeCount > 0) return;

@@ -212,7 +212,7 @@ public class CardActionManager : MonoBehaviour
             MouseActionManager.Instance.SwitchPlayerHandCardTypeCount = value;
         }
 
-        if (!IsPlayerTurn()) return;
+        if (!IsPlayerTurn()) LevelManager.Instance.EnemySwitchCardAttribute(value);
     }
 
 

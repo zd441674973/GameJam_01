@@ -247,18 +247,29 @@ public class LevelManager : MonoBehaviour
 
 
 
-    public void PlayerSwitchCardAttribute(Transform card)
+
+
+    public void SwitchCardAttribute(Transform card)
     {
         CardData cardData = card.GetComponent<CardData>();
         cardData.IsBrightCard = !cardData.IsBrightCard;
     }
     public void EnemySwitchCardAttribute(int switchCardCount)
     {
-        // CardData cardData = card.GetComponent<CardData>();
-        // cardData.IsBrightCard = !cardData.IsBrightCard;
+        List<Transform> randomCardList = CurrentHandCardList(EnemyHandCard());
+        for (int i = 0; i < switchCardCount; i++)
+        {
+            Transform randomSwitchCard = randomCardList[Random.Range(0, randomCardList.Count)];
+            SwitchCardAttribute(randomSwitchCard);
+        }
+
     }
 
-
+    public void CheckOrigianlAttributes(Transform card)
+    {
+        if (card.CompareTag("BrightCard")) card.GetComponent<CardData>().IsBrightCard = true;
+        if (card.CompareTag("DarkCard")) card.GetComponent<CardData>().IsBrightCard = false;
+    }
 
 
 
@@ -356,14 +367,9 @@ public class LevelManager : MonoBehaviour
         UpdatePlayerHandCardCount();
         UpdateEnemyHandCardCount();
 
-        CheckOrigianlAttributes(card);
     }
 
-    void CheckOrigianlAttributes(Transform card)
-    {
-        if (card.CompareTag("BrightCard")) card.GetComponent<CardData>().IsBrightCard = true;
-        if (card.CompareTag("DarkCard")) card.GetComponent<CardData>().IsBrightCard = false;
-    }
+
 
 
 

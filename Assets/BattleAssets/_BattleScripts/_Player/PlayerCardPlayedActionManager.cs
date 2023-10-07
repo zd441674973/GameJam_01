@@ -25,17 +25,20 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
 
         UpdateEnergyBar(currentCard);
 
-        PlayCardAction(currentCard);
-
         DiscardCard(currentCard);
 
+        PlayCardAction(currentCard);
+
         UpdateHandCardCount();
+
+        CheckDiscardedCardType(currentCard);
 
         Debug.Log("CardIsPlayed: The Card has been played : " + currentCard.name);
     }
 
     void UpdateHandCardCount() => LevelManager.Instance.UpdatePlayerHandCardCount();
     void DiscardCard(Transform card) => LevelManager.Instance.PlayerDiscardCard(card);
+    void CheckDiscardedCardType(Transform card) => LevelManager.Instance.CheckOrigianlAttributes(card);
 
 
     void UpdateEnergyBar(Transform transform)

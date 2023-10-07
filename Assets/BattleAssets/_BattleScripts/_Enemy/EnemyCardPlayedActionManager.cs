@@ -30,20 +30,16 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
 
         PlayCardAction(currentCard);
 
+        CheckDiscardedCardType(currentCard);
 
+        Debug.Log("EnemyCardIsPlayed");
 
 
 
     }
 
     void DiscardCard(Transform card) => LevelManager.Instance.EnemyDiscardCard(card);
-
-    // void AddCardToDiscardPile(Transform transform)
-    // {
-    //     CardDiscardPile.Instance.GetEnemyDiscardDeck().Add(transform);
-    //     Transform discardPile = CardDiscardPile.Instance.GetComponent<Transform>();
-    //     transform.SetParent(discardPile);
-    // }
+    void CheckDiscardedCardType(Transform card) => LevelManager.Instance.CheckOrigianlAttributes(card);
 
     void PlayCardAction(Transform card)
     {
