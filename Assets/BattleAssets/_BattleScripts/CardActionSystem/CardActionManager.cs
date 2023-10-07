@@ -21,7 +21,7 @@ public class CardActionManager : MonoBehaviour
     HealthSystem _enemyHealth;
     ShieldSystem _playerShield;
     ShieldSystem _enemyShield;
-    int _currentLightEnergy;
+    int _currentBrightEnergy;
     int _currentDarkEnergy;
 
     public event Action DrawOpponentHandEvent;
@@ -46,11 +46,18 @@ public class CardActionManager : MonoBehaviour
         _playerShield = PlayerManager.Instance.GetShieldSystem();
         _enemyShield = EnemyManager.Instance.GetShieldSystem();
 
-        _currentLightEnergy = EnergySystem.Instance.GetCurrentLightEnergy();
+    }
+
+    void Update()
+    {
+        _currentBrightEnergy = EnergySystem.Instance.GetCurrentBrightEnergy();
         _currentDarkEnergy = EnergySystem.Instance.GetCurrentDarkEnergy();
+
     }
 
 
+    public int GetCurrentBrightEnergy() => _currentBrightEnergy;
+    public int GetCurrentDarkEnergy() => _currentDarkEnergy;
 
 
 
@@ -62,7 +69,7 @@ public class CardActionManager : MonoBehaviour
 
     bool IsPlayerTurn() => TurnSystem.Instance.IsPlayerTurn();
 
-    public void DealDamage(int value)
+    public void DamageOpponent(int value)
     {
         //if (!IsPlayerTurn()) _playerHealth.Health += (float)value;
         //if (IsPlayerTurn()) _enemyHealth.Health += (float)value;
@@ -83,7 +90,6 @@ public class CardActionManager : MonoBehaviour
             _enemyShield.ShieldValueUpadte();
         }
     }
-
     public void DamageSelf(int value)
     {
         if (!IsPlayerTurn())
@@ -103,15 +109,10 @@ public class CardActionManager : MonoBehaviour
         }
     }
 
-    public void GainShield(int value)
-    {
-        if (!IsPlayerTurn()) _enemyShield.ShieldValue += value;
-        if (IsPlayerTurn()) _playerShield.ShieldValue += value;
 
 
-        _enemyShield.ShieldValueUpadte();
-        _playerShield.ShieldValueUpadte();
-    }
+
+
 
     public int GetShieldValue()
     {
@@ -120,6 +121,38 @@ public class CardActionManager : MonoBehaviour
         // enemy turn
         else return _enemyShield.ShieldValue;
     }
+    public int GetOpponentShieldValue()
+    {
+        // enemy turn
+        if (!IsPlayerTurn()) return _playerShield.ShieldValue;
+        // player turn
+        else return _enemyShield.ShieldValue;
+    }
+    public void GainShield(int value)
+    {
+        if (!IsPlayerTurn()) _enemyShield.ShieldValue += value;
+        if (IsPlayerTurn()) _playerShield.ShieldValue += value;
+
+        _enemyShield.ShieldValueUpadte();
+        _playerShield.ShieldValueUpadte();
+    }
+    public void OpponentGainShield(int value)
+    {
+        if (IsPlayerTurn()) _enemyShield.ShieldValue += value;
+        if (!IsPlayerTurn()) _playerShield.ShieldValue += value;
+
+        _enemyShield.ShieldValueUpadte();
+        _playerShield.ShieldValueUpadte();
+    }
+
+
+
+
+
+
+
+
+
 
     public void GainHealth(int value)
     {
@@ -129,6 +162,18 @@ public class CardActionManager : MonoBehaviour
         if (!IsPlayerTurn()) _enemyHealth.Health += (float)value;
         if (IsPlayerTurn()) _playerHealth.Health += (float)value;
     }
+    public void OpponentGainHealth(int value)
+    {
+        if (_enemyHealth.IsHealthFull) return;
+        if (_playerHealth.IsHealthFull) return;
+
+        if (IsPlayerTurn()) _enemyHealth.Health += (float)value;
+        if (!IsPlayerTurn()) _playerHealth.Health += (float)value;
+    }
+
+
+
+
 
     public void DrawCard(int value)
     {
@@ -144,6 +189,23 @@ public class CardActionManager : MonoBehaviour
             LevelManager.Instance.EnemyDrawCard(currentCardCount + value);
         }
     }
+    public void OpponentDrawCard(int value)
+    {
+        if (!IsPlayerTurn())
+        {
+            int currentCardCount = LevelManager.Instance.GetPlayerCurrentHandCardCount();
+            LevelManager.Instance.PlayerDrawCard(currentCardCount + value);
+        }
+
+        if (IsPlayerTurn())
+        {
+            int currentCardCount = LevelManager.Instance.GetEnemyCurrentHandCardCount();
+            LevelManager.Instance.EnemyDrawCard(currentCardCount + value);
+        }
+    }
+
+
+
 
     public void DrawOpponentDeck(int value)
     {
@@ -159,7 +221,12 @@ public class CardActionManager : MonoBehaviour
             LevelManager.Instance.EnemyDrawFromPlayerDeck(currentCardCount + value);
         }
     }
-    public void DrawOpponentHand(int value)
+
+
+
+
+
+    public void PlayerDrawOpponentHand(int value)
     {
         if (IsPlayerTurn())
         {
@@ -169,6 +236,19 @@ public class CardActionManager : MonoBehaviour
 
         if (!IsPlayerTurn()) LevelManager.Instance.EnemyDrawFromPlayerHandFunctionSet(value);
     }
+    public void OpponentDrawPlayerHand(int value)
+    {
+        if (!IsPlayerTurn())
+        {
+            DrawOpponentHandEvent?.Invoke();
+            MouseActionManager.Instance.DrawFromOpponentHandCount = value;
+        }
+
+        if (IsPlayerTurn()) LevelManager.Instance.EnemyDrawFromPlayerHandFunctionSet(value);
+    }
+
+
+
 
 
     public void DestoryOpponentCard(int value)
@@ -181,6 +261,19 @@ public class CardActionManager : MonoBehaviour
 
         if (!IsPlayerTurn()) LevelManager.Instance.EnemyDestoryPlayerHandCard(value);
     }
+    public void OpponentDestoryCard(int value)
+    {
+        if (!IsPlayerTurn())
+        {
+            DestoryOpponentCardEvent?.Invoke();
+            MouseActionManager.Instance.DestoryFromOpponentHandCount = value;
+        }
+
+        if (IsPlayerTurn()) LevelManager.Instance.EnemyDestoryPlayerHandCard(value);
+    }
+
+
+
 
     public void DiscardCard(int value)
     {
@@ -190,9 +283,58 @@ public class CardActionManager : MonoBehaviour
             MouseActionManager.Instance.DiscardPlayerHandCount = value;
         }
 
-        if (!IsPlayerTurn()) LevelManager.Instance.EnemyDiscardMultipleRandomHandCard(value);
+        if (!IsPlayerTurn())
+        {
+            if (LevelManager.Instance.GetEnemyCurrentHandCardCount() < value) TurnSystem.Instance.NextTurn();
 
+            else LevelManager.Instance.EnemyDiscardMultipleRandomHandCard(value);
+        }
     }
+    public void OpponentDiscardCard(int value)
+    {
+        if (!IsPlayerTurn())
+        {
+            DiscardPlayerHandEvent?.Invoke();
+            MouseActionManager.Instance.DiscardPlayerHandCount = value;
+        }
+
+        if (IsPlayerTurn())
+        {
+            // if (LevelManager.Instance.GetEnemyCurrentHandCardCount() < value) TurnSystem.Instance.NextTurn();
+
+            // else
+            LevelManager.Instance.EnemyDiscardMultipleRandomHandCard(value);
+        }
+    }
+
+
+
+
+    public void DiscardBrightHandCard(out int discardCount)
+    {
+        if (IsPlayerTurn())
+        {
+            LevelManager.Instance.DiscardPlayerCurrentBrightHandCard(out discardCount);
+        }
+        if (!IsPlayerTurn())
+        {
+            LevelManager.Instance.DiscardEnemyCurrentBrightHandCard(out discardCount);
+        }
+        else discardCount = 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void GainBrightEnergy(int value)
     {
@@ -204,6 +346,9 @@ public class CardActionManager : MonoBehaviour
         EnergySystem.Instance.GainDarkEnergy(value, true);
     }
 
+
+
+
     public void AttributeSwitch(int value)
     {
         if (IsPlayerTurn())
@@ -212,7 +357,30 @@ public class CardActionManager : MonoBehaviour
             MouseActionManager.Instance.SwitchPlayerHandCardTypeCount = value;
         }
 
-        if (!IsPlayerTurn()) LevelManager.Instance.EnemySwitchCardAttribute(value);
+        if (!IsPlayerTurn())
+        {
+            if (LevelManager.Instance.GetEnemyCurrentHandCardCount() < value) TurnSystem.Instance.NextTurn();
+
+            else LevelManager.Instance.EnemySwitchCardAttribute(value);
+        }
+    }
+
+    public void OpponentAttributeSwitch(int value)
+    {
+        if (!IsPlayerTurn())
+        {
+            SwitchPlayerHandCardTypeEvent?.Invoke();
+            MouseActionManager.Instance.SwitchPlayerHandCardTypeCount = value;
+        }
+
+        if (IsPlayerTurn())
+        {
+            // if (LevelManager.Instance.GetEnemyCurrentHandCardCount() < value) TurnSystem.Instance.NextTurn();
+
+            // else 
+
+            LevelManager.Instance.EnemySwitchCardAttribute(value);
+        }
     }
 
 

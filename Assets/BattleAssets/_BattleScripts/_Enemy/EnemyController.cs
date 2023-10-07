@@ -46,6 +46,10 @@ public class EnemyController : MonoBehaviour
     public Transform GetCurrentEnemyCard() => _currentCard;
 
 
+    public EnemyTurnState GetEnemyTurnState() => _enemyTurnState;
+    public void SetEnemyTurnState(EnemyTurnState state) => _enemyTurnState = state;
+
+
 
 
     void Start()
@@ -69,15 +73,18 @@ public class EnemyController : MonoBehaviour
             case EnemyTurnState.TurnStart:
                 EnemyStateTransitTo(EnemyTurnState.CardPlaying);
                 break;
-            case EnemyTurnState.CardPlaying:
 
+
+            case EnemyTurnState.CardPlaying:
                 BattleUIManager.Instance.SetEnemyTurnStartUI(false);
                 MultipleCardMovement(EnemyHandCard());
                 break;
 
+
             case EnemyTurnState.CardPresenting:
                 EnemyStateTransitTo(EnemyTurnState.UpdatingCard);
                 break;
+
 
             case EnemyTurnState.UpdatingCard:
                 EnemyUpdatingCard();
@@ -85,9 +92,11 @@ public class EnemyController : MonoBehaviour
                 _enemyTurnState = EnemyTurnState.Waiting;
                 break;
 
+
             case EnemyTurnState.Waiting:
                 EnemyStateTransitTo(EnemyTurnState.CardPlaying);
                 break;
+
 
             case EnemyTurnState.TurnFinished:
                 TurnSystem.Instance.NextTurn();

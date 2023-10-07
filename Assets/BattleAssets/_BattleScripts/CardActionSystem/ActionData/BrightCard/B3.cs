@@ -11,9 +11,27 @@ public class B3 : CardAction
 
     protected override void TakeAction()
     {
-        int shieldValue = CardActionManager.Instance.GetShieldValue();
-        CardActionManager.Instance.DealDamage(-shieldValue);
+        // int shieldValue = CardActionManager.Instance.GetShieldValue();
+        // CardActionManager.Instance.DamageOpponent(-shieldValue);
 
-        Debug.Log("B3_played; Damage: " + shieldValue);
+        // Debug.Log("B3_played; Damage: " + shieldValue);
+
+        int shieldValue = CardActionManager.Instance.GetShieldValue();
+
+        if (_isBrightEnergyFull && _cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.DamageOpponent(-shieldValue * _brightBonus);
+
+        }
+        else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
+        {
+            //int shieldValue = CardActionManager.Instance.GetShieldValue();
+            CardActionManager.Instance.DamageSelf(-shieldValue);
+        }
+        else
+        {
+            //int shieldValue = CardActionManager.Instance.GetShieldValue();
+            CardActionManager.Instance.DamageOpponent(-shieldValue);
+        }
     }
 }

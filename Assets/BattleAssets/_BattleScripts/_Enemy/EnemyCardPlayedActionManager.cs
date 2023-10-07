@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,12 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
         Instance = this;
     }
 
+    bool _isActionSuccess;
+    public bool IsActionSuccess { get { return _isActionSuccess; } set { _isActionSuccess = value; } }
+
+    // public event Action SkipCardEvent;
+
+
 
 
     void Start()
@@ -27,14 +34,18 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
         Transform currentCard = EnemyController.Instance.GetCurrentEnemyCard();
 
         DiscardCard(currentCard);
-
+        
         PlayCardAction(currentCard);
 
+        // if (!_isActionSuccess)
+        // {
+        //     Debug.Log("Action Failed");
+        //     SkipCardEvent?.Invoke();
+        //     return;
+        // }
+
+
         CheckDiscardedCardType(currentCard);
-
-        Debug.Log("EnemyCardIsPlayed");
-
-
 
     }
 

@@ -48,11 +48,11 @@ public class TestCard : CardAction
 
         //Debug.Log($"BTestCardPlayed, DrawplayerHand Action");
 
-        CardActionManager.Instance.AttributeSwitch(2);
+        CardActionManager.Instance.AttributeSwitch(4);
         //CardActionManager.Instance.AttributeSwitch(cardData);
         //CardActionManager.Instance.GainBrightEnergy(3);
 
 
-        Debug.Log("CardPlayed" + card.CardName);
+        //Debug.Log("CardPlayed" + card.CardName);
     }
 }

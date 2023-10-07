@@ -12,10 +12,25 @@ public class B2 : CardAction
 
     protected override void TakeAction()
     {
-        CardActionManager.Instance.GainHealth(card.HealthToSelfMin);
 
-        CardActionManager.Instance.DrawCard(card.DrawCardFromLabrary);
 
-        Debug.Log("B2_Played; DrawCard: " + card.DrawCardFromLabrary);
+        if (_isBrightEnergyFull && _cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.GainHealth(_card.HealthToSelfMin * _brightBonus);
+
+            CardActionManager.Instance.DrawCard(_card.DrawCardFromLabrary * _brightBonus);
+        }
+        else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.OpponentGainHealth(_card.HealthToSelfMin);
+
+            CardActionManager.Instance.OpponentDrawCard(_card.DrawCardFromLabrary);
+        }
+        else
+        {
+            CardActionManager.Instance.GainHealth(_card.HealthToSelfMin);
+
+            CardActionManager.Instance.DrawCard(_card.DrawCardFromLabrary);
+        }
     }
 }

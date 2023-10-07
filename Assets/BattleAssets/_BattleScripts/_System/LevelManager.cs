@@ -42,6 +42,8 @@ public class LevelManager : MonoBehaviour
 
     [Header("GENERAL DATA")]
     [SerializeField] Transform _battleArea;
+    [SerializeField] int _darkEnergyBonus;
+    [SerializeField] int _darkEnergyBeginBuff;
 
 
 
@@ -61,6 +63,8 @@ public class LevelManager : MonoBehaviour
 
         TurnSystem.Instance.OnEnemyTurnFinished += OnEnemyTurnFinishedEvent;
 
+        _darkEnergyBeginBuff = Random.Range(1, 6);
+
     }
 
     void Update()
@@ -75,6 +79,8 @@ public class LevelManager : MonoBehaviour
         CardOwnerCheck(_enemySlots);
 
         // _handCardCount = PlayerHandCardCount();
+
+        DarkEnergyBonusCalculation();
     }
 
 
@@ -93,6 +99,11 @@ public class LevelManager : MonoBehaviour
 
     public Transform GetBattleArea() => _battleArea;
     public Transform GetDiscardPile() => CardDiscardPile.Instance.GetComponent<Transform>();
+
+
+    public int GetDarkBonus() => _darkEnergyBonus;
+
+
 
 
 
@@ -244,6 +255,76 @@ public class LevelManager : MonoBehaviour
         }
         return currentHandCardList;
     }
+
+
+    List<Transform> CurrentBrightHandCardList(List<Transform> handCardList)
+    {
+        List<Transform> brightCardList = new List<Transform>();
+        foreach (Transform card in handCardList)
+        {
+            if (card.GetComponent<CardData>().IsBrightCard) brightCardList.Add(card);
+        }
+        return brightCardList;
+    }
+    List<Transform> CurrentDarkHandCardList(List<Transform> handCardList)
+    {
+        List<Transform> darkCardList = new List<Transform>();
+        foreach (Transform card in handCardList)
+        {
+            if (!card.GetComponent<CardData>().IsBrightCard) darkCardList.Add(card);
+        }
+        return darkCardList;
+    }
+
+
+
+
+
+
+
+
+
+    public void DiscardPlayerCurrentBrightHandCard(out int discardCount)
+    {
+        List<Transform> cardList = CurrentBrightHandCardList(CurrentHandCardList(PlayerHandCard()));
+        foreach (Transform card in cardList)
+        {
+            AddCardToDiscardPile(card, PlayerDiscardPile());
+        }
+        discardCount = cardList.Count;
+    }
+    public void DiscardEnemyCurrentBrightHandCard(out int discardCount)
+    {
+        List<Transform> cardList = CurrentBrightHandCardList(CurrentHandCardList(EnemyHandCard()));
+        foreach (Transform card in cardList)
+        {
+            AddCardToDiscardPile(card, EnemyDiscardPile());
+        }
+        discardCount = cardList.Count;
+    }
+    public void DiscardPlayerCurrentDarkHandCard()
+    {
+        List<Transform> cardList = CurrentDarkHandCardList(CurrentHandCardList(PlayerHandCard()));
+        foreach (Transform card in cardList)
+        {
+            AddCardToDiscardPile(card, PlayerDiscardPile());
+        }
+    }
+    public void DiscardEnemyCurrentDarkHandCard()
+    {
+        List<Transform> cardList = CurrentDarkHandCardList(CurrentHandCardList(EnemyHandCard()));
+        foreach (Transform card in cardList)
+        {
+            AddCardToDiscardPile(card, EnemyDiscardPile());
+        }
+    }
+
+
+
+
+
+
+
 
 
 
@@ -438,7 +519,11 @@ public class LevelManager : MonoBehaviour
 
 
 
-
+    void DarkEnergyBonusCalculation()
+    {
+        int darkEnergy = EnergySystem.Instance.GetCurrentDarkEnergy();
+        _darkEnergyBonus = darkEnergy + _darkEnergyBeginBuff;
+    }
 
 
 
