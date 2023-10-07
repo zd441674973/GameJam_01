@@ -19,8 +19,10 @@ public class UI_MainPage : BasePanel
     private Button openMenuButton;
     private Button CardLabraryButton;
 
-    private Quaternion originalRotation;
-    private bool isRotating = false;
+    private bool isMenuButtonRotating = false;
+    public Image MenuButtonIcon;
+
+    private bool isCardLabButtonRotating = false;
 
     public override void ShowMe()
     {
@@ -58,7 +60,12 @@ public class UI_MainPage : BasePanel
         enter.eventID = EventTriggerType.PointerEnter;
         enter.callback.AddListener(MouseEnterOpenMenuButton);
 
+        EventTrigger.Entry exit = new EventTrigger.Entry();
+        exit.eventID = EventTriggerType.PointerExit;
+        exit.callback.AddListener(MouseExitOpenMenuButton);
+
         trigger.triggers.Add(enter);
+        trigger.triggers.Add(exit);
 
         //监听鼠标移入和鼠标移出的事件，进行处理
         EventTrigger trigger2 = CardLabraryButton.gameObject.AddComponent<EventTrigger>();
@@ -84,64 +91,33 @@ public class UI_MainPage : BasePanel
         EventCenter.GetInstance().RemoveEventListener("CloseCardLibrary", ChangeCardlabState);
     }
 
-
-
-    public void MouseEnterOpenMenuButton(BaseEventData data)
+    private void Update()
     {
-        originalRotation = openMenuButton.transform.rotation;
+        ChnageButtonIcon();
+    }
 
-        if (!isRotating)
-        {
-            //StartCoroutine(RotateButton(openMenuButton));
-        }
+    private void MouseEnterOpenMenuButton(BaseEventData data)
+    {
+        isMenuButtonRotating = true;
+    }
+
+    private void MouseExitOpenMenuButton(BaseEventData data)
+    {
+        isMenuButtonRotating = false;
     }
 
     public void MouseEnterOpenCardLabraryButton(BaseEventData data)
     {
-        originalRotation = CardLabraryButton.transform.rotation;
-
-        if (!isRotating)
-        {
-            //StartCoroutine(RotateButton(CardLabraryButton));
-        }
+        isCardLabButtonRotating = true;
     }
 
-/*
-    private IEnumerator RotateButton(Button button)
+    private void ChnageButtonIcon()
     {
-        isRotating = true;
-
-        float rotationDuration = 0.05f;
-        float targetRotationAngle = -15f;
-        float elapsedTime = 0f;
-
-        Quaternion startRotation = button.transform.rotation;
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetRotationAngle);
-
-        while (elapsedTime < rotationDuration)
+        if (isMenuButtonRotating)
         {
-            button.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / rotationDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            MenuButtonIcon.transform.Rotate(Vector3.forward * -100 * Time.deltaTime);
         }
-
-        button.transform.rotation = targetRotation;
-
-        // 等待一段时间后复原
-        yield return new WaitForSeconds(0.1f);
-
-        elapsedTime = 0f;
-        while (elapsedTime < rotationDuration)
-        {
-            button.transform.rotation = Quaternion.Slerp(targetRotation, startRotation, elapsedTime / rotationDuration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        button.transform.rotation = startRotation;
-        isRotating = false;
-    }*/
-
+    }
 
 
     private void showCardPlus1Icon()
@@ -165,7 +141,7 @@ public class UI_MainPage : BasePanel
     private void UpdateInfo()
     {
         playerinfo.text = "吉罗" + "  已完成阶段: " + GameDataControl.GetInstance().PlayerDataInfo.currentNodeID + "/5";
-        playerHP.text = "最大生命值" + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+        playerHP.text = "最大生命值: " + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
     }
 
 
