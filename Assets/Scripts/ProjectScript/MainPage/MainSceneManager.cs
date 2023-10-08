@@ -7,7 +7,7 @@ public class MainSceneManager : MonoBehaviour
     void Awake()
     {
         //进入游戏首先进入菜单场景并打开菜单panel
-        UIManager.GetInstance().ShowPanel<UI_MainPage>("UI_MainPage", E_UI_Layer.Bot);
+        UIManager.GetInstance().ShowPanel<UI_MainPage>("UI_MainPage", E_UI_Layer.Mid);
         UIManager.GetInstance().ShowPanel<UI_GameMap>("UI_GameMap", E_UI_Layer.Bot);
 
         

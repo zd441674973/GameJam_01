@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] float _health;
+    public float _health;
     [SerializeField] float _maxHealth;
     bool _isFullHealth;
 
@@ -44,16 +44,16 @@ public class HealthSystem : MonoBehaviour
         if (_health == _maxHealth) _isFullHealth = true;
         else _isFullHealth = false;
 
-        if (_health <= 0)
+       /* if (_health <= 0)
         {
             GameOver();
             _isActive = false;
-        }
+        }*/
 
     }
-
+/*
     void GameOver()
     {
         Debug.Log("GameOver");
-    }
+    }*/
 }

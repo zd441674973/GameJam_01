@@ -10,6 +10,13 @@ public class GameDataControl : BaseManager<GameDataControl>
 {
     //玩家的数据信息
     public PlayerInfo PlayerDataInfo;
+    public EnemyZhiZhu EnemyInfo_ZhiZhu;
+    public EnemyNiuNiu EnemyInfo_NiuNiu;
+    public EnemyBaoZi EnemyInfo_BaoZi;
+    public EnemyBianFu EnemyInfo_BianFu;
+    public EnemyXiuShi EnemyInfo_XiuShi;
+    public EnemyZhuJiao EnemyInfo_ZhuJiao;
+
     public bool isParseDataExecuted = false;
 
 
@@ -39,6 +46,42 @@ public class GameDataControl : BaseManager<GameDataControl>
             PlayerDataInfo = new PlayerInfo();
             //存储它
             JsonMgr.Instance.SaveData(PlayerDataInfo, "PlayerSaveData");
+        }
+
+        if (EnemyInfo_ZhiZhu == null)
+        {
+            EnemyInfo_ZhiZhu = new EnemyZhiZhu();
+       
+        }
+
+        if (EnemyInfo_NiuNiu == null)
+        {
+            EnemyInfo_NiuNiu = new EnemyNiuNiu();
+
+        }
+
+        if (EnemyInfo_BaoZi == null)
+        {
+            EnemyInfo_BaoZi = new EnemyBaoZi();
+
+        }
+
+        if (EnemyInfo_BianFu == null)
+        {
+            EnemyInfo_BianFu = new EnemyBianFu();
+
+        }
+
+        if (EnemyInfo_XiuShi == null)
+        {
+            EnemyInfo_XiuShi = new EnemyXiuShi();
+
+        }
+
+        if (EnemyInfo_ZhuJiao == null)
+        {
+            EnemyInfo_ZhuJiao = new EnemyZhuJiao();
+
         }
 
         ////////////////////////事件监听，监听贯穿整个游戏的数据变化///////////////////////////////////////////////////////////
@@ -141,12 +184,10 @@ public class PlayerInfo
         ChangeCard(0, 3);
         ChangeCard(1, 3);
         ChangeCard(2, 3);
-        ChangeCard(3, 1);
-        ChangeCard(4, 2);
-        ChangeCard(5, 2);
-        ChangeCard(8, 2);
-        ChangeCard(9, 2);
-        ChangeCard(11, 2);
+        ChangeCard(3, 2);
+        ChangeCard(4, 1);
+        ChangeCard(10, 5);
+        ChangeCard(13, 3);
     }
 
     /// <summary>
@@ -189,9 +230,148 @@ public class PlayerInfo
 }
 
 
-//DataInfos
-/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+public class EnemyInfo
+{
 
+    public string EnemyName;
+    public int EnemyMaxHealth;
+    public List<Card> EnemyOwnedcards;
+
+    public EnemyInfo()
+    {
+        EnemyMaxHealth = 0;
+        EnemyOwnedcards = new List<Card>();
+        EnemyName = "name";
+
+        /////给敌人加牌/////////////////////////
+        //ChangeEnemyCard(0, 3);
+    }
+
+
+
+    public EnemyInfo(string name)
+    {
+        EnemyMaxHealth = 100;
+        EnemyOwnedcards = new List<Card>();
+        EnemyName = name;
+
+        /////给敌人加牌/////////////////////////
+        //ChangeEnemyCard(0, 3);
+    }
+
+
+
+    /// <summary>
+    /// 当敌人拥有卡牌数量改变时执行的函数
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="number"></param>
+    public void ChangeEnemyCard(int cardID, int number)
+    {
+        // 查找列表中是否存在具有相同ID的卡牌
+        Card existingCard = EnemyOwnedcards.Find(card => card.CardID == cardID);
+
+        // 如果找到了相同ID的卡牌
+        if (existingCard != null)
+        {
+            // 增加现有卡牌的数量
+            existingCard.PlayerOwnedNumber += number;
+
+            // 如果卡牌数量少于等于0，从列表中移除
+            if (existingCard.PlayerOwnedNumber <= 0)
+            {
+                EnemyOwnedcards.Remove(existingCard);
+            }
+        }
+        // 如果没有找到相同ID的卡牌，并且number大于0
+        else if (number > 0)
+        {
+            // 创建新卡牌并添加到列表
+            Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
+            newCard.PlayerOwnedNumber = number;
+            EnemyOwnedcards.Add(newCard);
+        }
+    }
+}
+
+public class EnemyZhiZhu : EnemyInfo
+{
+    public EnemyZhiZhu() : base("巨型蜘蛛")
+    {
+        EnemyMaxHealth = 50;
+        ChangeEnemyCard(17, 6);
+        ChangeEnemyCard(23, 1);
+        ChangeEnemyCard(24, 2);
+        ChangeEnemyCard(22, 2);
+    }
+}
+
+public class EnemyNiuNiu : EnemyInfo
+{
+    public EnemyNiuNiu() : base("米诺陶洛斯")
+    {
+        EnemyMaxHealth = 60;
+        ChangeEnemyCard(17, 5);
+        ChangeEnemyCard(25, 4);
+        ChangeEnemyCard(23, 2);
+        ChangeEnemyCard(24, 2);
+        ChangeEnemyCard(22, 3);
+    }
+}
+
+public class EnemyBaoZi : EnemyInfo
+{
+    public EnemyBaoZi() : base("赛珀派")
+    {
+        EnemyMaxHealth = 70;
+        ChangeEnemyCard(26, 6);
+        ChangeEnemyCard(19, 3);
+        ChangeEnemyCard(17, 3);
+        ChangeEnemyCard(24, 2);
+        ChangeEnemyCard(22, 3);
+
+    }
+}
+public class EnemyBianFu : EnemyInfo
+{
+    public EnemyBianFu() : base("卡玛佐兹")
+    {
+        EnemyMaxHealth = 80;
+        ChangeEnemyCard(27, 5);
+        ChangeEnemyCard(20, 4);
+        ChangeEnemyCard(23, 1);
+        ChangeEnemyCard(24, 5);
+        ChangeEnemyCard(22, 2);
+
+    }
+}
+public class EnemyXiuShi : EnemyInfo
+{
+    public EnemyXiuShi() : base("修士兰福德")
+    {
+        EnemyMaxHealth = 90;
+        ChangeEnemyCard(28, 5);
+        ChangeEnemyCard(18, 4);
+        ChangeEnemyCard(19, 3);
+        ChangeEnemyCard(24, 2);
+        ChangeEnemyCard(17, 3);
+
+    }
+}
+public class EnemyZhuJiao : EnemyInfo
+{
+    public EnemyZhuJiao() : base("大主教兰道尔")
+    {
+        EnemyMaxHealth = 100;
+        ChangeEnemyCard(29, 5);
+        ChangeEnemyCard(21, 3);
+        ChangeEnemyCard(20, 3);
+        ChangeEnemyCard(24, 2);
+        ChangeEnemyCard(22, 2);
+        ChangeEnemyCard(23, 3);
+        ChangeEnemyCard(18, 2);
+    }
+}
 
 
 //用于读取Json中所有道具配置信息的数据结构

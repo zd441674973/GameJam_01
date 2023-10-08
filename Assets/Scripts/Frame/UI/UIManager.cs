@@ -125,8 +125,12 @@ public class UIManager : BaseManager<UIManager>
 
             panel.ShowMe();
 
-            //把面板存起来
-            panelDic.Add(panelName, panel);
+            if (!panelDic.ContainsKey(panelName))
+            {
+                //把面板存起来
+                panelDic.Add(panelName, panel);
+            }
+   
         });
     }
 

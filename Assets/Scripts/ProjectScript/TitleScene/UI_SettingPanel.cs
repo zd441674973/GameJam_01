@@ -13,6 +13,9 @@ public class UI_SettingPanel : BasePanel
     public Slider SoundEffectSlider;
     public Image fillSoundEffectImage;
 
+    public Image fullScreenButtonImage;
+    public Image windowScreenButtonImage;
+
     private Resolution[] resolutions;
 
     protected override void Awake()
@@ -56,6 +59,17 @@ public class UI_SettingPanel : BasePanel
         // 设置默认选项
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        if (Screen.fullScreen)
+        {
+            fullScreenButtonImage.sprite = ResMgr.GetInstance().Load<Sprite>("UISprites/选项_选中");
+            windowScreenButtonImage.sprite = ResMgr.GetInstance().Load<Sprite>("UISprites/选项_未选中");
+        }
+        else
+        {
+            fullScreenButtonImage.sprite = ResMgr.GetInstance().Load<Sprite>("UISprites/选项_未选中");
+            windowScreenButtonImage.sprite = ResMgr.GetInstance().Load<Sprite>("UISprites/选项_选中");
+        }
     }
 
     private void Start()

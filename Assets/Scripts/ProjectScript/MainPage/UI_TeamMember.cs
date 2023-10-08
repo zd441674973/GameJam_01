@@ -41,6 +41,11 @@ public class UI_TeamMember : BasePanel
                 StartCoroutine(ReturnToMainMenuAfterDelay(delayBeforeReturnToMainMenu));
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            ScenesMgr.GetInstance().LoadSceneAsyn("TitleScene", AfterReturnToTitle);
+        }
     }
 
     // 在指定延迟后开始移动

@@ -162,7 +162,6 @@ public class UI_DialoguePanel : BasePanel
 
     private void PlayMusic()
     {
-        Debug.Log(backgroundMusicName);
 
         if(backgroundMusicName == 0 && shouldPlayerChurchMusic)
         {
@@ -309,7 +308,7 @@ public class UI_DialoguePanel : BasePanel
         switch (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID)
         {
             case 0:
-                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/街角");
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/实验室");
                 break;
             case 1:
                 BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/街角");
@@ -364,7 +363,9 @@ public class UI_DialoguePanel : BasePanel
 
         //结束当前阶段
         UIManager.GetInstance().HidePanel("UI_DialoguePanel");
-        EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+        //EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+
+        ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
     }
 
     /// <summary>
@@ -391,39 +392,39 @@ public class UI_DialoguePanel : BasePanel
                 //shouldPlayerChurchMusic = false;
             }
 
+            if (currentdialogIndex == 24 && GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
+            {
+                BackGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/街角");
+            }
 
 
             if (dialogIndex == dialogdic.Count)
             {
                 //结束当前阶段
                 UIManager.GetInstance().HidePanel("UI_DialoguePanel");
-                //完成战斗后再执行
-                EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+     
 
-                if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
+                if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID < 7)
                 {
-                    //进入主界面
-                    //什么也不写
+                    ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
                 }
-                else if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 7)
+                else if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID >= 7)
                 {
                     UIManager.GetInstance().ShowPanel<UI_TeamMember>("UI_TeamMember", E_UI_Layer.Top);
                 }
-                else
-                {
-                    //进入对应战斗场景
-                    //1
-
-                    //2
-
-                    //3
-
-                    //4
-
-                    //5
-                }
             }
         }
+    }
+
+    private void AfterLoadToBattle()
+    {
+        UIManager.GetInstance().HidePanel("UI_MenuPanel");
+        UIManager.GetInstance().HidePanel("UI_MainPage");
+        UIManager.GetInstance().HidePanel("UI_CardLibrary");
+        UIManager.GetInstance().HidePanel("UI_GameMap");
+        UIManager.GetInstance().HidePanel("AwardPanel");
+        UIManager.GetInstance().HidePanel("DelateCardPanel");
+        UIManager.GetInstance().HidePanel("UI_DialoguePanel");
     }
 }
 

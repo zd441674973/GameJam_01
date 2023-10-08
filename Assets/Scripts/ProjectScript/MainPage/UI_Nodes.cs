@@ -41,7 +41,9 @@ public class UI_Nodes : BasePanel
 
     private void SetButtons(Nodes nodes)
     {
+        button.gameObject.SetActive(false);
         button.enabled = false;
+
         buttonImage.enabled = false;
         buttonText.enabled = false;
         currentPlayerNodeID = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
@@ -49,6 +51,8 @@ public class UI_Nodes : BasePanel
         int nodeID = ((int)nodes);
         if(currentPlayerNodeID == nodeID)
         {
+
+            button.gameObject.SetActive(true);
             button.enabled = true;
             buttonImage.enabled = true;
             buttonText.enabled = true;
@@ -73,23 +77,18 @@ public class UI_Nodes : BasePanel
         {
             case "Node0":
                 //进入战斗场景0，打完玩家的currentPlayerNodeID + 1;
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
                 UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
             case "Node1":
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
                 UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
             case "Node2":
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
                 UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
             case "Node3":
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
                 UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
             case "Node4":
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
                 UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
         }
