@@ -344,7 +344,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 6160837769348249894}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -936,6 +936,7 @@ MonoBehaviour:
   UIArea: {fileID: 4929292171613565699}
   CardLabPlus: {fileID: 3703695244986060258}
   MenuButtonIcon: {fileID: 6160837769348249894}
+  CadLabButtonIcon: {fileID: 7057898957398135642}
 --- !u!1 &4519567055296068611
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +949,7 @@ GameObject:
   - component: {fileID: 3832244864350070308}
   - component: {fileID: 1738593304650707644}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1235,7 +1236,7 @@ GameObject:
   - component: {fileID: 2379495810903441007}
   - component: {fileID: 2054133630211896422}
   m_Layer: 5
-  m_Name: Image
+  m_Name: JiluoHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1597,7 +1598,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 7057898957398135642}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []

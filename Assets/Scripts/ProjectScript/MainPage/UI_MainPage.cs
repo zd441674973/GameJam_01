@@ -23,6 +23,7 @@ public class UI_MainPage : BasePanel
     public Image MenuButtonIcon;
 
     private bool isCardLabButtonRotating = false;
+    public Image CadLabButtonIcon;
 
     public override void ShowMe()
     {
@@ -75,7 +76,12 @@ public class UI_MainPage : BasePanel
         enter2.eventID = EventTriggerType.PointerEnter;
         enter2.callback.AddListener(MouseEnterOpenCardLabraryButton);
 
+        EventTrigger.Entry exit2 = new EventTrigger.Entry();
+        exit2.eventID = EventTriggerType.PointerExit;
+        exit2.callback.AddListener(MouseExitOpenCardLabraryButton);
+
         trigger2.triggers.Add(enter2);
+        trigger2.triggers.Add(exit2);
     }
 
 
@@ -109,13 +115,30 @@ public class UI_MainPage : BasePanel
     public void MouseEnterOpenCardLabraryButton(BaseEventData data)
     {
         isCardLabButtonRotating = true;
+        Debug.Log("1");
     }
+
+    public void MouseExitOpenCardLabraryButton(BaseEventData data)
+    {
+        isCardLabButtonRotating = false;
+        Debug.Log("2");
+    }
+
 
     private void ChnageButtonIcon()
     {
         if (isMenuButtonRotating)
         {
             MenuButtonIcon.transform.Rotate(Vector3.forward * -100 * Time.deltaTime);
+        }
+
+        if (isCardLabButtonRotating || CardLabraryIsOpen)
+        {
+            CadLabButtonIcon.sprite = ResMgr.GetInstance().Load<Sprite>("UISprites/≈∆ø‚Icon∑¢π‚");
+        }
+        else
+        {
+            CadLabButtonIcon.sprite = ResMgr.GetInstance().Load<Sprite>("UISprites/≈∆ø‚Icon");
         }
     }
 
