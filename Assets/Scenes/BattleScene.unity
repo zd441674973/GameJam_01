@@ -395,6 +395,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2113780471}
+  - {fileID: 1542049438}
   m_Father: {fileID: 107484416}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -449,14 +450,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerDeck:
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
+  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
+  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
+  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
   _playerHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -467,14 +464,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _enemyDeck:
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
+  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
+  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
+  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
+  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
+  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
   _enemyHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -850,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &612506219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -973,42 +968,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 224343170461190180}
     m_Modifications:
-    - target: {fileID: 426176113849443839, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 444713545175414163, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -674.9475
-      objectReference: {fileID: 0}
-    - target: {fileID: 444713545175414163, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 444713545175414163, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 63.001
-      objectReference: {fileID: 0}
     - target: {fileID: 1623553069382432359, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
       propertyPath: _playerPlayCardAreaUI
       value: 
       objectReference: {fileID: 1702849739}
-    - target: {fileID: 2804228597336154664, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
-      propertyPath: m_Color.a
-      value: 0.59607846
-      objectReference: {fileID: 0}
-    - target: {fileID: 2804228597336154664, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
-      propertyPath: m_Color.b
-      value: 0.254717
-      objectReference: {fileID: 0}
-    - target: {fileID: 2804228597336154664, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
-      propertyPath: m_Color.g
-      value: 0.16859661
-      objectReference: {fileID: 0}
-    - target: {fileID: 2804228597336154664, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
-      propertyPath: m_Color.r
-      value: 0.080235854
-      objectReference: {fileID: 0}
     - target: {fileID: 5267149134574354309, guid: 9a99169e7356e51488ce5ec1813d1410, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1900,6 +1863,76 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 865421116373613935, guid: f979fc46841dccc4eae5989c7979fe8e, type: 3}
   m_PrefabInstance: {fileID: 865421117594057471}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1542049437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1542049438}
+  - component: {fileID: 1542049439}
+  m_Layer: 0
+  m_Name: AllBattleCards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1542049438
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542049437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 238752201}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1542049439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542049437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4cad55905073043aa5e9984811442a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalCardList:
+  - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
+  - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
+  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 413061938ae8844408360507d0907752, type: 3}
+  - {fileID: 4200471566151222143, guid: 73bfcceaf756fc845b7908fa21a2fa7b, type: 3}
+  - {fileID: 4200471566151222143, guid: 4145858157cbb3a4f891526097ac364e, type: 3}
+  - {fileID: 4200471566151222143, guid: ab2a8d19520371142990f75250ef047c, type: 3}
+  - {fileID: 4200471566151222143, guid: 54377be97fbd37146b704d95e988ade9, type: 3}
+  - {fileID: 4200471566151222143, guid: e02dc0489855fde49af01ba49139ce94, type: 3}
+  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
+  - {fileID: 4200471566151222143, guid: d5c7d5d1b0e1e1a43b3e1ca593efcc27, type: 3}
+  - {fileID: 4200471566151222143, guid: 7c0c286005a253a4f84d2ee657bc8b7b, type: 3}
+  - {fileID: 4200471566151222143, guid: c2a65f3c9b79aa745a86fb21ac72c4e7, type: 3}
+  - {fileID: 4200471566151222143, guid: 019516d2c54f4f64baf4a52bd5573777, type: 3}
+  - {fileID: 4200471566151222143, guid: 4a3d1218e7a01504da555909e913c367, type: 3}
+  - {fileID: 4200471566151222143, guid: 7cb0dd91f7086d5479b53cf39bf20137, type: 3}
+  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
+  - {fileID: 2887820239645675523, guid: bd4f5b993adf9044d8381bc2a179bc24, type: 3}
+  - {fileID: 2887820239645675523, guid: f8adb5ab243b18349b418ff0f41fb9ed, type: 3}
+  - {fileID: 2887820239645675523, guid: 50be4fa3a89269248a1b36fa40353707, type: 3}
+  - {fileID: 2887820239645675523, guid: 13b22e7533933e04bac6a813d84e839b, type: 3}
+  - {fileID: 2887820239645675523, guid: c7e2af74c45156a49bc85d47cc2ec3e2, type: 3}
+  - {fileID: 2887820239645675523, guid: f6efd0a00feecb44cbd62047cb47e32e, type: 3}
+  - {fileID: 2887820239645675523, guid: 96d7f3f72e326384fb03e7532630e111, type: 3}
 --- !u!224 &1549580988 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5847273037064703361, guid: 33982d904a517a54cb7d29d92357cd35, type: 3}
@@ -2976,8 +3009,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

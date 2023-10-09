@@ -73,6 +73,8 @@ public class MouseActionManager : MonoBehaviour
 
 
 
+
+
     //RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
 
     //public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
@@ -131,6 +133,8 @@ public class MouseActionManager : MonoBehaviour
 
                 BattleUIManager.Instance.SetEndTurnButtonFunction(false);
 
+                if (EnemyCurrentHandCardCount() < 1) SkipCurrentState();
+
                 if (CurrentDraggedCard()) if (IsPlayerCard()) return;
 
                 SelectOpponentHandCard();
@@ -145,6 +149,8 @@ public class MouseActionManager : MonoBehaviour
 
                 BattleUIManager.Instance.SetEndTurnButtonFunction(false);
 
+                if (EnemyCurrentHandCardCount() < 1) SkipCurrentState();
+
                 if (CurrentDraggedCard()) if (IsPlayerCard()) return;
 
                 DestoryOpponentHandCard();
@@ -158,6 +164,8 @@ public class MouseActionManager : MonoBehaviour
                 BattleUIManager.Instance.UpdateDiscardPlayerHandUIText(_discardPlayerHandCount);
 
                 BattleUIManager.Instance.SetEndTurnButtonFunction(false);
+
+                if (PlayerCurrentHandCardCount() < 1) SkipCurrentState(); // Need update if possible
 
                 if (CurrentDraggedCard()) if (!IsPlayerCard()) return;
 
@@ -279,6 +287,17 @@ public class MouseActionManager : MonoBehaviour
 
 
 
+    int EnemyCurrentHandCardCount() => LevelManager.Instance.GetEnemyCurrentHandCardCount();
+    int PlayerCurrentHandCardCount() => LevelManager.Instance.GetPlayerCurrentHandCardCount();
+
+
+
+
+
+
+
+
+
     #region DrawFromOpponentHand
 
     void DrawFromOpponentHandEvent()
@@ -297,8 +316,11 @@ public class MouseActionManager : MonoBehaviour
 
         LevelManager.Instance.PlayerDrawFromEnemyHand(CurrentPlayedCard());
 
+
         _drawFromOpponentHandCount -= 1;
         if (_drawFromOpponentHandCount > 0) return;
+
+
 
         SkipCurrentState();
     }

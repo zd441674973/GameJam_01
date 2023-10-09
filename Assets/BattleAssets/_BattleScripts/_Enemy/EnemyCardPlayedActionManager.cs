@@ -39,12 +39,14 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
 
         PlayCardAction(currentCard);
 
-        // if (!_isActionSuccess)
-        // {
-        //     Debug.Log("Action Failed");
-        //     SkipCardEvent?.Invoke();
-        //     return;
-        // }
+
+        // Add your play music/animation/effects function here
+
+        // Use this 2 functions to wait for certian amout of time to excute the rest methods.
+        /*
+        CustomTimer.Instance.WaitforTime(float time);
+        bool condition = CustomTimer.Instance.TimesUp();
+        */
 
 
         CheckDiscardedCardType(currentCard);
@@ -61,5 +63,13 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
         cardAction.GetTakeAction();
     }
 
+
+
+    // if (!_isActionSuccess)
+    // {
+    //     Debug.Log("Action Failed");
+    //     SkipCardEvent?.Invoke();
+    //     return;
+    // }
 
 }

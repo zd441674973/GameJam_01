@@ -33,7 +33,6 @@ public class CardData : MonoBehaviour
     void Start()
     {
         card = GameDataControl.GetInstance().GetCardInfo(_cardID);
-        //List<Card> cardList = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
         _cardName.text = card.CardName;
         _cardDescription.text = card.Description;
     }

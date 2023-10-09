@@ -30,6 +30,17 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
 
         PlayCardAction(currentCard);
 
+
+        // Add your play music/animation/effects function here
+
+        // Use this 2 functions to wait for certian amout of time to excute the rest methods.
+        /*
+        CustomTimer.Instance.WaitforTime(float time);
+        bool condition = CustomTimer.Instance.TimesUp();
+        */
+
+
+
         UpdateHandCardCount();
 
         CheckDiscardedCardType(currentCard);
