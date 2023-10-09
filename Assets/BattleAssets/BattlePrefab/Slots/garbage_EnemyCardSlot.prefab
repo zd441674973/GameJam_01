@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1800414745495937781}
   m_Layer: 0
-  m_Name: EnemyCardSlot
+  m_Name: garbage_EnemyCardSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

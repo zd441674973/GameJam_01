@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using UnityEngine.UIElements;
 
 public class MouseActionManager : MonoBehaviour
 {
@@ -41,8 +42,8 @@ public class MouseActionManager : MonoBehaviour
 
     public event Action CardHasBeenPlayed;
 
-    Vector2 _offset;
-    Vector2 _cardSlotPosition;
+    Vector3 _offset;
+    Vector3 _cardSlotPosition;
 
     int _drawFromOpponentHandCount;
     public int DrawFromOpponentHandCount { get { return _drawFromOpponentHandCount; } set { _drawFromOpponentHandCount = value; } }
@@ -57,9 +58,19 @@ public class MouseActionManager : MonoBehaviour
     public int SwitchPlayerHandCardTypeCount { get { return _switchPlayerHandCardTypeCount; } set { _switchPlayerHandCardTypeCount = value; } }
 
 
+    GameObject _currentDraggingCard;
+    public GameObject CurrentDraggingCard { get { return _currentDraggingCard; } set { _currentDraggingCard = value; } }
 
 
-    RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
+
+
+    //RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
+
+    //public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
+
+    //public GameObject CurrentDraggedCard() => _currentDraggingCard;
+
+    GameObject CurrentDraggedCard() => _currentDraggingCard;
     public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
     bool IsPlayerCard() => CurrentPlayedCard().GetComponent<CardData>().IsInPlayerHand;
 
@@ -190,24 +201,26 @@ public class MouseActionManager : MonoBehaviour
     void GetCardOffset()
     {
         if (!Input.GetMouseButtonDown(0)) return;
-        if (!CurrentDraggedCard()) return;
+        //if (!CurrentDraggedCard()) return;
 
 
         Debug.Log(CurrentDraggedCard().transform);
 
         _cardSlotPosition = CurrentDraggedCard().transform.parent.position;
-        Vector2 cardPosition = CurrentDraggedCard().transform.position;
-        Vector2 mousePosition = MouseToWorld.Instance.GetMousePosition();
+        Vector3 cardPosition = CurrentDraggedCard().transform.position;
+        //Vector2 mousePosition = MouseToWorld.Instance.GetMousePosition();
+        Vector3 mousePosition = Input.mousePosition;
         _offset = mousePosition - cardPosition;
     }
 
     void Dragging()
     {
         if (!Input.GetMouseButton(0)) return;
-        if (!CurrentDraggedCard()) return;
+        //if (!CurrentDraggedCard()) return;
 
-        //Debug.Log(Distance());
-        var mousePosition = MouseToWorld.Instance.GetMousePosition();
+        Debug.Log(Distance());
+        //var mousePosition = MouseToWorld.Instance.GetMousePosition();
+        var mousePosition = Input.mousePosition;
         Vector3 cardPosition = new Vector3((mousePosition - _offset).x, (mousePosition - _offset).y, -5f); // -5f will bring the card to very front
         CurrentDraggedCard().transform.position = cardPosition;
 
@@ -216,7 +229,7 @@ public class MouseActionManager : MonoBehaviour
     void ResetDrag()
     {
         if (!Input.GetMouseButtonUp(0)) return;
-        if (!CurrentDraggedCard()) return;
+        //if (!CurrentDraggedCard()) return;
 
         float battleSlotSnapDistance = 1.5f;
 
@@ -231,11 +244,13 @@ public class MouseActionManager : MonoBehaviour
 
         CurrentDraggedCard().transform.position = _cardSlotPosition;
     }
+
     float Distance()
     {
-        var battleSlotPosition = LevelManager.Instance.GetBattleArea().position;
+        //var battleSlotPosition = LevelManager.Instance.GetBattleArea().position;
         var cardPosition = CurrentDraggedCard().transform.position;
-        return Vector2.Distance(cardPosition, battleSlotPosition);
+        //return Vector2.Distance(cardPosition, battleSlotPosition);
+        return Vector2.Distance(cardPosition, _cardSlotPosition);
     }
 
     #endregion

@@ -22,21 +22,25 @@ public class EnergySystem : MonoBehaviour
 
 
     [Header("BrightBar")]
-    [SerializeField] Image _brightBar;
-    [SerializeField] TextMeshProUGUI _brightBarText;
-    [SerializeField] int _brightBarEnergy;
+    //[SerializeField] Image _brightBar;
+    //[SerializeField] TextMeshProUGUI _brightBarText;
+
+    [SerializeField][Range(0, 5)] int _brightBarEnergy;
+
     [SerializeField] int _brightBarMaxEnergy;
     [SerializeField] bool _isBrightBarFull;
+    [SerializeField] List<Image> _brightBarImages;
 
 
 
 
     [Header("DarkBar")]
-    [SerializeField] Image _darkBar;
-    [SerializeField] TextMeshProUGUI _darkBarText;
-    [SerializeField] int _darkBarEnergy;
+    //[SerializeField] Image _darkBar;
+    //[SerializeField] TextMeshProUGUI _darkBarText;
+    [SerializeField][Range(0, 5)] int _darkBarEnergy;
     [SerializeField] int _darkBarMaxEnergy;
     [SerializeField] bool _isDarkBarFull;
+    [SerializeField] List<Image> _darkBarImages;
 
 
 
@@ -74,11 +78,15 @@ public class EnergySystem : MonoBehaviour
 
     void EnergyBarUpdation()
     {
-        _brightBar.fillAmount = (float)_brightBarEnergy / (float)_brightBarMaxEnergy;
-        _brightBarText.text = _brightBarEnergy + "/" + _brightBarMaxEnergy;
+        // _brightBar.fillAmount = (float)_brightBarEnergy / (float)_brightBarMaxEnergy;
+        // _brightBarText.text = _brightBarEnergy + "/" + _brightBarMaxEnergy;
 
-        _darkBar.fillAmount = (float)_darkBarEnergy / (float)_darkBarMaxEnergy;
-        _darkBarText.text = _darkBarEnergy + "/" + _darkBarMaxEnergy;
+        // _darkBar.fillAmount = (float)_darkBarEnergy / (float)_darkBarMaxEnergy;
+        // _darkBarText.text = _darkBarEnergy + "/" + _darkBarMaxEnergy;
+
+        EnergyBarImageUpdate(_brightBarImages, _brightBarEnergy);
+        EnergyBarImageUpdate(_darkBarImages, _darkBarEnergy);
+
 
         if (_isBrightBarFull) _brightBarEnergy = _brightBarMaxEnergy;
 
@@ -112,6 +120,27 @@ public class EnergySystem : MonoBehaviour
         }
     }
 
+    void EnergyBarImageUpdate(List<Image> images, int energyAmount)
+    {
+        foreach (var item in images)
+        {
+            item.enabled = false;
+        }
+
+
+        for (int i = 0; i < energyAmount; i++)
+        {
+            images[i].enabled = true;
+        }
+    }
+
+
+
+
+
+
+
+
 
     public void GainBrightEnergy(int value, bool isCardAction)
     {
@@ -129,6 +158,20 @@ public class EnergySystem : MonoBehaviour
 
         EnergyBarValueCheck();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     // /// <summary>

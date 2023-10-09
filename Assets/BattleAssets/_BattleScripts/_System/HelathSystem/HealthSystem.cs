@@ -8,11 +8,12 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    public float _health;
+    [SerializeField] float _health;
     [SerializeField] float _maxHealth;
     bool _isFullHealth;
 
-    [SerializeField] Image _healthBar;
+    [SerializeField] Image _healthBar1;
+    [SerializeField] Image _healthBar2;
     [SerializeField] TextMeshProUGUI _textMesh;
 
     public float Health { get { return _health; } set { _health = value; } }
@@ -37,23 +38,24 @@ public class HealthSystem : MonoBehaviour
 
     void HealthUpadte()
     {
-        _healthBar.fillAmount = _health / _maxHealth;
+        _healthBar1.fillAmount = _health / _maxHealth;
+        _healthBar2.fillAmount = _health / _maxHealth;
 
         _textMesh.text = Mathf.RoundToInt(_health).ToString() + " / " + _maxHealth;
 
         if (_health == _maxHealth) _isFullHealth = true;
         else _isFullHealth = false;
 
-       /* if (_health <= 0)
-        {
-            GameOver();
-            _isActive = false;
-        }*/
+        /* if (_health <= 0)
+         {
+             GameOver();
+             _isActive = false;
+         }*/
 
     }
-/*
-    void GameOver()
-    {
-        Debug.Log("GameOver");
-    }*/
+    /*
+        void GameOver()
+        {
+            Debug.Log("GameOver");
+        }*/
 }

@@ -168,7 +168,7 @@ public class EnemyController : MonoBehaviour
 
     void CardMovement(Transform card)
     {
-        var speed = 6f;
+        var speed = 500f;
         var stopDistance = 0.1f;
         var distance = Vector2.Distance(_battleSlot.transform.position, card.transform.position);
         var direction = (_battleSlot.transform.position - card.transform.position).normalized;

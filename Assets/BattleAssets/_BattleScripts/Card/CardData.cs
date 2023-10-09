@@ -23,8 +23,8 @@ public class CardData : MonoBehaviour
     }
 
     [SerializeField] int _cardID;
-    [SerializeField] TextMeshPro _cardName;
-    [SerializeField] TextMeshPro _cardDescription;
+    [SerializeField] TextMeshProUGUI _cardName;
+    [SerializeField] TextMeshProUGUI _cardDescription;
     Card card;
 
     void Start()
