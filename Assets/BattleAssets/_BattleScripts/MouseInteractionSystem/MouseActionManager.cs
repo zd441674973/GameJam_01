@@ -42,6 +42,15 @@ public class MouseActionManager : MonoBehaviour
 
     public event Action CardHasBeenPlayed;
 
+    [Tooltip("Suggested distance over 350")]
+    [SerializeField][Range(200, 800)] float _cardPlayedDistance;
+
+
+
+
+
+
+
     Vector3 _offset;
     Vector3 _cardSlotPosition;
 
@@ -71,6 +80,7 @@ public class MouseActionManager : MonoBehaviour
     //public GameObject CurrentDraggedCard() => _currentDraggingCard;
 
     GameObject CurrentDraggedCard() => _currentDraggingCard;
+
     public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
     bool IsPlayerCard() => CurrentPlayedCard().GetComponent<CardData>().IsInPlayerHand;
 
@@ -201,7 +211,7 @@ public class MouseActionManager : MonoBehaviour
     void GetCardOffset()
     {
         if (!Input.GetMouseButtonDown(0)) return;
-        //if (!CurrentDraggedCard()) return;
+        if (!CurrentDraggedCard()) return;
 
 
         Debug.Log(CurrentDraggedCard().transform);
@@ -216,9 +226,11 @@ public class MouseActionManager : MonoBehaviour
     void Dragging()
     {
         if (!Input.GetMouseButton(0)) return;
-        //if (!CurrentDraggedCard()) return;
+        if (!CurrentDraggedCard()) return;
 
-        Debug.Log(Distance());
+        BattleUIManager.Instance.SetPlayerPlayCardAreaUI(true);
+
+        // Debug.Log(Distance());
         //var mousePosition = MouseToWorld.Instance.GetMousePosition();
         var mousePosition = Input.mousePosition;
         Vector3 cardPosition = new Vector3((mousePosition - _offset).x, (mousePosition - _offset).y, -5f); // -5f will bring the card to very front
@@ -229,20 +241,25 @@ public class MouseActionManager : MonoBehaviour
     void ResetDrag()
     {
         if (!Input.GetMouseButtonUp(0)) return;
-        //if (!CurrentDraggedCard()) return;
+        if (!CurrentDraggedCard()) return;
 
-        float battleSlotSnapDistance = 1.5f;
+        //float battleSlotSnapDistance = 1.5f;
 
-        if (Distance() < battleSlotSnapDistance)
+        if (Distance() > _cardPlayedDistance)
         {
-            //PlayerCardIsPlayed();
+            BattleUIManager.Instance.SetPlayerPlayCardAreaUI(false);
 
             CardHasBeenPlayed?.Invoke();
-
-            return;
+        }
+        else
+        {
+            BattleUIManager.Instance.SetPlayerPlayCardAreaUI(false);
+            CurrentDraggedCard().transform.position = _cardSlotPosition;
+            _currentDraggingCard = null;
         }
 
-        CurrentDraggedCard().transform.position = _cardSlotPosition;
+
+
     }
 
     float Distance()

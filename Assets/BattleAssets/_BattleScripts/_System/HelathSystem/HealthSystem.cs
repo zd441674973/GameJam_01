@@ -46,16 +46,24 @@ public class HealthSystem : MonoBehaviour
         if (_health == _maxHealth) _isFullHealth = true;
         else _isFullHealth = false;
 
-        /* if (_health <= 0)
-         {
-             GameOver();
-             _isActive = false;
-         }*/
+        MaxHealthCheck(_isFullHealth);
+
+
+        if (_health <= 0)
+        {
+            GameOver();
+            _isActive = false;
+        }
 
     }
-    /*
-        void GameOver()
-        {
-            Debug.Log("GameOver");
-        }*/
+
+    void MaxHealthCheck(bool condition)
+    {
+        if (condition) _health = _maxHealth;
+    }
+
+    void GameOver()
+    {
+        Debug.Log("GameOver");
+    }
 }

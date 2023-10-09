@@ -19,7 +19,7 @@ public class CustomTimer : MonoBehaviour
     }
 
 
-    [SerializeField] TextMeshPro _text;
+    [SerializeField] TextMeshProUGUI _text;
 
     [SerializeField] bool _isStarted;
     [SerializeField] bool _timesUp;

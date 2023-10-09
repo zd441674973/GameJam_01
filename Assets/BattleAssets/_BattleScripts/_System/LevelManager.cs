@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("GENERAL DATA")]
     [SerializeField] Transform _battleArea;
-    [SerializeField] int _darkEnergyBonus;
+    [SerializeField] int _totalDarkDamageBuff;
     [SerializeField] int _darkEnergyBeginBuff;
 
 
@@ -101,7 +101,8 @@ public class LevelManager : MonoBehaviour
     public Transform GetDiscardPile() => CardDiscardPile.Instance.GetComponent<Transform>();
 
 
-    public int GetDarkBonus() => _darkEnergyBonus;
+    public int GetDardBeginBuff() => _darkEnergyBeginBuff;
+    public int GetTotalDarkDamageBuff() => _totalDarkDamageBuff;
 
 
 
@@ -522,7 +523,7 @@ public class LevelManager : MonoBehaviour
     void DarkEnergyBonusCalculation()
     {
         int darkEnergy = EnergySystem.Instance.GetCurrentDarkEnergy();
-        _darkEnergyBonus = darkEnergy + _darkEnergyBeginBuff;
+        _totalDarkDamageBuff = darkEnergy + _darkEnergyBeginBuff;
     }
 
 
@@ -540,6 +541,9 @@ public class LevelManager : MonoBehaviour
 
 
 
+
+
+    #region Ghost Code
 
 
 
@@ -635,5 +639,5 @@ public class LevelManager : MonoBehaviour
     //     }
     //     return avaliableHandCards;
     // }
-
+    #endregion
 }

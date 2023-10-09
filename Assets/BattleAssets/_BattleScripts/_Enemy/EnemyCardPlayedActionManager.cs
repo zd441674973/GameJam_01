@@ -33,8 +33,10 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
     {
         Transform currentCard = EnemyController.Instance.GetCurrentEnemyCard();
 
+        DealCardPlayedExtraDamage(currentCard);
+
         DiscardCard(currentCard);
-        
+
         PlayCardAction(currentCard);
 
         // if (!_isActionSuccess)
@@ -51,6 +53,19 @@ public class EnemyCardPlayedActionManager : MonoBehaviour
 
     void DiscardCard(Transform card) => LevelManager.Instance.EnemyDiscardCard(card);
     void CheckDiscardedCardType(Transform card) => LevelManager.Instance.CheckOrigianlAttributes(card);
+
+    void DealCardPlayedExtraDamage(Transform transform)
+    {
+        CardData cardData = transform.GetComponent<CardData>();
+        if (cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.BrightCardPlayedExtraDamage();
+        }
+        if (!cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.DarkCardPlayedExtraDamage();
+        }
+    }
 
     void PlayCardAction(Transform card)
     {

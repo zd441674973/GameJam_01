@@ -22,7 +22,7 @@ public class B16 : CardAction
         else
         {
             CardActionManager.Instance.DiscardBrightHandCard(out int discardCount);
-            int darkBonusCount = LevelManager.Instance.GetDarkBonus();
+            int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
             CardActionManager.Instance.DamageOpponent(-(darkBonusCount * discardCount));
         }
 

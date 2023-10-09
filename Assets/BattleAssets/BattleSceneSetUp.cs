@@ -20,12 +20,17 @@ public class BattleSceneSetUp : MonoBehaviour
     private void Awake()
     {
         currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+    }
+
+    void Start()
+    {
+        //currentLevel = 0;
         ChangeSet();
     }
 
     private void Update()
     {
-        Debug.Log(enemyHealthSystem.Health);
+        //Debug.Log(enemyHealthSystem.Health);
         CheckHealth();
     }
 

@@ -62,6 +62,18 @@ public class CardActionManager : MonoBehaviour
 
 
 
+    public void BrightCardPlayedExtraDamage()
+    {
+        int currentBrightEnergy = GetCurrentBrightEnergy();
+        DamageOpponent(currentBrightEnergy);
+    }
+
+    public void DarkCardPlayedExtraDamage()
+    {
+        int totalDarkDamageBuff = LevelManager.Instance.GetTotalDarkDamageBuff();
+        DamageOpponent(totalDarkDamageBuff);
+    }
+
 
 
 

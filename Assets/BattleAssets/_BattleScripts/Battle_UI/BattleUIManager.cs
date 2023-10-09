@@ -38,6 +38,9 @@ public class BattleUIManager : MonoBehaviour
     [SerializeField] Transform _siwtchHandCardTypeUI;
     [SerializeField] TextMeshProUGUI _siwtchHandCardTypeUIText;
 
+    [Header("----------")]
+    [SerializeField] Transform _playerPlayCardAreaUI;
+
 
 
 
@@ -92,6 +95,7 @@ public class BattleUIManager : MonoBehaviour
     public void UpdateSwitchHandCardTypeUIText(int value) => _siwtchHandCardTypeUIText.text = $"SELECT TO SWITCH  \n {value} CARD-ATTRIBUTE \n FROM YOUR HAND";
 
 
+    public void SetPlayerPlayCardAreaUI(bool condition) => _playerPlayCardAreaUI.gameObject.SetActive(condition);
 
 
 

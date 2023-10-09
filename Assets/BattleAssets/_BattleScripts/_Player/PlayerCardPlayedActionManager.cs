@@ -20,8 +20,9 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
 
         currentCard.gameObject.SetActive(false);
 
-        UpdateHandCardCount();
+        DealCardPlayedExtraDamage(currentCard);
 
+        UpdateHandCardCount();
 
         UpdateEnergyBar(currentCard);
 
@@ -52,6 +53,19 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
         if (!cardData.IsBrightCard)
         {
             EnergySystem.Instance.GainDarkEnergy(1, false);
+        }
+    }
+
+    void DealCardPlayedExtraDamage(Transform transform)
+    {
+        CardData cardData = transform.GetComponent<CardData>();
+        if (cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.BrightCardPlayedExtraDamage();
+        }
+        if (!cardData.IsBrightCard)
+        {
+            CardActionManager.Instance.DarkCardPlayedExtraDamage();
         }
     }
 

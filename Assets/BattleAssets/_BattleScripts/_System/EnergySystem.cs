@@ -136,12 +136,6 @@ public class EnergySystem : MonoBehaviour
 
 
 
-
-
-
-
-
-
     public void GainBrightEnergy(int value, bool isCardAction)
     {
         if (!_isBrightBarFull) _brightBarEnergy += value;
