@@ -373,11 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc50834f4ca1aec4aae265f7154ab718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerDeck:
-  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
-  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
-  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
-  - {fileID: 4200471566151222143, guid: ff1f1244bc46e95498a817e5e55c9f48, type: 3}
+  _playerDeck: []
   _playerHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -387,13 +383,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _enemyDeck:
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
+  _enemyDeck: []
   _enemyHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -3559,7 +3549,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &1856154268644658077
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3576,7 +3566,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &2612794465023903724
 Transform:
   m_ObjectHideFlags: 0

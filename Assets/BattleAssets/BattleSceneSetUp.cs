@@ -6,6 +6,18 @@ using UnityEngine.UI;
 
 public class BattleSceneSetUp : MonoBehaviour
 {
+
+    public static BattleSceneSetUp Instance;
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple instances occured");
+            Destroy(Instance);
+        }
+        Instance = this;
+    }
+
     private int currentLevel;
     public Image backGround;
     public Image EnemyImage;
@@ -15,7 +27,9 @@ public class BattleSceneSetUp : MonoBehaviour
     public HealthSystem enemyHealthSystem;
 
     private List<Card> Playercards = new List<Card>();
+    public List<Card> GetPlayerCardList() => Playercards;
     private List<Card> Enemycards = new List<Card>();
+    public List<Card> GetEnemyCardList() => Enemycards;
 
     private bool hasExecutedCheckHealth;
 
@@ -23,19 +37,23 @@ public class BattleSceneSetUp : MonoBehaviour
     public RectTransform canvasRect;
     public GameObject EnemyPrefab;
 
-    private void Awake()
-    {
-        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
-
-
-    }
 
 
     void Start()
     {
+
+        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+
+        Debug.Log(currentLevel);
+
+        //currentLevel = 1;
+
+
         hasExecutedCheckHealth = false;
 
         ChangeSet();
+
+        //Debug.Log("playerCardsCount: " + Playercards.Count);
 
     }
 
@@ -97,7 +115,7 @@ public class BattleSceneSetUp : MonoBehaviour
             //卡玛佐兹
             case 3:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/市政厅");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蝙蝠boss"); 
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蝙蝠boss");
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
@@ -208,7 +226,7 @@ public class BattleSceneSetUp : MonoBehaviour
 
     private void SetUpEnemyImage()
     {
-   
+
 
         // 计算屏幕中央的位置
         Vector2 centerScreenPosition = new Vector2(Screen.width / 2f, Screen.height / 2f);

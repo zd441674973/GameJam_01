@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class UnitDeckInitialization : MonoBehaviour
@@ -23,38 +24,44 @@ public class UnitDeckInitialization : MonoBehaviour
 
     void Start()
     {
-        // Find player cards
-        List<Card> cardList = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
-        FindCardFromTotalCardDeck(cardList, PlayerDeck());
+
+        //Find player cards
+        List<Card> playerCardList = BattleSceneSetUp.Instance.GetPlayerCardList();
+        FindCardFromTotalCardDeck(playerCardList, PlayerDeck());
 
 
-        List<Card> baoziList = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyOwnedcards;
-        FindCardFromTotalCardDeck(baoziList, _baoZiDeck);
-
-
-
-        List<Card> bianfuList = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
-        FindCardFromTotalCardDeck(bianfuList, _bianFuDeck);
+        List<Card> enemyCardList = BattleSceneSetUp.Instance.GetEnemyCardList();
+        FindCardFromTotalCardDeck(enemyCardList, EnemyDeck());
 
 
 
-        List<Card> niuniuList = GameDataControl.GetInstance().EnemyInfo_NiuNiu.EnemyOwnedcards;
-        FindCardFromTotalCardDeck(niuniuList, _niuniuList);
+
+        // List<Card> baoziList = BattleSceneSetUp.Instance.GetEnemyCardList();
+        // FindCardFromTotalCardDeck(baoziList, _baoZiDeck);
+
+
+        // List<Card> bianfuList = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
+        // FindCardFromTotalCardDeck(bianfuList, _bianFuDeck);
 
 
 
-        List<Card> xiushiList = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyOwnedcards;
-        FindCardFromTotalCardDeck(xiushiList, _xiushiList);
+        // List<Card> niuniuList = GameDataControl.GetInstance().EnemyInfo_NiuNiu.EnemyOwnedcards;
+        // FindCardFromTotalCardDeck(niuniuList, _niuniuList);
 
 
 
-        List<Card> zhizhuList = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
-        FindCardFromTotalCardDeck(zhizhuList, _zhizhuList);
+        // List<Card> xiushiList = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyOwnedcards;
+        // FindCardFromTotalCardDeck(xiushiList, _xiushiList);
 
 
 
-        List<Card> zhujiaoList = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyOwnedcards;
-        FindCardFromTotalCardDeck(zhujiaoList, _zhujiaoList);
+        // List<Card> zhizhuList = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
+        // FindCardFromTotalCardDeck(zhizhuList, _zhizhuList);
+
+
+
+        // List<Card> zhujiaoList = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyOwnedcards;
+        // FindCardFromTotalCardDeck(zhujiaoList, _zhujiaoList);
 
     }
 
@@ -65,7 +72,7 @@ public class UnitDeckInitialization : MonoBehaviour
         {
             for (int i = 0; i < card.PlayerOwnedNumber; i++)
             {
-                deckList.Add(Instantiate(_totalCardList[card.CardID]));
+                deckList.Add(_totalCardList[card.CardID]);
             }
         }
     }
