@@ -96,7 +96,7 @@
 			"HealthToSelfMin": 0,
 			"HealthToSelfMax": 0,
 			"SheildToEnemy": 0,
-			"SheildToSelf": 7,
+			"SheildToSelf": 5,
 			"DrawCardFromLabrary": 1,
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
