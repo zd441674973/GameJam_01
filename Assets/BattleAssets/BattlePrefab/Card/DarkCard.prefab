@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2129563389784043499}
   - component: {fileID: 5139764074226409970}
   - component: {fileID: -722865983013089748}
+  - component: {fileID: 7157036590830227445}
   m_Layer: 6
   m_Name: DarkCard
   m_TagString: DarkCard
@@ -43,7 +44,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697521698567455610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -81,6 +82,18 @@ MonoBehaviour:
   _cardID: 0
   _cardName: {fileID: 3977149665463655172}
   _cardDescription: {fileID: 3806274525679024609}
+--- !u!114 &7157036590830227445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697521698567455610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bf601b28083d845acc04bc84e7fd59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1425959512344553379
 GameObject:
   m_ObjectHideFlags: 0

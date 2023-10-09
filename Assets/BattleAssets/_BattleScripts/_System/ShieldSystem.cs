@@ -27,11 +27,17 @@ public class ShieldSystem : MonoBehaviour
 
     }
 
-    void ShieldvalueCheck()
+
+
+    public void ShieldValueUpadte()
     {
         _shieldText.text = _shieldValue.ToString();
         if (_shieldValue < 0) _shieldValue = 0;
     }
+
+
+
+
 
 
     // void ShieldUpadte()
@@ -40,21 +46,6 @@ public class ShieldSystem : MonoBehaviour
     //     _shieldText.text = _shieldValue.ToString();
 
     // }
-
-
-
-
-
-
-
-
-
-
-    public void ShieldValueUpadte()
-    {
-        _shieldText.text = _shieldValue.ToString();
-        if (_shieldValue < 0) _shieldValue = 0;
-    }
     // void AddShield()
     // {
     //     for (int i = 0; i < _shieldValue; i++)
