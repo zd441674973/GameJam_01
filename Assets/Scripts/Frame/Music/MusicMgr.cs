@@ -17,8 +17,9 @@ public class MusicMgr : SingletonAutoMono<MusicMgr>
     //音效大小
     private float soundValue = 1;
 
-    public MusicMgr()
+    private void Awake()
     {
+
         MonoMgr.GetInstance().AddUpdateListener(Update);
     }
 

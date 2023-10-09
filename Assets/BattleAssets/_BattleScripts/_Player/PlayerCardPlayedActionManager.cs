@@ -33,6 +33,8 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
 
         // Add your play music/animation/effects function here
 
+        PlayCardMusic(currentCard.GetComponent<CardData>().GetCard().CardName);
+
         // Use this 2 functions to wait for certian amout of time to excute the rest methods.
         /*
         CustomTimer.Instance.WaitforTime(float time);
@@ -73,5 +75,9 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
         cardAction.GetTakeAction();
     }
 
+    void PlayCardMusic(string cardname)
+    {
+        MusicMgr.GetInstance().PlaySound("BattleSoundEffect/" + cardname, false);
+    }
 
 }

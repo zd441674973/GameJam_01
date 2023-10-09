@@ -17,6 +17,8 @@ public class BattleSceneSetUp : MonoBehaviour
             Destroy(Instance);
         }
         Instance = this;
+
+        //UIManager.GetInstance().ShowPanel<UI_MainPage>("BattleUI_MainPage", E_UI_Layer.System);
     }
 
     private int currentLevel;
@@ -83,7 +85,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhiZhu");
-     
+
+                MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー15-教程");
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
@@ -103,6 +106,9 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/NiuNiu");
+
+                MusicMgr.GetInstance().PlayBkMusic("maou_game_battle09-牛头怪");
+
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
@@ -124,6 +130,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BaoZi");
 
+                MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー03-黑豹");
+
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyOwnedcards;
                 enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyMaxHealth;
@@ -143,6 +151,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BianFu");
+
+                MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー11-蝙蝠");
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
@@ -164,6 +174,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/XiuShi");
 
+                MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー12-修士");
+
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyOwnedcards;
                 enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyMaxHealth;
@@ -182,6 +194,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhuJiao");
+
+                MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano36-主教");
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyOwnedcards;
