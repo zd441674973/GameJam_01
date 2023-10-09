@@ -18,7 +18,6 @@ public class BattleSceneSetUp : MonoBehaviour
         }
         Instance = this;
 
-        //UIManager.GetInstance().ShowPanel<UI_MainPage>("BattleUI_MainPage", E_UI_Layer.System);
     }
 
     private int currentLevel;
@@ -301,11 +300,11 @@ public class BattleSceneSetUp : MonoBehaviour
     private void AfterReturnToTitle()
     {
 
+        //UIManager.GetInstance().HidePanel("UI_TitleScene");
     }
     private void loadScene()
-    {/*
-        UIManager.GetInstance().HidePanel("UI_MainPage");
-        UIManager.GetInstance().HidePanel("UI_GameMap");*/
+    {
+        //UIManager.GetInstance().HidePanel("UI_GameMap");
         //EventCenter.GetInstance().EventTrigger("turnOffBK");
     }
 

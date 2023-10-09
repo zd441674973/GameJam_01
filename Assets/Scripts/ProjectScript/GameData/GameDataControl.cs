@@ -169,6 +169,9 @@ public class PlayerInfo
     public bool AlreadyFinishedAward_DelateCard;
 
     public string currentTargetScene;
+
+    public float playerBKvalue;
+    public float playerSEvalue;
     
     public PlayerInfo()
     {
@@ -183,6 +186,10 @@ public class PlayerInfo
         AlreadyFinishedAward_DelateCard = true;
 
         currentTargetScene = "MainPage";
+
+        playerBKvalue = 0.5f;
+        playerSEvalue = 0.5f;
+
         /////¸øÍæ¼Ò¼ÓÅÆ/////////////////////////
         ChangeCard(0, 3);
         ChangeCard(1, 3);
@@ -254,7 +261,7 @@ public class EnemyInfo
 
     public EnemyInfo(string name)
     {
-        EnemyMaxHealth = 100;
+        EnemyMaxHealth = 100;                                                                
         EnemyOwnedcards = new List<Card>();
         EnemyName = name;
 

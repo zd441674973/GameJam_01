@@ -440,6 +440,7 @@ public class UI_DialoguePanel : BasePanel
         UIManager.GetInstance().HidePanel("AwardPanel");
         UIManager.GetInstance().HidePanel("DelateCardPanel");
         UIManager.GetInstance().HidePanel("UI_DialoguePanel");
+        UIManager.GetInstance().HidePanel("UI_TitleScene");
     }
 }
 

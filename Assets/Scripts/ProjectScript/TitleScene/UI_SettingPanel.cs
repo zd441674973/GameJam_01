@@ -74,8 +74,8 @@ public class UI_SettingPanel : BasePanel
 
     private void Start()
     {
-        MusicSlider.value = 0.5f;
-        SoundEffectSlider.value = 0.5f;
+        MusicSlider.value = GameDataControl.GetInstance().PlayerDataInfo.playerBKvalue;
+        SoundEffectSlider.value = GameDataControl.GetInstance().PlayerDataInfo.playerSEvalue;
     }
 
 
@@ -98,6 +98,10 @@ public class UI_SettingPanel : BasePanel
 
         MusicMgr.GetInstance().ChangeBKValue(volume);
         fillMusicImage.fillAmount = volume;
+
+        GameDataControl.GetInstance().PlayerDataInfo.playerBKvalue = volume;
+
+        GameDataControl.GetInstance().SavePlayerInfo();
     }
 
     private void ChangeSoundEffectVolume(float volume)
@@ -105,6 +109,10 @@ public class UI_SettingPanel : BasePanel
 
         MusicMgr.GetInstance().ChangeSoundValue(volume);
         fillSoundEffectImage.fillAmount = volume;
+
+        GameDataControl.GetInstance().PlayerDataInfo.playerSEvalue = volume;
+
+        GameDataControl.GetInstance().SavePlayerInfo();
     }
 
     private void FullScreen()

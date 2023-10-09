@@ -22,6 +22,8 @@ public class UI_TitleScenePanel : BasePanel
         GetControl<Button>("Button_ExitGame").onClick.AddListener(ExitGame);
     }
 
+
+
     private void NewGame()
     {
 
@@ -33,9 +35,9 @@ public class UI_TitleScenePanel : BasePanel
             GameDataControl.GetInstance().PlayerDataInfo = new PlayerInfo();
         }
 
-        //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", loadScene);
+        ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", loadScene);
 
-        ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
+        //ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
     }
 
     private void ContinueGame()
@@ -44,10 +46,10 @@ public class UI_TitleScenePanel : BasePanel
         //读取数据
         GameDataControl.GetInstance().LoadPlayerInfo();
 
-        //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", loadScene);
+        ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", loadScene);
 
 
-        ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
+        //ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
     }
 
     private void SettingGame()
@@ -72,9 +74,9 @@ public class UI_TitleScenePanel : BasePanel
         UIManager.GetInstance().HidePanel("UI_TitleScene");
         MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
-       /* if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
+       if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
         {
             UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
-        }*/
+        }
     }
 }
