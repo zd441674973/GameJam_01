@@ -22,6 +22,9 @@ public class CardData : MonoBehaviour
         set { _isInPlayerHand = value; }
     }
 
+    [SerializeField] bool _isPlayerCard;
+    public bool IsPlayerCard { get { return _isPlayerCard; } }
+
     [SerializeField] int _cardID;
     [SerializeField] TextMeshProUGUI _cardName;
     [SerializeField] TextMeshProUGUI _cardDescription;
@@ -30,21 +33,21 @@ public class CardData : MonoBehaviour
     void Start()
     {
         card = GameDataControl.GetInstance().GetCardInfo(_cardID);
-        //List<Card> cardList = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
         _cardName.text = card.CardName;
         _cardDescription.text = card.Description;
     }
 
     void Update()
     {
-        AttributeUpdate();
+        AttributeUpdate(_isBrightCard);
+        UpdateCardSize(_isInPlayerHand);
 
 
     }
 
-    void AttributeUpdate()
+    void AttributeUpdate(bool condition)
     {
-        if (_isBrightCard)
+        if (condition)
         {
             _brightCard.gameObject.SetActive(true);
             _darkCard.gameObject.SetActive(false);
@@ -54,6 +57,12 @@ public class CardData : MonoBehaviour
             _brightCard.gameObject.SetActive(false);
             _darkCard.gameObject.SetActive(true);
         }
+    }
+
+    void UpdateCardSize(bool condition)
+    {
+        if (condition) transform.localScale = new Vector3(1, 1, 1);
+        if (!condition) transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
 

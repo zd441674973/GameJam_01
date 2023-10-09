@@ -20,14 +20,26 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
 
         currentCard.gameObject.SetActive(false);
 
-        UpdateHandCardCount();
+        DealCardPlayedExtraDamage(currentCard);
 
+        UpdateHandCardCount();
 
         UpdateEnergyBar(currentCard);
 
         DiscardCard(currentCard);
 
         PlayCardAction(currentCard);
+
+
+        // Add your play music/animation/effects function here
+
+        // Use this 2 functions to wait for certian amout of time to excute the rest methods.
+        /*
+        CustomTimer.Instance.WaitforTime(float time);
+        bool condition = CustomTimer.Instance.TimesUp();
+        */
+
+
 
         UpdateHandCardCount();
 
@@ -39,7 +51,7 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
     void UpdateHandCardCount() => LevelManager.Instance.UpdatePlayerHandCardCount();
     void DiscardCard(Transform card) => LevelManager.Instance.PlayerDiscardCard(card);
     void CheckDiscardedCardType(Transform card) => LevelManager.Instance.CheckOrigianlAttributes(card);
-
+    void DealCardPlayedExtraDamage(Transform transform) => CardActionManager.Instance.DealCardPlayedExtraDamage(transform);
 
     void UpdateEnergyBar(Transform transform)
     {

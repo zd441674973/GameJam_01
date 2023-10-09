@@ -42,6 +42,15 @@ public class MouseActionManager : MonoBehaviour
 
     public event Action CardHasBeenPlayed;
 
+    [Tooltip("Suggested distance over 350")]
+    [SerializeField][Range(200, 800)] float _cardPlayedDistance;
+
+
+
+
+
+
+
     Vector3 _offset;
     Vector3 _cardSlotPosition;
 
@@ -64,6 +73,8 @@ public class MouseActionManager : MonoBehaviour
 
 
 
+
+
     //RaycastHit2D CurrentDraggedCard() => MouseToWorld.Instance.GetMouseRaycastHit2D();
 
     //public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
@@ -71,6 +82,7 @@ public class MouseActionManager : MonoBehaviour
     //public GameObject CurrentDraggedCard() => _currentDraggingCard;
 
     GameObject CurrentDraggedCard() => _currentDraggingCard;
+
     public Transform CurrentPlayedCard() => CurrentDraggedCard().transform;
     bool IsPlayerCard() => CurrentPlayedCard().GetComponent<CardData>().IsInPlayerHand;
 
@@ -121,6 +133,8 @@ public class MouseActionManager : MonoBehaviour
 
                 BattleUIManager.Instance.SetEndTurnButtonFunction(false);
 
+                if (EnemyCurrentHandCardCount() < 1) SkipCurrentState();
+
                 if (CurrentDraggedCard()) if (IsPlayerCard()) return;
 
                 SelectOpponentHandCard();
@@ -135,6 +149,8 @@ public class MouseActionManager : MonoBehaviour
 
                 BattleUIManager.Instance.SetEndTurnButtonFunction(false);
 
+                if (EnemyCurrentHandCardCount() < 1) SkipCurrentState();
+
                 if (CurrentDraggedCard()) if (IsPlayerCard()) return;
 
                 DestoryOpponentHandCard();
@@ -148,6 +164,8 @@ public class MouseActionManager : MonoBehaviour
                 BattleUIManager.Instance.UpdateDiscardPlayerHandUIText(_discardPlayerHandCount);
 
                 BattleUIManager.Instance.SetEndTurnButtonFunction(false);
+
+                if (PlayerCurrentHandCardCount() < 1) SkipCurrentState(); // Need update if possible
 
                 if (CurrentDraggedCard()) if (!IsPlayerCard()) return;
 
@@ -201,7 +219,7 @@ public class MouseActionManager : MonoBehaviour
     void GetCardOffset()
     {
         if (!Input.GetMouseButtonDown(0)) return;
-        //if (!CurrentDraggedCard()) return;
+        if (!CurrentDraggedCard()) return;
 
 
         Debug.Log(CurrentDraggedCard().transform);
@@ -216,9 +234,11 @@ public class MouseActionManager : MonoBehaviour
     void Dragging()
     {
         if (!Input.GetMouseButton(0)) return;
-        //if (!CurrentDraggedCard()) return;
+        if (!CurrentDraggedCard()) return;
 
-        Debug.Log(Distance());
+        BattleUIManager.Instance.SetPlayerPlayCardAreaUI(true);
+
+        // Debug.Log(Distance());
         //var mousePosition = MouseToWorld.Instance.GetMousePosition();
         var mousePosition = Input.mousePosition;
         Vector3 cardPosition = new Vector3((mousePosition - _offset).x, (mousePosition - _offset).y, -5f); // -5f will bring the card to very front
@@ -229,20 +249,25 @@ public class MouseActionManager : MonoBehaviour
     void ResetDrag()
     {
         if (!Input.GetMouseButtonUp(0)) return;
-        //if (!CurrentDraggedCard()) return;
+        if (!CurrentDraggedCard()) return;
 
-        float battleSlotSnapDistance = 1.5f;
+        //float battleSlotSnapDistance = 1.5f;
 
-        if (Distance() < battleSlotSnapDistance)
+        if (Distance() > _cardPlayedDistance)
         {
-            //PlayerCardIsPlayed();
-
+            BattleUIManager.Instance.SetPlayerPlayCardAreaUI(false);
             CardHasBeenPlayed?.Invoke();
-
-            return;
+            _currentDraggingCard = null;
+        }
+        else
+        {
+            BattleUIManager.Instance.SetPlayerPlayCardAreaUI(false);
+            CurrentDraggedCard().transform.position = _cardSlotPosition;
+            _currentDraggingCard = null;
         }
 
-        CurrentDraggedCard().transform.position = _cardSlotPosition;
+
+
     }
 
     float Distance()
@@ -254,6 +279,17 @@ public class MouseActionManager : MonoBehaviour
     }
 
     #endregion
+
+
+
+
+
+
+
+
+    int EnemyCurrentHandCardCount() => LevelManager.Instance.GetEnemyCurrentHandCardCount();
+    int PlayerCurrentHandCardCount() => LevelManager.Instance.GetPlayerCurrentHandCardCount();
+
 
 
 
@@ -280,8 +316,11 @@ public class MouseActionManager : MonoBehaviour
 
         LevelManager.Instance.PlayerDrawFromEnemyHand(CurrentPlayedCard());
 
+
         _drawFromOpponentHandCount -= 1;
         if (_drawFromOpponentHandCount > 0) return;
+
+
 
         SkipCurrentState();
     }

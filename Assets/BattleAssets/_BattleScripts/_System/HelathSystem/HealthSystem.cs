@@ -10,7 +10,7 @@ public class HealthSystem : MonoBehaviour
 {
     [SerializeField] float _health;
     [SerializeField] float _maxHealth;
-    bool _isFullHealth;
+    [SerializeField] bool _isFullHealth;
 
     [SerializeField] Image _healthBar1;
     [SerializeField] Image _healthBar2;
@@ -21,6 +21,7 @@ public class HealthSystem : MonoBehaviour
     public bool IsHealthFull { get { return _isFullHealth; } }
 
     bool _isActive;
+
     void Start()
     {
         _maxHealth = _health;
@@ -29,7 +30,7 @@ public class HealthSystem : MonoBehaviour
 
     void Update()
     {
-        if (!_isActive) return;
+        //if (!_isActive) return;
         HealthUpadte();
 
     }
@@ -43,8 +44,13 @@ public class HealthSystem : MonoBehaviour
 
         _textMesh.text = Mathf.RoundToInt(_health).ToString() + " / " + _maxHealth;
 
-        if (_health == _maxHealth) _isFullHealth = true;
+        if (_health >= _maxHealth)
+        {
+            _health = _maxHealth;
+            _isFullHealth = true;
+        }
         else _isFullHealth = false;
+
 
         /*if (_health <= 0)
          {
@@ -52,10 +58,26 @@ public class HealthSystem : MonoBehaviour
              _isActive = false;
          }*/
 
-    }
-    /*
-        void GameOver()
+        // MaxHealthCheck(_isFullHealth);
+
+
+        if (_health <= 0)
         {
+            _health = 0;
             Debug.Log("GameOver");
-        }*/
+            return;
+        }
+
+
+    }
+
+    // void MaxHealthCheck(bool condition)
+    // {
+    //     if (condition) _health = _maxHealth;
+    // }
+
+    // void GameOver()
+    // {
+    //     Debug.Log("GameOver");
+    // }
 }

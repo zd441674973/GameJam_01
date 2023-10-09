@@ -11,7 +11,7 @@ public class D20 : CardAction
 
     protected override void TakeAction()
     {
-        int darkBonusCount = LevelManager.Instance.GetDarkBonus();
+        int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
         int currentBrightEnergy = CardActionManager.Instance.GetCurrentBrightEnergy();
 
         if (_isDarkEnergyFull && !_cardData.IsBrightCard)

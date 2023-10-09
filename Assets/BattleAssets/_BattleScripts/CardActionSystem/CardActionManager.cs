@@ -40,11 +40,7 @@ public class CardActionManager : MonoBehaviour
 
     void Start()
     {
-        _playerHealth = PlayerManager.Instance.GetHealthSystem();
-        _enemyHealth = EnemyManager.Instance.GetHealthSystem();
 
-        _playerShield = PlayerManager.Instance.GetShieldSystem();
-        _enemyShield = EnemyManager.Instance.GetShieldSystem();
 
     }
 
@@ -53,11 +49,49 @@ public class CardActionManager : MonoBehaviour
         _currentBrightEnergy = EnergySystem.Instance.GetCurrentBrightEnergy();
         _currentDarkEnergy = EnergySystem.Instance.GetCurrentDarkEnergy();
 
+        _playerHealth = PlayerManager.Instance.GetHealthSystem();
+        _enemyHealth = EnemyManager.Instance.GetHealthSystem();
+
+        _playerShield = PlayerManager.Instance.GetShieldSystem();
+        _enemyShield = EnemyManager.Instance.GetShieldSystem();
+
     }
 
 
     public int GetCurrentBrightEnergy() => _currentBrightEnergy;
     public int GetCurrentDarkEnergy() => _currentDarkEnergy;
+
+
+
+    public void BrightCardPlayedExtraDamage()
+    {
+        int currentBrightEnergy = GetCurrentBrightEnergy();
+        bool isBrightEnergyFull = EnergySystem.Instance.IsBrightEnergyFull();
+        if (!isBrightEnergyFull) DamageOpponent(-currentBrightEnergy);
+    }
+
+    public void DarkCardPlayedExtraDamage()
+    {
+        int totalDarkDamageBuff = LevelManager.Instance.GetTotalDarkDamageBuff();
+        bool isDarkEnergyFull = EnergySystem.Instance.IsDarkEnergyFull();
+        if (!isDarkEnergyFull) DamageOpponent(-totalDarkDamageBuff);
+        if (isDarkEnergyFull) DamageSelf(-totalDarkDamageBuff);
+    }
+
+    public void DealCardPlayedExtraDamage(Transform transform)
+    {
+        CardData cardData = transform.GetComponent<CardData>();
+        if (cardData.IsBrightCard)
+        {
+            BrightCardPlayedExtraDamage();
+            Debug.Log("DealCardPlayedExtraDamage_Bright: " + -GetCurrentBrightEnergy());
+        }
+        if (!cardData.IsBrightCard)
+        {
+            DarkCardPlayedExtraDamage();
+            Debug.Log("DealCardPlayedExtraDamage_Dark: " + -LevelManager.Instance.GetTotalDarkDamageBuff());
+        }
+    }
 
 
 
@@ -156,16 +190,16 @@ public class CardActionManager : MonoBehaviour
 
     public void GainHealth(int value)
     {
-        if (_enemyHealth.IsHealthFull) return;
-        if (_playerHealth.IsHealthFull) return;
+        // if (_enemyHealth.IsHealthFull) return;
+        // if (_playerHealth.IsHealthFull) return;
 
         if (!IsPlayerTurn()) _enemyHealth.Health += (float)value;
         if (IsPlayerTurn()) _playerHealth.Health += (float)value;
     }
     public void OpponentGainHealth(int value)
     {
-        if (_enemyHealth.IsHealthFull) return;
-        if (_playerHealth.IsHealthFull) return;
+        // if (_enemyHealth.IsHealthFull) return;
+        // if (_playerHealth.IsHealthFull) return;
 
         if (IsPlayerTurn()) _enemyHealth.Health += (float)value;
         if (!IsPlayerTurn()) _playerHealth.Health += (float)value;

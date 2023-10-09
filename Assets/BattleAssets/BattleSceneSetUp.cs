@@ -23,18 +23,28 @@ public class BattleSceneSetUp : MonoBehaviour
     {
         currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
+
     }
 
 
     void Start()
     {
         hasExecutedCheckHealth = false;
+
+    }
+
+    void Start()
+    {
+
         ChangeSet();
 
     }
 
     private void Update()
     {
+
+        //Debug.Log(enemyHealthSystem.Health);
+
         CheckHealth();
     }
 
