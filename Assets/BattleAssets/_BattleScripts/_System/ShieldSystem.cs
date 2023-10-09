@@ -10,47 +10,66 @@ public class ShieldSystem : MonoBehaviour
     public int ShieldValue
     { get { return _shieldValue; } set { _shieldValue = value; } }
 
-    [SerializeField] Transform _shieldBar;
-    [SerializeField] Transform _shieldGirdGenerator;
+    // [SerializeField] Transform _shieldBar;
+    // [SerializeField] Transform _shieldGirdGenerator;
+
+    [SerializeField] TextMeshProUGUI _shieldText;
 
 
     void Start()
     {
-        ShieldValueUpadte();
+
     }
 
     void Update()
     {
-        ShieldvalueCheck();
+        ShieldValueUpadte();
 
     }
 
     void ShieldvalueCheck()
     {
+        _shieldText.text = _shieldValue.ToString();
         if (_shieldValue < 0) _shieldValue = 0;
     }
 
 
+    // void ShieldUpadte()
+    // {
+
+    //     _shieldText.text = _shieldValue.ToString();
+
+    // }
+
+
+
+
+
+
+
+
+
+
     public void ShieldValueUpadte()
     {
-        DestoryShield();
-        AddShield();
+        _shieldText.text = _shieldValue.ToString();
+        if (_shieldValue < 0) _shieldValue = 0;
     }
-    void AddShield()
-    {
-        for (int i = 0; i < _shieldValue; i++)
-        {
-            Instantiate(_shieldBar, _shieldGirdGenerator);
-        }
-    }
-    void DestoryShield()
-    {
-        var shieldList = _shieldGirdGenerator.GetComponentsInChildren<Image>();
-        foreach (var item in shieldList)
-        {
-            Destroy(item.gameObject);
-        }
-    }
+    // void AddShield()
+    // {
+    //     for (int i = 0; i < _shieldValue; i++)
+    //     {
+    //         Instantiate(_shieldBar, _shieldGirdGenerator);
+    //     }
+    // }
+    // void DestoryShield()
+    // {
+    //     var shieldList = _shieldGirdGenerator.GetComponentsInChildren<Image>();
+    //     foreach (var item in shieldList)
+    //     {
+    //         Destroy(item.gameObject);
+    //     }
+    // }
 
 
 }

@@ -40,10 +40,10 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
-                enemyHealthSystem._health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
 
                 //设置玩家卡牌及血量
-                playerHealthSystem._health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+                playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
                 break;
             //牛牛
@@ -53,10 +53,10 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
-                enemyHealthSystem._health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
 
                 //设置玩家卡牌及血量
-                playerHealthSystem._health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+                playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
 
                 break;
@@ -67,24 +67,24 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyOwnedcards;
-                enemyHealthSystem._health = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyMaxHealth;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyMaxHealth;
 
                 //设置玩家卡牌及血量
-                playerHealthSystem._health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+                playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
 
                 break;
-           //卡玛佐兹
+            //卡玛佐兹
             case 3:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/市政厅");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/豹子boss");
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
-                enemyHealthSystem._health = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyMaxHealth;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyMaxHealth;
 
                 //设置玩家卡牌及血量
-                playerHealthSystem._health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+                playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
 
                 break;
@@ -95,24 +95,24 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyOwnedcards;
-                enemyHealthSystem._health = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyMaxHealth;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyMaxHealth;
 
                 //设置玩家卡牌及血量
-                playerHealthSystem._health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+                playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
 
                 break;
-           //兰道尔
+            //兰道尔
             case 5:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/教堂");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/主教boss");
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyOwnedcards;
-                enemyHealthSystem._health = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyMaxHealth;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyMaxHealth;
 
                 //设置玩家卡牌及血量
-                playerHealthSystem._health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
+                playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
 
                 break;
@@ -123,12 +123,12 @@ public class BattleSceneSetUp : MonoBehaviour
     private void CheckHealth()
     {
         //玩家失去所有生命值
-        if(playerHealthSystem.Health <= 0)
+        if (playerHealthSystem.Health <= 0)
         {
             ScenesMgr.GetInstance().LoadSceneAsyn("TitleScene", AfterReturnToTitle);
         }
         //敌人失去所有生命值
-        if(enemyHealthSystem.Health <= 0)
+        if (enemyHealthSystem.Health <= 0)
         {
             //完成战斗后再执行
 
