@@ -167,6 +167,8 @@ public class PlayerInfo
 
     public bool AlreadyFinishedAward_SelectNewCard;
     public bool AlreadyFinishedAward_DelateCard;
+
+    public string currentTargetScene;
     
     public PlayerInfo()
     {
@@ -180,6 +182,7 @@ public class PlayerInfo
         AlreadyFinishedAward_SelectNewCard = true;
         AlreadyFinishedAward_DelateCard = true;
 
+        currentTargetScene = "MainPage";
         /////¸øÍæ¼Ò¼ÓÅÆ/////////////////////////
         ChangeCard(0, 3);
         ChangeCard(1, 3);

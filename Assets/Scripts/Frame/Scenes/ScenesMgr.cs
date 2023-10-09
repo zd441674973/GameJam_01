@@ -52,6 +52,8 @@ public class ScenesMgr : BaseManager<ScenesMgr>
             //这里面去更新进度条
             yield return ao.progress;
         }
+
+        yield return new WaitForSeconds(0.3f); // 等待1秒
         //加载完成过后 才会去执行fun
         fun();
     }

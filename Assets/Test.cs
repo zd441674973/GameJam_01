@@ -27,6 +27,11 @@ public class Test : MonoBehaviour
             ShowDialogue();
         }
 
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            EventCenter.GetInstance().EventTrigger("ScreenShake");
+        }
+
     }
 
     void Function()

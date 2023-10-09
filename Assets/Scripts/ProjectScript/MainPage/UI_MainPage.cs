@@ -25,6 +25,7 @@ public class UI_MainPage : BasePanel
     private bool isCardLabButtonRotating = false;
     public Image CadLabButtonIcon;
 
+
     public override void ShowMe()
     {
         base.ShowMe();
@@ -35,6 +36,7 @@ public class UI_MainPage : BasePanel
 
         EventCenter.GetInstance().AddEventListener("CloseMenu", ChangeMenuState);
         EventCenter.GetInstance().AddEventListener("CloseCardLibrary", ChangeCardlabState);
+
     }
 
     protected override void Awake()
@@ -115,15 +117,12 @@ public class UI_MainPage : BasePanel
     public void MouseEnterOpenCardLabraryButton(BaseEventData data)
     {
         isCardLabButtonRotating = true;
-        Debug.Log("1");
     }
 
     public void MouseExitOpenCardLabraryButton(BaseEventData data)
     {
         isCardLabButtonRotating = false;
-        Debug.Log("2");
     }
-
 
     private void ChnageButtonIcon()
     {
