@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardData : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class CardData : MonoBehaviour
     [SerializeField] Transform _brightCard;
     [SerializeField] Transform _darkCard;
 
-
+    public Image cardImage;
 
     [Header("Card Info")]
     [SerializeField] bool _isInPlayerHand;
@@ -35,6 +36,7 @@ public class CardData : MonoBehaviour
         card = GameDataControl.GetInstance().GetCardInfo(_cardID);
         _cardName.text = card.CardName;
         _cardDescription.text = card.Description;
+        cardImage.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/" + card.CardName);
     }
 
     void Update()

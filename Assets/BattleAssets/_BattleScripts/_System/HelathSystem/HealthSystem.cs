@@ -22,6 +22,7 @@ public class HealthSystem : MonoBehaviour
 
     bool _isActive;
 
+
     void Start()
     {
         _maxHealth = _health;

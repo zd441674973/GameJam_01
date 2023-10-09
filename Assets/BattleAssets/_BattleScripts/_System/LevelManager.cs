@@ -101,7 +101,7 @@ public class LevelManager : MonoBehaviour
     public Transform GetDiscardPile() => CardDiscardPile.Instance.GetComponent<Transform>();
 
 
-    public int GetDardBeginBuff() => _darkEnergyBeginBuff;
+    public int GetDarkBeginBuff() => _darkEnergyBeginBuff;
     public int GetTotalDarkDamageBuff() => _totalDarkDamageBuff;
 
 
@@ -483,16 +483,6 @@ public class LevelManager : MonoBehaviour
         UpdateEnemyHandCardCount();
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
