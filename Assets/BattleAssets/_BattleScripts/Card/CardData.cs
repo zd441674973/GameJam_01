@@ -22,6 +22,9 @@ public class CardData : MonoBehaviour
         set { _isInPlayerHand = value; }
     }
 
+    [SerializeField] bool _isPlayerCard;
+    public bool IsPlayerCard { get { return _isPlayerCard; } }
+
     [SerializeField] int _cardID;
     [SerializeField] TextMeshProUGUI _cardName;
     [SerializeField] TextMeshProUGUI _cardDescription;

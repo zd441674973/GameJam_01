@@ -142,6 +142,7 @@ public class EnemyController : MonoBehaviour
     {
         _currentCard.gameObject.SetActive(false);
         EnemyCardIsPlayed?.Invoke();
+        
         if (IsDarwnCard(_currentCard)) _cardIndex = 0;
         else _cardIndex++;
     }

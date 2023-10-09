@@ -434,7 +434,7 @@ MonoBehaviour:
   _enemyHandCardCount: 0
   _enemyHandCardMax: 6
   _battleArea: {fileID: 1062509667}
-  _darkEnergyBonus: 0
+  _totalDarkDamageBuff: 0
   _darkEnergyBeginBuff: 0
 --- !u!114 &238752204
 MonoBehaviour:
@@ -449,14 +449,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerDeck:
-  - {fileID: 4200471566151222143, guid: f8d760227a7992545b45f923ff259a22, type: 3}
-  - {fileID: 4200471566151222143, guid: d645984911149f745b72c8ad4c3ca8ce, type: 3}
-  - {fileID: 4200471566151222143, guid: 87cf90763fa1c444bb1be95d01590ee2, type: 3}
   - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
-  - {fileID: 4200471566151222143, guid: 413061938ae8844408360507d0907752, type: 3}
-  - {fileID: 4200471566151222143, guid: 73bfcceaf756fc845b7908fa21a2fa7b, type: 3}
-  - {fileID: 4200471566151222143, guid: 4145858157cbb3a4f891526097ac364e, type: 3}
-  - {fileID: 4200471566151222143, guid: ab2a8d19520371142990f75250ef047c, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
   _playerHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -467,14 +467,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _enemyDeck:
-  - {fileID: 2887820239645675523, guid: 65c32d9efde3bc34588812636aee4df0, type: 3}
-  - {fileID: 2887820239645675523, guid: bd4f5b993adf9044d8381bc2a179bc24, type: 3}
-  - {fileID: 2887820239645675523, guid: f8adb5ab243b18349b418ff0f41fb9ed, type: 3}
-  - {fileID: 2887820239645675523, guid: 50be4fa3a89269248a1b36fa40353707, type: 3}
-  - {fileID: 2887820239645675523, guid: 13b22e7533933e04bac6a813d84e839b, type: 3}
-  - {fileID: 2887820239645675523, guid: c7e2af74c45156a49bc85d47cc2ec3e2, type: 3}
-  - {fileID: 2887820239645675523, guid: f6efd0a00feecb44cbd62047cb47e32e, type: 3}
-  - {fileID: 2887820239645675523, guid: 96d7f3f72e326384fb03e7532630e111, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
+  - {fileID: 4200471566151222143, guid: 5bcfb3d87c53416448ccc2fedd2c424e, type: 3}
   _enemyHandCard:
   - {fileID: 0}
   - {fileID: 0}
@@ -576,8 +576,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 612506219}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -851,7 +850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &612506219
 RectTransform:
   m_ObjectHideFlags: 0
@@ -859,19 +858,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612506218}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1013408799}
-  m_Father: {fileID: 350192702}
-  m_RootOrder: 0
+  m_Father: {fileID: 224343170461190180}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.880493, y: -2.0391693}
-  m_SizeDelta: {x: 123.82, y: 48.8}
+  m_AnchoredPosition: {x: 890, y: -476}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &612506221
 MonoBehaviour:
@@ -917,7 +916,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1873260504}
         m_TargetAssemblyTypeName: TurnSystem, Assembly-CSharp
         m_MethodName: NextTurn
         m_Mode: 1
@@ -2383,7 +2382,7 @@ GameObject:
   m_Layer: 5
   m_Name: EnergyBar
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 00b8ce4a201871b498992f536279acf7, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2493,7 +2492,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826700147}
-  - component: {fileID: 1826700148}
   m_Layer: 0
   m_Name: ExtraDamageManager
   m_TagString: Untagged
@@ -2516,19 +2514,6 @@ Transform:
   m_Father: {fileID: 107484416}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1826700148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826700146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb49b367001f44948baa611fa297c0cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _battleBeginBuff: 0
 --- !u!1001 &1827486675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3219,6 +3204,7 @@ RectTransform:
   - {fileID: 453523722}
   - {fileID: 1981228482}
   - {fileID: 2126505838}
+  - {fileID: 612506219}
   m_Father: {fileID: 1758077502}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3669,6 +3655,10 @@ PrefabInstance:
     - target: {fileID: 1856154268991505147, guid: 05a38d894a94c0d478ec2f59bad5b4c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1856154269929325100, guid: 05a38d894a94c0d478ec2f59bad5b4c5, type: 3}
+      propertyPath: _shieldValue
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1856154270171278876, guid: 05a38d894a94c0d478ec2f59bad5b4c5, type: 3}
       propertyPath: m_text
@@ -4135,6 +4125,14 @@ PrefabInstance:
     - target: {fileID: 6532206746557133879, guid: 77b2b9b9806a16f4fab337fa895ad5ea, type: 3}
       propertyPath: m_enableWordWrapping
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597812991334340244, guid: 77b2b9b9806a16f4fab337fa895ad5ea, type: 3}
+      propertyPath: _health
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597812991334340245, guid: 77b2b9b9806a16f4fab337fa895ad5ea, type: 3}
+      propertyPath: _shieldValue
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8597812992185478764, guid: 77b2b9b9806a16f4fab337fa895ad5ea, type: 3}
       propertyPath: m_Name

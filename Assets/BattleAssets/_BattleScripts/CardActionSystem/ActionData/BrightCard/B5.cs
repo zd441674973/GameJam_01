@@ -16,18 +16,17 @@ public class B5 : CardAction
         if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
             CardActionManager.Instance.GainShield(shieldValue * _brightBonus);
+            Debug.Log("B5_GainShield_BF: " + shieldValue * _brightBonus);
         }
         else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
             CardActionManager.Instance.OpponentGainShield(shieldValue);
+            Debug.Log("B5_OpGainShield_DF: " + shieldValue);
         }
         else
         {
             CardActionManager.Instance.GainShield(shieldValue);
+            Debug.Log("B5_OpGainShield_R: " + shieldValue);
         }
-        
-        // CardActionManager.Instance.GainShield(shieldValue);
-
-        // Debug.Log($"B5_played; GainShield: {shieldValue}");
     }
 }

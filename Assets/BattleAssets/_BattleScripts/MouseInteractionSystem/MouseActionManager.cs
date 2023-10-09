@@ -248,8 +248,8 @@ public class MouseActionManager : MonoBehaviour
         if (Distance() > _cardPlayedDistance)
         {
             BattleUIManager.Instance.SetPlayerPlayCardAreaUI(false);
-
             CardHasBeenPlayed?.Invoke();
+            _currentDraggingCard = null;
         }
         else
         {

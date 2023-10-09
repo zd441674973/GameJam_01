@@ -18,24 +18,28 @@ public class B4 : CardAction
 
             CardActionManager.Instance.DrawCard(_card.DrawCardFromLabrary * _brightBonus);
 
+            Debug.Log("B4_GainShield_BF: " + _card.SheildToSelf * _brightBonus);
+            Debug.Log("B4_Drawcard_BF: " + _card.DrawCardFromLabrary * _brightBonus);
+
         }
         else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
             CardActionManager.Instance.OpponentGainShield(_card.SheildToSelf);
 
             CardActionManager.Instance.OpponentDrawCard(_card.DrawCardFromLabrary);
+
+            Debug.Log("B4_OpGainShield_DF: " + _card.SheildToSelf);
+            Debug.Log("B4_OpDrawcard_DF: " + _card.DrawCardFromLabrary);
         }
         else
         {
             CardActionManager.Instance.GainShield(_card.SheildToSelf);
 
             CardActionManager.Instance.DrawCard(_card.DrawCardFromLabrary);
+
+            Debug.Log("B4_GainShield_R: " + _card.SheildToSelf);
+            Debug.Log("B4_Drawcard_R: " + _card.DrawCardFromLabrary);
         }
 
-        // CardActionManager.Instance.GainShield(_card.SheildToSelf);
-
-        // CardActionManager.Instance.DrawCard(_card.DrawCardFromLabrary);
-
-        // Debug.Log($"B4_played; GainShield: {_card.SheildToSelf}; DarwCard: {_card.DrawCardFromLabrary};");
     }
 }

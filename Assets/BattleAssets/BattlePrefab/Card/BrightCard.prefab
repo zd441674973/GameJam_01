@@ -120,7 +120,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697521698567455610}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -155,6 +155,7 @@ MonoBehaviour:
   _brightCard: {fileID: 539559110185625790}
   _darkCard: {fileID: 696279959082279768}
   _isInPlayerHand: 0
+  _isPlayerCard: 1
   _cardID: 0
   _cardName: {fileID: 3695263921535125845}
   _cardDescription: {fileID: 63267805747299672}

@@ -18,16 +18,17 @@ public class B0 : CardAction
         if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
             CardActionManager.Instance.DamageOpponent(_card.HealthToOpponentMin * _brightBonus);
-            //Debug.Log("B0_Dealdamage_Bonus" + _card.HealthToOpponentMin);
+            Debug.Log("B0_Dealdamage_BF: " + _card.HealthToOpponentMin * _brightBonus);
         }
         else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
             CardActionManager.Instance.DamageSelf(_card.HealthToOpponentMin);
+            Debug.Log("B0_DealdamageToOpponent_DF: " + _card.HealthToOpponentMin);
         }
         else
         {
             CardActionManager.Instance.DamageOpponent(_card.HealthToOpponentMin);
-            //Debug.Log("B0_Dealdamage" + _card.HealthToOpponentMin);
+            Debug.Log("B0_Dealdamage_R: " + _card.HealthToOpponentMin);
         }
     }
 }

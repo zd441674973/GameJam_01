@@ -13,20 +13,18 @@ public class B6 : CardAction
     {
         if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
-            CardActionManager.Instance.GainHealth(_card.HealthToSelfMin * _brightBonus);
+            CardActionManager.Instance.GainShield(_card.SheildToSelf * _brightBonus);
+            Debug.Log("B6_GainHealth_BF: " + _card.HealthToSelfMin * _brightBonus);
         }
         else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
-            CardActionManager.Instance.OpponentGainHealth(_card.HealthToSelfMin);
+            CardActionManager.Instance.OpponentGainShield(_card.SheildToSelf);
+            Debug.Log("B6_OpGainShield_DF: " + _card.SheildToSelf);
         }
         else
         {
-            CardActionManager.Instance.GainHealth(_card.HealthToSelfMin);
+            CardActionManager.Instance.GainShield(_card.SheildToSelf);
+            Debug.Log("B6_OpGainShield_R: " + _card.SheildToSelf);
         }
-
-
-        // CardActionManager.Instance.GainShield(_card.SheildToSelf);
-
-        // Debug.Log($"B6_played; GainShield: {_card.SheildToSelf}");
     }
 }

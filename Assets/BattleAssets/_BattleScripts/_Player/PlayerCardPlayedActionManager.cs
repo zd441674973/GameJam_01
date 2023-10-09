@@ -40,7 +40,7 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
     void UpdateHandCardCount() => LevelManager.Instance.UpdatePlayerHandCardCount();
     void DiscardCard(Transform card) => LevelManager.Instance.PlayerDiscardCard(card);
     void CheckDiscardedCardType(Transform card) => LevelManager.Instance.CheckOrigianlAttributes(card);
-
+    void DealCardPlayedExtraDamage(Transform transform) => CardActionManager.Instance.DealCardPlayedExtraDamage(transform);
 
     void UpdateEnergyBar(Transform transform)
     {
@@ -53,19 +53,6 @@ public class PlayerCardPlayedActionManager : MonoBehaviour
         if (!cardData.IsBrightCard)
         {
             EnergySystem.Instance.GainDarkEnergy(1, false);
-        }
-    }
-
-    void DealCardPlayedExtraDamage(Transform transform)
-    {
-        CardData cardData = transform.GetComponent<CardData>();
-        if (cardData.IsBrightCard)
-        {
-            CardActionManager.Instance.BrightCardPlayedExtraDamage();
-        }
-        if (!cardData.IsBrightCard)
-        {
-            CardActionManager.Instance.DarkCardPlayedExtraDamage();
         }
     }
 
