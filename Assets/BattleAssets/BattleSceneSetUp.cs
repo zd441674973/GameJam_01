@@ -72,7 +72,7 @@ public class BattleSceneSetUp : MonoBehaviour
             //赛珀派
             case 2:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/工厂");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蝙蝠boss");
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/豹子boss");
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyOwnedcards;
@@ -86,7 +86,7 @@ public class BattleSceneSetUp : MonoBehaviour
             //卡玛佐兹
             case 3:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/市政厅");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/豹子boss");
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蝙蝠boss"); 
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
@@ -139,10 +139,9 @@ public class BattleSceneSetUp : MonoBehaviour
         //敌人失去所有生命值
         if (enemyHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
-            //完成战斗后再执行
-            Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID);
+            GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
 
-            if(currentLevel == 0)
+            if (currentLevel == 0)
             {
                 GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 1;
             }
@@ -173,7 +172,7 @@ public class BattleSceneSetUp : MonoBehaviour
             }
 
 
-
+            GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = false;
 
             EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
 

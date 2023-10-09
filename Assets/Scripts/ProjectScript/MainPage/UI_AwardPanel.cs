@@ -18,7 +18,9 @@ public class UI_AwardPanel : BasePanel
 
     private List<Card> allCards;
     private List<Card> drawnNewCards;
-    public float rareCardPosibility = 0.7f;
+    public float rareCardPosibility = 0.4f;
+    public float normalCardPosibility = 0.7f;
+    public float EpicCardPosibility = 0.7f;
 
     public override void ShowMe()
     {
@@ -124,14 +126,19 @@ public class UI_AwardPanel : BasePanel
             float randomValue = Random.Range(0f, 1f); // 生成一个0到1之间的随机数
 
             // 根据随机数来确定卡牌的稀有度
-            if (randomValue <= rareCardPosibility)
+            if (randomValue <= 0.3)
             {
                 // 添加稀有牌到刷新后的列表
                 drawnNewCards.Add(GetRandomRareCard());
             }
-            else
+            else if(randomValue > 0.7)
             {
                 // 添加普通牌到刷新后的列表
+                drawnNewCards.Add(GetRandomNormalCard());
+            }
+            else if(randomValue > 0.3 && randomValue <= 0.7)
+            { 
+                // 添加史诗牌到刷新后的列表
                 drawnNewCards.Add(GetRandomEpicCard());
             }
         }
@@ -146,6 +153,15 @@ public class UI_AwardPanel : BasePanel
         NewcardSlot2.InitInfo(drawnNewCards[1]);
         NewcardSlot3.InitInfo(drawnNewCards[2]);
     }
+
+
+    // 从所有卡牌中随机选择一张普通牌
+    private Card GetRandomNormalCard()
+    {
+        List<Card> rareCards = allCards.FindAll(card => card.Rarity == "Normal" && card.Type == "ElectricalEnergy");
+        return rareCards[Random.Range(0, rareCards.Count)];
+    }
+
 
     // 从所有卡牌中随机选择一张稀有牌
     private Card GetRandomRareCard()

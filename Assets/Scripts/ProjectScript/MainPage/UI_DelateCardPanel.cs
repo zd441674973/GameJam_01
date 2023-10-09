@@ -105,7 +105,6 @@ public class UI_DelateCardPanel : BasePanel
             GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_DelateCard = true;
             for(int i = 0; i < cardsNeedToDelate.Count; i++)
             {
-                Debug.Log(i);
                 EventCenter.GetInstance().EventTrigger<int, int>("CardChange", cardsNeedToDelate[i].CardID, -1);
             }
 

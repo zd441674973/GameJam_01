@@ -103,7 +103,6 @@ public class UI_MainPage : BasePanel
     {
         ChnageButtonIcon();
 
-        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID);
     }
 
     private void MouseEnterOpenMenuButton(BaseEventData data)

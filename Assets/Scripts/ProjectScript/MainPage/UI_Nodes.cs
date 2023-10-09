@@ -35,10 +35,6 @@ public class UI_Nodes : BasePanel
         EventCenter.GetInstance().AddEventListener("currentPlayerNodeIDchange", SetNodeID);
     }
 
-    private void Update()
-    {
-        Debug.Log(currentPlayerNodeID);
-    }
 
     private void OnDestroy()
     {

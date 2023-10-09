@@ -29,14 +29,14 @@ public class LoadingManager : MonoBehaviour
     {
         if(currentTargetSceneName == "MainPage")
         {
-            if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
+            if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0 || GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6)
             {
                 UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
             }
-
-            if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6)
+            else
             {
-                UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
+                if(!GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard)
+                UIManager.GetInstance().ShowPanel<UI_AwardPanel>("AwardPanel", E_UI_Layer.Top);
             }
 
             EventCenter.GetInstance().EventTrigger("turnOffBK");

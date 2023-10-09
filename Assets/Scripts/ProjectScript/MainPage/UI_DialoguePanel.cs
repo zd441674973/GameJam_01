@@ -384,7 +384,6 @@ public class UI_DialoguePanel : BasePanel
     /// </summary>
     private void PressMouse()
     {
-        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID);
 
         if (!hitButton && !MenuPanelIsOpen)
         {
