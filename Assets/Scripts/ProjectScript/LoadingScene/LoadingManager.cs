@@ -33,9 +33,15 @@ public class LoadingManager : MonoBehaviour
             {
                 UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
             }
+
+            if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6)
+            {
+                UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
+            }
+
+            EventCenter.GetInstance().EventTrigger("turnOffBK");
         }
 
-        EventCenter.GetInstance().EventTrigger("turnOffBK");
     }
 
     private void UpdateProgressBar(float progress)

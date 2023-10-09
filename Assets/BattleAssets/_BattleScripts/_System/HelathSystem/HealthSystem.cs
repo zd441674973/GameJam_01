@@ -46,7 +46,7 @@ public class HealthSystem : MonoBehaviour
         if (_health == _maxHealth) _isFullHealth = true;
         else _isFullHealth = false;
 
-        /* if (_health <= 0)
+        /*if (_health <= 0)
          {
              GameOver();
              _isActive = false;

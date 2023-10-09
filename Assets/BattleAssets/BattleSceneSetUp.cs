@@ -17,21 +17,24 @@ public class BattleSceneSetUp : MonoBehaviour
     private List<Card> Playercards = new List<Card>();
     private List<Card> Enemycards = new List<Card>();
 
+    private bool hasExecutedCheckHealth;
+
     private void Awake()
     {
-        //currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+
     }
+
 
     void Start()
     {
-        currentLevel = 0;
+        hasExecutedCheckHealth = false;
         ChangeSet();
 
     }
 
     private void Update()
     {
-        //Debug.Log(enemyHealthSystem.Health);
         CheckHealth();
     }
 
@@ -129,19 +132,55 @@ public class BattleSceneSetUp : MonoBehaviour
     private void CheckHealth()
     {
         //玩家失去所有生命值
-        if (playerHealthSystem.Health <= 0)
+        if (playerHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
             ScenesMgr.GetInstance().LoadSceneAsyn("TitleScene", AfterReturnToTitle);
         }
         //敌人失去所有生命值
-        if (enemyHealthSystem.Health <= 0)
+        if (enemyHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
             //完成战斗后再执行
+            Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID);
 
-            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
+            if(currentLevel == 0)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 1;
+            }
+
+            if (currentLevel == 1)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 2;
+            }
+
+            if (currentLevel == 2)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 3;
+            }
+
+            if (currentLevel == 3)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 4;
+            }
+
+            if (currentLevel == 4)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 5;
+            }
+
+            if (currentLevel == 5)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 6;
+            }
+
+
+
 
             EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
-            ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
+
+            ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
+            //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
+
+            hasExecutedCheckHealth = true;
         }
     }
 
@@ -149,9 +188,10 @@ public class BattleSceneSetUp : MonoBehaviour
     {
 
     }
-    private void AfterReturnToMain()
-    {
+    private void loadScene()
+    {/*
         UIManager.GetInstance().HidePanel("UI_MainPage");
-        UIManager.GetInstance().HidePanel("UI_GameMap");
+        UIManager.GetInstance().HidePanel("UI_GameMap");*/
+        //EventCenter.GetInstance().EventTrigger("turnOffBK");
     }
 }

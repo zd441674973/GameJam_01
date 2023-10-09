@@ -11,6 +11,7 @@ public enum Nodes
     Node2,
     Node3,
     Node4,
+    Node5
 }
 
 public class UI_Nodes : BasePanel
@@ -32,6 +33,11 @@ public class UI_Nodes : BasePanel
         SetNodeID();
         GetControl<Button>("ButtonStartBattle").onClick.AddListener(StartBattle);
         EventCenter.GetInstance().AddEventListener("currentPlayerNodeIDchange", SetNodeID);
+    }
+
+    private void Update()
+    {
+        Debug.Log(currentPlayerNodeID);
     }
 
     private void OnDestroy()
@@ -91,6 +97,9 @@ public class UI_Nodes : BasePanel
             case "Node4":
                 UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
                 break;
+            case "Node5":
+                UIManager.GetInstance().ShowPanel<UI_DialoguePanel>("UI_DialoguePanel", E_UI_Layer.Mid);
+                break;
         }
     }
 
@@ -112,6 +121,9 @@ public class UI_Nodes : BasePanel
                 break;
             case "Node4":
                 SetButtons(Nodes.Node4);
+                break;
+            case "Node5":
+                SetButtons(Nodes.Node5);
                 break;
         }
 

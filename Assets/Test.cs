@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
+    public HealthSystem enemyhealthSystem;
+
     // Update is called once per frame
     void Update()
     {
@@ -30,6 +32,11 @@ public class Test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             EventCenter.GetInstance().EventTrigger("ScreenShake");
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            enemyhealthSystem.Health = 0;
         }
 
     }

@@ -41,6 +41,7 @@ public class UI_DialoguePanel : BasePanel
 
     //检测MenuPanel是否开启
     private bool MenuPanelIsOpen;
+    private bool IsOkToPlayEnding;
 
     public Image BackGround;
     //左侧角色立绘
@@ -74,12 +75,7 @@ public class UI_DialoguePanel : BasePanel
             MenuPanelIsOpen = false;
         });
 
-
-        //开始时自动解析Json文件
-        ParseData(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID);
-
-        //初始化设定
-        currentdialogIndex = dialogIndex;
+        IsOkToPlayEnding = false;
 
         if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6)
         {
@@ -93,8 +89,16 @@ public class UI_DialoguePanel : BasePanel
 
             openMailButton.onClick.AddListener(ReadMail);
 
-            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID += 1;
+            IsOkToPlayEnding = true;
+
         }
+
+
+        //开始时自动解析Json文件
+        ParseData(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID);
+
+        //初始化设定
+        currentdialogIndex = dialogIndex;
 
     }
 
@@ -294,6 +298,10 @@ public class UI_DialoguePanel : BasePanel
     /// </summary>
     public void ShowDialogue()
     {
+   
+
+
+
         //当存在索引编号时，更新文本和立绘
         if (dialogdic.ContainsKey(dialogIndex))
         {
@@ -353,19 +361,22 @@ public class UI_DialoguePanel : BasePanel
 
     private void SkipDiaglogue()
     {
-        if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 7)
-        {
-            UIManager.GetInstance().ShowPanel<UI_TeamMember>("UI_TeamMember", E_UI_Layer.Top);
-        }
-
 
         MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
-        //结束当前阶段
-        UIManager.GetInstance().HidePanel("UI_DialoguePanel");
-        //EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
 
-        ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
+        if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6 && IsOkToPlayEnding)
+        {
+            UIManager.GetInstance().ShowPanel<UI_TeamMember>("UI_TeamMember", E_UI_Layer.Top);
+        }
+        else
+        {
+            ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
+        }
+
+        //结束当前阶段
+        //UIManager.GetInstance().HidePanel("UI_DialoguePanel");
+        //EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
     }
 
     /// <summary>
@@ -384,6 +395,9 @@ public class UI_DialoguePanel : BasePanel
             //点击鼠标会使对话进行下去
             dialogIndex = GetInFo(dialogIndex).JumpToID;
             currentdialogIndex = dialogIndex;
+
+
+
 
             if(currentdialogIndex == 26 && GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)
             {
@@ -404,11 +418,13 @@ public class UI_DialoguePanel : BasePanel
                 UIManager.GetInstance().HidePanel("UI_DialoguePanel");
      
 
-                if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID < 7)
+                if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID < 6)
                 {
                     ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
                 }
-                else if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID >= 7)
+                
+                
+                if(GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6 && IsOkToPlayEnding)
                 {
                     UIManager.GetInstance().ShowPanel<UI_TeamMember>("UI_TeamMember", E_UI_Layer.Top);
                 }
