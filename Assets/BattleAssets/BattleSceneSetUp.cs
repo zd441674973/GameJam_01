@@ -19,6 +19,10 @@ public class BattleSceneSetUp : MonoBehaviour
 
     private bool hasExecutedCheckHealth;
 
+    // 获取Canvas的RectTransform
+    public RectTransform canvasRect;
+    public GameObject EnemyPrefab;
+
     private void Awake()
     {
         currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
@@ -30,11 +34,6 @@ public class BattleSceneSetUp : MonoBehaviour
     void Start()
     {
         hasExecutedCheckHealth = false;
-
-    }
-
-    void Start()
-    {
 
         ChangeSet();
 
@@ -56,6 +55,8 @@ public class BattleSceneSetUp : MonoBehaviour
             case 0:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/实验室");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蜘蛛boss");
+
+                SetUpEnemyImage();
 
                 //设置怪物卡牌及血量
                 Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
@@ -202,5 +203,24 @@ public class BattleSceneSetUp : MonoBehaviour
         UIManager.GetInstance().HidePanel("UI_MainPage");
         UIManager.GetInstance().HidePanel("UI_GameMap");*/
         //EventCenter.GetInstance().EventTrigger("turnOffBK");
+    }
+
+
+    private void SetUpEnemyImage()
+    {
+   
+
+        // 计算屏幕中央的位置
+        Vector2 centerScreenPosition = new Vector2(Screen.width / 2f, Screen.height / 2f);
+
+        // 将屏幕中央的位置转换为Canvas中的位置
+        Vector2 centerCanvasPosition;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, centerScreenPosition, null, out centerCanvasPosition);
+
+        // 在Canvas中创建3D对象的Prefab
+        GameObject spawnedObject = Instantiate(EnemyPrefab, centerCanvasPosition, Quaternion.identity);
+
+        // 将生成的3D对象设置为Canvas的子对象
+        spawnedObject.transform.SetParent(canvasRect, false);
     }
 }

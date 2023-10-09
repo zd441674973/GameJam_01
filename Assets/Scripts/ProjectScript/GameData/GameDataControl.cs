@@ -315,7 +315,7 @@ public class EnemyNiuNiu : EnemyInfo
     {
         EnemyMaxHealth = 60;
         ChangeEnemyCard(17, 5);
-        ChangeEnemyCard(25, 4);
+        ChangeEnemyCard(21, 4);
         ChangeEnemyCard(23, 2);
         ChangeEnemyCard(24, 2);
         ChangeEnemyCard(22, 3);
@@ -327,7 +327,7 @@ public class EnemyBaoZi : EnemyInfo
     public EnemyBaoZi() : base("赛珀派")
     {
         EnemyMaxHealth = 70;
-        ChangeEnemyCard(26, 6);
+        ChangeEnemyCard(23, 6);
         ChangeEnemyCard(19, 3);
         ChangeEnemyCard(17, 3);
         ChangeEnemyCard(24, 2);
@@ -340,7 +340,7 @@ public class EnemyBianFu : EnemyInfo
     public EnemyBianFu() : base("卡玛佐兹")
     {
         EnemyMaxHealth = 80;
-        ChangeEnemyCard(27, 5);
+        ChangeEnemyCard(23, 5);
         ChangeEnemyCard(20, 4);
         ChangeEnemyCard(23, 1);
         ChangeEnemyCard(24, 5);
@@ -353,7 +353,7 @@ public class EnemyXiuShi : EnemyInfo
     public EnemyXiuShi() : base("修士兰福德")
     {
         EnemyMaxHealth = 90;
-        ChangeEnemyCard(28, 5);
+        ChangeEnemyCard(23, 5);
         ChangeEnemyCard(18, 4);
         ChangeEnemyCard(19, 3);
         ChangeEnemyCard(24, 2);
@@ -366,7 +366,7 @@ public class EnemyZhuJiao : EnemyInfo
     public EnemyZhuJiao() : base("大主教兰道尔")
     {
         EnemyMaxHealth = 100;
-        ChangeEnemyCard(29, 5);
+        ChangeEnemyCard(23, 5);
         ChangeEnemyCard(21, 3);
         ChangeEnemyCard(20, 3);
         ChangeEnemyCard(24, 2);
