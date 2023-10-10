@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: _cardID
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -722865983013089748, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
+      propertyPath: _isCausingDamageCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 697521698567455610, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_Name
       value: B7

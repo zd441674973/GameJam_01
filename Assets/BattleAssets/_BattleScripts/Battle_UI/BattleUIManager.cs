@@ -41,6 +41,9 @@ public class BattleUIManager : MonoBehaviour
     [Header("----------")]
     [SerializeField] Transform _playerPlayCardAreaUI;
 
+    [Header("----------")]
+    [SerializeField] Transform _cardInspectorUI;
+
 
 
 
@@ -74,19 +77,19 @@ public class BattleUIManager : MonoBehaviour
 
 
     public void SetDrawCardFromEnemyHandUI(bool condition) => _darwCardFromEnemyHandUI.gameObject.SetActive(condition);
-    public void UpdateDrawCardFromEnemyHandUIText(int value) => _darwCardFromEnemyHandUIText.text = $"从敌人手中获得一张牌";
+    public void UpdateDrawCardFromEnemyHandUIText(int value) => _darwCardFromEnemyHandUIText.text = $"从敌人手中获得{value}张牌";
 
 
 
 
     public void SetDestoryEnemyHandUI(bool condition) => _destoryEnemyHandUI.gameObject.SetActive(condition);
-    public void UpdateDestoryEnemyHandUIText(int value) => _destoryEnemyHandUIText.text = $"从敌人手牌中销毁一张牌";
+    public void UpdateDestoryEnemyHandUIText(int value) => _destoryEnemyHandUIText.text = $"从敌人手牌中销毁{value}张牌";
 
 
 
 
     public void SetDiscardPlayerHandUI(bool condition) => _discardPlayerHandUI.gameObject.SetActive(condition);
-    public void UpdateDiscardPlayerHandUIText(int value) => _discardPlayerHandUIText.text = $"选择一张牌并弃置";
+    public void UpdateDiscardPlayerHandUIText(int value) => _discardPlayerHandUIText.text = $"选择{value}张牌并弃置";
 
 
 
@@ -96,6 +99,8 @@ public class BattleUIManager : MonoBehaviour
 
 
     public void SetPlayerPlayCardAreaUI(bool condition) => _playerPlayCardAreaUI.gameObject.SetActive(condition);
+
+    public void SetCardInspectorUI(bool condition) => _cardInspectorUI.gameObject.SetActive(condition);
 
 
 

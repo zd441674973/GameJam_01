@@ -26,10 +26,27 @@ public class CardData : MonoBehaviour
     [SerializeField] bool _isPlayerCard;
     public bool IsPlayerCard { get { return _isPlayerCard; } }
 
+    [SerializeField] bool _isCausingDamageCard;
+    public bool IsCausingDamageCard { get { return _isCausingDamageCard; } }
+
     [SerializeField] int _cardID;
     [SerializeField] TextMeshProUGUI _cardName;
     [SerializeField] TextMeshProUGUI _cardDescription;
+
+
+
+
     Card card;
+
+    public Card GetCard() => card;
+
+
+
+
+
+
+
+
 
     void Start()
     {
@@ -70,7 +87,6 @@ public class CardData : MonoBehaviour
 
 
 
-    public Card GetCard() => card;
 
 
 

@@ -95,9 +95,17 @@ public class EnergySystem : MonoBehaviour
 
     void EnergyBarValueCheck()
     {
-        if (_brightBarEnergy >= _brightBarMaxEnergy) _isBrightBarFull = true;
+        if (_brightBarEnergy >= _brightBarMaxEnergy)
+        {
+            _isBrightBarFull = true;
+            _brightBarEnergy = _brightBarMaxEnergy;
+        }
 
-        if (_darkBarEnergy >= _darkBarMaxEnergy) _isDarkBarFull = true;
+        if (_darkBarEnergy >= _darkBarMaxEnergy)
+        {
+            _isDarkBarFull = true;
+            _darkBarEnergy = _darkBarMaxEnergy;
+        }
 
         if (_brightBarEnergy < 0) _brightBarEnergy = 0;
 

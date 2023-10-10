@@ -107,6 +107,8 @@ public class MouseActionManager : MonoBehaviour
     {
         if (!TurnSystem.Instance.IsPlayerTurn()) return;
 
+        
+
         switch (_mouseInteractionState)
         {
             case MouseInteractionState.WaitingForTimer:
@@ -456,6 +458,8 @@ public class MouseActionManager : MonoBehaviour
 
         CustomTimer.Instance.WaitforTime(0.5f);
         _mouseInteractionState = MouseInteractionState.WaitingForTimer;
+
+        _currentDraggingCard = null;
     }
 
 

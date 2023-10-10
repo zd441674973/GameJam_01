@@ -18,6 +18,11 @@ public class D20 : CardAction
         {
             CardActionManager.Instance.DamageOpponent(currentBrightEnergy * 2);
             CardActionManager.Instance.DamageSelf(darkBonusCount * 2);
+            CardActionManager.Instance.DarkCardPlayedExtraDamage();
+
+            Debug.Log("D20_DamageOpponent_DF: " + currentBrightEnergy * 2);
+            Debug.Log("D20_DamageSelf_DF: " + darkBonusCount * 2);
+            Debug.Log("D20_DarkCardPlayedExtraDamage_DF: ");
         }
         else if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
@@ -28,6 +33,11 @@ public class D20 : CardAction
         {
             CardActionManager.Instance.DamageOpponent(darkBonusCount * 2);
             CardActionManager.Instance.DamageSelf(currentBrightEnergy * 2);
+
+
+            Debug.Log("D20_DamageOpponent_R: " + darkBonusCount * 2);
+            Debug.Log("D20_DamageSelf_R: " + currentBrightEnergy * 2);
+
         }
     }
 }

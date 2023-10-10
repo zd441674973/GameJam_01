@@ -23,6 +23,7 @@ public class BattleSceneSetUp : MonoBehaviour
     }
 
     private int currentLevel;
+    public int CurrentLevel { get { return currentLevel; } }
     public Image backGround;
     public Image EnemyImage;
     public Image PlayerImage;
@@ -59,7 +60,7 @@ public class BattleSceneSetUp : MonoBehaviour
         currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
         // Debug.Log("currentLevel: " + currentLevel);
-        // currentLevel = 0;
+        //currentLevel = 0;
 
 
         hasExecutedCheckHealth = false;
@@ -73,7 +74,6 @@ public class BattleSceneSetUp : MonoBehaviour
 
         ChangeSet();
 
-        //Debug.Log("playerCardsCount: " + Playercards.Count);
         // Debug.Log("PlayerMaxHealth: " + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth);
         // Debug.Log("EnemyMaxHealth: " + GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth);
 

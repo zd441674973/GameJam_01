@@ -14,6 +14,7 @@ public class D17 : CardAction
         if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
             CardActionManager.Instance.DamageSelf(damage);
+            Debug.Log("D17_DamageSelf_DF: " + damage);
         }
         else if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
@@ -22,12 +23,7 @@ public class D17 : CardAction
         else
         {
             CardActionManager.Instance.DamageOpponent(damage);
+            Debug.Log("D17_DamageOpponent_R: " + damage);
         }
-
-
-
-        // CardActionManager.Instance.DamageOpponent(damage);
-
-        //Debug.Log("D1_Played; " + "Damage: " + damage);
     }
 }

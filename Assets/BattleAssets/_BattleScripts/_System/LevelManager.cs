@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int _playerHandCardMax;
     int _playerHandLimit = 8;
     [SerializeField] int _playerEachTurnDrawCardCount;
-    List<Transform> _currentPlayerHandCardList;
+    [SerializeField] bool _isPlayerDeckEmpty;
 
 
 
@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] List<bool> _isEnemySlotsEmpty;
     [SerializeField] int _enemyHandCardCount;
     [SerializeField] int _enemyHandCardMax;
+    [SerializeField] bool _isEnemyDeckEmpty;
 
 
 
@@ -44,6 +45,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Transform _battleArea;
     [SerializeField] int _totalDarkDamageBuff;
     [SerializeField] int _darkEnergyBeginBuff;
+
+
+
+    //[SerializeField] bool _isDeckShuffled;
 
 
 
@@ -63,7 +68,9 @@ public class LevelManager : MonoBehaviour
 
         TurnSystem.Instance.OnEnemyTurnFinished += OnEnemyTurnFinishedEvent;
 
-        //_darkEnergyBeginBuff = Random.Range(1, 6);
+        _isPlayerDeckEmpty = false;
+        _isEnemyDeckEmpty = false;
+
 
     }
 
@@ -81,6 +88,9 @@ public class LevelManager : MonoBehaviour
         // _handCardCount = PlayerHandCardCount();
 
         DarkEnergyBonusCalculation();
+
+        // UpdatePlayerEmptyList();
+        // UpdateEnemyEmptyList();
     }
 
 
@@ -104,7 +114,7 @@ public class LevelManager : MonoBehaviour
     public int GetDarkBeginBuff() => _darkEnergyBeginBuff;
     public int SetDarkBeginBuff(int value) => _darkEnergyBeginBuff = value;
 
-    
+
     public int GetTotalDarkDamageBuff() => _totalDarkDamageBuff;
 
 
@@ -386,6 +396,15 @@ public class LevelManager : MonoBehaviour
     }
 
 
+
+
+
+
+
+
+
+
+
     void DrawCard()
     {
         DrawCardLogic(_playerSlots, PlayerDeck(), PlayerHandCard(), _isPlayerSlotsEmpty, _playerHandCardMax, PlayerDiscardPile());
@@ -417,6 +436,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("DRAW CARD: Draw card");
 
+
         for (int i = 0; i < slotList.Count; i++)
         {
             int slotChildCount = SlotChildCount(slotList, i);
@@ -431,29 +451,52 @@ public class LevelManager : MonoBehaviour
                 if (HandCardCount(EnemyHandCard()) == maxCardDrawnCount) return;
             }
 
-            // if the card drawn is the last card in the deck
-            if (deckList.Count < 1) ShuffleFromDiscardPileToDeck(discardPile, deckList);
+            if (deckList.Count < 1)
+            {
+                ShuffleFromDiscardPileToDeck(discardPile, deckList);
+            }
 
+            // draw from the deck
             Transform card = deckList[Random.Range(0, deckList.Count)];
-            CardDeckManager.Instance.GenerateCard(card, slotList[i]);
+
+            card.SetParent(slotList[i]);
+            card.position = slotList[i].position;
+            discardPile.Remove(card);
+
+            card.gameObject.SetActive(true);
 
             var drawnCard = slotList[i].GetComponentInChildren<BoxCollider2D>().transform;
+
             handCardList[i] = drawnCard;
 
             isEmptySlotList[i] = false;
 
             deckList.Remove(card);
+
         }
     }
 
+
+
+
+
     void ShuffleFromDiscardPileToDeck(List<Transform> discardPile, List<Transform> deckList)
     {
-        for (int i = 0; i < deckList.Count; i++)
+        foreach (var item in discardPile)
         {
-            if (discardPile.Count < deckList.Count) return;
-            deckList.Add(discardPile[Random.Range(0, discardPile.Count)]);
+            deckList.Add(item);
         }
+
+        discardPile.Clear();
     }
+
+
+
+
+
+
+
+
 
     void DrawFromOpponentHandCard(List<Transform> selfSlotList, Transform drawnCard, List<Transform> selfHandCardList, List<bool> selfIsEmptySlotList)
     {

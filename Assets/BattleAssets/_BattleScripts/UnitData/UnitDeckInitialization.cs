@@ -7,6 +7,8 @@ public class UnitDeckInitialization : MonoBehaviour
 {
 
     [SerializeField] List<Transform> _totalCardList;
+    [SerializeField] List<Transform> _playerInitialDeck;
+    [SerializeField] List<Transform> _enemyInitialDeck;
 
     List<Transform> PlayerDeck() => CardDeckManager.Instance.GetPlayerDeck();
 
@@ -27,12 +29,22 @@ public class UnitDeckInitialization : MonoBehaviour
 
         //Find player cards
         List<Card> playerCardList = BattleSceneSetUp.Instance.GetPlayerCardList();
-        FindCardFromTotalCardDeck(playerCardList, PlayerDeck());
+        FindCardFromTotalCardDeck(playerCardList, _playerInitialDeck);
+        foreach (Transform card in _playerInitialDeck)
+        {
+            Transform cloneCard = CardDeckManager.Instance.GenerateCard(card, transform);
+            PlayerDeck().Add(cloneCard);
+        }
+
 
 
         List<Card> enemyCardList = BattleSceneSetUp.Instance.GetEnemyCardList();
-        FindCardFromTotalCardDeck(enemyCardList, EnemyDeck());
-
+        FindCardFromTotalCardDeck(enemyCardList, _enemyInitialDeck);
+        foreach (Transform card in _enemyInitialDeck)
+        {
+            Transform cloneCard = CardDeckManager.Instance.GenerateCard(card, transform);
+            EnemyDeck().Add(cloneCard);
+        }
 
 
 

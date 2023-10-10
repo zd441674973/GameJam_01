@@ -22,6 +22,9 @@ public class HealthSystem : MonoBehaviour
 
     bool _isActive;
 
+    [Header("DEBUG_ONLY")]
+    [SerializeField] bool _isInifiteHealth;
+
 
     void Start()
     {
@@ -51,6 +54,11 @@ public class HealthSystem : MonoBehaviour
             _isFullHealth = true;
         }
         else _isFullHealth = false;
+
+        if (_isInifiteHealth)
+        {
+            _health = float.MaxValue;
+        }
 
 
         /*if (_health <= 0)

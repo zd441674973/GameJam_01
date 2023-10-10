@@ -15,7 +15,8 @@ public class D24 : CardAction
 
         if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
-            CardActionManager.Instance.GainBrightEnergy(gainDarkEnergyValue);
+            CardActionManager.Instance.GainDarkEnergy(gainDarkEnergyValue);
+            Debug.Log("D24_GainDarkEnergy_DF: " + gainDarkEnergyValue);
         }
         else if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
@@ -24,6 +25,7 @@ public class D24 : CardAction
         else
         {
             CardActionManager.Instance.GainDarkEnergy(gainDarkEnergyValue);
+            Debug.Log("D24_GainDarkEnergy_R: " + gainDarkEnergyValue);
         }
     }
 }

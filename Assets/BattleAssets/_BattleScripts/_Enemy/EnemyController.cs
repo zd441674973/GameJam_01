@@ -142,7 +142,7 @@ public class EnemyController : MonoBehaviour
     {
         _currentCard.gameObject.SetActive(false);
         EnemyCardIsPlayed?.Invoke();
-        
+
         if (IsDarwnCard(_currentCard)) _cardIndex = 0;
         else _cardIndex++;
     }
@@ -169,10 +169,11 @@ public class EnemyController : MonoBehaviour
 
     void CardMovement(Transform card)
     {
-        var speed = 500f;
-        var stopDistance = 0.1f;
+        var speed = 700f;
+        var stopDistance = 10f;
         var distance = Vector2.Distance(_battleSlot.transform.position, card.transform.position);
         var direction = (_battleSlot.transform.position - card.transform.position).normalized;
+
 
         _currentCard = card;
 
