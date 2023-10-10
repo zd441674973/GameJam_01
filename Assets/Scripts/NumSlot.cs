@@ -6,27 +6,65 @@ using TMPro;
 
 public class NumSlot : MonoBehaviour
 {
-    char[] numbersRand = {'1','2','3','4','5','6'};
+    // char[] numbersRand = { '1', '2', '3', '4', '5', '6' };
+    // public float time;
+
+
+
     public TextMeshProUGUI slotNum;
-    public float time;
+
+    [Header("NewData")]
+    [SerializeField] float _timer;
+    bool _isActive;
+    int _randomNum;
+
+    void Start()
+    {
+        _isActive = true;
+        CustomTimer.Instance.WaitforTime(_timer);
+
+    }
 
 
-    // Update is called once per frame
     void Update()
     {
-        slotNum.text = numbersRand [Random.Range (0,numbersRand.Length)].ToString();
+        if (!_isActive) return;
+
+        SlotMachineUpdating();
+
+        if (CustomTimer.Instance.TimesUp())
+        {
+            _isActive = false;
+            Debug.Log(_randomNum);
+            LevelManager.Instance.SetDarkBeginBuff(_randomNum);
+        }
     }
 
-    public void OffEnable(){
-        Invoke ("DelayNum", time);
-
+    void SlotMachineUpdating()
+    {
+        _randomNum = Random.Range(0, 6);
+        slotNum.text = _randomNum.ToString();
     }
 
-    public void OnEnable(){
-        enabled = true;
-    }
 
-    void DelayNum(){
-        enabled = false;
-    }
+
+
+
+
+
+    // public void OffEnable()
+    // {
+    //     Invoke("DelayNum", time);
+
+    // }
+
+    // public void OnEnable()
+    // {
+    //     enabled = true;
+    // }
+
+    // void DelayNum()
+    // {
+    //     enabled = false;
+    // }
 }

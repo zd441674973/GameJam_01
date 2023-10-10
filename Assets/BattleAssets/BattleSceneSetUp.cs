@@ -35,8 +35,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
     private bool hasExecutedCheckHealth;
 
-    
-        //血量检测
+
+    //血量检测
     private float playerCurrentHealth;
     private float enemyCurrentHealth;
 
@@ -46,20 +46,30 @@ public class BattleSceneSetUp : MonoBehaviour
     private bool IsFistEnter;
 
     private Animator animator;
+
+
+
+
+
+
+
+
+
+
     void Start()
     {
 
-        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+        // currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
         Debug.Log(currentLevel);
 
-        //currentLevel = 1;
+        currentLevel = 0;
 
 
         hasExecutedCheckHealth = false;
         IsFistEnter = false;
 
-    ChangeSet();
+        ChangeSet();
 
         //Debug.Log("playerCardsCount: " + Playercards.Count);
 
@@ -79,7 +89,7 @@ public class BattleSceneSetUp : MonoBehaviour
         {
             //教程关大蜘蛛
             case 0:
-                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/实验室");
+                //backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/实验室");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蜘蛛boss");
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
@@ -271,7 +281,7 @@ public class BattleSceneSetUp : MonoBehaviour
         {
             playerCurrentHealth = playerHealthSystem.Health; // 更新玩家生命值
 
-            Debug.Log(1);
+            //Debug.Log(1);
             //animator.SetBool("", true);                               // 触发玩家生命值改变事件
             IsTriggerPlayerHealthChange = true;
         }
@@ -284,14 +294,14 @@ public class BattleSceneSetUp : MonoBehaviour
         if (enemyHealthSystem.Health < enemyCurrentHealth && !IsTriggerEnemyHealthChange)
         {
             enemyCurrentHealth = enemyHealthSystem.Health; // 更新敌人生命值
-            animator.SetBool("IsGetHit", true);          
-            Debug.Log("敌人被攻击了");
+            animator.SetBool("IsGetHit", true);
+            //Debug.Log("敌人被攻击了");
             // 触发敌人生命值改变事件
             IsTriggerEnemyHealthChange = true;
         }
         else
         {
-            Debug.Log("敌人没被攻击");
+            //Debug.Log("敌人没被攻击");
             animator.SetBool("IsGetHit", false);
             IsTriggerEnemyHealthChange = false; // 敌人生命值未发生变化，重置标志
         }
