@@ -86,6 +86,13 @@ public class UI_MainPage : BasePanel
         trigger2.triggers.Add(exit2);
     }
 
+    private void Start()
+    {
+
+        MusicMgr.GetInstance().ChangeBKValue(GameDataControl.GetInstance().PlayerDataInfo.playerBKvalue);
+        MusicMgr.GetInstance().ChangeSoundValue(GameDataControl.GetInstance().PlayerDataInfo.playerSEvalue);
+    }
+
 
     public override void HideMe()
     {

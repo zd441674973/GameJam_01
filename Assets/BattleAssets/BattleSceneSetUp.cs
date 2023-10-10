@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEditor.Animations;
 using UnityEditor.VersionControl;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class BattleSceneSetUp : MonoBehaviour
 {
 
     public static BattleSceneSetUp Instance;
+
     void Awake()
     {
         if (Instance != null)
@@ -43,22 +45,16 @@ public class BattleSceneSetUp : MonoBehaviour
     private bool IsTriggerPlayerHealthChange = false; // 用于标记玩家生命值是否发生变化
     private bool IsTriggerEnemyHealthChange = false;
 
-    private bool IsFistEnter;
 
     private Animator animator;
-
-
-
-
-
-
-
 
 
 
     void Start()
     {
         EventCenter.GetInstance().EventTrigger("InBattleScene");
+
+        EventCenter.GetInstance().AddEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
 
         currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
@@ -67,13 +63,13 @@ public class BattleSceneSetUp : MonoBehaviour
 
 
         hasExecutedCheckHealth = false;
-        IsFistEnter = false;
 
         playerHealthSystem = PlayerManager.Instance.GetHealthSystem();
         enemyHealthSystem = EnemyManager.Instance.GetHealthSystem();
 
 
-
+        MusicMgr.GetInstance().ChangeBKValue(GameDataControl.GetInstance().PlayerDataInfo.playerBKvalue);
+        MusicMgr.GetInstance().ChangeSoundValue(GameDataControl.GetInstance().PlayerDataInfo.playerSEvalue);
 
         ChangeSet();
 
@@ -81,6 +77,13 @@ public class BattleSceneSetUp : MonoBehaviour
         // Debug.Log("PlayerMaxHealth: " + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth);
         // Debug.Log("EnemyMaxHealth: " + GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth);
 
+
+
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.GetInstance().RemoveEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
     }
 
     private void Update()
@@ -90,6 +93,7 @@ public class BattleSceneSetUp : MonoBehaviour
 
         CheckHealth();
     }
+
 
     private void ChangeSet()
     {
@@ -229,6 +233,56 @@ public class BattleSceneSetUp : MonoBehaviour
 
     }
 
+    private void FinishBattleFunction()
+    {
+
+        GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
+
+        if (currentLevel == 0)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 1;
+        }
+
+        if (currentLevel == 1)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 2;
+        }
+
+        if (currentLevel == 2)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 3;
+        }
+
+        if (currentLevel == 3)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 4;
+        }
+
+        if (currentLevel == 4)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 5;
+        }
+
+        if (currentLevel == 5)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 6;
+        }
+
+        EventCenter.GetInstance().EventTrigger("NotInBattleScene");
+
+        GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = false;
+
+        EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+
+        ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
+        //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
+
+
+
+
+    }
+
+
     private void CheckHealth()
     {
 
@@ -242,51 +296,15 @@ public class BattleSceneSetUp : MonoBehaviour
         //敌人失去所有生命值
         if (enemyHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
-
-
-            GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
-
-            if (currentLevel == 0)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 1;
-            }
-
-            if (currentLevel == 1)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 2;
-            }
-
-            if (currentLevel == 2)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 3;
-            }
-
-            if (currentLevel == 3)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 4;
-            }
-
-            if (currentLevel == 4)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 5;
-            }
-
-            if (currentLevel == 5)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 6;
-            }
-
-            EventCenter.GetInstance().EventTrigger("NotInBattleScene");
-
-            GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = false;
-
-            EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
-
-            ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
-            //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
+            animator.SetBool("IsDead", true);
 
             hasExecutedCheckHealth = true;
+            EventCenter.GetInstance().EventTrigger("AnimationTimerStart");
+          
         }
+
+
+
 
         // 检查玩家生命值是否改变并触发事件
         if (playerHealthSystem.Health < playerCurrentHealth && !IsTriggerPlayerHealthChange)
@@ -294,7 +312,7 @@ public class BattleSceneSetUp : MonoBehaviour
             playerCurrentHealth = playerHealthSystem.Health; // 更新玩家生命值
 
             //Debug.Log(1);
-            //animator.SetBool("", true);                               // 触发玩家生命值改变事件
+            //EventCenter.GetInstance().EventTrigger("ScreenShake");                   
             IsTriggerPlayerHealthChange = true;
         }
         else
@@ -318,6 +336,12 @@ public class BattleSceneSetUp : MonoBehaviour
             IsTriggerEnemyHealthChange = false; // 敌人生命值未发生变化，重置标志
         }
     }
+
+
+
+
+
+
 
     private void AfterReturnToTitle()
     {

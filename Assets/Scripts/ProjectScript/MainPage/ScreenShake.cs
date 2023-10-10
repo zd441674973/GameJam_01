@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScreenShake : MonoBehaviour
 {
-    private Transform cameraTransform;
+    public Transform cameraTransform;
     private Vector3 originalCameraPosition;
     private float shakeDuration = 0f;
     private float shakeMagnitude = 0.1f;
@@ -12,22 +12,24 @@ public class ScreenShake : MonoBehaviour
 
     void Awake()
     {
-        cameraTransform = Camera.main.transform;
         EventCenter.GetInstance().AddEventListener("ScreenShake",StartShake);
 
     }
 
     void Update()
     {
-        if (shakeDuration > 0)
+        if (cameraTransform != null)
         {
-            cameraTransform.localPosition = originalCameraPosition + Random.insideUnitSphere * shakeMagnitude;
-            shakeDuration -= Time.deltaTime * dampingSpeed;
-        }
-        else
-        {
-            shakeDuration = 0f;
-            cameraTransform.localPosition = originalCameraPosition;
+            if (shakeDuration > 0)
+            {
+                cameraTransform.localPosition = originalCameraPosition + Random.insideUnitSphere * shakeMagnitude;
+                shakeDuration -= Time.deltaTime * dampingSpeed;
+            }
+            else
+            {
+                shakeDuration = 0f;
+                cameraTransform.localPosition = originalCameraPosition;
+            }
         }
     }
 

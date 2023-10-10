@@ -187,7 +187,7 @@ public class PlayerInfo
 
         currentTargetScene = "MainPage";
 
-        playerBKvalue = 0.5f;
+        playerBKvalue = 0.1f;
         playerSEvalue = 0.5f;
 
         /////¸øÍæ¼Ò¼ÓÅÆ/////////////////////////

@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scroll: {fileID: 1023800429773364134}
   moveSpeed: 120
-  targetY: 1750
+  targetY: 1650
   delayBeforeReturnToMainMenu: 2
 --- !u!1 &1023800430667324499
 GameObject:
@@ -2459,7 +2459,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u97F3\u4E50\uFF1A\u9B54\u738B\u9B42\n\nmaou_bgm_piano09 \nmaou_bgm_piano17\nmaou_bgm_piano29
+  m_text: "\u97F3\u4E50\uFF1A\u9B54\u738B\u9B42\nmaou_bgm_piano09 \nmaou_bgm_piano17\nmaou_bgm_piano29
     \nmaou_bgm_piano36 \nmaou_bgm_piano39 \nmaou_bgm_piano41 \nmaou_game_battle09
     \nmaou tamasii ru-pu fantazi_03\nmaou tamasii ru-pu fantazi_11\nmaou tamasii
     ru-pu fantazi_12\nmaou tamasii ru-pu fantazi_15 "
