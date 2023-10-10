@@ -76,7 +76,6 @@ public class BattleSceneSetUp : MonoBehaviour
 
         ChangeSet();
 
-        //Debug.Log("playerCardsCount: " + Playercards.Count);
         // Debug.Log("PlayerMaxHealth: " + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth);
         // Debug.Log("EnemyMaxHealth: " + GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth);
 

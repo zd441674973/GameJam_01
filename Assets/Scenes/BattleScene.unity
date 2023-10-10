@@ -348,6 +348,7 @@ MonoBehaviour:
   _playerHandCardCount: 0
   _playerHandCardMax: 0
   _playerEachTurnDrawCardCount: 2
+  _isPlayerDeckEmpty: 0
   _enemySlots:
   - {fileID: 1437537759}
   - {fileID: 1956105426}
@@ -358,6 +359,7 @@ MonoBehaviour:
   _isEnemySlotsEmpty: 000000000000
   _enemyHandCardCount: 0
   _enemyHandCardMax: 6
+  _isEnemyDeckEmpty: 0
   _battleArea: {fileID: 1062509667}
   _totalDarkDamageBuff: 0
   _darkEnergyBeginBuff: 0
@@ -2154,6 +2156,8 @@ MonoBehaviour:
   - {fileID: 2887820239645675523, guid: c7e2af74c45156a49bc85d47cc2ec3e2, type: 3}
   - {fileID: 2887820239645675523, guid: f6efd0a00feecb44cbd62047cb47e32e, type: 3}
   - {fileID: 2887820239645675523, guid: 96d7f3f72e326384fb03e7532630e111, type: 3}
+  _playerInitialDeck: []
+  _enemyInitialDeck: []
 --- !u!224 &1549580988 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5847273037064703361, guid: 33982d904a517a54cb7d29d92357cd35, type: 3}
@@ -3952,6 +3956,10 @@ PrefabInstance:
       propertyPath: _maxHealth
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1856154269929325101, guid: 05a38d894a94c0d478ec2f59bad5b4c5, type: 3}
+      propertyPath: _isInifiteHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1856154270137285124, guid: 05a38d894a94c0d478ec2f59bad5b4c5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -37.6
@@ -4469,6 +4477,10 @@ PrefabInstance:
     - target: {fileID: 8597812991334340244, guid: 77b2b9b9806a16f4fab337fa895ad5ea, type: 3}
       propertyPath: _maxHealth
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8597812991334340244, guid: 77b2b9b9806a16f4fab337fa895ad5ea, type: 3}
+      propertyPath: _isInifiteHealth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8597812991334340245, guid: 77b2b9b9806a16f4fab337fa895ad5ea, type: 3}
       propertyPath: _shieldValue
