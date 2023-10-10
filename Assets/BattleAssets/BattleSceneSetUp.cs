@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
+using TMPro;
 using UnityEditor.Animations;
 using UnityEditor.VersionControl;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class BattleSceneSetUp : MonoBehaviour
 {
 
     public static BattleSceneSetUp Instance;
+
+    public TMP_Text EnemyName;
 
     public GameObject PlayerGetHitAnimation;
 
@@ -111,6 +114,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/实验室");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蜘蛛boss");
 
+                EnemyName.text = "巨蜘蛛";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhiZhu");
 
@@ -131,6 +136,8 @@ public class BattleSceneSetUp : MonoBehaviour
             case 1:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/街角");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/牛牛boss");
+
+                EnemyName.text = "米诺陶洛斯";
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/NiuNiu");
@@ -155,6 +162,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/工厂");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/豹子boss");
 
+                EnemyName.text = "赛珀派";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BaoZi");
 
@@ -176,6 +185,8 @@ public class BattleSceneSetUp : MonoBehaviour
             case 3:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/市政厅");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蝙蝠boss");
+
+                EnemyName.text = "卡玛佐兹";
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BianFu");
@@ -199,6 +210,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/教堂广场");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/修士boss");
 
+                EnemyName.text = "兰福德";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/XiuShi");
 
@@ -219,6 +232,8 @@ public class BattleSceneSetUp : MonoBehaviour
             case 5:
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/教堂");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/主教boss");
+
+                EnemyName.text = "兰道尔";
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhuJiao");
