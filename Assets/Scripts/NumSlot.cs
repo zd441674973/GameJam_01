@@ -6,10 +6,6 @@ using TMPro;
 
 public class NumSlot : MonoBehaviour
 {
-    // char[] numbersRand = { '1', '2', '3', '4', '5', '6' };
-    // public float time;
-
-
 
     public TextMeshProUGUI slotNum;
 
@@ -35,6 +31,7 @@ public class NumSlot : MonoBehaviour
         if (CustomTimer.Instance.TimesUp())
         {
             _isActive = false;
+
             LevelManager.Instance.SetDarkBeginBuff(_randomNum);
 
         }
@@ -43,8 +40,13 @@ public class NumSlot : MonoBehaviour
     void SlotMachineUpdating()
     {
         _randomNum = Random.Range(1, 6);
+        
+        if (BattleSceneSetUp.Instance.CurrentLevel == 0) _randomNum = 3;
+
         slotNum.text = _randomNum.ToString();
     }
+
+
 
 
 

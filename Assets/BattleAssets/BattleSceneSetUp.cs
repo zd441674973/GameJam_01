@@ -21,6 +21,7 @@ public class BattleSceneSetUp : MonoBehaviour
     }
 
     private int currentLevel;
+    public int CurrentLevel { get { return currentLevel; } }
     public Image backGround;
     public Image EnemyImage;
     public Image PlayerImage;
