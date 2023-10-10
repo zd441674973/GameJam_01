@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -722865983013089748, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
+      propertyPath: _isCausingDamageCard
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 697521698567455610, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
       propertyPath: m_Name
       value: B0
@@ -84,17 +88,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06b149805335b914e8a8266cdb80af6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardData: {fileID: 5922643676099060408}
---- !u!114 &5922643676099060408 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -722865983013089748, guid: 03e701f83feaa304da770c0b24e4d845, type: 3}
-  m_PrefabInstance: {fileID: 2866163192199097492}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3344116747688882158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb6892105f4dee40bfc39def2e293ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -81,12 +81,12 @@ public class CardActionManager : MonoBehaviour
     public void DealCardPlayedExtraDamage(Transform transform)
     {
         CardData cardData = transform.GetComponent<CardData>();
-        if (cardData.IsBrightCard)
+        if (cardData.IsBrightCard && cardData.IsCausingDamageCard)
         {
             BrightCardPlayedExtraDamage();
             Debug.Log("DealCardPlayedExtraDamage_Bright: " + -GetCurrentBrightEnergy());
         }
-        if (!cardData.IsBrightCard)
+        if (!cardData.IsBrightCard && cardData.IsCausingDamageCard)
         {
             DarkCardPlayedExtraDamage();
             Debug.Log("DealCardPlayedExtraDamage_Dark: " + -LevelManager.Instance.GetTotalDarkDamageBuff());

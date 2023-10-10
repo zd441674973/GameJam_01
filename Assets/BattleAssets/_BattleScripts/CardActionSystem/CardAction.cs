@@ -19,6 +19,7 @@ public abstract class CardAction : MonoBehaviour
 
 
 
+
     protected virtual void Start()
     {
         _cardData = GetComponent<CardData>();

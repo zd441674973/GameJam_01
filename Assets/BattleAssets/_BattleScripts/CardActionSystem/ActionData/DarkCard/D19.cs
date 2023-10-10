@@ -18,6 +18,8 @@ public class D19 : CardAction
         {
             CardActionManager.Instance.DamageOpponent(damageSelf);
             CardActionManager.Instance.DamageSelf(damageOpponent);
+            Debug.Log("D19_DamageOpponent_DF: " + damageSelf);
+            Debug.Log("D19_DamageSelf_DF: " + damageOpponent);
         }
         else if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
@@ -28,6 +30,9 @@ public class D19 : CardAction
         {
             CardActionManager.Instance.DamageOpponent(damageOpponent);
             CardActionManager.Instance.DamageSelf(damageSelf);
+
+            Debug.Log("D19_DamageOpponent_R: " + damageSelf);
+            Debug.Log("D19_DamageSelf_R: " + damageOpponent);
         }
     }
 }

@@ -15,7 +15,9 @@ public class D18 : CardAction
 
         if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
-            CardActionManager.Instance.OpponentGainHealth(health);
+            CardActionManager.Instance.GainHealth(health);
+            Debug.Log("D18_HealthSelf_DF: " + health);
+
         }
         else if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
@@ -24,6 +26,7 @@ public class D18 : CardAction
         else
         {
             CardActionManager.Instance.GainHealth(health);
+            Debug.Log("D18_HealthSelf_R: " + health);
         }
     }
 }

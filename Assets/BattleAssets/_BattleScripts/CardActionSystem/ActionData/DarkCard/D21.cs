@@ -19,7 +19,10 @@ public class D21 : CardAction
         if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
             CardActionManager.Instance.DamageSelf(damage);
-            CardActionManager.Instance.OpponentGainHealth(-difference);
+            CardActionManager.Instance.GainHealth(-difference);
+
+            Debug.Log("D21_DamageSelf_DF: " + damage);
+            Debug.Log("D21_GainHealth_DF: " + -difference);
         }
         else if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
@@ -30,6 +33,9 @@ public class D21 : CardAction
         {
             CardActionManager.Instance.DamageOpponent(damage);
             CardActionManager.Instance.GainHealth(-difference);
+
+            Debug.Log("D21_DamageOpponent_R: " + damage);
+            Debug.Log("D21_GainHealth_R: " + -difference);
         }
     }
 }
