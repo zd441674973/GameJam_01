@@ -42,7 +42,7 @@ public class NumSlot : MonoBehaviour
 
     void SlotMachineUpdating()
     {
-        _randomNum = Random.Range(0, 6);
+        _randomNum = Random.Range(1, 6);
         slotNum.text = _randomNum.ToString();
     }
 
