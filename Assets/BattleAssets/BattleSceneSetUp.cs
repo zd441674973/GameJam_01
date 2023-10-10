@@ -11,6 +11,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
     public static BattleSceneSetUp Instance;
 
+    public GameObject PlayerGetHitAnimation;
+
     void Awake()
     {
         if (Instance != null)
@@ -53,6 +55,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
     void Start()
     {
+
+
         EventCenter.GetInstance().EventTrigger("InBattleScene");
 
         EventCenter.GetInstance().AddEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
@@ -84,6 +88,7 @@ public class BattleSceneSetUp : MonoBehaviour
     private void OnDestroy()
     {
         EventCenter.GetInstance().RemoveEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
+
     }
 
     private void Update()
@@ -97,6 +102,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
     private void ChangeSet()
     {
+        
+
         switch (currentLevel)
         {
             //教程关大蜘蛛
@@ -235,7 +242,9 @@ public class BattleSceneSetUp : MonoBehaviour
 
     private void FinishBattleFunction()
     {
-
+        //生命值上限奖励
+        GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth += 10;
+        //手牌奖励
         GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
 
         if (currentLevel == 0)
@@ -296,11 +305,14 @@ public class BattleSceneSetUp : MonoBehaviour
         //敌人失去所有生命值
         if (enemyHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
+
             animator.SetBool("IsDead", true);
 
             hasExecutedCheckHealth = true;
             EventCenter.GetInstance().EventTrigger("AnimationTimerStart");
-          
+
+
+
         }
 
 
@@ -311,8 +323,12 @@ public class BattleSceneSetUp : MonoBehaviour
         {
             playerCurrentHealth = playerHealthSystem.Health; // 更新玩家生命值
 
-            //Debug.Log(1);
-            //EventCenter.GetInstance().EventTrigger("ScreenShake");                   
+            PlayerGetHitAnimation.gameObject.SetActive(true);
+
+            PlayerGetHitAnimation.gameObject.GetComponent<Animator>().SetBool("IsGetHit", true);
+
+            Invoke("SetPlayerGetHitAnimationToFalse", 1f);
+
             IsTriggerPlayerHealthChange = true;
         }
         else
@@ -339,7 +355,10 @@ public class BattleSceneSetUp : MonoBehaviour
 
 
 
-
+    private void SetPlayerGetHitAnimationToFalse()
+    {
+        PlayerGetHitAnimation.gameObject.SetActive(false);
+    }
 
 
 

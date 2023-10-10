@@ -6,9 +6,9 @@ public class ScreenShake : MonoBehaviour
 {
     public Transform cameraTransform;
     private Vector3 originalCameraPosition;
-    private float shakeDuration = 0f;
-    private float shakeMagnitude = 0.1f;
-    private float dampingSpeed = 1.0f;
+    public float shakeDuration = 0f;
+    public float shakeMagnitude = 0.1f;
+    public float dampingSpeed = 1.0f;
 
     void Awake()
     {
@@ -35,8 +35,17 @@ public class ScreenShake : MonoBehaviour
 
     public void StartShake()
     {
+        Debug.Log("shake");
+
         originalCameraPosition = cameraTransform.localPosition;
-        shakeDuration = 0.8f;
-        shakeMagnitude = 1.5f;
+        shakeDuration = 8f;
+        shakeMagnitude = 15f;
+    }
+
+    public void DestroySelf()
+    {
+        EventCenter.GetInstance().RemoveEventListener("ScreenShake", StartShake);
+
+        Destroy(this);
     }
 }

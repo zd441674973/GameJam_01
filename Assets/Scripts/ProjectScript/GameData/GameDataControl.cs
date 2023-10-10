@@ -191,13 +191,14 @@ public class PlayerInfo
         playerSEvalue = 0.5f;
 
         /////¸øÍæ¼Ò¼ÓÅÆ/////////////////////////
-        ChangeCard(0, 3);
-        ChangeCard(1, 3);
-        ChangeCard(2, 3);
-        ChangeCard(3, 2);
-        ChangeCard(4, 1);
-        ChangeCard(10, 5);
-        ChangeCard(13, 3);
+        ChangeCard(0, 4); //Éä»÷5
+        ChangeCard(1, 4); //»¤¶Ü5
+        ChangeCard(2, 3);  //Ôö·ùÏßÈ¦2
+        ChangeCard(3, 1);  //»¤¶Ü¹ıÔØ1
+        ChangeCard(15, 1); //ĞŞ¸´×é¼ş
+        ChangeCard(10, 6); //ºçÎü10
+        ChangeCard(13, 2); //µç´Å±¬ÆÆ
+        ChangeCard(11, 1); //µçÆ¿2
     }
 
     /// <summary>
@@ -253,8 +254,6 @@ public class EnemyInfo
         EnemyOwnedcards = new List<Card>();
         EnemyName = "name";
 
-        /////¸øµĞÈË¼ÓÅÆ/////////////////////////
-        //ChangeEnemyCard(0, 3);
     }
 
 
@@ -265,8 +264,6 @@ public class EnemyInfo
         EnemyOwnedcards = new List<Card>();
         EnemyName = name;
 
-        /////¸øµĞÈË¼ÓÅÆ/////////////////////////
-        //ChangeEnemyCard(0, 3);
     }
 
 
@@ -304,15 +301,17 @@ public class EnemyInfo
     }
 }
 
+
+/////¸øµĞÈË¼ÓÅÆ/////////////////////////
+
 public class EnemyZhiZhu : EnemyInfo
 {
     public EnemyZhiZhu() : base("¾ŞĞÍÖ©Öë")
     {
-        EnemyMaxHealth = 50;
-        ChangeEnemyCard(17, 6);
-        ChangeEnemyCard(23, 1);
-        ChangeEnemyCard(24, 2);
-        ChangeEnemyCard(22, 2);
+        EnemyMaxHealth = 120;
+        ChangeEnemyCard(17, 7); //ìéÒ³7
+        ChangeEnemyCard(24, 3); //Ä»Â³3
+        ChangeEnemyCard(22, 2); //ÁúÑ×2
     }
 }
 
@@ -320,12 +319,11 @@ public class EnemyNiuNiu : EnemyInfo
 {
     public EnemyNiuNiu() : base("Ã×ÅµÌÕÂåË¹")
     {
-        EnemyMaxHealth = 60;
-        ChangeEnemyCard(17, 5);
-        ChangeEnemyCard(21, 4);
-        ChangeEnemyCard(23, 2);
-        ChangeEnemyCard(24, 2);
-        ChangeEnemyCard(22, 3);
+        EnemyMaxHealth = 240;
+        ChangeEnemyCard(17, 6); //ìéÒ³7
+        ChangeEnemyCard(24, 3); //Ä»Â³3
+        ChangeEnemyCard(22, 2); //ÁúÑ×2
+        ChangeEnemyCard(23, 1); //ìéÒ³7
     }
 }
 
@@ -333,13 +331,12 @@ public class EnemyBaoZi : EnemyInfo
 {
     public EnemyBaoZi() : base("ÈüçêÅÉ")
     {
-        EnemyMaxHealth = 70;
-        ChangeEnemyCard(23, 6);
-        ChangeEnemyCard(19, 3);
-        ChangeEnemyCard(17, 3);
-        ChangeEnemyCard(24, 2);
-        ChangeEnemyCard(22, 3);
-
+        EnemyMaxHealth = 260;
+        ChangeEnemyCard(17, 4); //ìéÒ³7
+        ChangeEnemyCard(24, 3); //Ä»Â³3
+        ChangeEnemyCard(22, 1); //ÁúÑ×2
+        ChangeEnemyCard(18, 6); //»ÆÒÂ6
+        ChangeEnemyCard(19, 4); //°¢ÈğÂ¶4
     }
 }
 public class EnemyBianFu : EnemyInfo

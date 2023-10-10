@@ -38,10 +38,10 @@ public class Test : MonoBehaviour
         {
             enemyhealthSystem.Health = 0;
         }
-
+/*
         Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard);
 
-        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes);
+        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes);*/
     }
 
     void Function()
