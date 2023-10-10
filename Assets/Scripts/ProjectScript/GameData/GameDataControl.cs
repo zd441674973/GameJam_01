@@ -191,13 +191,13 @@ public class PlayerInfo
         playerSEvalue = 0.5f;
 
         /////给玩家加牌/////////////////////////
-        ChangeCard(0, 3);
-        ChangeCard(1, 3);
-        ChangeCard(2, 3);
+        ChangeCard(0, 5);
+        ChangeCard(15, 1);
         ChangeCard(3, 2);
-        ChangeCard(4, 1);
+        ChangeCard(11, 1);
         ChangeCard(10, 5);
-        ChangeCard(13, 3);
+        ChangeCard(13, 2);
+        ChangeCard(1, 2);
     }
 
     /// <summary>
@@ -309,9 +309,8 @@ public class EnemyZhiZhu : EnemyInfo
     public EnemyZhiZhu() : base("巨型蜘蛛")
     {
         EnemyMaxHealth = 50;
-        ChangeEnemyCard(17, 6);
-        ChangeEnemyCard(23, 1);
-        ChangeEnemyCard(24, 2);
+        ChangeEnemyCard(17, 7);
+        ChangeEnemyCard(24, 3);
         ChangeEnemyCard(22, 2);
     }
 }
@@ -321,11 +320,10 @@ public class EnemyNiuNiu : EnemyInfo
     public EnemyNiuNiu() : base("米诺陶洛斯")
     {
         EnemyMaxHealth = 60;
-        ChangeEnemyCard(17, 5);
-        ChangeEnemyCard(21, 4);
-        ChangeEnemyCard(23, 2);
-        ChangeEnemyCard(24, 2);
-        ChangeEnemyCard(22, 3);
+        ChangeEnemyCard(17, 6);
+        ChangeEnemyCard(23, 1);
+        ChangeEnemyCard(24, 3);
+        ChangeEnemyCard(22, 2);
     }
 }
 
@@ -334,11 +332,11 @@ public class EnemyBaoZi : EnemyInfo
     public EnemyBaoZi() : base("赛珀派")
     {
         EnemyMaxHealth = 70;
-        ChangeEnemyCard(23, 6);
-        ChangeEnemyCard(19, 3);
-        ChangeEnemyCard(17, 3);
-        ChangeEnemyCard(24, 2);
-        ChangeEnemyCard(22, 3);
+        ChangeEnemyCard(17, 4);
+        ChangeEnemyCard(18, 6);
+        ChangeEnemyCard(19, 4);
+        ChangeEnemyCard(24, 3);
+        ChangeEnemyCard(22, 1);
 
     }
 }
