@@ -58,6 +58,7 @@ public class BattleSceneSetUp : MonoBehaviour
 
     void Start()
     {
+        EventCenter.GetInstance().EventTrigger("InBattleScene");
 
         currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
@@ -234,11 +235,15 @@ public class BattleSceneSetUp : MonoBehaviour
         //玩家失去所有生命值
         if (playerHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
+            EventCenter.GetInstance().EventTrigger("NotInBattleScene");
+
             ScenesMgr.GetInstance().LoadSceneAsyn("TitleScene", AfterReturnToTitle);
         }
         //敌人失去所有生命值
         if (enemyHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
+
+
             GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
 
             if (currentLevel == 0)
@@ -271,7 +276,7 @@ public class BattleSceneSetUp : MonoBehaviour
                 GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 6;
             }
 
-
+            EventCenter.GetInstance().EventTrigger("NotInBattleScene");
 
             GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = false;
 
@@ -317,7 +322,7 @@ public class BattleSceneSetUp : MonoBehaviour
     private void AfterReturnToTitle()
     {
 
-        //UIManager.GetInstance().HidePanel("UI_TitleScene");
+        UIManager.GetInstance().HidePanel("UI_TitleScene");
     }
     private void loadScene()
     {
