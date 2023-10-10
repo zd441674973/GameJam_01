@@ -107,6 +107,8 @@ public class MouseActionManager : MonoBehaviour
     {
         if (!TurnSystem.Instance.IsPlayerTurn()) return;
 
+        
+
         switch (_mouseInteractionState)
         {
             case MouseInteractionState.WaitingForTimer:
