@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
             Destroy(Instance);
         }
         Instance = this;
+
+
     }
 
     HealthSystem healthSystem;

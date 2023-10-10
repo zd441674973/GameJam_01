@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
 
         TurnSystem.Instance.OnEnemyTurnFinished += OnEnemyTurnFinishedEvent;
 
-        _darkEnergyBeginBuff = Random.Range(1, 6);
+        //_darkEnergyBeginBuff = Random.Range(1, 6);
 
     }
 
@@ -102,6 +102,9 @@ public class LevelManager : MonoBehaviour
 
 
     public int GetDarkBeginBuff() => _darkEnergyBeginBuff;
+    public int SetDarkBeginBuff(int value) => _darkEnergyBeginBuff = value;
+
+    
     public int GetTotalDarkDamageBuff() => _totalDarkDamageBuff;
 
 
