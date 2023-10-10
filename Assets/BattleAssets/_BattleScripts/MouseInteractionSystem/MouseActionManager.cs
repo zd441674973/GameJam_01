@@ -456,6 +456,8 @@ public class MouseActionManager : MonoBehaviour
 
         CustomTimer.Instance.WaitforTime(0.5f);
         _mouseInteractionState = MouseInteractionState.WaitingForTimer;
+
+        _currentDraggingCard = null;
     }
 
 
