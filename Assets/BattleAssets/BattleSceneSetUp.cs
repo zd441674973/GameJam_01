@@ -59,19 +59,26 @@ public class BattleSceneSetUp : MonoBehaviour
     void Start()
     {
 
-        // currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
-        Debug.Log(currentLevel);
-
-        currentLevel = 0;
+        // Debug.Log("currentLevel: " + currentLevel);
+        // currentLevel = 0;
 
 
         hasExecutedCheckHealth = false;
         IsFistEnter = false;
 
+        playerHealthSystem = PlayerManager.Instance.GetHealthSystem();
+        enemyHealthSystem = EnemyManager.Instance.GetHealthSystem();
+
+
+
+
         ChangeSet();
 
         //Debug.Log("playerCardsCount: " + Playercards.Count);
+        // Debug.Log("PlayerMaxHealth: " + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth);
+        // Debug.Log("EnemyMaxHealth: " + GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth);
 
     }
 
@@ -89,7 +96,7 @@ public class BattleSceneSetUp : MonoBehaviour
         {
             //教程关大蜘蛛
             case 0:
-                //backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/实验室");
+                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/实验室");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蜘蛛boss");
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();

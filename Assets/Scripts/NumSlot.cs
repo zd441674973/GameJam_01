@@ -35,8 +35,8 @@ public class NumSlot : MonoBehaviour
         if (CustomTimer.Instance.TimesUp())
         {
             _isActive = false;
-            Debug.Log(_randomNum);
             LevelManager.Instance.SetDarkBeginBuff(_randomNum);
+
         }
     }
 
