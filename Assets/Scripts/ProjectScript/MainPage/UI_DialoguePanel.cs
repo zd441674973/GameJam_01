@@ -371,7 +371,9 @@ public class UI_DialoguePanel : BasePanel
         }
         else
         {
-            ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
+            ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", AfterLoadToBattle);
+
+            GameDataControl.GetInstance().PlayerDataInfo.currentTargetScene = "BattleScene";
         }
 
         //½áÊøµ±Ç°½×¶Î
@@ -419,7 +421,9 @@ public class UI_DialoguePanel : BasePanel
 
                 if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID < 6)
                 {
-                    ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
+                    ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", AfterLoadToBattle);
+
+                    GameDataControl.GetInstance().PlayerDataInfo.currentTargetScene = "BattleScene";
                 }
                 
                 

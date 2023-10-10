@@ -46,6 +46,9 @@ public class BattleSceneSetUp : MonoBehaviour
     private bool IsFistEnter;
 
     private Animator animator;
+
+
+
     void Start()
     {
 
@@ -217,7 +220,8 @@ public class BattleSceneSetUp : MonoBehaviour
         //玩家失去所有生命值
         if (playerHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
-            ScenesMgr.GetInstance().LoadSceneAsyn("TitleScene", AfterReturnToTitle);
+            GameDataControl.GetInstance().PlayerDataInfo.currentTargetScene = "TitleScene";
+            ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", AfterReturnToTitle);
         }
         //敌人失去所有生命值
         if (enemyHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
@@ -261,6 +265,8 @@ public class BattleSceneSetUp : MonoBehaviour
             EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
 
             ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
+            GameDataControl.GetInstance().PlayerDataInfo.currentTargetScene = "MainPage";
+
             //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
 
             hasExecutedCheckHealth = true;

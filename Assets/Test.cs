@@ -42,6 +42,12 @@ public class Test : MonoBehaviour
         Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard);
 
         Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes);
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+
+            UIManager.GetInstance().HidePanel("UI_TitleScene");
+        }
     }
 
     void Function()

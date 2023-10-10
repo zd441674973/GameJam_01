@@ -42,6 +42,17 @@ public class LoadingManager : MonoBehaviour
             EventCenter.GetInstance().EventTrigger("turnOffBK");
         }
 
+        if(currentTargetSceneName == "TitleScene")
+        {
+            UIManager.GetInstance().HidePanel("UI_TitleScene");
+
+        }
+
+        if(currentTargetSceneName == "BattleScene")
+        {
+            UIManager.GetInstance().HidePanel("UI_TitleScene");
+        }
+
     }
 
     private void UpdateProgressBar(float progress)

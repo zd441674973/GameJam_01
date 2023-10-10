@@ -6,19 +6,42 @@ public class TitleScene_UIMgr : MonoBehaviour
 {
     public GameObject soundObj;
 
+    private bool TitlePanleIsOpen; 
+
     void Awake()
     {
-/*
-        //进入游戏首先进入菜单场景并打开菜单panel
-        if (soundObj == null)
+        TitlePanleIsOpen = false;
+
+
+        EventCenter.GetInstance().AddEventListener("TitlePanelIsOpen",()=> TitlePanleIsOpen = true);
+            
+            
+            /*
+                //进入游戏首先进入菜单场景并打开菜单panel
+                if (soundObj == null)
+                {
+                    soundObj = new GameObject();
+                    soundObj.name = "SoundEffect";
+                }
+
+        */
+        // 查找Canvas
+
+    }
+
+    private void Start()
+    {
+        if (TitlePanleIsOpen)
         {
-            soundObj = new GameObject();
-            soundObj.name = "SoundEffect";
+
+        }
+        else
+        {        //进入游戏首先进入菜单场景并打开菜单panel
+            UIManager.GetInstance().ShowPanel<UI_TitleScenePanel>("UI_TitleScene", E_UI_Layer.Bot);
+
         }
 
-*/
-        //进入游戏首先进入菜单场景并打开菜单panel
-        UIManager.GetInstance().ShowPanel<UI_TitleScenePanel>("UI_TitleScene", E_UI_Layer.Bot);
+
         PlayMenuBGM();
     }
 
