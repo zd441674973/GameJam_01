@@ -14,15 +14,15 @@ public class B13 : CardAction
 
         if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
-            CardActionManager.Instance.GainBrightEnergy(2 * _brightBonus);
+            CardActionManager.Instance.GainBrightEnergy(1 * _brightBonus);
         }
         else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
-            CardActionManager.Instance.GainDarkEnergy(2);
+            CardActionManager.Instance.GainDarkEnergy(1);
         }
         else
         {
-            CardActionManager.Instance.GainBrightEnergy(2);
+            CardActionManager.Instance.GainBrightEnergy(1);
         }
 
     }

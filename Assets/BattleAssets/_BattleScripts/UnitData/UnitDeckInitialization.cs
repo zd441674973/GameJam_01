@@ -51,6 +51,14 @@ public class UnitDeckInitialization : MonoBehaviour
             PlayerDeck().Add(B9);
         }
 
+        // // debug only
+        // Transform B14 = CardDeckManager.Instance.GenerateCard(_totalCardList[14], transform);
+        // for (int i = 0; i < 20; i++)
+        // {
+        //     PlayerDeck().Add(B14);
+
+        // }
+
 
 
 
@@ -90,7 +98,7 @@ public class UnitDeckInitialization : MonoBehaviour
     {
         foreach (var card in cardList)
         {
-            for (int i = 0; i < card.PlayerOwnedNumber; i++)
+            for (int i = 0; i < card.PlayerOwnedNumber * 2; i++)
             {
                 deckList.Add(_totalCardList[card.CardID]);
             }

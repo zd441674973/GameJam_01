@@ -347,7 +347,7 @@ public class LevelManager : MonoBehaviour
     public void SwitchCardAttribute(Transform card)
     {
         CardData cardData = card.GetComponent<CardData>();
-        cardData.IsBrightCard = !cardData.IsBrightCard;
+        cardData.IsAttributeSwitched = !cardData.IsAttributeSwitched;
     }
     public void EnemySwitchCardAttribute(int switchCardCount)
     {
