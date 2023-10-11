@@ -199,14 +199,15 @@ public class PlayerInfo
         playerSEvalue = 0.5f;
 
         /////给玩家加牌/////////////////////////
-        ChangeCard(0, 4); //射击5
-        ChangeCard(1, 4); //护盾5
-        ChangeCard(2, 3);  //增幅线圈2
-        ChangeCard(3, 1);  //护盾过载1
+
+        ChangeCard(10, 5); //虹吸10
+        ChangeCard(0, 5); //射击5
         ChangeCard(15, 1); //修复组件
-        ChangeCard(10, 6); //虹吸10
-        ChangeCard(13, 2); //电磁爆破
-        ChangeCard(11, 1); //电瓶2
+        ChangeCard(2, 3);  //增幅线圈2
+        ChangeCard(1, 2); //护盾5
+        ChangeCard(3, 1);  //护盾过载1
+        ChangeCard(11, 1);  //电33
+        ChangeCard(13, 2); //电瓶
     }
 
     /// <summary>
@@ -307,22 +308,6 @@ public class EnemyZhiZhu
         }
     }
 
-    /*
-        void ChangeZhiZhuCard(int cardID, int numberToAdd)
-        {
-            ZhiZhuOwnedcards = new List<Card>();
-
-            foreach (Card card in ZhiZhuOwnedcards)
-            {
-                if (card.CardID == cardID)
-                {
-                    for (int i = 0; i < numberToAdd; i++)
-                    {
-                        ZhiZhuOwnedcards.Add(card);
-                    }
-                }
-            }
-        }*/
     public int CalculateTotalNumber()
     {
         // 使用LINQ的Sum函数来计算Card的Number总和
@@ -351,9 +336,9 @@ public class EnemyNiuNiu
 
         /////给牛牛加牌/////////////////////////
         ChangeNiuNiuCard(24, 3); //射击5
-        ChangeNiuNiuCard(22, 2); //护盾5
-        ChangeNiuNiuCard(23, 1);  //增幅线圈2
-        ChangeNiuNiuCard(17, 8);  //护盾过载1
+        ChangeNiuNiuCard(22, 3); //护盾5
+        ChangeNiuNiuCard(23, 2);  //增幅线圈2
+        ChangeNiuNiuCard(17, 6);  //护盾过载1
 
     }
 
@@ -475,16 +460,16 @@ public class EnemyBianFu
     public EnemyBianFu()
     {
 
-        BianFuMaxHealth = 50;
+        BianFuMaxHealth = 180;
         BianFuOwnedcards = new List<Card>();
         BianFuCardSum = 0;
 
         /////给蝙蝠加牌/////////////////////////
-        ChangeBianFuCard(18, 6);
-        ChangeBianFuCard(24, 3);
-        ChangeBianFuCard(19, 4);
-        ChangeBianFuCard(17, 4);
-        ChangeBianFuCard(22, 1);
+        ChangeBianFuCard(17, 2);
+        ChangeBianFuCard(24, 2);
+        ChangeBianFuCard(22, 4);
+        ChangeBianFuCard(20, 4);
+        ChangeBianFuCard(23, 2);
     }
 
     /// <summary>
@@ -539,16 +524,18 @@ public class EnemyXiuShi
     public EnemyXiuShi()
     {
 
-        XiuShiMaxHealth = 50;
+        XiuShiMaxHealth = 300;
         XiuShiOwnedcards = new List<Card>();
         XiuShiCardSum = 0;
 
         /////给修士加牌/////////////////////////
-        ChangeXiuShiCard(18, 6);
-        ChangeXiuShiCard(24, 3);
+        ChangeXiuShiCard(20, 2);
+        ChangeXiuShiCard(17, 2);
         ChangeXiuShiCard(19, 4);
-        ChangeXiuShiCard(17, 4);
-        ChangeXiuShiCard(22, 1);
+        ChangeXiuShiCard(22, 2);
+        ChangeXiuShiCard(24, 2);
+        ChangeXiuShiCard(18, 4);
+        ChangeXiuShiCard(23, 2);
     }
 
     /// <summary>
@@ -603,16 +590,18 @@ public class EnemyZhuJiao
     public EnemyZhuJiao()
     {
 
-        ZhuJiaoMaxHealth = 50;
+        ZhuJiaoMaxHealth = 700;
         ZhuJiaoOwnedcards = new List<Card>();
         ZhuJiaoCardSum = 0;
 
         /////给主教加牌/////////////////////////
-        ChangeZhuJiaoCard(18, 6);
-        ChangeZhuJiaoCard(24, 3);
-        ChangeZhuJiaoCard(19, 4);
-        ChangeZhuJiaoCard(17, 20);
-        ChangeZhuJiaoCard(22, 1);
+        ChangeZhuJiaoCard(21, 6);
+        ChangeZhuJiaoCard(18, 2);
+        ChangeZhuJiaoCard(20, 4);
+        ChangeZhuJiaoCard(23, 3);
+        ChangeZhuJiaoCard(22, 5);
+        ChangeZhuJiaoCard(19, 2);
+        ChangeZhuJiaoCard(24, 5);
     }
 
     /// <summary>
