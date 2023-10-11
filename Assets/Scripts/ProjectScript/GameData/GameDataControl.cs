@@ -267,9 +267,9 @@ public class EnemyZhiZhu
 
         /////给蜘蛛加牌/////////////////////////
 
-        ChangeZhiZhuCard(17, 6);
-        ChangeZhiZhuCard(18, 6);
-        ChangeZhiZhuCard(20, 6);
+        ChangeZhiZhuCard(17, 8);
+        ChangeZhiZhuCard(24, 4);
+        ChangeZhiZhuCard(22, 2);
     }
 
     /// <summary>
@@ -480,11 +480,11 @@ public class EnemyBianFu
         BianFuCardSum = 0;
 
         /////给蝙蝠加牌/////////////////////////
-        ChangeBianFuCard(18, 6);
-        ChangeBianFuCard(24, 3);
-        ChangeBianFuCard(19, 4);
-        ChangeBianFuCard(17, 4);
-        ChangeBianFuCard(22, 1);
+        ChangeBianFuCard(17, 2);
+        ChangeBianFuCard(24, 2);
+        ChangeBianFuCard(23, 2);
+        ChangeBianFuCard(20, 4);
+        ChangeBianFuCard(22, 4);
     }
 
     /// <summary>
@@ -544,11 +544,13 @@ public class EnemyXiuShi
         XiuShiCardSum = 0;
 
         /////给修士加牌/////////////////////////
-        ChangeXiuShiCard(18, 6);
-        ChangeXiuShiCard(24, 3);
+        ChangeXiuShiCard(20, 2);
+        ChangeXiuShiCard(17, 2);
         ChangeXiuShiCard(19, 4);
-        ChangeXiuShiCard(17, 4);
-        ChangeXiuShiCard(22, 1);
+        ChangeXiuShiCard(22, 2);
+        ChangeXiuShiCard(24, 2);
+        ChangeXiuShiCard(18, 4);
+        ChangeXiuShiCard(23, 2);
     }
 
     /// <summary>
@@ -608,11 +610,13 @@ public class EnemyZhuJiao
         ZhuJiaoCardSum = 0;
 
         /////给主教加牌/////////////////////////
-        ChangeZhuJiaoCard(18, 6);
-        ChangeZhuJiaoCard(24, 3);
-        ChangeZhuJiaoCard(19, 4);
-        ChangeZhuJiaoCard(17, 20);
-        ChangeZhuJiaoCard(22, 1);
+        ChangeZhuJiaoCard(21, 6);
+        ChangeZhuJiaoCard(18, 2);
+        ChangeZhuJiaoCard(20, 4);
+        ChangeZhuJiaoCard(23, 2);
+        ChangeZhuJiaoCard(22, 5);
+        ChangeZhuJiaoCard(19, 2);
+        ChangeZhuJiaoCard(24, 5);
     }
 
     /// <summary>
