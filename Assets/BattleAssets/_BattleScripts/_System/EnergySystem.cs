@@ -158,13 +158,13 @@ public class EnergySystem : MonoBehaviour
     void EnergyBarTutorialCheck()
     {
 
-        if (_isFirstTimeBrightFull && _isBrightBarFull)
+        if (_isFirstTimeBrightFull && _isBrightBarFull && BattleSceneSetUp.Instance.CurrentLevel == 0)
         {
             FirstTimeBrightFullevent?.Invoke();
             _isFirstTimeBrightFull = false;
         }
 
-        if (_isFirstTimeDarkFull && _isDarkBarFull)
+        if (_isFirstTimeDarkFull && _isDarkBarFull && BattleSceneSetUp.Instance.CurrentLevel == 0)
         {
             FirstTimeDarkFullevent?.Invoke();
             _isFirstTimeDarkFull = false;

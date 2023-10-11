@@ -59,6 +59,8 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
+        if (EnemyManager.Instance.GetHealthSystem().Health < 1) _isActive = false;
+
         CardIndexLimitCheck(EnemyHandCard());
 
         HandCardCountCheck();

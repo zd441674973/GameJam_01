@@ -39,11 +39,13 @@ public class NumSlot : MonoBehaviour
             {
                 _randomNum = 3;
                 slotNum.text = _randomNum.ToString();
+
+                StartCoroutine(waitToStarTutorial(_waitForTutorialTimer));
             }
 
             LevelManager.Instance.SetDarkBeginBuff(_randomNum);
 
-            StartCoroutine(waitToStarTutorial(_waitForTutorialTimer));
+           
 
 
 
