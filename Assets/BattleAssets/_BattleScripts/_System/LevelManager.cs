@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
     {
         // PlayerDrawCard();
         // EnemyDrawCard();
-        //_playerEachTurnDrawCardCount = 2;
+        _playerEachTurnDrawCardCount = 2;
 
         StartGameMaxHandCard();
         DrawCard();

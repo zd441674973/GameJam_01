@@ -7,7 +7,6 @@ TagManager:
   - PlayerCard
   - BrightCard
   - DarkCard
-  - Canvas
   layers:
   - Default
   - TransparentFX

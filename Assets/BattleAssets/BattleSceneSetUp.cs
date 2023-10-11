@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using UnityEditor.Animations;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,6 @@ public class BattleSceneSetUp : MonoBehaviour
 {
 
     public static BattleSceneSetUp Instance;
-
-    public TMP_Text EnemyName;
-
-    public GameObject PlayerGetHitAnimation;
-
     void Awake()
     {
         if (Instance != null)
@@ -24,7 +20,7 @@ public class BattleSceneSetUp : MonoBehaviour
 
     }
 
-    [SerializeField] int currentLevel;
+    private int currentLevel;
     public int CurrentLevel { get { return currentLevel; } }
     public Image backGround;
     public Image EnemyImage;
@@ -41,59 +37,48 @@ public class BattleSceneSetUp : MonoBehaviour
     private bool hasExecutedCheckHealth;
 
 
-    //è¡€é‡æ£€æµ‹
+    //ÑªÁ¿¼ì²â
     private float playerCurrentHealth;
     private float enemyCurrentHealth;
 
-    private bool IsTriggerPlayerHealthChange = false; // ç”¨äºæ ‡è®°ç©å®¶ç”Ÿå‘½å€¼æ˜¯å¦å‘ç”Ÿå˜åŒ–
+    private bool IsTriggerPlayerHealthChange = false; // ÓÃÓÚ±ê¼ÇÍæ¼ÒÉúÃüÖµÊÇ·ñ·¢Éú±ä»¯
     private bool IsTriggerEnemyHealthChange = false;
 
+    private bool IsFistEnter;
 
     private Animator animator;
+
+
+
+
+
+
+
 
 
 
     void Start()
     {
 
-
-        EventCenter.GetInstance().EventTrigger("InBattleScene");
-
-        EventCenter.GetInstance().AddEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
-
-
-        //currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
-
-        //currentLevel = 0;
+        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
         Debug.Log("currentLevel: " + currentLevel);
-
-
-
         //currentLevel = 0;
 
 
         hasExecutedCheckHealth = false;
+        IsFistEnter = false;
 
         playerHealthSystem = PlayerManager.Instance.GetHealthSystem();
         enemyHealthSystem = EnemyManager.Instance.GetHealthSystem();
 
 
-        MusicMgr.GetInstance().ChangeBKValue(GameDataControl.GetInstance().PlayerDataInfo.playerBKvalue);
-        MusicMgr.GetInstance().ChangeSoundValue(GameDataControl.GetInstance().PlayerDataInfo.playerSEvalue);
+
 
         ChangeSet();
 
         // Debug.Log("PlayerMaxHealth: " + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth);
         // Debug.Log("EnemyMaxHealth: " + GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth);
-
-
-
-    }
-
-    private void OnDestroy()
-    {
-        EventCenter.GetInstance().RemoveEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
 
     }
 
@@ -105,150 +90,135 @@ public class BattleSceneSetUp : MonoBehaviour
         CheckHealth();
     }
 
-
     private void ChangeSet()
     {
-
-
         switch (currentLevel)
         {
-            //æ•™ç¨‹å…³å¤§èœ˜è››
+            //½Ì³Ì¹Ø´óÖ©Öë
             case 0:
-                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/å®éªŒå®¤");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/èœ˜è››boss");
-
-                EnemyName.text = "å·¨èœ˜è››";
+                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/ÊµÑéÊÒ");
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/Ö©Öëboss");
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhiZhu");
 
-                MusicMgr.GetInstance().PlayBkMusic("é­”ç‹é­‚ ãƒ«ãƒ¼ãƒ—  ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼15-æ•™ç¨‹");
+                MusicMgr.GetInstance().PlayBkMusic("Ä§Íõ»ê ¥ë©`¥×  ¥Õ¥¡¥ó¥¿¥¸©`15-½Ì³Ì");
 
-                //è®¾ç½®æ€ªç‰©å¡ç‰ŒåŠè¡€é‡
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuMaxHealth;
+                //ÉèÖÃ¹ÖÎï¿¨ÅÆ¼°ÑªÁ¿
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
-                //è®¾ç½®ç©å®¶å¡ç‰ŒåŠè¡€é‡
+                //ÉèÖÃÍæ¼Ò¿¨ÅÆ¼°ÑªÁ¿
                 playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 playerCurrentHealth = playerHealthSystem.Health;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
                 break;
-            //ç‰›ç‰›
+            //Å£Å£
 
             case 1:
-                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/è¡—è§’");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/ç‰›ç‰›boss");
-
-                EnemyName.text = "ç±³è¯ºé™¶æ´›æ–¯";
+                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/½Ö½Ç");
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/Å£Å£boss");
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/NiuNiu");
 
-                MusicMgr.GetInstance().PlayBkMusic("maou_game_battle09-ç‰›å¤´æ€ª");
+                MusicMgr.GetInstance().PlayBkMusic("maou_game_battle09-Å£Í·¹Ö");
 
 
-                //è®¾ç½®æ€ªç‰©å¡ç‰ŒåŠè¡€é‡
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_NiuNiu.NiuNiuOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_NiuNiu.NiuNiuMaxHealth;
+                //ÉèÖÃ¹ÖÎï¿¨ÅÆ¼°ÑªÁ¿
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
-                //è®¾ç½®ç©å®¶å¡ç‰ŒåŠè¡€é‡
+                //ÉèÖÃÍæ¼Ò¿¨ÅÆ¼°ÑªÁ¿
                 playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
                 playerCurrentHealth = playerHealthSystem.Health;
 
                 break;
-            //èµ›ç€æ´¾
+            //ÈüçêÅÉ
             case 2:
-                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/å·¥å‚");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/è±¹å­boss");
-
-                EnemyName.text = "èµ›ç€æ´¾";
+                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/¹¤³§");
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/±ª×Óboss");
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BaoZi");
 
-                MusicMgr.GetInstance().PlayBkMusic("é­”ç‹é­‚ ãƒ«ãƒ¼ãƒ—  ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼03-é»‘è±¹");
+                MusicMgr.GetInstance().PlayBkMusic("Ä§Íõ»ê ¥ë©`¥×  ¥Õ¥¡¥ó¥¿¥¸©`03-ºÚ±ª");
 
-                //è®¾ç½®æ€ªç‰©å¡ç‰ŒåŠè¡€é‡
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.BaoZiOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BaoZi.BaoZiMaxHealth;
+                //ÉèÖÃ¹ÖÎï¿¨ÅÆ¼°ÑªÁ¿
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
-                //è®¾ç½®ç©å®¶å¡ç‰ŒåŠè¡€é‡
+                //ÉèÖÃÍæ¼Ò¿¨ÅÆ¼°ÑªÁ¿
                 playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
                 playerCurrentHealth = playerHealthSystem.Health;
 
                 break;
-            //å¡ç›ä½å…¹
+            //¿¨Âê×ô×È
             case 3:
-                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/å¸‚æ”¿å…");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/è™è boss");
-
-                EnemyName.text = "å¡ç›ä½å…¹";
+                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/ÊĞÕşÌü");
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/òùòğboss");
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BianFu");
 
-                MusicMgr.GetInstance().PlayBkMusic("é­”ç‹é­‚ ãƒ«ãƒ¼ãƒ—  ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼11-è™è ");
+                MusicMgr.GetInstance().PlayBkMusic("Ä§Íõ»ê ¥ë©`¥×  ¥Õ¥¡¥ó¥¿¥¸©`11-òùòğ");
 
-                //è®¾ç½®æ€ªç‰©å¡ç‰ŒåŠè¡€é‡
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.BianFuOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BianFu.BianFuMaxHealth;
+                //ÉèÖÃ¹ÖÎï¿¨ÅÆ¼°ÑªÁ¿
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
-                //è®¾ç½®ç©å®¶å¡ç‰ŒåŠè¡€é‡
+                //ÉèÖÃÍæ¼Ò¿¨ÅÆ¼°ÑªÁ¿
                 playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
                 playerCurrentHealth = playerHealthSystem.Health;
 
                 break;
-            //å…°ç¦å¾·
+            //À¼¸£µÂ
             case 4:
-                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/æ•™å ‚å¹¿åœº");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/ä¿®å£«boss");
-
-                EnemyName.text = "å…°ç¦å¾·";
+                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/½ÌÌÃ¹ã³¡");
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/ĞŞÊ¿boss");
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/XiuShi");
 
-                MusicMgr.GetInstance().PlayBkMusic("é­”ç‹é­‚ ãƒ«ãƒ¼ãƒ—  ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼12-ä¿®å£«");
+                MusicMgr.GetInstance().PlayBkMusic("Ä§Íõ»ê ¥ë©`¥×  ¥Õ¥¡¥ó¥¿¥¸©`12-ĞŞÊ¿");
 
-                //è®¾ç½®æ€ªç‰©å¡ç‰ŒåŠè¡€é‡
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_XiuShi.XiuShiOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_XiuShi.XiuShiMaxHealth;
+                //ÉèÖÃ¹ÖÎï¿¨ÅÆ¼°ÑªÁ¿
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
-                //è®¾ç½®ç©å®¶å¡ç‰ŒåŠè¡€é‡
+                //ÉèÖÃÍæ¼Ò¿¨ÅÆ¼°ÑªÁ¿
                 playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
                 playerCurrentHealth = playerHealthSystem.Health;
 
                 break;
-            //å…°é“å°”
+            //À¼µÀ¶û
             case 5:
-                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/æ•™å ‚");
-                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/ä¸»æ•™boss");
-
-                EnemyName.text = "å…°é“å°”";
+                backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/½ÌÌÃ");
+                EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/Ö÷½Ìboss");
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhuJiao");
 
-                MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano36-ä¸»æ•™");
+                MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano36-Ö÷½Ì");
 
-                //è®¾ç½®æ€ªç‰©å¡ç‰ŒåŠè¡€é‡
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.ZhuJiaoOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.ZhuJiaoMaxHealth;
+                //ÉèÖÃ¹ÖÎï¿¨ÅÆ¼°ÑªÁ¿
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
-                //è®¾ç½®ç©å®¶å¡ç‰ŒåŠè¡€é‡
+                //ÉèÖÃÍæ¼Ò¿¨ÅÆ¼°ÑªÁ¿
                 playerHealthSystem.Health = GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth;
                 Playercards = GameDataControl.GetInstance().PlayerDataInfo.PlayerOwnedcards;
                 playerCurrentHealth = playerHealthSystem.Health;
@@ -258,132 +228,96 @@ public class BattleSceneSetUp : MonoBehaviour
 
     }
 
-    private void FinishBattleFunction()
-    {
-        //ç”Ÿå‘½å€¼ä¸Šé™å¥–åŠ±
-        GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth += 10;
-        //æ‰‹ç‰Œå¥–åŠ±
-        GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
-
-        if (currentLevel == 0)
-        {
-            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 1;
-        }
-
-        if (currentLevel == 1)
-        {
-            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 2;
-        }
-
-        if (currentLevel == 2)
-        {
-            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 3;
-        }
-
-        if (currentLevel == 3)
-        {
-            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 4;
-        }
-
-        if (currentLevel == 4)
-        {
-            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 5;
-        }
-
-        if (currentLevel == 5)
-        {
-            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 6;
-        }
-
-        EventCenter.GetInstance().EventTrigger("NotInBattleScene");
-
-        GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = false;
-
-        EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
-
-        ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
-        //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
-
-
-
-
-    }
-
-
     private void CheckHealth()
     {
 
-        //ç©å®¶å¤±å»æ‰€æœ‰ç”Ÿå‘½å€¼
+        //Íæ¼ÒÊ§È¥ËùÓĞÉúÃüÖµ
         if (playerHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
-            EventCenter.GetInstance().EventTrigger("NotInBattleScene");
-
             ScenesMgr.GetInstance().LoadSceneAsyn("TitleScene", AfterReturnToTitle);
         }
-        //æ•Œäººå¤±å»æ‰€æœ‰ç”Ÿå‘½å€¼
+        //µĞÈËÊ§È¥ËùÓĞÉúÃüÖµ
         if (enemyHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
+            GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
 
-            animator.SetBool("IsDead", true);
+            if (currentLevel == 0)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 1;
+            }
+
+            if (currentLevel == 1)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 2;
+            }
+
+            if (currentLevel == 2)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 3;
+            }
+
+            if (currentLevel == 3)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 4;
+            }
+
+            if (currentLevel == 4)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 5;
+            }
+
+            if (currentLevel == 5)
+            {
+                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 6;
+            }
+
+
+
+            GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = false;
+
+            EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+
+            ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
+            //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
 
             hasExecutedCheckHealth = true;
-            EventCenter.GetInstance().EventTrigger("AnimationTimerStart");
-
-
-
         }
 
-
-
-
-        // æ£€æŸ¥ç©å®¶ç”Ÿå‘½å€¼æ˜¯å¦æ”¹å˜å¹¶è§¦å‘äº‹ä»¶
+        // ¼ì²éÍæ¼ÒÉúÃüÖµÊÇ·ñ¸Ä±ä²¢´¥·¢ÊÂ¼ş
         if (playerHealthSystem.Health < playerCurrentHealth && !IsTriggerPlayerHealthChange)
         {
-            playerCurrentHealth = playerHealthSystem.Health; // æ›´æ–°ç©å®¶ç”Ÿå‘½å€¼
+            playerCurrentHealth = playerHealthSystem.Health; // ¸üĞÂÍæ¼ÒÉúÃüÖµ
 
-            PlayerGetHitAnimation.gameObject.SetActive(true);
-
-            PlayerGetHitAnimation.gameObject.GetComponent<Animator>().SetBool("IsGetHit", true);
-
-            Invoke("SetPlayerGetHitAnimationToFalse", 1f);
-
+            //Debug.Log(1);
+            //animator.SetBool("", true);                               // ´¥·¢Íæ¼ÒÉúÃüÖµ¸Ä±äÊÂ¼ş
             IsTriggerPlayerHealthChange = true;
         }
         else
         {
-            IsTriggerPlayerHealthChange = false; // ç©å®¶ç”Ÿå‘½å€¼æœªå‘ç”Ÿå˜åŒ–ï¼Œé‡ç½®æ ‡å¿—
+            IsTriggerPlayerHealthChange = false; // Íæ¼ÒÉúÃüÖµÎ´·¢Éú±ä»¯£¬ÖØÖÃ±êÖ¾
         }
 
-        // æ£€æŸ¥æ•Œäººç”Ÿå‘½å€¼æ˜¯å¦æ”¹å˜å¹¶è§¦å‘äº‹ä»¶
+        // ¼ì²éµĞÈËÉúÃüÖµÊÇ·ñ¸Ä±ä²¢´¥·¢ÊÂ¼ş
         if (enemyHealthSystem.Health < enemyCurrentHealth && !IsTriggerEnemyHealthChange)
         {
-            enemyCurrentHealth = enemyHealthSystem.Health; // æ›´æ–°æ•Œäººç”Ÿå‘½å€¼
+            enemyCurrentHealth = enemyHealthSystem.Health; // ¸üĞÂµĞÈËÉúÃüÖµ
             animator.SetBool("IsGetHit", true);
-            //Debug.Log("æ•Œäººè¢«æ”»å‡»äº†");
-            // è§¦å‘æ•Œäººç”Ÿå‘½å€¼æ”¹å˜äº‹ä»¶
+            //Debug.Log("µĞÈË±»¹¥»÷ÁË");
+            // ´¥·¢µĞÈËÉúÃüÖµ¸Ä±äÊÂ¼ş
             IsTriggerEnemyHealthChange = true;
         }
         else
         {
-            //Debug.Log("æ•Œäººæ²¡è¢«æ”»å‡»");
+            //Debug.Log("µĞÈËÃ»±»¹¥»÷");
             animator.SetBool("IsGetHit", false);
-            IsTriggerEnemyHealthChange = false; // æ•Œäººç”Ÿå‘½å€¼æœªå‘ç”Ÿå˜åŒ–ï¼Œé‡ç½®æ ‡å¿—
+            IsTriggerEnemyHealthChange = false; // µĞÈËÉúÃüÖµÎ´·¢Éú±ä»¯£¬ÖØÖÃ±êÖ¾
         }
     }
-
-
-
-    private void SetPlayerGetHitAnimationToFalse()
-    {
-        PlayerGetHitAnimation.gameObject.SetActive(false);
-    }
-
-
 
     private void AfterReturnToTitle()
     {
 
-        UIManager.GetInstance().HidePanel("UI_TitleScene");
+        //UIManager.GetInstance().HidePanel("UI_TitleScene");
     }
     private void loadScene()
     {
