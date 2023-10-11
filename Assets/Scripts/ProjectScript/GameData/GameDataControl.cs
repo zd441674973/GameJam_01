@@ -268,9 +268,9 @@ public class EnemyZhiZhu
 
         /////∏¯÷©÷Îº”≈∆/////////////////////////
 
-        ChangeZhiZhuCard(17, 6);
-        ChangeZhiZhuCard(18, 6);
-        ChangeZhiZhuCard(20, 6);
+        ChangeZhiZhuCard(17, 8);
+        ChangeZhiZhuCard(24, 4);
+        ChangeZhiZhuCard(22, 2);
     }
 
     /// <summary>
