@@ -62,13 +62,13 @@ public class BattleSceneSetUp : MonoBehaviour
         EventCenter.GetInstance().AddEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
 
 
-        //currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
-        //currentLevel = 0;
+/*        //currentLevel = 0;
 
         Debug.Log("currentLevel: " + currentLevel);
 
-        //currentLevel = 0;
+        //currentLevel = 0;*/
 
 
         hasExecutedCheckHealth = false;
