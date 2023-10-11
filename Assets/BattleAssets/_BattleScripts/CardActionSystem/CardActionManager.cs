@@ -344,17 +344,17 @@ public class CardActionManager : MonoBehaviour
 
 
 
-    public void DiscardBrightHandCard(out int discardCount)
+    public int DiscardBrightHandCard()
     {
         if (IsPlayerTurn())
         {
-            LevelManager.Instance.DiscardPlayerCurrentBrightHandCard(out discardCount);
+            return LevelManager.Instance.DiscardPlayerCurrentBrightHandCard();
         }
-        if (!IsPlayerTurn())
+
+        else
         {
-            LevelManager.Instance.DiscardEnemyCurrentBrightHandCard(out discardCount);
+            return LevelManager.Instance.DiscardEnemyCurrentBrightHandCard();
         }
-        else discardCount = 0;
     }
 
 

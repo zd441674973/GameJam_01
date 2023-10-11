@@ -305,23 +305,23 @@ public class LevelManager : MonoBehaviour
 
 
 
-    public void DiscardPlayerCurrentBrightHandCard(out int discardCount)
+    public int DiscardPlayerCurrentBrightHandCard()
     {
         List<Transform> cardList = CurrentBrightHandCardList(CurrentHandCardList(PlayerHandCard()));
         foreach (Transform card in cardList)
         {
             AddCardToDiscardPile(card);
         }
-        discardCount = cardList.Count;
+        return cardList.Count;
     }
-    public void DiscardEnemyCurrentBrightHandCard(out int discardCount)
+    public int DiscardEnemyCurrentBrightHandCard()
     {
         List<Transform> cardList = CurrentBrightHandCardList(CurrentHandCardList(EnemyHandCard()));
         foreach (Transform card in cardList)
         {
             AddCardToDiscardPile(card);
         }
-        discardCount = cardList.Count;
+        return cardList.Count;
     }
     public void DiscardPlayerCurrentDarkHandCard()
     {

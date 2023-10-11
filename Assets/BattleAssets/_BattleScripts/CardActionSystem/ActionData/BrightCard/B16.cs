@@ -13,20 +13,39 @@ public class B16 : CardAction
     {
         if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
+            int discardCount = CardActionManager.Instance.DiscardBrightHandCard();
+            //Debug.Log("DiscardCount: " + discardCount);
+            //int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
+
+            int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
+            //Debug.Log("B_count: " + brightBonusCount);
+
+            CardActionManager.Instance.DamageOpponent(-(brightBonusCount * 3 * discardCount * _brightBonus));
 
         }
         else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
+            int discardCount = CardActionManager.Instance.DiscardBrightHandCard();
+            //Debug.Log("DiscardCount: " + discardCount);
+            //int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
+
+            int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
+            //Debug.Log("B_count: " + brightBonusCount);
+
+            CardActionManager.Instance.DamageOpponent(-(brightBonusCount * 3 * discardCount));
 
         }
         else
         {
-            CardActionManager.Instance.DiscardBrightHandCard(out int discardCount);
-            int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
 
-            //int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
+            int discardCount = CardActionManager.Instance.DiscardBrightHandCard();
+            Debug.Log("DiscardCount: " + discardCount);
+            //int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
 
-            CardActionManager.Instance.DamageOpponent(-(darkBonusCount * 3 * discardCount));
+            int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
+            Debug.Log("B_count: " + brightBonusCount);
+
+            CardActionManager.Instance.DamageOpponent(-(brightBonusCount * 3 * discardCount));
         }
 
     }

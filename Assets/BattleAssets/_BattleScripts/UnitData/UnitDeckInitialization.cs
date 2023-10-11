@@ -44,12 +44,12 @@ public class UnitDeckInitialization : MonoBehaviour
         }
 
 
-        // // debug only
-        // Transform B14 = CardDeckManager.Instance.GenerateCard(_totalCardList[14], transform);
-        // for (int i = 0; i < 20; i++)
-        // {
-        //     PlayerDeck().Add(B14);
-        // }
+        // debug only
+        Transform B16 = CardDeckManager.Instance.GenerateCard(_totalCardList[16], transform);
+        for (int i = 0; i < 20; i++)
+        {
+            PlayerDeck().Add(B16);
+        }
 
 
 
