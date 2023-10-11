@@ -119,8 +119,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー15-教程");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
                 //设置玩家卡牌及血量
@@ -143,8 +143,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_NiuNiu.NiuNiuOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_NiuNiu.NiuNiuMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
@@ -167,8 +167,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー03-黑豹");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.BaoZiOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BaoZi.BaoZiMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
@@ -191,8 +191,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー11-蝙蝠");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.BianFuOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BianFu.BianFuMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
@@ -215,8 +215,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー12-修士");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_XiuShi.XiuShiOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_XiuShi.XiuShiMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
                 //设置玩家卡牌及血量
@@ -238,8 +238,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano36-主教");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.ZhuJiaoOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.ZhuJiaoMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
                 //设置玩家卡牌及血量

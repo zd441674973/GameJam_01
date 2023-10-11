@@ -31,18 +31,21 @@ public class Test : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            EventCenter.GetInstance().EventTrigger("ScreenShake");
+            GameDataControl.GetInstance().EnemyInfo_ZhiZhu.SumPlayerCards();
         }
 
         if (Input.GetKeyDown(KeyCode.T))
         {
             enemyhealthSystem.Health = 0;
         }
-/*
-        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard);
+        /*
+                Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard);
 
-        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes);*/
+                Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes);*/
+
+        Debug.Log(GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuCardSum);
     }
+
 
     void Function()
     {

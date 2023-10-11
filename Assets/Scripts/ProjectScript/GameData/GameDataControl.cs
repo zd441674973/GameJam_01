@@ -240,42 +240,44 @@ public class PlayerInfo
 }
 
 
-public class EnemyInfo
+public class EnemyZhiZhu
 {
+    public int ZhiZhuMaxHealth;
 
-    public string EnemyName;
-    public int EnemyMaxHealth;
-    public List<Card> EnemyOwnedcards;
+    public int ZhiZhuCardSum;
 
-    public EnemyInfo()
+    public List<Card> ZhiZhuOwnedcards;
+
+
+    public EnemyZhiZhu()
     {
-        EnemyMaxHealth = 0;
-        EnemyOwnedcards = new List<Card>();
-        EnemyName = "name";
+        
+        ZhiZhuMaxHealth = 120;
+        ZhiZhuOwnedcards = new List<Card>();
+        ZhiZhuCardSum = 0;
+
+        /////给蜘蛛加牌/////////////////////////
+
+        ChangeCard(0, 4); //射击5
+        ChangeCard(1, 4); //护盾5
+        ChangeCard(2, 3);  //增幅线圈2
+        ChangeCard(3, 1);  //护盾过载1
+        ChangeCard(15, 1); //修复组件
+        ChangeCard(10, 6); //虹吸10
+        ChangeCard(13, 2); //电磁爆破
+
 
     }
-
-
-
-    public EnemyInfo(string name)
-    {
-        EnemyMaxHealth = 100;                                                                
-        EnemyOwnedcards = new List<Card>();
-        EnemyName = name;
-
-    }
-
-
 
     /// <summary>
-    /// 当敌人拥有卡牌数量改变时执行的函数
+    /// 当玩家拥有卡牌数量改变时执行的函数
     /// </summary>
     /// <param name="cardID"></param>
     /// <param name="number"></param>
-    public void ChangeEnemyCard(int cardID, int number)
+    public void ChangeCard(int cardID, int number)
     {
         // 查找列表中是否存在具有相同ID的卡牌
-        Card existingCard = EnemyOwnedcards.Find(card => card.CardID == cardID);
+        Card existingCard = ZhiZhuOwnedcards.Find(card => card.CardID == cardID);
 
         // 如果找到了相同ID的卡牌
         if (existingCard != null)
@@ -286,7 +288,71 @@ public class EnemyInfo
             // 如果卡牌数量少于等于0，从列表中移除
             if (existingCard.PlayerOwnedNumber <= 0)
             {
-                EnemyOwnedcards.Remove(existingCard);
+                ZhiZhuOwnedcards.Remove(existingCard);
+            }
+        }
+        // 如果没有找到相同ID的卡牌，并且number大于0
+        else if (existingCard == null && number > 0)
+        {
+            // 创建新卡牌并添加到列表
+            Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
+            newCard.PlayerOwnedNumber = number;
+            ZhiZhuOwnedcards.Add(newCard);
+        }
+    }
+
+    public void SumPlayerCards()
+    {
+        List<Card> cards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuOwnedcards;
+        ZhiZhuCardSum = cards.Sum(card => card.PlayerOwnedNumber);
+    }
+}
+
+public class EnemyNiuNiu
+
+{
+    public int NiuNiuMaxHealth;
+
+    public int NiuNiuCardSum;
+
+    public List<Card> NiuNiuOwnedcards;
+
+
+    public EnemyNiuNiu()
+    {
+
+        NiuNiuMaxHealth = 240;
+        NiuNiuOwnedcards = new List<Card>();
+        NiuNiuCardSum = 0;
+
+        /////给牛牛加牌/////////////////////////
+        ChangeCard(24, 3); //射击5
+        ChangeCard(22, 2); //护盾5
+        ChangeCard(23, 1);  //增幅线圈2
+        ChangeCard(17, 8);  //护盾过载1
+
+    }
+
+    /// <summary>
+    /// 当玩家拥有卡牌数量改变时执行的函数
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="number"></param>
+    public void ChangeCard(int cardID, int number)
+    {
+        // 查找列表中是否存在具有相同ID的卡牌
+        Card existingCard = NiuNiuOwnedcards.Find(card => card.CardID == cardID);
+
+        // 如果找到了相同ID的卡牌
+        if (existingCard != null)
+        {
+            // 增加现有卡牌的数量
+            existingCard.PlayerOwnedNumber += number;
+
+            // 如果卡牌数量少于等于0，从列表中移除
+            if (existingCard.PlayerOwnedNumber <= 0)
+            {
+                NiuNiuOwnedcards.Remove(existingCard);
             }
         }
         // 如果没有找到相同ID的卡牌，并且number大于0
@@ -295,89 +361,277 @@ public class EnemyInfo
             // 创建新卡牌并添加到列表
             Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
             newCard.PlayerOwnedNumber = number;
-            EnemyOwnedcards.Add(newCard);
+            NiuNiuOwnedcards.Add(newCard);
         }
     }
-}
 
-
-/////给敌人加牌/////////////////////////
-
-public class EnemyZhiZhu : EnemyInfo
-{
-    public EnemyZhiZhu() : base("巨型蜘蛛")
+    public void SumPlayerCards()
     {
-        EnemyMaxHealth = 120;
-        ChangeEnemyCard(17, 7); //扉页7
-        ChangeEnemyCard(24, 3); //幕鲁3
-        ChangeEnemyCard(22, 2); //龙炎2
+        List<Card> cards = GameDataControl.GetInstance().EnemyInfo_NiuNiu.NiuNiuOwnedcards;
+        NiuNiuCardSum = cards.Sum(card => card.PlayerOwnedNumber);
     }
 }
 
-public class EnemyNiuNiu : EnemyInfo
+public class EnemyBaoZi
+
 {
-    public EnemyNiuNiu() : base("米诺陶洛斯")
+    public int BaoZiMaxHealth;
+
+    public int BaoZiCardSum;
+
+    public List<Card> BaoZiOwnedcards;
+
+
+    public EnemyBaoZi()
     {
-        EnemyMaxHealth = 240;
-        ChangeEnemyCard(17, 6); //扉页7
-        ChangeEnemyCard(24, 3); //幕鲁3
-        ChangeEnemyCard(22, 2); //龙炎2
-        ChangeEnemyCard(23, 1); //扉页7
+
+        BaoZiMaxHealth = 260;
+        BaoZiOwnedcards = new List<Card>();
+        BaoZiCardSum = 0;
+
+        /////给豹子加牌/////////////////////////
+        ChangeCard(18, 6); 
+        ChangeCard(24, 3); 
+        ChangeCard(19, 4);
+        ChangeCard(17, 4);  
+        ChangeCard(22, 1);
+
+    }
+
+    /// <summary>
+    /// 当玩家拥有卡牌数量改变时执行的函数
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="number"></param>
+    public void ChangeCard(int cardID, int number)
+    {
+        // 查找列表中是否存在具有相同ID的卡牌
+        Card existingCard = BaoZiOwnedcards.Find(card => card.CardID == cardID);
+
+        // 如果找到了相同ID的卡牌
+        if (existingCard != null)
+        {
+            // 增加现有卡牌的数量
+            existingCard.PlayerOwnedNumber += number;
+
+            // 如果卡牌数量少于等于0，从列表中移除
+            if (existingCard.PlayerOwnedNumber <= 0)
+            {
+                BaoZiOwnedcards.Remove(existingCard);
+            }
+        }
+        // 如果没有找到相同ID的卡牌，并且number大于0
+        else if (number > 0)
+        {
+            // 创建新卡牌并添加到列表
+            Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
+            newCard.PlayerOwnedNumber = number;
+            BaoZiOwnedcards.Add(newCard);
+        }
+    }
+
+    public void SumPlayerCards()
+    {
+        List<Card> cards = GameDataControl.GetInstance().EnemyInfo_BaoZi.BaoZiOwnedcards;
+        BaoZiCardSum = cards.Sum(card => card.PlayerOwnedNumber);
     }
 }
 
-public class EnemyBaoZi : EnemyInfo
-{
-    public EnemyBaoZi() : base("赛珀派")
-    {
-        EnemyMaxHealth = 260;
-        ChangeEnemyCard(17, 4); //扉页7
-        ChangeEnemyCard(24, 3); //幕鲁3
-        ChangeEnemyCard(22, 1); //龙炎2
-        ChangeEnemyCard(18, 6); //黄衣6
-        ChangeEnemyCard(19, 4); //阿瑞露4
-    }
-}
-public class EnemyBianFu : EnemyInfo
-{
-    public EnemyBianFu() : base("卡玛佐兹")
-    {
-        EnemyMaxHealth = 80;
-        ChangeEnemyCard(23, 5);
-        ChangeEnemyCard(20, 4);
-        ChangeEnemyCard(23, 1);
-        ChangeEnemyCard(24, 5);
-        ChangeEnemyCard(22, 2);
 
-    }
-}
-public class EnemyXiuShi : EnemyInfo
-{
-    public EnemyXiuShi() : base("修士兰福德")
-    {
-        EnemyMaxHealth = 90;
-        ChangeEnemyCard(23, 5);
-        ChangeEnemyCard(18, 4);
-        ChangeEnemyCard(19, 3);
-        ChangeEnemyCard(24, 2);
-        ChangeEnemyCard(17, 3);
+public class EnemyBianFu
 
-    }
-}
-public class EnemyZhuJiao : EnemyInfo
 {
-    public EnemyZhuJiao() : base("大主教兰道尔")
+    public int BianFuMaxHealth;
+
+    public int BianFuCardSum;
+
+    public List<Card> BianFuOwnedcards;
+
+
+    public EnemyBianFu()
     {
-        EnemyMaxHealth = 100;
-        ChangeEnemyCard(23, 5);
-        ChangeEnemyCard(21, 3);
-        ChangeEnemyCard(20, 3);
-        ChangeEnemyCard(24, 2);
-        ChangeEnemyCard(22, 2);
-        ChangeEnemyCard(23, 3);
-        ChangeEnemyCard(18, 2);
+
+        BianFuMaxHealth = 50;
+        BianFuOwnedcards = new List<Card>();
+        BianFuCardSum = 0;
+
+        /////给蝙蝠加牌/////////////////////////
+        ChangeCard(18, 6);
+        ChangeCard(24, 3);
+        ChangeCard(19, 4);
+        ChangeCard(17, 4);
+        ChangeCard(22, 1);
+    }
+
+    /// <summary>
+    /// 当玩家拥有卡牌数量改变时执行的函数
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="number"></param>
+    public void ChangeCard(int cardID, int number)
+    {
+        // 查找列表中是否存在具有相同ID的卡牌
+        Card existingCard = BianFuOwnedcards.Find(card => card.CardID == cardID);
+
+        // 如果找到了相同ID的卡牌
+        if (existingCard != null)
+        {
+            // 增加现有卡牌的数量
+            existingCard.PlayerOwnedNumber += number;
+
+            // 如果卡牌数量少于等于0，从列表中移除
+            if (existingCard.PlayerOwnedNumber <= 0)
+            {
+                BianFuOwnedcards.Remove(existingCard);
+            }
+        }
+        // 如果没有找到相同ID的卡牌，并且number大于0
+        else if (number > 0)
+        {
+            // 创建新卡牌并添加到列表
+            Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
+            newCard.PlayerOwnedNumber = number;
+            BianFuOwnedcards.Add(newCard);
+        }
+    }
+
+    public void SumPlayerCards()
+    {
+        List<Card> cards = GameDataControl.GetInstance().EnemyInfo_BianFu.BianFuOwnedcards;
+        BianFuCardSum = cards.Sum(card => card.PlayerOwnedNumber);
     }
 }
+
+public class EnemyXiuShi
+
+{
+    public int XiuShiMaxHealth;
+
+    public int XiuShiCardSum;
+
+    public List<Card> XiuShiOwnedcards;
+
+
+    public EnemyXiuShi()
+    {
+
+        XiuShiMaxHealth = 50;
+        XiuShiOwnedcards = new List<Card>();
+        XiuShiCardSum = 0;
+
+        /////给修士加牌/////////////////////////
+        ChangeCard(18, 6);
+        ChangeCard(24, 3);
+        ChangeCard(19, 4);
+        ChangeCard(17, 4);
+        ChangeCard(22, 1);
+    }
+
+    /// <summary>
+    /// 当玩家拥有卡牌数量改变时执行的函数
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="number"></param>
+    public void ChangeCard(int cardID, int number)
+    {
+        // 查找列表中是否存在具有相同ID的卡牌
+        Card existingCard = XiuShiOwnedcards.Find(card => card.CardID == cardID);
+
+        // 如果找到了相同ID的卡牌
+        if (existingCard != null)
+        {
+            // 增加现有卡牌的数量
+            existingCard.PlayerOwnedNumber += number;
+
+            // 如果卡牌数量少于等于0，从列表中移除
+            if (existingCard.PlayerOwnedNumber <= 0)
+            {
+                XiuShiOwnedcards.Remove(existingCard);
+            }
+        }
+        // 如果没有找到相同ID的卡牌，并且number大于0
+        else if (number > 0)
+        {
+            // 创建新卡牌并添加到列表
+            Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
+            newCard.PlayerOwnedNumber = number;
+            XiuShiOwnedcards.Add(newCard);
+        }
+    }
+
+    public void SumPlayerCards()
+    {
+        List<Card> cards = GameDataControl.GetInstance().EnemyInfo_XiuShi.XiuShiOwnedcards;
+        XiuShiCardSum = cards.Sum(card => card.PlayerOwnedNumber);
+    }
+}
+
+public class EnemyZhuJiao
+
+{
+    public int ZhuJiaoMaxHealth;
+
+    public int ZhuJiaoCardSum;
+
+    public List<Card> ZhuJiaoOwnedcards;
+
+
+    public EnemyZhuJiao()
+    {
+
+        ZhuJiaoMaxHealth = 50;
+        ZhuJiaoOwnedcards = new List<Card>();
+        ZhuJiaoCardSum = 0;
+
+        /////给主教加牌/////////////////////////
+        ChangeCard(18, 6);
+        ChangeCard(24, 3);
+        ChangeCard(19, 4);
+        ChangeCard(17, 4);
+        ChangeCard(22, 1);
+    }
+
+    /// <summary>
+    /// 当玩家拥有卡牌数量改变时执行的函数
+    /// </summary>
+    /// <param name="cardID"></param>
+    /// <param name="number"></param>
+    public void ChangeCard(int cardID, int number)
+    {
+        // 查找列表中是否存在具有相同ID的卡牌
+        Card existingCard = ZhuJiaoOwnedcards.Find(card => card.CardID == cardID);
+
+        // 如果找到了相同ID的卡牌
+        if (existingCard != null)
+        {
+            // 增加现有卡牌的数量
+            existingCard.PlayerOwnedNumber += number;
+
+            // 如果卡牌数量少于等于0，从列表中移除
+            if (existingCard.PlayerOwnedNumber <= 0)
+            {
+                ZhuJiaoOwnedcards.Remove(existingCard);
+            }
+        }
+        // 如果没有找到相同ID的卡牌，并且number大于0
+        else if (number > 0)
+        {
+            // 创建新卡牌并添加到列表
+            Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
+            newCard.PlayerOwnedNumber = number;
+            ZhuJiaoOwnedcards.Add(newCard);
+        }
+    }
+
+    public void SumPlayerCards()
+    {
+        List<Card> cards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.ZhuJiaoOwnedcards;
+        ZhuJiaoCardSum = cards.Sum(card => card.PlayerOwnedNumber);
+    }
+}
+
+
+
 
 
 //用于读取Json中所有道具配置信息的数据结构

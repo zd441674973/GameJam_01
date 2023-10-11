@@ -364,7 +364,7 @@
 			"ElectricEnergyEfficiencyChange": -1,
 			"MagicEnergyEfficiencyChange": 1,
 			"HealthToOpponentMin": -2,
-			"HealthToOpponentMax": -5,
+			"HealthToOpponentMax": -12,
 			"NumberOfAttack": 1,
 			"HealthToSelfMin": 0,
 			"HealthToSelfMax": 0,
@@ -523,6 +523,4 @@
 			"DestroyEnemyHandCard": 0,
 			"Description": "魔能效率额外增加2",
 			"Rarity": "Rare"
-		}
-	]
-}
+		}]}
