@@ -633,7 +633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7636809543485526950, guid: f72f24e3dc62d1140959ef17455af0e4, type: 3}
       propertyPath: _timer
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7636809543485526950, guid: f72f24e3dc62d1140959ef17455af0e4, type: 3}
       propertyPath: _newTime

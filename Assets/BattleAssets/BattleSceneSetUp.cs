@@ -62,7 +62,7 @@ public class BattleSceneSetUp : MonoBehaviour
 
         currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
-        // Debug.Log("currentLevel: " + currentLevel);
+        Debug.Log("currentLevel: " + currentLevel);
         //currentLevel = 0;
 
 
