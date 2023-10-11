@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class GameDataControl : BaseManager<GameDataControl>
 {
@@ -18,6 +19,7 @@ public class GameDataControl : BaseManager<GameDataControl>
 
     public bool isParseDataExecuted = false;
 
+    public List<Card> AllCardList;
 
     //字典存储玩家从Json读取到的物品数据
     public Dictionary<int, Card> cardInfoDic = new Dictionary<int, Card>();
@@ -39,6 +41,8 @@ public class GameDataControl : BaseManager<GameDataControl>
             cardInfoDic.Add(CardInfos.cardInfo[i].CardID, CardInfos.cardInfo[i]);
         }
 
+        AllCardList = ConvertDictionaryToList(cardInfoDic);
+
         //没有玩家数据时，初始化一个默认数据
         if (PlayerDataInfo == null)
         {
@@ -47,12 +51,12 @@ public class GameDataControl : BaseManager<GameDataControl>
             JsonMgr.Instance.SaveData(PlayerDataInfo, "PlayerSaveData");
         }
 
-        if (EnemyInfo_ZhiZhu == null)
+/*        if (EnemyInfo_ZhiZhu == null)
         {
             EnemyInfo_ZhiZhu = new EnemyZhiZhu();
        
-        }
-
+        }*/
+/*
         if (EnemyInfo_NiuNiu == null)
         {
             EnemyInfo_NiuNiu = new EnemyNiuNiu();
@@ -81,7 +85,7 @@ public class GameDataControl : BaseManager<GameDataControl>
         {
             EnemyInfo_ZhuJiao = new EnemyZhuJiao();
 
-        }
+        }*/
 
         ////////////////////////事件监听，监听贯穿整个游戏的数据变化///////////////////////////////////////////////////////////
         ///这些监听不能删除,只能执行一次
@@ -152,6 +156,11 @@ public class GameDataControl : BaseManager<GameDataControl>
         return null;
     }
 
+    public List<Card> ConvertDictionaryToList(Dictionary<int, Card> dictionary)
+    {
+        List<Card> list = new List<Card>(dictionary.Values);
+        return list;
+    }
 }
 
 public class PlayerInfo
@@ -258,15 +267,9 @@ public class EnemyZhiZhu
 
         /////给蜘蛛加牌/////////////////////////
 
-        ChangeCard(0, 4); //射击5
-        ChangeCard(1, 4); //护盾5
-        ChangeCard(2, 3);  //增幅线圈2
-        ChangeCard(3, 1);  //护盾过载1
-        ChangeCard(15, 1); //修复组件
-        ChangeCard(10, 6); //虹吸10
-        ChangeCard(13, 2); //电磁爆破
-
-
+        ChangeZhiZhuCard(17, 6);
+        ChangeZhiZhuCard(18, 6);
+        ChangeZhiZhuCard(20, 6);
     }
 
     /// <summary>
@@ -274,37 +277,58 @@ public class EnemyZhiZhu
     /// </summary>
     /// <param name="cardID"></param>
     /// <param name="number"></param>
-    public void ChangeCard(int cardID, int number)
+    public void ChangeZhiZhuCard(int cardID, int numberToAdd)
     {
-        // 查找列表中是否存在具有相同ID的卡牌
-        Card existingCard = ZhiZhuOwnedcards.Find(card => card.CardID == cardID);
+        bool cardFound = false; // 用于标记是否找到匹配的卡片
 
-        // 如果找到了相同ID的卡牌
-        if (existingCard != null)
+        // 遍历 List 中的每个 Card 对象
+        foreach (var card in ZhiZhuOwnedcards)
         {
-            // 增加现有卡牌的数量
-            existingCard.PlayerOwnedNumber += number;
-
-            // 如果卡牌数量少于等于0，从列表中移除
-            if (existingCard.PlayerOwnedNumber <= 0)
+            // 如果找到匹配的卡片 ID
+            if (card.CardID == cardID)
             {
-                ZhiZhuOwnedcards.Remove(existingCard);
+                cardFound = true;
+                // 增加数量
+                card.PlayerOwnedNumber += numberToAdd;
+
+                if (card.PlayerOwnedNumber <= 0)
+                {
+                    card.PlayerOwnedNumber = 0;
+                }
             }
         }
-        // 如果没有找到相同ID的卡牌，并且number大于0
-        else if (existingCard == null && number > 0)
+
+        // 如果没有找到匹配的卡片，就添加新卡片到列表
+        if (!cardFound && numberToAdd > 0)
         {
-            // 创建新卡牌并添加到列表
             Card newCard = GameDataControl.GetInstance().GetCardInfo(cardID);
-            newCard.PlayerOwnedNumber = number;
+            newCard.PlayerOwnedNumber = numberToAdd;
             ZhiZhuOwnedcards.Add(newCard);
         }
     }
 
-    public void SumPlayerCards()
+    /*
+        void ChangeZhiZhuCard(int cardID, int numberToAdd)
+        {
+            ZhiZhuOwnedcards = new List<Card>();
+
+            foreach (Card card in ZhiZhuOwnedcards)
+            {
+                if (card.CardID == cardID)
+                {
+                    for (int i = 0; i < numberToAdd; i++)
+                    {
+                        ZhiZhuOwnedcards.Add(card);
+                    }
+                }
+            }
+        }*/
+    public int CalculateTotalNumber()
     {
-        List<Card> cards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuOwnedcards;
-        ZhiZhuCardSum = cards.Sum(card => card.PlayerOwnedNumber);
+        // 使用LINQ的Sum函数来计算Card的Number总和
+        ZhiZhuCardSum = ZhiZhuOwnedcards.Sum(card => card.PlayerOwnedNumber);
+
+        return ZhiZhuCardSum;
     }
 }
 
@@ -326,10 +350,10 @@ public class EnemyNiuNiu
         NiuNiuCardSum = 0;
 
         /////给牛牛加牌/////////////////////////
-        ChangeCard(24, 3); //射击5
-        ChangeCard(22, 2); //护盾5
-        ChangeCard(23, 1);  //增幅线圈2
-        ChangeCard(17, 8);  //护盾过载1
+        ChangeNiuNiuCard(24, 3); //射击5
+        ChangeNiuNiuCard(22, 2); //护盾5
+        ChangeNiuNiuCard(23, 1);  //增幅线圈2
+        ChangeNiuNiuCard(17, 8);  //护盾过载1
 
     }
 
@@ -338,7 +362,7 @@ public class EnemyNiuNiu
     /// </summary>
     /// <param name="cardID"></param>
     /// <param name="number"></param>
-    public void ChangeCard(int cardID, int number)
+    public void ChangeNiuNiuCard(int cardID, int number)
     {
         // 查找列表中是否存在具有相同ID的卡牌
         Card existingCard = NiuNiuOwnedcards.Find(card => card.CardID == cardID);
@@ -390,11 +414,11 @@ public class EnemyBaoZi
         BaoZiCardSum = 0;
 
         /////给豹子加牌/////////////////////////
-        ChangeCard(18, 6); 
-        ChangeCard(24, 3); 
-        ChangeCard(19, 4);
-        ChangeCard(17, 4);  
-        ChangeCard(22, 1);
+        ChangeBaoZiCard(18, 6);
+        ChangeBaoZiCard(24, 3);
+        ChangeBaoZiCard(19, 4);
+        ChangeBaoZiCard(17, 4);
+        ChangeBaoZiCard(22, 1);
 
     }
 
@@ -403,7 +427,7 @@ public class EnemyBaoZi
     /// </summary>
     /// <param name="cardID"></param>
     /// <param name="number"></param>
-    public void ChangeCard(int cardID, int number)
+    public void ChangeBaoZiCard(int cardID, int number)
     {
         // 查找列表中是否存在具有相同ID的卡牌
         Card existingCard = BaoZiOwnedcards.Find(card => card.CardID == cardID);
@@ -456,11 +480,11 @@ public class EnemyBianFu
         BianFuCardSum = 0;
 
         /////给蝙蝠加牌/////////////////////////
-        ChangeCard(18, 6);
-        ChangeCard(24, 3);
-        ChangeCard(19, 4);
-        ChangeCard(17, 4);
-        ChangeCard(22, 1);
+        ChangeBianFuCard(18, 6);
+        ChangeBianFuCard(24, 3);
+        ChangeBianFuCard(19, 4);
+        ChangeBianFuCard(17, 4);
+        ChangeBianFuCard(22, 1);
     }
 
     /// <summary>
@@ -468,7 +492,7 @@ public class EnemyBianFu
     /// </summary>
     /// <param name="cardID"></param>
     /// <param name="number"></param>
-    public void ChangeCard(int cardID, int number)
+    public void ChangeBianFuCard(int cardID, int number)
     {
         // 查找列表中是否存在具有相同ID的卡牌
         Card existingCard = BianFuOwnedcards.Find(card => card.CardID == cardID);
@@ -520,11 +544,11 @@ public class EnemyXiuShi
         XiuShiCardSum = 0;
 
         /////给修士加牌/////////////////////////
-        ChangeCard(18, 6);
-        ChangeCard(24, 3);
-        ChangeCard(19, 4);
-        ChangeCard(17, 4);
-        ChangeCard(22, 1);
+        ChangeXiuShiCard(18, 6);
+        ChangeXiuShiCard(24, 3);
+        ChangeXiuShiCard(19, 4);
+        ChangeXiuShiCard(17, 4);
+        ChangeXiuShiCard(22, 1);
     }
 
     /// <summary>
@@ -532,7 +556,7 @@ public class EnemyXiuShi
     /// </summary>
     /// <param name="cardID"></param>
     /// <param name="number"></param>
-    public void ChangeCard(int cardID, int number)
+    public void ChangeXiuShiCard(int cardID, int number)
     {
         // 查找列表中是否存在具有相同ID的卡牌
         Card existingCard = XiuShiOwnedcards.Find(card => card.CardID == cardID);
@@ -584,11 +608,11 @@ public class EnemyZhuJiao
         ZhuJiaoCardSum = 0;
 
         /////给主教加牌/////////////////////////
-        ChangeCard(18, 6);
-        ChangeCard(24, 3);
-        ChangeCard(19, 4);
-        ChangeCard(17, 4);
-        ChangeCard(22, 1);
+        ChangeZhuJiaoCard(18, 6);
+        ChangeZhuJiaoCard(24, 3);
+        ChangeZhuJiaoCard(19, 4);
+        ChangeZhuJiaoCard(17, 20);
+        ChangeZhuJiaoCard(22, 1);
     }
 
     /// <summary>
@@ -596,7 +620,7 @@ public class EnemyZhuJiao
     /// </summary>
     /// <param name="cardID"></param>
     /// <param name="number"></param>
-    public void ChangeCard(int cardID, int number)
+    public void ChangeZhuJiaoCard(int cardID, int number)
     {
         // 查找列表中是否存在具有相同ID的卡牌
         Card existingCard = ZhuJiaoOwnedcards.Find(card => card.CardID == cardID);

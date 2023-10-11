@@ -6,6 +6,12 @@ public class Test : MonoBehaviour
 {
     public HealthSystem enemyhealthSystem;
 
+    private void Start()
+    {
+       
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -31,7 +37,12 @@ public class Test : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            GameDataControl.GetInstance().EnemyInfo_ZhiZhu.SumPlayerCards();
+           
+
+            foreach (Card card in GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuOwnedcards)
+            {
+                Debug.Log("ID" + card.CardID + "ÊýÁ¿" + card.PlayerOwnedNumber + "Ãû×Ö" + card.CardName);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -43,7 +54,6 @@ public class Test : MonoBehaviour
 
                 Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes);*/
 
-        Debug.Log(GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuCardSum);
     }
 
 
