@@ -25,6 +25,8 @@ public class Dialogue
 
 public class UI_DialoguePanel : BasePanel
 {
+    private bool IsSkip;
+
     private int backgroundMusicName;
     public Button openMailButton;
     public Button closeMailButton;
@@ -63,6 +65,9 @@ public class UI_DialoguePanel : BasePanel
     public override void ShowMe()
     {
         base.ShowMe();
+     
+        IsSkip = false;
+
         //监听菜单是否打开，一旦打开就将其设置为true
         MenuPanelIsOpen = false;
         EventCenter.GetInstance().AddEventListener("MenuIsOpen", () =>
@@ -363,14 +368,20 @@ public class UI_DialoguePanel : BasePanel
 
         MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
+        if (!IsSkip)
+        {
+            if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6 && IsOkToPlayEnding)
+            {
+                UIManager.GetInstance().ShowPanel<UI_TeamMember>("UI_TeamMember", E_UI_Layer.Top);
 
-        if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 6 && IsOkToPlayEnding)
-        {
-            UIManager.GetInstance().ShowPanel<UI_TeamMember>("UI_TeamMember", E_UI_Layer.Top);
-        }
-        else
-        {
-            ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
+                IsSkip = true;
+            }
+            else
+            {
+                ScenesMgr.GetInstance().LoadSceneAsyn("BattleScene", AfterLoadToBattle);
+
+                IsSkip = true;
+            }
         }
 
         //结束当前阶段

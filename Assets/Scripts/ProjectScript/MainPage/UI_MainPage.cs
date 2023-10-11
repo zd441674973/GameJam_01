@@ -55,9 +55,9 @@ public class UI_MainPage : BasePanel
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //监听鼠标移入和鼠标移出的事件，进行处理
-        EventTrigger trigger = openMenuButton.gameObject.AddComponent<EventTrigger>();
-
-        //申明一个鼠标进入的事件类对象
+      /*  EventTrigger trigger = openMenuButton.gameObject.AddComponent<EventTrigger>();
+*/
+      /*  //申明一个鼠标进入的事件类对象
         EventTrigger.Entry enter = new EventTrigger.Entry();
         enter.eventID = EventTriggerType.PointerEnter;
         enter.callback.AddListener(MouseEnterOpenMenuButton);
@@ -82,7 +82,7 @@ public class UI_MainPage : BasePanel
         exit2.callback.AddListener(MouseExitOpenCardLabraryButton);
 
         trigger2.triggers.Add(enter2);
-        trigger2.triggers.Add(exit2);
+        trigger2.triggers.Add(exit2);*/
     }
 
     private void Start()
@@ -107,10 +107,10 @@ public class UI_MainPage : BasePanel
 
     private void Update()
     {
-        ChnageButtonIcon();
+      /*  ChnageButtonIcon();*/
 
     }
-
+/*
     private void MouseEnterOpenMenuButton(BaseEventData data)
     {
         isMenuButtonRotating = true;
@@ -130,8 +130,8 @@ public class UI_MainPage : BasePanel
     {
         isCardLabButtonRotating = false;
     }
-
-    private void ChnageButtonIcon()
+*/
+/*    private void ChnageButtonIcon()
     {
         if (isMenuButtonRotating)
         {
@@ -146,7 +146,7 @@ public class UI_MainPage : BasePanel
         {
             CadLabButtonIcon.sprite = ResMgr.GetInstance().Load<Sprite>("UISprites/牌库Icon");
         }
-    }
+    }*/
 
 
     private void showCardPlus1Icon()
