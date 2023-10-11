@@ -353,7 +353,7 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "丢弃手牌中所有电属性牌，造成x点伤害, x等于3倍魔能值*丢弃的手牌数量",
+			"Description": "丢弃手牌中所有电属性牌，造成x点伤害, x等于3倍的魔能值和魔能增幅*丢弃的手牌数量",
 			"Rarity": "Epic"
 		},
 		{
