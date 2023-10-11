@@ -46,6 +46,7 @@ public class UI_TitleScenePanel : BasePanel
         //读取数据
         GameDataControl.GetInstance().LoadPlayerInfo();
 
+        UIManager.GetInstance().HidePanel("UI_TitleScene");
         ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", loadScene);
 
 
@@ -71,7 +72,7 @@ public class UI_TitleScenePanel : BasePanel
 
     private void loadScene()
     {
-        UIManager.GetInstance().HidePanel("UI_TitleScene");
+        //UIManager.GetInstance().HidePanel("UI_TitleScene");
         MusicMgr.GetInstance().PlaySound("SystemSoundEffect/选择2", false);
 
        if (GameDataControl.GetInstance().PlayerDataInfo.currentNodeID == 0)

@@ -6,6 +6,12 @@ public class Test : MonoBehaviour
 {
     public HealthSystem enemyhealthSystem;
 
+    private void Start()
+    {
+       
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -31,18 +37,25 @@ public class Test : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            EventCenter.GetInstance().EventTrigger("ScreenShake");
+           
+
+            foreach (Card card in GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuOwnedcards)
+            {
+                Debug.Log("ID" + card.CardID + "ÊýÁ¿" + card.PlayerOwnedNumber + "Ãû×Ö" + card.CardName);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.T))
         {
             enemyhealthSystem.Health = 0;
         }
+        /*
+                Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard);
 
-        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard);
+                Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes);*/
 
-        Debug.Log(GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes);
     }
+
 
     void Function()
     {

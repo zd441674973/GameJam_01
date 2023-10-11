@@ -32,9 +32,11 @@ public class NumSlot : MonoBehaviour
         {
             _isActive = false;
 
+
             if (BattleSceneSetUp.Instance.CurrentLevel == 0) _randomNum = 3;
 
             slotNum.text = _randomNum.ToString();
+
 
             LevelManager.Instance.SetDarkBeginBuff(_randomNum);
 
