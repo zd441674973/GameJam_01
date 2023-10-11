@@ -20,7 +20,7 @@
 			"DialogueID": 2,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "可就在他解决掉那只蝙蝠怪之后，那股饥饿感便席卷了他。多长战斗的消耗让吉罗已经几乎到达了极限。",
+			"Content": "可就在他解决掉那只蝙蝠怪之后，那股饥饿感便席卷了他。多场战斗的消耗让吉罗已经几乎到达了极限。",
 			"JumpToID": 3
 		},
 		{
@@ -60,7 +60,7 @@
 			"DialogueID": 7,
 			"Character": "旁白",
 			"PicturePosition": "left",
-			"Content": "那修士光着头，只穿了意见破烂的红裤子，上面满是脏污。",
+			"Content": "那修士光着头，只穿了一条破烂的红裤子，上面满是脏污。",
 			"JumpToID": 8
 		},
 		{

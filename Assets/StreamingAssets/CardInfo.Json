@@ -1,6 +1,6 @@
 {
 	"cardInfo": [{
-			"CardName": "电浆射击",
+			"CardName": "魔能射击",
 			"CardID": 0,
 			"Type": "ElectricalEnergy",
 			"PlayerOwnedNumber": 0,
@@ -164,7 +164,7 @@
 			"DrawCardFromEnemyLabrary": 1,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "造成x点伤害, x等于电能效率. 从敌人牌库抽1张牌",
+			"Description": "造成x点伤害, x等于电能值. 从敌人牌库抽1张牌",
 			"Rarity": "Rare"
 		},
 		{
@@ -185,7 +185,7 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "从牌库抽x张牌, 丢弃y张牌, x等于电能效率. y等于魔能效率",
+			"Description": "从牌库抽x张牌, 丢弃y张牌, x等于电能值. y等于魔能值",
 			"Rarity": "Rare"
 		},
 		{
@@ -269,7 +269,7 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "销毁敌人x张手牌, x等于电能效率",
+			"Description": "销毁敌人x张手牌, x等于电能值",
 			"Rarity": "Rare"
 		},
 		{
@@ -290,7 +290,7 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "电能效率额外增加2",
+			"Description": "电能值额外增加2",
 			"Rarity": "Rare"
 		},
 		{
@@ -332,7 +332,7 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "获得x点生命值, x等于电能效率*2",
+			"Description": "获得x点生命值, x等于电能值*2",
 			"Rarity": "Rare"
 		},
 		{
@@ -353,7 +353,7 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "丢弃手牌中所有电属性牌，造成x点伤害, x等于魔力增幅值*丢弃的手牌数量",
+			"Description": "丢弃手牌中所有电属性牌，造成x点伤害, x等于3倍魔能值*丢弃的手牌数量",
 			"Rarity": "Epic"
 		},
 		{
@@ -363,8 +363,8 @@
 			"PlayerOwnedNumber": 0,
 			"ElectricEnergyEfficiencyChange": -1,
 			"MagicEnergyEfficiencyChange": 1,
-			"HealthToOpponentMin": -2,
-			"HealthToOpponentMax": -12,
+			"HealthToOpponentMin": -3,
+			"HealthToOpponentMax": -3,
 			"NumberOfAttack": 1,
 			"HealthToSelfMin": 0,
 			"HealthToSelfMax": 0,
@@ -374,7 +374,7 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "对敌人造成2-12点伤害",
+			"Description": "对敌人造成3点伤害",
 			"Rarity": "Normal"
 		},
 		{
@@ -437,7 +437,7 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "对敌人造成x点伤害, 对自己造成y点伤害. X等于魔力增幅值*2, y等于电能效率*2",
+			"Description": "对敌人造成x点伤害, 对自己造成y点伤害. X等于魔力增幅值与魔能值的和*2, y等于电能值*2",
 			"Rarity": "Rare"
 		},
 		{
@@ -521,6 +521,6 @@
 			"DrawCardFromEnemyLabrary": 0,
 			"GetEnemyHandCard": 0,
 			"DestroyEnemyHandCard": 0,
-			"Description": "魔能效率额外增加2",
+			"Description": "魔能值额外增加2",
 			"Rarity": "Rare"
 		}]}

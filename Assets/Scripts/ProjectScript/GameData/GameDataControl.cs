@@ -202,9 +202,8 @@ public class PlayerInfo
         ChangeCard(10, 5); //虹吸10
         ChangeCard(0, 5); //射击5
         ChangeCard(15, 1); //修复组件
-        ChangeCard(2, 3);  //增幅线圈2
+        ChangeCard(2, 4);  //增幅线圈2
         ChangeCard(1, 2); //护盾5
-        ChangeCard(3, 1);  //护盾过载1
         ChangeCard(11, 1);  //电33
         ChangeCard(13, 2); //电瓶
     }
