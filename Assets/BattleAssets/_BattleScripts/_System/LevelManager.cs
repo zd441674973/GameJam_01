@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,9 @@ public class LevelManager : MonoBehaviour
 
     //[SerializeField] bool _isDeckShuffled;
 
+    [SerializeField] bool _isFistHONGXI;
+    public event Action FirstHONGXIevent;
+
 
 
 
@@ -71,6 +75,8 @@ public class LevelManager : MonoBehaviour
         _isPlayerDeckEmpty = false;
         _isEnemyDeckEmpty = false;
 
+        _isFistHONGXI = true;
+
 
     }
 
@@ -91,6 +97,7 @@ public class LevelManager : MonoBehaviour
 
         // UpdatePlayerEmptyList();
         // UpdateEnemyEmptyList();
+        FirstHONGXICheck();
     }
 
 
@@ -158,7 +165,7 @@ public class LevelManager : MonoBehaviour
         {
             for (int i = 0; i < CountEnemyHandEmptySlot(); i++)
             {
-                Transform card = randomCards[Random.Range(0, randomCards.Count)];
+                Transform card = randomCards[UnityEngine.Random.Range(0, randomCards.Count)];
                 EnemyDrawFromPlayerHand(card);
             }
 
@@ -196,7 +203,7 @@ public class LevelManager : MonoBehaviour
         {
             for (int i = 0; i < drawCardCount; i++)
             {
-                int randomNumb = Random.Range(0, playerCurrentHandCardList.Count);
+                int randomNumb = UnityEngine.Random.Range(0, playerCurrentHandCardList.Count);
                 Transform card = playerCurrentHandCardList[randomNumb];
                 randomCardList.Add(card);
             }
@@ -255,7 +262,7 @@ public class LevelManager : MonoBehaviour
 
         for (int i = 0; i < discardCardCount; i++)
         {
-            Transform randomDiscardCard = randomCardList[Random.Range(0, randomCardList.Count)];
+            Transform randomDiscardCard = randomCardList[UnityEngine.Random.Range(0, randomCardList.Count)];
             EnemyDiscardCard(randomDiscardCard);
         }
     }
@@ -337,24 +344,18 @@ public class LevelManager : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
     public void SwitchCardAttribute(Transform card)
     {
         CardData cardData = card.GetComponent<CardData>();
         cardData.IsBrightCard = !cardData.IsBrightCard;
+        cardData.IsAttributeSwitched = !cardData.IsAttributeSwitched;
     }
     public void EnemySwitchCardAttribute(int switchCardCount)
     {
         List<Transform> randomCardList = CurrentHandCardList(EnemyHandCard());
         for (int i = 0; i < switchCardCount; i++)
         {
-            Transform randomSwitchCard = randomCardList[Random.Range(0, randomCardList.Count)];
+            Transform randomSwitchCard = randomCardList[UnityEngine.Random.Range(0, randomCardList.Count)];
             SwitchCardAttribute(randomSwitchCard);
         }
 
@@ -457,7 +458,7 @@ public class LevelManager : MonoBehaviour
             }
 
             // draw from the deck
-            Transform card = deckList[Random.Range(0, deckList.Count)];
+            Transform card = deckList[UnityEngine.Random.Range(0, deckList.Count)];
 
             card.SetParent(slotList[i]);
             card.position = slotList[i].position;
@@ -597,6 +598,23 @@ public class LevelManager : MonoBehaviour
 
 
 
+    void FirstHONGXICheck()
+    {
+        if (BattleSceneSetUp.Instance.CurrentLevel != 0) return;
+        if (!_isFistHONGXI) return;
+        if (!TutorialSystem.Instance.TutorialIsOver) return;
+
+        foreach (Transform card in PlayerHandCard())
+        {
+            if (!card) continue;
+            if (card.GetComponent<CardData>().GetCard().CardID == 10)
+            {
+                FirstHONGXIevent?.Invoke();
+                _isFistHONGXI = false;
+            }
+        }
+
+    }
 
 
 

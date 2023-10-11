@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class NumSlot : MonoBehaviour
 {
+    public static event Action StartTutorialEvent;
 
     public TextMeshProUGUI slotNum;
 
     [Header("NewData")]
     [SerializeField] float _timer;
+    [SerializeField] float _waitForTutorialTimer;
     bool _isActive;
     int _randomNum;
 
@@ -40,16 +43,25 @@ public class NumSlot : MonoBehaviour
 
             LevelManager.Instance.SetDarkBeginBuff(_randomNum);
 
+            StartCoroutine(waitToStarTutorial(_waitForTutorialTimer));
+
+
+
         }
     }
 
     void SlotMachineUpdating()
     {
-        _randomNum = Random.Range(1, 6);
+        _randomNum = UnityEngine.Random.Range(1, 6);
 
         slotNum.text = _randomNum.ToString();
     }
 
+    IEnumerator waitToStarTutorial(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        StartTutorialEvent?.Invoke();
+    }
 
 
 

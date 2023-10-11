@@ -20,10 +20,25 @@ public class EnemyManager : MonoBehaviour
     HealthSystem healthSystem;
     ShieldSystem shieldSystem;
 
+    [SerializeField] Transform _shieldIcon;
+
+
     void Start()
     {
         healthSystem = GetComponent<HealthSystem>();
         shieldSystem = GetComponent<ShieldSystem>();
+    }
+
+    void Update()
+    {
+        ShowSieldIconCheck();
+    }
+
+    void ShowSieldIconCheck()
+    {
+        if (shieldSystem.ShieldValue < 1)
+            _shieldIcon.gameObject.SetActive(false);
+        else _shieldIcon.gameObject.SetActive(true);
     }
 
 

@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using JetBrains.Annotations;
 using Unity.Mathematics;
+using System;
 
 
 public class EnergySystem : MonoBehaviour
@@ -42,6 +43,12 @@ public class EnergySystem : MonoBehaviour
     [SerializeField] bool _isDarkBarFull;
     [SerializeField] List<Image> _darkBarImages;
 
+    [Header("Tutorial")]
+    [SerializeField] bool _isFirstTimeBrightFull;
+    [SerializeField] bool _isFirstTimeDarkFull;
+    public event Action FirstTimeBrightFullevent;
+    public event Action FirstTimeDarkFullevent;
+
 
 
 
@@ -61,13 +68,15 @@ public class EnergySystem : MonoBehaviour
 
         TurnSystem.Instance.OnEnemyTurnFinished += ResetEnergyBarValue;
 
-
+        _isFirstTimeBrightFull = true;
+        _isFirstTimeDarkFull = true;
 
     }
 
     void Update()
     {
         EnergyBarUpdation();
+
     }
 
 
@@ -93,6 +102,8 @@ public class EnergySystem : MonoBehaviour
         if (_isDarkBarFull) _darkBarEnergy = _darkBarMaxEnergy;
 
         EnergyBarValueCheck();
+
+        EnergyBarTutorialCheck();
     }
 
     void EnergyBarValueCheck()
@@ -142,6 +153,23 @@ public class EnergySystem : MonoBehaviour
         {
             images[i].enabled = true;
         }
+    }
+
+    void EnergyBarTutorialCheck()
+    {
+
+        if (_isFirstTimeBrightFull && _isBrightBarFull)
+        {
+            FirstTimeBrightFullevent?.Invoke();
+            _isFirstTimeBrightFull = false;
+        }
+
+        if (_isFirstTimeDarkFull && _isDarkBarFull)
+        {
+            FirstTimeDarkFullevent?.Invoke();
+            _isFirstTimeDarkFull = false;
+        }
+
     }
 
 

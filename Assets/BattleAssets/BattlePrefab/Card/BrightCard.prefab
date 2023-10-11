@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5020832585851142789}
   - component: {fileID: 6973575771660167444}
   m_Layer: 6
-  m_Name: DarkCardImage
+  m_Name: SwitchCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6a497e4a9072b454e9dadaa65f85b2db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d267709a18925bb4e8ceb0980792bcf2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -152,11 +152,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBrightCard: 1
-  _brightCard: {fileID: 539559110185625790}
-  _darkCard: {fileID: 696279959082279768}
   cardImage: {fileID: 7987625730110414709}
+  _attributeSwithCard: {fileID: 696279959082279768}
+  _isAttributeSwitched: 0
   _isInPlayerHand: 0
   _isPlayerCard: 1
+  _isCausingDamageCard: 0
   _cardID: 0
   _cardName: {fileID: 3695263921535125845}
   _cardDescription: {fileID: 63267805747299672}
