@@ -22,6 +22,8 @@ public class TutorialSystem : MonoBehaviour
     [Header("DATA")]
     [SerializeField] Transform _background;
 
+    public void SetBackGroundPanel(bool condition) => _background.gameObject.SetActive(condition);
+
     [SerializeField] Transform _brightMax;
     public void SetBrightMaxPanel(bool condition) => _brightMax.gameObject.SetActive(condition);
 
@@ -106,14 +108,20 @@ public class TutorialSystem : MonoBehaviour
 
     void ShowBrigthEnergyMaxPanel()
     {
+        _background.gameObject.SetActive(true);
+
         _brightMax.gameObject.SetActive(true);
     }
     void ShowDarkEnergyMaxPanel()
     {
+        _background.gameObject.SetActive(true);
+
         _darkMax.gameObject.SetActive(true);
     }
     void ShowHONGXIPanel()
     {
+        _background.gameObject.SetActive(true);
+
         _hongXi.gameObject.SetActive(true);
     }
 

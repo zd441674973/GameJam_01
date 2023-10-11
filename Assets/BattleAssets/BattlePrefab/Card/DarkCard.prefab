@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8284539672607606991}
   - {fileID: 3659932269632382879}
+  - {fileID: 8284539672607606991}
   - {fileID: 6596705880673927270}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,11 +76,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBrightCard: 0
-  _brightCard: {fileID: 8284539672607606991}
-  _darkCard: {fileID: 3659932269632382879}
   cardImage: {fileID: 5900815518138903631}
+  _attributeSwithCard: {fileID: 8284539672607606991}
+  _isAttributeSwitched: 0
   _isInPlayerHand: 0
   _isPlayerCard: 0
+  _isCausingDamageCard: 0
   _cardID: 0
   _cardName: {fileID: 3977149665463655172}
   _cardDescription: {fileID: 3806274525679024609}
@@ -160,7 +161,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2129563389784043499}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -236,7 +237,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2129563389784043499}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

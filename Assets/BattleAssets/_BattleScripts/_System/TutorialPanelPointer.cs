@@ -21,6 +21,7 @@ public class TutorialPanelPointer : MonoBehaviour, IPointerDownHandler
         TutorialSystem.Instance.SetBrightMaxPanel(false);
         TutorialSystem.Instance.SetDarkMaxPanel(false);
         TutorialSystem.Instance.SetHONGXIPanel(false);
+        TutorialSystem.Instance.SetBackGroundPanel(false);
 
 
     }
