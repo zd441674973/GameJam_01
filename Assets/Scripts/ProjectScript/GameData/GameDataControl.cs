@@ -475,7 +475,7 @@ public class EnemyBianFu
     public EnemyBianFu()
     {
 
-        BianFuMaxHealth = 50;
+        BianFuMaxHealth = 180;
         BianFuOwnedcards = new List<Card>();
         BianFuCardSum = 0;
 
@@ -539,7 +539,7 @@ public class EnemyXiuShi
     public EnemyXiuShi()
     {
 
-        XiuShiMaxHealth = 50;
+        XiuShiMaxHealth = 300;
         XiuShiOwnedcards = new List<Card>();
         XiuShiCardSum = 0;
 
@@ -605,7 +605,7 @@ public class EnemyZhuJiao
     public EnemyZhuJiao()
     {
 
-        ZhuJiaoMaxHealth = 50;
+        ZhuJiaoMaxHealth = 500;
         ZhuJiaoOwnedcards = new List<Card>();
         ZhuJiaoCardSum = 0;
 
