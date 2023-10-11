@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ShieldSystem : MonoBehaviour
 {
     [SerializeField] int _shieldValue;
+    public GameObject sheildIcon;
+
     public int ShieldValue
     { get { return _shieldValue; } set { _shieldValue = value; } }
 
@@ -33,6 +35,16 @@ public class ShieldSystem : MonoBehaviour
     {
         _shieldText.text = _shieldValue.ToString();
         if (_shieldValue < 0) _shieldValue = 0;
+
+/*
+        if(_shieldValue <= 0)
+        {
+            sheildIcon.gameObject.SetActive(false);
+        }
+        else
+        {
+            sheildIcon.gameObject.SetActive(true);
+        }*/
     }
 
 

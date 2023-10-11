@@ -10,7 +10,6 @@ public class CardData : MonoBehaviour
     [Header("Card Attributes")]
     [SerializeField] bool _isBrightCard;
     public bool IsBrightCard { get { return _isBrightCard; } set { _isBrightCard = value; } }
-
     // [SerializeField] Transform _brightCard;
     // [SerializeField] Transform _darkCard;
 

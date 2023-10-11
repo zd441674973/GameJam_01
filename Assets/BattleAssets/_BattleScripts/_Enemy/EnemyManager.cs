@@ -13,20 +13,14 @@ public class EnemyManager : MonoBehaviour
             Destroy(Instance);
         }
         Instance = this;
+
+
     }
 
     HealthSystem healthSystem;
     ShieldSystem shieldSystem;
 
-
     [SerializeField] Transform _shieldIcon;
-    bool _isOwnShield;
-
-
-
-
-
-
 
 
     void Start()
@@ -34,24 +28,22 @@ public class EnemyManager : MonoBehaviour
         healthSystem = GetComponent<HealthSystem>();
         shieldSystem = GetComponent<ShieldSystem>();
     }
+
     void Update()
     {
-        
+        ShowSieldIconCheck();
+    }
+
+    void ShowSieldIconCheck()
+    {
+        if (shieldSystem.ShieldValue < 1)
+            _shieldIcon.gameObject.SetActive(false);
+        else _shieldIcon.gameObject.SetActive(true);
     }
 
 
     public HealthSystem GetHealthSystem() => healthSystem;
     public ShieldSystem GetShieldSystem() => shieldSystem;
-
-
-
-
-
-    void HideShieldIcon(bool condition)
-    {
-        if (condition) _shieldIcon.gameObject.SetActive(true);
-        else _shieldIcon.gameObject.SetActive(false);
-    }
 
 
 

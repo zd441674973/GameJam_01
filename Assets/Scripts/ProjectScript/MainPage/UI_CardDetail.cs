@@ -4,7 +4,6 @@ using System.Resources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class UI_CardDetail : BasePanel
 {

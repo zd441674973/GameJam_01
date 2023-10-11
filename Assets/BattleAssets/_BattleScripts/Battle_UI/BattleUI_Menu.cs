@@ -14,8 +14,6 @@ public class BattleUI_Menu : BasePanel
         MenuIsOpen = false;
 
         MenuButton.onClick.AddListener(OpenMenu);
-
-        UIManager.GetInstance().HidePanel("UI_TitleScene");
     }
 
     private void OpenMenu()

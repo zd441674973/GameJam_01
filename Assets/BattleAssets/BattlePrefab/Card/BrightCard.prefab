@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5020832585851142789}
   - component: {fileID: 6973575771660167444}
   m_Layer: 6
-  m_Name: SwitchCardImage
+  m_Name: SwitchCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 7294789388124566902}
   - component: {fileID: 7987625730110414709}
   m_Layer: 6
-  m_Name: CardImage
+  m_Name: LightCardImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

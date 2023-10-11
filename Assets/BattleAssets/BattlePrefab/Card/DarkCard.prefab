@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 547176068470410504}
   - component: {fileID: 5900815518138903631}
   m_Layer: 6
-  m_Name: CardImage
+  m_Name: DarkCardImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
