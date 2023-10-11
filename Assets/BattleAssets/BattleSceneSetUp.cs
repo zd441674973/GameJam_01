@@ -24,7 +24,7 @@ public class BattleSceneSetUp : MonoBehaviour
 
     }
 
-    private int currentLevel;
+    [SerializeField] int currentLevel;
     public int CurrentLevel { get { return currentLevel; } }
     public Image backGround;
     public Image EnemyImage;
@@ -61,9 +61,13 @@ public class BattleSceneSetUp : MonoBehaviour
 
         EventCenter.GetInstance().AddEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
 
-        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
 
-        // Debug.Log("currentLevel: " + currentLevel);
+        //currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+
+        //currentLevel = 0;
+
+        Debug.Log("currentLevel: " + currentLevel);
+
         //currentLevel = 0;
 
 
@@ -102,7 +106,7 @@ public class BattleSceneSetUp : MonoBehaviour
 
     private void ChangeSet()
     {
-        
+
 
         switch (currentLevel)
         {

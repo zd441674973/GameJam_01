@@ -107,7 +107,7 @@ public class MouseActionManager : MonoBehaviour
     {
         if (!TurnSystem.Instance.IsPlayerTurn()) return;
 
-        
+
 
         switch (_mouseInteractionState)
         {
@@ -168,6 +168,8 @@ public class MouseActionManager : MonoBehaviour
                 BattleUIManager.Instance.SetEndTurnButtonFunction(false);
 
                 if (PlayerCurrentHandCardCount() < 1) SkipCurrentState(); // Need update if possible
+
+                if (_discardPlayerHandCount < 1) SkipCurrentState();
 
                 if (CurrentDraggedCard()) if (!IsPlayerCard()) return;
 
@@ -376,6 +378,7 @@ public class MouseActionManager : MonoBehaviour
     {
         BattleUIManager.Instance.SetDiscardPlayerHandUI(true);
         _mouseInteractionState = MouseInteractionState.DiscardPlayerHand;
+
     }
 
     void DiscardPlayerHandCard()
@@ -387,6 +390,7 @@ public class MouseActionManager : MonoBehaviour
         Debug.Log(CurrentPlayedCard());
 
         LevelManager.Instance.PlayerDiscardCard(CurrentPlayedCard());
+
 
         _discardPlayerHandCount -= 1;
         if (_discardPlayerHandCount > 0) return;

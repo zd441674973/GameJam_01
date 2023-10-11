@@ -26,6 +26,14 @@ public class UnitDeckInitialization : MonoBehaviour
     void Start()
     {
 
+        List<Card> enemyCardList = BattleSceneSetUp.Instance.GetEnemyCardList();
+        FindCardFromTotalCardDeck(enemyCardList, _enemyInitialDeck);
+        foreach (Transform card in _enemyInitialDeck)
+        {
+            Transform cloneCard = CardDeckManager.Instance.GenerateCard(card, transform);
+            EnemyDeck().Add(cloneCard);
+        }
+
         //Find player cards
         List<Card> playerCardList = BattleSceneSetUp.Instance.GetPlayerCardList();
         FindCardFromTotalCardDeck(playerCardList, _playerInitialDeck);
@@ -36,14 +44,15 @@ public class UnitDeckInitialization : MonoBehaviour
         }
 
 
-
-        List<Card> enemyCardList = BattleSceneSetUp.Instance.GetEnemyCardList();
-        FindCardFromTotalCardDeck(enemyCardList, _enemyInitialDeck);
-        foreach (Transform card in _enemyInitialDeck)
+        // debug only
+        Transform B8 = CardDeckManager.Instance.GenerateCard(_totalCardList[8], transform);
+        for (int i = 0; i < 20; i++)
         {
-            Transform cloneCard = CardDeckManager.Instance.GenerateCard(card, transform);
-            EnemyDeck().Add(cloneCard);
+            PlayerDeck().Add(B8);
         }
+
+
+
 
 
 
