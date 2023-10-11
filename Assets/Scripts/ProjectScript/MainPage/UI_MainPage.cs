@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -83,13 +84,6 @@ public class UI_MainPage : BasePanel
 
         trigger2.triggers.Add(enter2);
         trigger2.triggers.Add(exit2);
-    }
-
-    private void Start()
-    {
-
-        MusicMgr.GetInstance().ChangeBKValue(GameDataControl.GetInstance().PlayerDataInfo.playerBKvalue);
-        MusicMgr.GetInstance().ChangeSoundValue(GameDataControl.GetInstance().PlayerDataInfo.playerSEvalue);
     }
 
 

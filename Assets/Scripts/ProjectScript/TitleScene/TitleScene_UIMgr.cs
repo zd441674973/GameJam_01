@@ -26,8 +26,5 @@ public class TitleScene_UIMgr : MonoBehaviour
     {
         //播放主界面的BGM
         MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano41-菜单");
-
-        MusicMgr.GetInstance().ChangeBKValue(0.1f);
-        MusicMgr.GetInstance().ChangeSoundValue(0.5f);
     }
 }

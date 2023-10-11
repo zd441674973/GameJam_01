@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class UI_AwardPanel : BasePanel
 {
@@ -24,9 +25,7 @@ public class UI_AwardPanel : BasePanel
     public override void ShowMe()
     {
         base.ShowMe();
-        rareCardPosibility = 0.4f;
-        normalCardPosibility = 0.3f;
-        EpicCardPosibility = 0.3f;
+        
     }
 
     protected override void Awake()
@@ -127,7 +126,7 @@ public class UI_AwardPanel : BasePanel
             float randomValue = Random.Range(0f, 1f); // 生成一个0到1之间的随机数
 
             // 根据随机数来确定卡牌的稀有度
-            if (randomValue <= 0.4)
+            if (randomValue <= 0.3)
             {
                 // 添加稀有牌到刷新后的列表
                 drawnNewCards.Add(GetRandomRareCard());
@@ -137,7 +136,7 @@ public class UI_AwardPanel : BasePanel
                 // 添加普通牌到刷新后的列表
                 drawnNewCards.Add(GetRandomNormalCard());
             }
-            else if(randomValue > 0.4 && randomValue <= 0.7)
+            else if(randomValue > 0.3 && randomValue <= 0.7)
             { 
                 // 添加史诗牌到刷新后的列表
                 drawnNewCards.Add(GetRandomEpicCard());
