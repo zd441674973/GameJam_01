@@ -20,7 +20,7 @@ public class B9 : CardAction
         if (_isBrightEnergyFull && _cardData.IsBrightCard)
         {
 
-            if (currentDarkEnergy > 3)
+            if (currentDarkEnergy >= 3)
                 CardActionManager.Instance.DrawCard(2 * _brightBonus);
 
             else CardActionManager.Instance.DrawCard(1 * _brightBonus);
@@ -28,14 +28,14 @@ public class B9 : CardAction
         }
         else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
-            if (currentDarkEnergy > 3)
+            if (currentDarkEnergy >= 3)
                 CardActionManager.Instance.OpponentDrawCard(2);
 
             else CardActionManager.Instance.OpponentDrawCard(1);
         }
         else
         {
-            if (currentDarkEnergy > 3)
+            if (currentDarkEnergy >= 3)
                 CardActionManager.Instance.DrawCard(2);
 
             else CardActionManager.Instance.DrawCard(1);
