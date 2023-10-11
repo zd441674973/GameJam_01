@@ -10,10 +10,16 @@ public class CardData : MonoBehaviour
     [Header("Card Attributes")]
     [SerializeField] bool _isBrightCard;
     public bool IsBrightCard { get { return _isBrightCard; } set { _isBrightCard = value; } }
-    [SerializeField] Transform _brightCard;
-    [SerializeField] Transform _darkCard;
+
+    // [SerializeField] Transform _brightCard;
+    // [SerializeField] Transform _darkCard;
 
     public Image cardImage;
+
+    [SerializeField] Transform _attributeSwithCard;
+    [SerializeField] bool _isAttributeSwitched;
+    public bool IsAttributeSwitched { get { return _isAttributeSwitched; } set { _isAttributeSwitched = value; } }
+
 
     [Header("Card Info")]
     [SerializeField] bool _isInPlayerHand;
@@ -58,7 +64,7 @@ public class CardData : MonoBehaviour
 
     void Update()
     {
-        AttributeUpdate(_isBrightCard);
+        AttributeUpdate(_isAttributeSwitched);
         UpdateCardSize(_isInPlayerHand);
 
 
@@ -68,13 +74,11 @@ public class CardData : MonoBehaviour
     {
         if (condition)
         {
-            _brightCard.gameObject.SetActive(true);
-            _darkCard.gameObject.SetActive(false);
+            _attributeSwithCard.gameObject.SetActive(true);
         }
         else
         {
-            _brightCard.gameObject.SetActive(false);
-            _darkCard.gameObject.SetActive(true);
+            _attributeSwithCard.gameObject.SetActive(false);
         }
     }
 

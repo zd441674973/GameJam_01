@@ -31,8 +31,8 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8284539672607606991}
   - {fileID: 3659932269632382879}
+  - {fileID: 8284539672607606991}
   - {fileID: 6596705880673927270}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,11 +76,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBrightCard: 0
-  _brightCard: {fileID: 8284539672607606991}
-  _darkCard: {fileID: 3659932269632382879}
   cardImage: {fileID: 5900815518138903631}
+  _attributeSwithCard: {fileID: 8284539672607606991}
+  _isAttributeSwitched: 0
   _isInPlayerHand: 0
   _isPlayerCard: 0
+  _isCausingDamageCard: 0
   _cardID: 0
   _cardName: {fileID: 3977149665463655172}
   _cardDescription: {fileID: 3806274525679024609}
@@ -141,7 +142,7 @@ GameObject:
   - component: {fileID: 547176068470410504}
   - component: {fileID: 5900815518138903631}
   m_Layer: 6
-  m_Name: DarkCardImage
+  m_Name: CardImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +161,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2129563389784043499}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -217,7 +218,7 @@ GameObject:
   - component: {fileID: 2125338081654274902}
   - component: {fileID: 4473707948398400656}
   m_Layer: 6
-  m_Name: LightCardImage
+  m_Name: SwitchCardImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +237,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2129563389784043499}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -271,7 +272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e8c629f448fcb964ca23ef349d843e05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 658c155b5bec3bc4dbd2b7327effe601, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

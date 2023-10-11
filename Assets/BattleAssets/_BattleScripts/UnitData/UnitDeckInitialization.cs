@@ -37,6 +37,7 @@ public class UnitDeckInitialization : MonoBehaviour
         }
 
 
+<<<<<<< Updated upstream
 
         List<Card> enemyCardList = BattleSceneSetUp.Instance.GetEnemyCardList();
         FindCardFromTotalCardDeck(enemyCardList, _enemyInitialDeck);
@@ -44,6 +45,13 @@ public class UnitDeckInitialization : MonoBehaviour
         {
             Transform cloneCard = CardDeckManager.Instance.GenerateCard(card, transform);
             EnemyDeck().Add(cloneCard);
+=======
+        // debug only
+        Transform B14 = CardDeckManager.Instance.GenerateCard(_totalCardList[14], transform);
+        for (int i = 0; i < 20; i++)
+        {
+            PlayerDeck().Add(B14);
+>>>>>>> Stashed changes
         }
 
 
@@ -82,7 +90,7 @@ public class UnitDeckInitialization : MonoBehaviour
     {
         foreach (var card in cardList)
         {
-            for (int i = 0; i < card.PlayerOwnedNumber; i++)
+            for (int i = 0; i < card.PlayerOwnedNumber * 2; i++)
             {
                 deckList.Add(_totalCardList[card.CardID]);
             }
