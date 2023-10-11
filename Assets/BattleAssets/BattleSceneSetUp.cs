@@ -117,6 +117,11 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 EnemyName.text = "¾ÞÖ©Öë";
 
+                if (GameDataControl.GetInstance().EnemyInfo_ZhiZhu == null)
+                {
+                    GameDataControl.GetInstance().EnemyInfo_ZhiZhu = new EnemyZhiZhu();
+                }
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhiZhu");
 
@@ -139,6 +144,13 @@ public class BattleSceneSetUp : MonoBehaviour
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/Å£Å£boss");
 
                 EnemyName.text = "Ã×ÅµÌÕÂåË¹";
+
+                if (GameDataControl.GetInstance().EnemyInfo_NiuNiu == null)
+                {
+                    GameDataControl.GetInstance().EnemyInfo_NiuNiu = new EnemyNiuNiu();
+
+                }
+
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/NiuNiu");
@@ -165,6 +177,15 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 EnemyName.text = "ÈüçêÅÉ";
 
+
+                if (GameDataControl.GetInstance().EnemyInfo_BaoZi == null)
+                {
+                    GameDataControl.GetInstance().EnemyInfo_BaoZi = new EnemyBaoZi();
+
+                }
+
+
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BaoZi");
 
@@ -188,6 +209,15 @@ public class BattleSceneSetUp : MonoBehaviour
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/òùòðboss");
 
                 EnemyName.text = "¿¨Âê×ô×È";
+
+
+                if (GameDataControl.GetInstance().EnemyInfo_BianFu == null)
+                {
+                    GameDataControl.GetInstance().EnemyInfo_BianFu = new EnemyBianFu();
+
+                }
+
+
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BianFu");
@@ -213,6 +243,15 @@ public class BattleSceneSetUp : MonoBehaviour
 
                 EnemyName.text = "À¼¸£µÂ";
 
+
+                if (GameDataControl.GetInstance().EnemyInfo_XiuShi == null)
+                {
+                    GameDataControl.GetInstance().EnemyInfo_XiuShi = new EnemyXiuShi();
+
+                }
+
+
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/XiuShi");
 
@@ -235,6 +274,15 @@ public class BattleSceneSetUp : MonoBehaviour
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/Ö÷½Ìboss");
 
                 EnemyName.text = "À¼µÀ¶û";
+
+
+                if (GameDataControl.GetInstance().EnemyInfo_ZhuJiao == null)
+                {
+                    GameDataControl.GetInstance().EnemyInfo_ZhuJiao = new EnemyZhuJiao();
+
+                }
+
+
 
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhuJiao");
