@@ -2140,7 +2140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7636809543485526950, guid: f72f24e3dc62d1140959ef17455af0e4, type: 3}
       propertyPath: _timer
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7636809543485526950, guid: f72f24e3dc62d1140959ef17455af0e4, type: 3}
       propertyPath: _newTime
@@ -10558,7 +10558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _battleSlot: {fileID: 1062509667}
-  _watingTime: 1
+  _watingTime: 0
   _isActive: 0
   _cardIndex: 0
   _enemyTurnState: 0

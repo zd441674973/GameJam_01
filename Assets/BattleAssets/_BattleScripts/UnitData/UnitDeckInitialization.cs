@@ -45,10 +45,10 @@ public class UnitDeckInitialization : MonoBehaviour
 
 
         // debug only
-        Transform B8 = CardDeckManager.Instance.GenerateCard(_totalCardList[8], transform);
+        Transform B9 = CardDeckManager.Instance.GenerateCard(_totalCardList[9], transform);
         for (int i = 0; i < 20; i++)
         {
-            PlayerDeck().Add(B8);
+            PlayerDeck().Add(B9);
         }
 
 
