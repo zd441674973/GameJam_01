@@ -15,24 +15,24 @@ public class B16 : CardAction
         {
             int discardCount = CardActionManager.Instance.DiscardBrightHandCard();
             //Debug.Log("DiscardCount: " + discardCount);
-            //int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
 
-            int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
+            int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
+            //int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
             //Debug.Log("B_count: " + brightBonusCount);
 
-            CardActionManager.Instance.DamageOpponent(-(brightBonusCount * 3 * discardCount * _brightBonus));
+            CardActionManager.Instance.DamageOpponent(-(darkBonusCount * 3 * discardCount * _brightBonus));
 
         }
         else if (_isDarkEnergyFull && !_cardData.IsBrightCard)
         {
             int discardCount = CardActionManager.Instance.DiscardBrightHandCard();
             //Debug.Log("DiscardCount: " + discardCount);
-            //int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
 
-            int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
+            int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
+            //int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
             //Debug.Log("B_count: " + brightBonusCount);
 
-            CardActionManager.Instance.DamageOpponent(-(brightBonusCount * 3 * discardCount));
+            CardActionManager.Instance.DamageOpponent(-(darkBonusCount * 3 * discardCount));
 
         }
         else
@@ -40,12 +40,12 @@ public class B16 : CardAction
 
             int discardCount = CardActionManager.Instance.DiscardBrightHandCard();
             Debug.Log("DiscardCount: " + discardCount);
-            //int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
 
-            int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
-            Debug.Log("B_count: " + brightBonusCount);
+            int darkBonusCount = LevelManager.Instance.GetTotalDarkDamageBuff();
+            //int brightBonusCount = CardActionManager.Instance.GetCurrentBrightEnergy();
+            //Debug.Log("B_count: " + brightBonusCount);
 
-            CardActionManager.Instance.DamageOpponent(-(brightBonusCount * 3 * discardCount));
+            CardActionManager.Instance.DamageOpponent(-(darkBonusCount * 3 * discardCount));
         }
 
     }
