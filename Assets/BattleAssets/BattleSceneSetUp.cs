@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
-using UnityEditor.VersionControl;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +8,11 @@ public class BattleSceneSetUp : MonoBehaviour
 {
 
     public static BattleSceneSetUp Instance;
+
+    public TMP_Text EnemyName;
+
+    public GameObject PlayerGetHitAnimation;
+
     void Awake()
     {
         if (Instance != null)
@@ -20,7 +24,7 @@ public class BattleSceneSetUp : MonoBehaviour
 
     }
 
-    private int currentLevel;
+    [SerializeField] int currentLevel;
     public int CurrentLevel { get { return currentLevel; } }
     public Image backGround;
     public Image EnemyImage;
@@ -44,41 +48,50 @@ public class BattleSceneSetUp : MonoBehaviour
     private bool IsTriggerPlayerHealthChange = false; // 用于标记玩家生命值是否发生变化
     private bool IsTriggerEnemyHealthChange = false;
 
-    private bool IsFistEnter;
 
     private Animator animator;
-
-
-
-
-
-
-
 
 
 
     void Start()
     {
 
-        currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+
+        EventCenter.GetInstance().EventTrigger("InBattleScene");
+
+        EventCenter.GetInstance().AddEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
+
+
+        //currentLevel = GameDataControl.GetInstance().PlayerDataInfo.currentNodeID;
+
+        //currentLevel = 0;
 
         Debug.Log("currentLevel: " + currentLevel);
+
         //currentLevel = 0;
 
 
         hasExecutedCheckHealth = false;
-        IsFistEnter = false;
 
         playerHealthSystem = PlayerManager.Instance.GetHealthSystem();
         enemyHealthSystem = EnemyManager.Instance.GetHealthSystem();
 
 
-
+        MusicMgr.GetInstance().ChangeBKValue(GameDataControl.GetInstance().PlayerDataInfo.playerBKvalue);
+        MusicMgr.GetInstance().ChangeSoundValue(GameDataControl.GetInstance().PlayerDataInfo.playerSEvalue);
 
         ChangeSet();
 
         // Debug.Log("PlayerMaxHealth: " + GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth);
         // Debug.Log("EnemyMaxHealth: " + GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth);
+
+
+
+    }
+
+    private void OnDestroy()
+    {
+        EventCenter.GetInstance().RemoveEventListener("AnimationTimerTwoSeconds", FinishBattleFunction);
 
     }
 
@@ -90,8 +103,11 @@ public class BattleSceneSetUp : MonoBehaviour
         CheckHealth();
     }
 
+
     private void ChangeSet()
     {
+
+
         switch (currentLevel)
         {
             //教程关大蜘蛛
@@ -99,14 +115,16 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/实验室");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蜘蛛boss");
 
+                EnemyName.text = "巨蜘蛛";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhiZhu");
 
                 MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー15-教程");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.ZhiZhuMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
                 //设置玩家卡牌及血量
@@ -120,6 +138,8 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/街角");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/牛牛boss");
 
+                EnemyName.text = "米诺陶洛斯";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/NiuNiu");
 
@@ -127,8 +147,8 @@ public class BattleSceneSetUp : MonoBehaviour
 
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhiZhu.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_NiuNiu.NiuNiuOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_NiuNiu.NiuNiuMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
@@ -143,14 +163,16 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/工厂");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/豹子boss");
 
+                EnemyName.text = "赛珀派";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BaoZi");
 
                 MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー03-黑豹");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BaoZi.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_BaoZi.BaoZiOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BaoZi.BaoZiMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
@@ -165,14 +187,16 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/市政厅");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/蝙蝠boss");
 
+                EnemyName.text = "卡玛佐兹";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/BianFu");
 
                 MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー11-蝙蝠");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BianFu.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_BianFu.BianFuOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_BianFu.BianFuMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
 
@@ -187,14 +211,16 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/教堂广场");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/修士boss");
 
+                EnemyName.text = "兰福德";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/XiuShi");
 
                 MusicMgr.GetInstance().PlayBkMusic("魔王魂 ループ  ファンタジー12-修士");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_XiuShi.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_XiuShi.XiuShiOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_XiuShi.XiuShiMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
                 //设置玩家卡牌及血量
@@ -208,14 +234,16 @@ public class BattleSceneSetUp : MonoBehaviour
                 backGround.sprite = ResMgr.GetInstance().Load<Sprite>("Sprites/教堂");
                 EnemyImage.sprite = ResMgr.GetInstance().Load<Sprite>("EnemySprites/主教boss");
 
+                EnemyName.text = "兰道尔";
+
                 animator = EnemyImage.gameObject.AddComponent<Animator>();
                 animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animator/ZhuJiao");
 
                 MusicMgr.GetInstance().PlayBkMusic("maou_bgm_piano36-主教");
 
                 //设置怪物卡牌及血量
-                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyOwnedcards;
-                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.EnemyMaxHealth;
+                Enemycards = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.ZhuJiaoOwnedcards;
+                enemyHealthSystem.Health = GameDataControl.GetInstance().EnemyInfo_ZhuJiao.ZhuJiaoMaxHealth;
                 enemyCurrentHealth = enemyHealthSystem.Health;
 
                 //设置玩家卡牌及血量
@@ -228,68 +256,95 @@ public class BattleSceneSetUp : MonoBehaviour
 
     }
 
+    private void FinishBattleFunction()
+    {
+        //生命值上限奖励
+        GameDataControl.GetInstance().PlayerDataInfo.playerMaxHealth += 10;
+        //手牌奖励
+        GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
+
+        if (currentLevel == 0)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 1;
+        }
+
+        if (currentLevel == 1)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 2;
+        }
+
+        if (currentLevel == 2)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 3;
+        }
+
+        if (currentLevel == 3)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 4;
+        }
+
+        if (currentLevel == 4)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 5;
+        }
+
+        if (currentLevel == 5)
+        {
+            GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 6;
+        }
+
+        EventCenter.GetInstance().EventTrigger("NotInBattleScene");
+
+        GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = false;
+
+        EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
+
+        ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
+        //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
+
+
+
+
+    }
+
+
     private void CheckHealth()
     {
 
         //玩家失去所有生命值
         if (playerHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
+            EventCenter.GetInstance().EventTrigger("NotInBattleScene");
+
             ScenesMgr.GetInstance().LoadSceneAsyn("TitleScene", AfterReturnToTitle);
         }
         //敌人失去所有生命值
         if (enemyHealthSystem.Health <= 0 && !hasExecutedCheckHealth)
         {
-            GameDataControl.GetInstance().PlayerDataInfo.drawNewCardTimes = 3;
 
-            if (currentLevel == 0)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 1;
-            }
-
-            if (currentLevel == 1)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 2;
-            }
-
-            if (currentLevel == 2)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 3;
-            }
-
-            if (currentLevel == 3)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 4;
-            }
-
-            if (currentLevel == 4)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 5;
-            }
-
-            if (currentLevel == 5)
-            {
-                GameDataControl.GetInstance().PlayerDataInfo.currentNodeID = 6;
-            }
-
-
-
-            GameDataControl.GetInstance().PlayerDataInfo.AlreadyFinishedAward_SelectNewCard = false;
-
-            EventCenter.GetInstance().EventTrigger("currentPlayerNodeIDchange");
-
-            ScenesMgr.GetInstance().LoadSceneAsyn("LoadingScene", loadScene);
-            //ScenesMgr.GetInstance().LoadSceneAsyn("MainPage", AfterReturnToMain);
+            animator.SetBool("IsDead", true);
 
             hasExecutedCheckHealth = true;
+            EventCenter.GetInstance().EventTrigger("AnimationTimerStart");
+
+
+
         }
+
+
+
 
         // 检查玩家生命值是否改变并触发事件
         if (playerHealthSystem.Health < playerCurrentHealth && !IsTriggerPlayerHealthChange)
         {
             playerCurrentHealth = playerHealthSystem.Health; // 更新玩家生命值
 
-            //Debug.Log(1);
-            //animator.SetBool("", true);                               // 触发玩家生命值改变事件
+            PlayerGetHitAnimation.gameObject.SetActive(true);
+
+            PlayerGetHitAnimation.gameObject.GetComponent<Animator>().SetBool("IsGetHit", true);
+
+            Invoke("SetPlayerGetHitAnimationToFalse", 1f);
+
             IsTriggerPlayerHealthChange = true;
         }
         else
@@ -314,10 +369,19 @@ public class BattleSceneSetUp : MonoBehaviour
         }
     }
 
+
+
+    private void SetPlayerGetHitAnimationToFalse()
+    {
+        PlayerGetHitAnimation.gameObject.SetActive(false);
+    }
+
+
+
     private void AfterReturnToTitle()
     {
 
-        //UIManager.GetInstance().HidePanel("UI_TitleScene");
+        UIManager.GetInstance().HidePanel("UI_TitleScene");
     }
     private void loadScene()
     {

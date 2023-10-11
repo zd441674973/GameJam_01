@@ -21,7 +21,7 @@ public class CanDraggedByMousePointer : MonoBehaviour, IPointerDownHandler, IPoi
     {
 
         _startHover = true;
-        WaitForTime(0.1f);
+        WaitForTime(0.5f);
 
     }
 

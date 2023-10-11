@@ -1073,7 +1073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.9293823, y: -440.044}
+  m_AnchoredPosition: {x: -1.9293823, y: -993}
   m_SizeDelta: {x: 366.4516, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1023800430542765028
@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scroll: {fileID: 1023800429773364134}
   moveSpeed: 120
-  targetY: 1850
+  targetY: 1650
   delayBeforeReturnToMainMenu: 2
 --- !u!1 &1023800430667324499
 GameObject:
@@ -2428,8 +2428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49.558556, y: 200.956}
-  m_SizeDelta: {x: 558.58, y: 50}
+  m_AnchoredPosition: {x: 139.63, y: -228}
+  m_SizeDelta: {x: 738.7181, y: 919.7283}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &409575418101222935
 CanvasRenderer:
@@ -2459,7 +2459,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u97F3\u4E50\uFF1A\u9B54\u738B\u9B42"
+  m_text: "\u97F3\u4E50\uFF1A\u9B54\u738B\u9B42\nmaou_bgm_piano09 \nmaou_bgm_piano17\nmaou_bgm_piano29
+    \nmaou_bgm_piano36 \nmaou_bgm_piano39 \nmaou_bgm_piano41 \nmaou_game_battle09
+    \nmaou tamasii ru-pu fantazi_03\nmaou tamasii ru-pu fantazi_11\nmaou tamasii
+    ru-pu fantazi_12\nmaou tamasii ru-pu fantazi_15 "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}
   m_sharedMaterial: {fileID: 2979193228837331801, guid: eb8bacd46357fb4418b3d529965e7b08, type: 2}

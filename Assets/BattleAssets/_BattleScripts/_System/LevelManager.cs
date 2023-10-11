@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
     {
         // PlayerDrawCard();
         // EnemyDrawCard();
-        _playerEachTurnDrawCardCount = 2;
+        //_playerEachTurnDrawCardCount = 2;
 
         StartGameMaxHandCard();
         DrawCard();
@@ -347,7 +347,7 @@ public class LevelManager : MonoBehaviour
     public void SwitchCardAttribute(Transform card)
     {
         CardData cardData = card.GetComponent<CardData>();
-        cardData.IsAttributeSwitched = !cardData.IsAttributeSwitched;
+        cardData.IsBrightCard = !cardData.IsBrightCard;
     }
     public void EnemySwitchCardAttribute(int switchCardCount)
     {

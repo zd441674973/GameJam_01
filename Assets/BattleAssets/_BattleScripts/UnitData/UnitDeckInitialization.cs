@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class UnitDeckInitialization : MonoBehaviour
@@ -27,6 +26,14 @@ public class UnitDeckInitialization : MonoBehaviour
     void Start()
     {
 
+        List<Card> enemyCardList = BattleSceneSetUp.Instance.GetEnemyCardList();
+        FindCardFromTotalCardDeck(enemyCardList, _enemyInitialDeck);
+        foreach (Transform card in _enemyInitialDeck)
+        {
+            Transform cloneCard = CardDeckManager.Instance.GenerateCard(card, transform);
+            EnemyDeck().Add(cloneCard);
+        }
+
         //Find player cards
         List<Card> playerCardList = BattleSceneSetUp.Instance.GetPlayerCardList();
         FindCardFromTotalCardDeck(playerCardList, _playerInitialDeck);
@@ -37,22 +44,15 @@ public class UnitDeckInitialization : MonoBehaviour
         }
 
 
-
-        List<Card> enemyCardList = BattleSceneSetUp.Instance.GetEnemyCardList();
-        FindCardFromTotalCardDeck(enemyCardList, _enemyInitialDeck);
-        foreach (Transform card in _enemyInitialDeck)
+        // debug only
+        Transform B9 = CardDeckManager.Instance.GenerateCard(_totalCardList[9], transform);
+        for (int i = 0; i < 20; i++)
         {
-            Transform cloneCard = CardDeckManager.Instance.GenerateCard(card, transform);
-            EnemyDeck().Add(cloneCard);
+            PlayerDeck().Add(B9);
         }
 
-        // // debug only
-        // Transform B14 = CardDeckManager.Instance.GenerateCard(_totalCardList[14], transform);
-        // for (int i = 0; i < 20; i++)
-        // {
-        //     PlayerDeck().Add(B14);
 
-        // }
+
 
 
 
@@ -90,7 +90,7 @@ public class UnitDeckInitialization : MonoBehaviour
     {
         foreach (var card in cardList)
         {
-            for (int i = 0; i < card.PlayerOwnedNumber * 2; i++)
+            for (int i = 0; i < card.PlayerOwnedNumber; i++)
             {
                 deckList.Add(_totalCardList[card.CardID]);
             }

@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Resources;
 using TMPro;
 using UnityEngine;
-using static UnityEditor.Progress;
 using System.Linq;
 using UnityEngine.UI;
 using Unity.VisualScripting;
